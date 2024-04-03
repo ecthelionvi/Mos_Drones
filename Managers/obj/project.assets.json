@@ -1848,11 +1848,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/Users/jonnyskelton/RiderProjects/Mos_Drones/Managers/Managers.csproj",
+      "projectUniqueName": "/Users/jonnyskelton/Mos_Drones/Managers/Managers.csproj",
       "projectName": "Managers",
-      "projectPath": "/Users/jonnyskelton/RiderProjects/Mos_Drones/Managers/Managers.csproj",
+      "projectPath": "/Users/jonnyskelton/Mos_Drones/Managers/Managers.csproj",
       "packagesPath": "/Users/jonnyskelton/.nuget/packages/",
-      "outputPath": "/Users/jonnyskelton/RiderProjects/Mos_Drones/Managers/obj/",
+      "outputPath": "/Users/jonnyskelton/Mos_Drones/Managers/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "/Users/jonnyskelton/.nuget/NuGet/NuGet.Config"
