@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="styles.css">
+  <title>Tracking and Delivery</title>
+</head>
+
+<body class="homepage-body">
+  <div class="body-container">
+    <div class="page-container">
+      <header class="header">
+        <img class="header__logo" src="logo.png" alt="Mo's Drones Logo">
+        <div class="header__tabs">
+          <div class="header__tab header__tab--active" data-tab="home">
+            <span class="header__tab__span">Home</span>
+            <div class="header__tab-underline"></div>
+          </div>
+          <div class="header__tab" data-tab="about">
+            <span class="header__tab__span">About</span>
+            <div class="header__tab-underline"></div>
+          </div>
+        </div>
+        <button class="header__signin-btn">Sign In &raquo;</button>
+      </header>
+
+      <main class="main-content">
+        <section class="home-section">
+          <section class="tracking-section">
+            <div class="tracking-section__tabs">
+              <div class="tracking-section__tab tracking-section__tab--active" data-tab="tracking">
+                <span class="tracking-section__tab__span">Tracking</span>
+                <div class="tracking-section__tab-underline"></div>
+              </div>
+              <div class="tracking-section__tab" data-tab="request-delivery">
+                <span class="tracking-section__tab__span">Request Delivery</span>
+                <div class="tracking-section__tab-underline"></div>
+              </div>
+            </div>
+            <div class="tracking-section__content">
+              <div class="tracking-section__tracking">
+                <input type="text" class="tracking-section__tracking-input" placeholder="Enter tracking number">
+                <button class="tracking-section__tracking-btn">Track &raquo;</button>
+              </div>
+              <div class="tracking-section__delivery hidden">
+                <input type="text" class="tracking-section__delivery-from" placeholder="From">
+                <input type="text" class="tracking-section__delivery-to" placeholder="To">
+                <button class="tracking-section__delivery-btn">Request Delivery &raquo;</button>
+              </div>
+            </div>
+          </section>
+          <div class="content-wrapper">
+            <img class="main-image-top" src="drone.PNG" alt="Drone with Package">
+            <h1 class="main-title">World-Class Services<br>You Can Count On</h1>
+            <div class="title-underline"></div>
+            <p class="main-slogan">Nebraska Skies, Swift Supplies</p>
+          </div>
+        </section>
+
+        <section class="about-section hidden">
+          <h2>About Us</h2>
+          <div class="about-section__underline"></div>
+          <p class="about-section-paragraph">Welcome to Mo's Drones, where innovation meets convenience in the world of
+            delivery
+            services. At Mo's Drones, we're passionate about revolutionizing the way goods are
+            transported, bringing unparalleled speed, efficiency, and reliability to your doorstep.</p>
+          <!-- <img class="about-image-top" src="mo.PNG" alt="Mr. Mo"> -->
+          <div class="image-container">
+            <img class="about-image-top" src="mo.PNG" alt="Your Image">
+            <div class="speech-bubble">
+              <p class="speech-bubble-paragraph">Take it from me, Mr. Mo</p>
+            </div>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <script src="script.js"></script>
+  </div>
+</body>
+
+</html>
