@@ -1,11 +1,11 @@
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, NavLink } from 'react-router-dom';
 import React, { useState } from 'react';
 import { jwtDecode } from 'jwt-decode';
 import '../styles/LoginPage.css';
 import logo from '../images/logo.png';
 import axios from 'axios';
 
-const LoginForm = () => {
+const LoginPage = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [message, setMessage] = useState('');
@@ -44,13 +44,20 @@ const LoginForm = () => {
 
   return (
     <div className="login-form-container">
+      <div className="close-button-container">
+        <NavLink to="/" className="close-button">
+          <span>×</span>
+        </NavLink>
+      </div>
       <div className="login-form-wrapper">
         <div className="login-form-content">
           <img src={logo} alt="Mo's Drones Logo" className="login-form-logo" />
           <h2 className="login-form-title">Sign In</h2>
           <form onSubmit={handleSubmit} className="login-form">
             <div className="login-form-group">
-              <label htmlFor="email" className="login-form-label">Email</label>
+              <label htmlFor="email" className="login-form-label">
+                Email
+              </label>
               <input
                 type="email"
                 id="email"
@@ -61,7 +68,9 @@ const LoginForm = () => {
               />
             </div>
             <div className="login-form-group">
-              <label htmlFor="password" className="login-form-label">Password</label>
+              <label htmlFor="password" className="login-form-label">
+                Password
+              </label>
               <input
                 type="password"
                 id="password"
@@ -71,17 +80,21 @@ const LoginForm = () => {
                 className="login-form-input"
               />
             </div>
-            <button type="submit" className="login-form-button">Sign In</button>
+            <button type="submit" className="login-form-button">
+              Sign In
+            </button>
           </form>
           <p className="login-form-message">{message}</p>
         </div>
         <div className="login-form-signup-section">
           <p className="login-form-signup-text">New to Mo's Drones?</p>
-          <a href="/signup" className="login-form-signup-button">Sign Up</a>
+          <a href="/signup" className="login-form-signup-button">
+            Sign Up
+          </a>
         </div>
       </div>
     </div>
   );
 };
 
-export default LoginForm;
+export default LoginPage;

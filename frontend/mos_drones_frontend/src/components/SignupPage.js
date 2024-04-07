@@ -1,14 +1,15 @@
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, NavLink } from 'react-router-dom';
 import React, { useState } from 'react';
 import '../styles/SignupPage.css';
 import axios from 'axios';
 
-const SignupForm = () => {
+const SignupPage = () => {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [address, setAddress] = useState('');
   const [message, setMessage] = useState('');
+
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
@@ -49,12 +50,19 @@ const SignupForm = () => {
 
   return (
     <div className="signup-form-container">
+      <div className="close-button-container">
+        <NavLink to="/" className="close-button">
+          <span>×</span>
+        </NavLink>
+      </div>
       <div className="signup-form-wrapper">
         <div className="signup-form-content">
           <h2 className="signup-form-title">Create Account</h2>
           <form onSubmit={handleSubmit} className="signup-form">
             <div className="signup-form-group">
-              <label htmlFor="name" className="signup-form-label">Name</label>
+              <label htmlFor="name" className="signup-form-label">
+                Name
+              </label>
               <input
                 type="text"
                 id="name"
@@ -65,7 +73,9 @@ const SignupForm = () => {
               />
             </div>
             <div className="signup-form-group">
-              <label htmlFor="email" className="signup-form-label">Email</label>
+              <label htmlFor="email" className="signup-form-label">
+                Email
+              </label>
               <input
                 type="email"
                 id="email"
@@ -76,7 +86,9 @@ const SignupForm = () => {
               />
             </div>
             <div className="signup-form-group">
-              <label htmlFor="password" className="signup-form-label">Password</label>
+              <label htmlFor="password" className="signup-form-label">
+                Password
+              </label>
               <input
                 type="password"
                 id="password"
@@ -88,7 +100,9 @@ const SignupForm = () => {
               />
             </div>
             <div className="signup-form-group">
-              <label htmlFor="address" className="signup-form-label">Address</label>
+              <label htmlFor="address" className="signup-form-label">
+                Address
+              </label>
               <input
                 type="text"
                 id="address"
@@ -98,7 +112,9 @@ const SignupForm = () => {
                 className="signup-form-input"
               />
             </div>
-            <button type="submit" className="signup-form-button">Sign Up</button>
+            <button type="submit" className="signup-form-button">
+              Sign Up
+            </button>
           </form>
           <p className="signup-form-message">{message}</p>
         </div>
@@ -117,4 +133,4 @@ const SignupForm = () => {
   );
 };
 
-export default SignupForm;
+export default SignupPage;
