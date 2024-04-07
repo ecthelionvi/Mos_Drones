@@ -2,6 +2,7 @@ import { useNavigate } from 'react-router-dom';
 import React, { useState } from 'react';
 import { jwtDecode } from 'jwt-decode';
 import '../styles/LoginPage.css';
+import logo from '../images/logo.png';
 import axios from 'axios';
 
 const LoginForm = () => {
@@ -45,7 +46,7 @@ const LoginForm = () => {
     <div className="login-form-container">
       <div className="login-form-wrapper">
         <div className="login-form-content">
-          <img src="./logo.png" alt="Logo" className="login-form-logo" />
+          <img src={logo} alt="Mo's Drones Logo" className="login-form-logo" />
           <h2 className="login-form-title">Sign In</h2>
           <form onSubmit={handleSubmit} className="login-form">
             <div className="login-form-group">
