@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "Hash": "47TdogNQr4umCp3KsYhRUTLQjQimSdQMXTl+UVDSG4A=",
+  "Source": "DroneDeliveryBackend",
+  "BasePath": "_content/DroneDeliveryBackend",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": []
+}
