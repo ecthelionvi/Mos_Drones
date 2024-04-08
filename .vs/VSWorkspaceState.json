@@ -1,0 +1,16 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\Accessors",
+    "\\Accessors\\Accessors",
+    "\\DatabaseConnection",
+    "\\DatabaseConnection\\Properties",
+    "\\Engines",
+    "\\Engines\\BizLogic",
+    "\\Managers",
+    "\\Managers\\Models",
+    "\\Service"
+  ],
+  "SelectedNode": "\\Service\\Service.csproj",
+  "PreviewInSolutionExplorer": false
+}

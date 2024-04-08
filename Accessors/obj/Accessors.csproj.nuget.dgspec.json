@@ -1,33 +1,35 @@
 {
   "format": 1,
   "restore": {
-    "/Users/jonnyskelton/RiderProjects/Mos_Drones/Accessors/Accessors.csproj": {}
+    "C:\\Users\\angiz\\Source\\Repos\\ecthelionvi\\Mos_Drones\\Accessors\\Accessors.csproj": {}
   },
   "projects": {
-    "/Users/jonnyskelton/RiderProjects/Mos_Drones/Accessors/Accessors.csproj": {
+    "C:\\Users\\angiz\\Source\\Repos\\ecthelionvi\\Mos_Drones\\Accessors\\Accessors.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/jonnyskelton/RiderProjects/Mos_Drones/Accessors/Accessors.csproj",
+        "projectUniqueName": "C:\\Users\\angiz\\Source\\Repos\\ecthelionvi\\Mos_Drones\\Accessors\\Accessors.csproj",
         "projectName": "Accessors",
-        "projectPath": "/Users/jonnyskelton/RiderProjects/Mos_Drones/Accessors/Accessors.csproj",
-        "packagesPath": "/Users/jonnyskelton/.nuget/packages/",
-        "outputPath": "/Users/jonnyskelton/RiderProjects/Mos_Drones/Accessors/obj/",
+        "projectPath": "C:\\Users\\angiz\\Source\\Repos\\ecthelionvi\\Mos_Drones\\Accessors\\Accessors.csproj",
+        "packagesPath": "C:\\Users\\angiz\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\angiz\\Source\\Repos\\ecthelionvi\\Mos_Drones\\Accessors\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "/Users/jonnyskelton/.nuget/NuGet/NuGet.Config"
+          "C:\\Users\\angiz\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
           "net8.0"
         ],
         "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
-              "/Users/jonnyskelton/Service/Service.csproj": {
-                "projectPath": "/Users/jonnyskelton/Service/Service.csproj"
+              "C:\\Users\\angiz\\Source\\Repos\\Service\\Service.csproj": {
+                "projectPath": "C:\\Users\\angiz\\Source\\Repos\\Service\\Service.csproj"
               }
             }
           }
@@ -36,6 +38,11 @@
           "warnAsError": [
             "NU1605"
           ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
         }
       },
       "frameworks": {
@@ -43,7 +50,6 @@
           "targetAlias": "net8.0",
           "dependencies": {
             "NETStandard.Library": {
-              "suppressParent": "All",
               "target": "Package",
               "version": "[2.0.3, )"
             }
@@ -64,77 +70,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/8.0.203/PortableRuntimeIdentifierGraph.json"
-        }
-      }
-    },
-    "/Users/jonnyskelton/Service/Service.csproj": {
-      "version": "1.0.0",
-      "restore": {
-        "projectUniqueName": "/Users/jonnyskelton/Service/Service.csproj",
-        "projectName": "Service",
-        "projectPath": "/Users/jonnyskelton/Service/Service.csproj",
-        "packagesPath": "/Users/jonnyskelton/.nuget/packages/",
-        "outputPath": "/Users/jonnyskelton/Service/obj/",
-        "projectStyle": "PackageReference",
-        "configFilePaths": [
-          "/Users/jonnyskelton/.nuget/NuGet/NuGet.Config"
-        ],
-        "originalTargetFrameworks": [
-          "net8.0"
-        ],
-        "sources": {
-          "https://api.nuget.org/v3/index.json": {}
-        },
-        "frameworks": {
-          "net8.0": {
-            "targetAlias": "net8.0",
-            "projectReferences": {}
-          }
-        },
-        "warningProperties": {
-          "warnAsError": [
-            "NU1605"
-          ]
-        }
-      },
-      "frameworks": {
-        "net8.0": {
-          "targetAlias": "net8.0",
-          "dependencies": {
-            "Microsoft.EntityFrameworkCore": {
-              "target": "Package",
-              "version": "[9.0.0-preview.2.24128.4, )"
-            },
-            "System.Data.SqlClient": {
-              "target": "Package",
-              "version": "[4.8.6, )"
-            },
-            "runtime.native.System.Data.SqlClient.sni": {
-              "target": "Package",
-              "version": "[4.7.0, )"
-            }
-          },
-          "imports": [
-            "net461",
-            "net462",
-            "net47",
-            "net471",
-            "net472",
-            "net48",
-            "net481"
-          ],
-          "assetTargetFallback": true,
-          "warn": true,
-          "frameworkReferences": {
-            "Microsoft.AspNetCore.App": {
-              "privateAssets": "none"
-            },
-            "Microsoft.NETCore.App": {
-              "privateAssets": "all"
-            }
-          },
-          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/8.0.203/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.202/PortableRuntimeIdentifierGraph.json"
         }
       }
     }
