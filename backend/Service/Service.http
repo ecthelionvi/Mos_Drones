@@ -3,4 +3,6 @@
 GET {{drones_HostAddress}}/api/MainView/GetUserOrders
 Accept: application/json
 
-###
+### Send POST request with json body
+POST {{drones_HostAddress}}/api/MainView/TrackPackage
+Content-Type: application/json
