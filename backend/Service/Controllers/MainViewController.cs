@@ -34,11 +34,28 @@ namespace Service.Controllers
             }
             return Ok(order);
         }
-
+        
         [HttpGet("GetUserOrders")]
         public IEnumerable<OrderServiceModel> GetUserOrders(string userId)
         {
             // Call the appropriate method from your UserManager to get user orders
+            
+            //url
+            //http://localhost:3001/api/MainView/GetUserOrders?userId=123
+            
+            //Json Response
+            // [
+            // {
+            //     "id": "1",
+            //     "deliveryDate": "2024-04-10",
+            //     "status": "Pending"
+            // },
+            // {
+            //     "id": "2",
+            //     "deliveryDate": "2024-03-30",
+            //     "status": "Delivered"
+            // }
+            // ]
             var userOrders = _userManager.GetUserOrders(userId);
             return userOrders;
         }
