@@ -1,0 +1,138 @@
+@import '../styles/Fonts.css';
+
+.signup-form-title {
+  text-align: center;
+}
+
+.signup-form-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  font-family: 'JetBrainsMonoNerdFont', sans-serif;
+  background: linear-gradient(
+    135deg,
+    rgba(30, 81, 117, 0.9), /* #1E5175 with 80% opacity */
+    rgba(16, 177, 224, 0.9) /* #10B1E0 with 80% opacity */
+  );
+}
+
+.signup-form-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 350px;
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 12px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  background-color: #e3f6fc;
+}
+
+.signup-form-content {
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+.signup-form-title {
+  font-size: 28px;
+  font-weight: 400;
+  margin-bottom: 10px;
+}
+
+.signup-form-group {
+  margin-bottom: 14px;
+}
+
+.signup-form-label {
+  display: block;
+  font-size: 16px;
+  font-weight: 700;
+  padding-left: 2px;
+  padding-bottom: 2px;
+}
+
+.signup-form-input {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #a6a6a6;
+  border-radius: 3px;
+  box-sizing: border-box;
+}
+
+.signup-form-button {
+  display: block;
+  width: 100%;
+  max-width: 369px;
+  padding: 10px;
+  background-color: #DF8B67;
+  border: 1px solid #BA7658;
+  border-radius: 3px;
+  color: #111;
+  font-size: 16px;
+  font-weight: bold;
+  text-decoration: none;
+  cursor: pointer;
+  margin: 0 auto;
+  font-family: 'JetBrainsMonoNerdFont', sans-serif;
+}
+
+.signup-form-button:hover {
+  background-color: #BA7658;
+}
+
+.signup-form-message {
+  color: red;
+  font-size: 16px;
+  margin-top: 10px;
+}
+
+.signup-form-login-section {
+  font-size: 16px;
+  line-height: 1.5;
+  margin-top: -20px;
+  text-align: center;
+}
+
+.signup-form-terms {
+  margin-bottom: 10px;
+}
+
+.signup-form-login-text {
+  font-size: 16px;
+  color: #767676;
+  margin-top: 20px;
+}
+
+.signup-form-login-link {
+  color: #0066c0;
+  text-decoration: none;
+}
+
+.signup-form-login-link:hover {
+  text-decoration: underline;
+}
+
+.close-button-container {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+}
+
+.close-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 30px;
+  height: 30px;
+  background-color: #f0f0f0;
+  border-radius: 50%;
+  text-decoration: none;
+  color: #333;
+  font-size: 20px;
+  line-height: 1;
+}
+
+.close-button:hover {
+  background-color: #e0e0e0;
+}
