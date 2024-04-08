@@ -5,7 +5,7 @@ import '../styles/LoginPage.css';
 import logo from '../images/logo.png';
 import axios from 'axios';
 
-const LoginPage = () => {
+const LoginPage = ({ onLogin }) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [message, setMessage] = useState('');
@@ -27,11 +27,12 @@ const LoginPage = () => {
 
       localStorage.setItem('token', token);
       localStorage.setItem('role', role);
+      onLogin();
 
       if (role === 'staff') {
-        navigate('/staff');
+        navigate('/');
       } else if (role === 'customer') {
-        navigate('/customer');
+        navigate('/');
       } else {
         console.log(decodedToken);
         setMessage('Unknown user role.');
