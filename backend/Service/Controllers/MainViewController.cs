@@ -1,24 +1,27 @@
+using System.Collections;
 using System.Data;
 using Microsoft.AspNetCore.Mvc;
 using System.Data.SqlClient;
 using System.Text.Json.Nodes;
 using Managers;
+using Managers.Models;
 using Microsoft.AspNetCore.Identity;
 
 namespace Service.Controllers
 {
-    [Route("api/[controller]")]
     [ApiController]
-    public class MainViewController : Controller
+    [Route("api/[controller]")]
+    public class MainViewController : ControllerBase
     {
-        private readonly OrderManager _orderManager;
-        private readonly UserManager _userManager;
+        private readonly ILogger<MainViewController> _logger;
+        private readonly OrderManager _orderManager = new OrderManager();
+        private readonly UserManager _userManager = new UserManager();
 
-        public MainViewController(OrderManager orderManager, UserManager userManager)
+        public MainViewController(ILogger<MainViewController> logger)
         {
-            _orderManager = orderManager;
-            _userManager = userManager;
+            _logger = logger;
         }
+        
 
         [HttpPost("TrackPackage")]
         public IActionResult TrackPackage(string packageId)
@@ -33,11 +36,11 @@ namespace Service.Controllers
         }
 
         [HttpGet("GetUserOrders")]
-        public IActionResult GetUserOrders(string userId)
+        public IEnumerable<OrderServiceModel> GetUserOrders(string userId)
         {
             // Call the appropriate method from your UserManager to get user orders
             var userOrders = _userManager.GetUserOrders(userId);
-            return Ok(userOrders);
+            return userOrders;
         }
     }
 }

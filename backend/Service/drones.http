@@ -1,6 +1,6 @@
-@drones_HostAddress = http://localhost:5171
+@drones_HostAddress = http://localhost:3001
 
-GET {{drones_HostAddress}}/weatherforecast/
+GET {{drones_HostAddress}}/api/MainView/GetUserOrders
 Accept: application/json
 
 ###

@@ -1,4 +1,5 @@
 import React, { useState, useRef } from 'react';
+import axios from 'axios';
 import drone from '../images/drone.png';
 import logo from '../images/logo.png';
 import mo from '../images/mo.png';
@@ -9,6 +10,7 @@ import { NavLink } from 'react-router-dom';
 const HomePage = () => {
   const [activeTrackingTab, setActiveTrackingTab] = useState('tracking');
   const [activeHeaderTab, setActiveHeaderTab] = useState('home');
+  const [trackingNumber, setTrackingNumber] = useState('');
 
   const fromAutocompleteRef = useRef(null);
   const toAutocompleteRef = useRef(null);
@@ -32,6 +34,33 @@ const HomePage = () => {
       const place = autocompleteRef.current.getPlace();
       console.log("Selected place:", place);
     }
+  };
+
+  const handleTrackButtonClick = () => {
+    fetch("http://localhost:1111/api/mainviewcontroller", {
+      method: "GET",
+      redirect: "follow"
+    })
+      .then(response => response.json())
+      .then(result => console.log("Result:", result)) // corrected from "fire" to "Result:"
+      .catch(error => console.log("Error:", error)) // corrected from "Error: " to "Error:"
+  };
+
+  const TrackingComponent = () => {
+    return (
+      <div className={`tracking-section__tracking ${activeTrackingTab === 'tracking' ? '' : 'hidden'}`}>
+        <input
+          type="text"
+          className="tracking-section__tracking-input"
+          placeholder="Enter tracking number"
+          value={trackingNumber}
+          onChange={e => setTrackingNumber(e.target.value)}
+        />
+        <button className="tracking-section__tracking-btn" onClick={handleTrackButtonClick}>
+          Track &raquo;
+        </button>
+      </div>
+    );
   };
 
   return (
@@ -78,11 +107,16 @@ const HomePage = () => {
                     <span className="tracking-section__tab__span">Request Delivery</span>
                     <div className="tracking-section__tab-underline"></div>
                   </div>
-                </div>
-                <div className="tracking-section__content">
+                {/* </div>
+                {/* <div className="tracking-section__content">
                   <div className={`tracking-section__tracking ${activeTrackingTab === 'tracking' ? '' : 'hidden'}`}>
                     <input type="text" className="tracking-section__tracking-input" placeholder="Enter tracking number" />
-                    <button className="tracking-section__tracking-btn">Track &raquo;</button>
+                    <button className="tracking-section__tracking-btn" onClick={() => handleTrackButtonClick()}>
+                      Track &raquo;
+                    </button>
+                  </div> */}
+                  <div>
+                    <TrackingComponent></TrackingComponent>
                   </div>
                   <div className={`tracking-section__delivery ${activeTrackingTab === 'request-delivery' ? '' : 'hidden'}`}>
                     {isLoaded && (
