@@ -1,4 +1,4 @@
-namespace Service.Models;
+namespace Managers.Models;
 
 public class DroneModel
 {

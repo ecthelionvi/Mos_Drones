@@ -2,7 +2,7 @@ using System.Data;
 using Microsoft.AspNetCore.Mvc;
 using System.Data.SqlClient;
 using System.Text.Json.Nodes;
-using Service.Models;
+using Managers.Models;
 
 namespace Service.Controllers;
 
@@ -21,7 +21,7 @@ public class DroneController : Controller
     // }
     //
     // [HttpPost]
-    // public JsonResult SaveUser(UserModel user)
+    // public JsonResult SaveUser(UserServiceModel userService)
     // {
     //
     //     return new JsonResult();

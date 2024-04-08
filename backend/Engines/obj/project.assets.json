@@ -1848,11 +1848,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/Users/jonnyskelton/Mos_Drones/Engines/Engines.csproj",
+      "projectUniqueName": "/Users/jonnyskelton/Mos_Drones/backend/Engines/Engines.csproj",
       "projectName": "Engines",
-      "projectPath": "/Users/jonnyskelton/Mos_Drones/Engines/Engines.csproj",
+      "projectPath": "/Users/jonnyskelton/Mos_Drones/backend/Engines/Engines.csproj",
       "packagesPath": "/Users/jonnyskelton/.nuget/packages/",
-      "outputPath": "/Users/jonnyskelton/Mos_Drones/Engines/obj/",
+      "outputPath": "/Users/jonnyskelton/Mos_Drones/backend/Engines/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "/Users/jonnyskelton/.nuget/NuGet/NuGet.Config"

@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "/Users/jonnyskelton/Mos_Drones/Accessors/Accessors.csproj": {}
+    "/Users/jonnyskelton/Mos_Drones/backend/Accessors/Accessors.csproj": {}
   },
   "projects": {
-    "/Users/jonnyskelton/Mos_Drones/Accessors/Accessors.csproj": {
+    "/Users/jonnyskelton/Mos_Drones/backend/Accessors/Accessors.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/jonnyskelton/Mos_Drones/Accessors/Accessors.csproj",
+        "projectUniqueName": "/Users/jonnyskelton/Mos_Drones/backend/Accessors/Accessors.csproj",
         "projectName": "Accessors",
-        "projectPath": "/Users/jonnyskelton/Mos_Drones/Accessors/Accessors.csproj",
+        "projectPath": "/Users/jonnyskelton/Mos_Drones/backend/Accessors/Accessors.csproj",
         "packagesPath": "/Users/jonnyskelton/.nuget/packages/",
-        "outputPath": "/Users/jonnyskelton/Mos_Drones/Accessors/obj/",
+        "outputPath": "/Users/jonnyskelton/Mos_Drones/backend/Accessors/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "/Users/jonnyskelton/.nuget/NuGet/NuGet.Config"

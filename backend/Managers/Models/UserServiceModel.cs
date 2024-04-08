@@ -1,6 +1,6 @@
-namespace Service.Models;
+namespace Managers.Models;
 
-public class UserModel
+public class UserServiceModel
 {
     public bool IsAdmin { get; set; }
     public string Account { get; set; }

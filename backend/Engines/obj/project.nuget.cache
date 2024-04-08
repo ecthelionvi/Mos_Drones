@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "gPHlIQ9vAjB8ASJklLiCKrDz3hptmujIgDg0e1a1ZTGHEAzW22rNtWEIUAkCP/2SrSHFVYR680GVkU2sdZEkbg==",
+  "dgSpecHash": "U5yqukzlTEfHcP4G52T1TQEmENDRmxv4YWxXgUX7E7VlY2Kl5Jiv5QgyaFi/ck4s2cz3VhppVXdiHnBO+Yszjw==",
   "success": true,
-  "projectFilePath": "/Users/jonnyskelton/Mos_Drones/Engines/Engines.csproj",
+  "projectFilePath": "/Users/jonnyskelton/Mos_Drones/backend/Engines/Engines.csproj",
   "expectedPackageFiles": [
     "/Users/jonnyskelton/.nuget/packages/entityframework/6.4.4/entityframework.6.4.4.nupkg.sha512",
     "/Users/jonnyskelton/.nuget/packages/microsoft.aspnetcore.http.abstractions/2.2.0/microsoft.aspnetcore.http.abstractions.2.2.0.nupkg.sha512",
