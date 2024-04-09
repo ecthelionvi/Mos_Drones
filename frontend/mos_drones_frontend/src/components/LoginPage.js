@@ -89,9 +89,9 @@ const LoginPage = ({ onLogin }) => {
         </div>
         <div className="login-form-signup-section">
           <p className="login-form-signup-text">New to Mo's Drones?</p>
-          <a href="/signup" className="login-form-signup-button">
+          <NavLink to="/signup" className="login-form-signup-button">
             Sign Up
-          </a>
+          </NavLink>
         </div>
       </div>
     </div>

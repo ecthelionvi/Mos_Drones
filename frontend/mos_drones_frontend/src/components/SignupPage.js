@@ -148,9 +148,9 @@ const SignupPage = () => {
             and Privacy Notice.
           </p>
           <p className="signup-form-login-text">Already have an account?</p>
-          <a href="/login" className="signup-form-login-link">
+          <NavLink to="/login" className="signup-form-login-link">
             Sign In
-          </a>
+          </NavLink>
         </div>
       </div>
     </div>
