@@ -1,2 +1,27 @@
 appsettings.json
 .DS_Store
+
+# Ignore NuGet packages
+*.nupkg
+*.paket
+
+# Ignore Visual Studio Code auto-generated files
+.vscode/
+
+# Ignore .NET Core miscellaneous files
+bin/
+obj/
+
+# Ignore project specific files
+**/bin/
+**/obj/
+
+# Ignore project specific files with specific extensions
+**/bin/**/*.dll
+**/bin/**/*.exe
+**/obj/**/*.dll
+**/obj/**/*.exe
+**/obj/**/*.json
+**/obj/**/*.cache
+**/obj/**/*.editorconfig
+**/obj/**/*.AssemblyInfo.cs
