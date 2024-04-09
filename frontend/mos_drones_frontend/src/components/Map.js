@@ -1,13 +1,14 @@
-import React from 'react';
+import '../styles/Map.css';
+import warehouseIcon from '../images/warehouse.png';
 import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
 import L from 'leaflet';
 import 'leaflet/dist/leaflet.css';
-import './Map.css';
-import warehouseIcon from './warehouse.png';
+import React, { useEffect, useRef } from 'react';
 
 const Map = () => {
   const position = [40.9867827, -96.5746042];
   const zoom = 10;
+  const mapRef = useRef(null);
 
   const depots = [
     { name: "Depot 1 - Seward", lat: 40.911152, lng: -97.101418 },
@@ -30,12 +31,21 @@ const Map = () => {
     popupAnchor: [0, -32],
   });
 
+  useEffect(() => {
+    const map = mapRef.current;
+    if (map) {
+      map.invalidateSize();
+    }
+  }, []);
+
   return (
     <div>
-      <MapContainer center={position} zoom={zoom} id="map">
+      <MapContainer center={position} zoom={zoom} id="map" ref={mapRef}>
         <TileLayer
-          url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-          attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+          url="https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png"
+          attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+          subdomains='abcd'
+          maxZoom={19}
         />
         {depots.map((depot, index) => (
           <Marker key={index} position={[depot.lat, depot.lng]} icon={customIcon}>

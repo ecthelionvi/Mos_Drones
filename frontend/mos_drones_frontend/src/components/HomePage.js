@@ -5,6 +5,7 @@ import mo from '../images/mo.png';
 import pkg from '../images/package.png'
 import '../styles/HomePage.css';
 import PackageGrid from './PackageGrid'
+import Map from '../components/Map';
 import { useJsApiLoader, Autocomplete } from '@react-google-maps/api';
 import { NavLink, useNavigate } from 'react-router-dom';
 
@@ -72,7 +73,7 @@ const HomePage = ({ loggedIn, onLogout, setLoggedIn }) => {
                 className={`header__tab ${activeHeaderTab === 'map' ? 'header__tab--active' : ''}`}
                 onClick={() => handleHeaderTabClick('map')}
               >
-                <span className="header__tab__span">Map</span>
+                <span className="header__tab__span">Service Area</span>
                 <div className="header__tab-underline"></div>
               </div>
               {loggedIn && (
@@ -182,11 +183,10 @@ const HomePage = ({ loggedIn, onLogout, setLoggedIn }) => {
               <PackageGrid />
               <img className="dashboard-image-bottom" src={pkg} alt="Package" />
             </section>
-            <section className={`dashboard-section ${activeHeaderTab === 'map' ? '' : 'hidden'}`}>
-              <h2>Packages</h2>
-              <div className="dashboard-section__underline"></div>
-              <PackageGrid />
-              <img className="dashboard-image-bottom" src={pkg} alt="Package" />
+            <section className={`map-section ${activeHeaderTab === 'map' ? '' : 'hidden'}`} key={activeHeaderTab}>
+              <h2>Service Area</h2>
+              <div className="map-section__underline"></div>
+              <Map />
             </section>
           </main>
         </div>

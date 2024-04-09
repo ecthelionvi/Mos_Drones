@@ -355,3 +355,31 @@
 .dashboard-image-bottom {
   margin-top: 40px;
 }
+
+
+.map-section {
+  margin: 0 auto;
+  text-align: center;
+  margin-top: 30px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.map-section__underline {
+  width: 256px;
+  height: 5px;
+  background-color: #DF8B67;
+  margin: 10px auto;
+  margin-top: -10px;
+}
+
+
+.map-section h2 {
+  font-size: 32px;
+  margin-top: -2px;
+  margin-bottom: 20px;
+  color: white;
+}
