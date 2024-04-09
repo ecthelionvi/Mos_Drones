@@ -68,21 +68,19 @@ const HomePage = ({ loggedIn, onLogout, setLoggedIn }) => {
                 <span className="header__tab__span">Home</span>
                 <div className="header__tab-underline"></div>
               </div>
+              <div
+                className={`header__tab ${activeHeaderTab === 'map' ? 'header__tab--active' : ''}`}
+                onClick={() => handleHeaderTabClick('map')}
+              >
+                <span className="header__tab__span">Map</span>
+                <div className="header__tab-underline"></div>
+              </div>
               {loggedIn && (
                 <div
                   className={`header__tab ${activeHeaderTab === 'dashboard' ? 'header__tab--active' : ''}`}
                   onClick={() => handleHeaderTabClick('dashboard')}
                 >
                   <span className="header__tab__span">Dashboard</span>
-                  <div className="header__tab-underline"></div>
-                </div>
-              )}
-              {loggedIn && (
-                <div
-                  className={`header__tab ${activeHeaderTab === 'account' ? 'header__tab--active' : ''}`}
-                  onClick={() => handleHeaderTabClick('account')}
-                >
-                  <span className="header__tab__span">Account</span>
                   <div className="header__tab-underline"></div>
                 </div>
               )}
@@ -179,6 +177,12 @@ const HomePage = ({ loggedIn, onLogout, setLoggedIn }) => {
               </div>
             </section>
             <section className={`dashboard-section ${activeHeaderTab === 'dashboard' ? '' : 'hidden'}`}>
+              <h2>Packages</h2>
+              <div className="dashboard-section__underline"></div>
+              <PackageGrid />
+              <img className="dashboard-image-bottom" src={pkg} alt="Package" />
+            </section>
+            <section className={`dashboard-section ${activeHeaderTab === 'map' ? '' : 'hidden'}`}>
               <h2>Packages</h2>
               <div className="dashboard-section__underline"></div>
               <PackageGrid />
