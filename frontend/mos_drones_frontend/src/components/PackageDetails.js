@@ -5,7 +5,6 @@ import pkg from '../images/open-pkg.png'
 const PackageDetails = () => {
   const { packageId } = useParams();
 
-  // Mock data
   const mockData = [
     {
       id: '1',
@@ -19,7 +18,6 @@ const PackageDetails = () => {
     },
   ];
 
-  // Find the package details based on the packageId
   const packageDetails = mockData.find((pkg) => pkg.id === packageId);
 
   if (!packageDetails) {
