@@ -1,6 +1,10 @@
-#map {
+.service-area {
   height: 650px;
   width: 1200px;
   margin: 20px auto;
   border: 3px dashed #173954;
+}
+
+.hidden {
+  display: none;
 }

@@ -3,13 +3,15 @@ import drone from '../images/drone.png';
 import logo from '../images/logo.png';
 import mo from '../images/mo.png';
 import pkg from '../images/package.png'
+import drone_pkg from '../images/drone-pkg.png'
 import '../styles/HomePage.css';
 import PackageGrid from './PackageGrid'
-import Map from '../components/Map';
+import ServiceArea from '../components/SerivceArea';
+import DroneGrid from '../components/DroneGrid';
 import { useJsApiLoader, Autocomplete } from '@react-google-maps/api';
 import { NavLink, useNavigate } from 'react-router-dom';
 
-const HomePage = ({ loggedIn, onLogout, setLoggedIn }) => {
+const HomePage = ({ loggedIn, onLogout, setLoggedIn, role }) => {
   const [activeTrackingTab, setActiveTrackingTab] = useState('tracking');
   const [activeHeaderTab, setActiveHeaderTab] = useState(loggedIn ? 'dashboard' : 'home');
   const [trackingNumber, setTrackingNumber] = useState('');
@@ -178,15 +180,26 @@ const HomePage = ({ loggedIn, onLogout, setLoggedIn }) => {
               </div>
             </section>
             <section className={`dashboard-section ${activeHeaderTab === 'dashboard' ? '' : 'hidden'}`}>
-              <h2>Packages</h2>
-              <div className="dashboard-section__underline"></div>
-              <PackageGrid />
-              <img className="dashboard-image-bottom" src={pkg} alt="Package" />
+              {role === 'staff' ? (
+                <>
+                  <h2>Drones</h2>
+                  <div className="dashboard-section__underline-drone"></div>
+                  <DroneGrid />
+                  <img className="dashboard-image-bottom-drone" src={drone_pkg} alt="Package" />
+                </>
+              ) : (
+                <>
+                  <h2>Packages</h2>
+                  <div className="dashboard-section__underline"></div>
+                  <PackageGrid />
+                  <img className="dashboard-image-bottom" src={pkg} alt="Package" />
+                </>
+              )}
             </section>
             <section className={`map-section ${activeHeaderTab === 'map' ? '' : 'hidden'}`} key={activeHeaderTab}>
               <h2>Service Area</h2>
               <div className="map-section__underline"></div>
-              <Map />
+              <ServiceArea />
             </section>
           </main>
         </div>

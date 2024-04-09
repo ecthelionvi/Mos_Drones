@@ -1,4 +1,4 @@
-import '../styles/Map.css';
+import '../styles/ServiceArea.css';
 import warehouseIcon from '../images/warehouse.png';
 import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
 import L from 'leaflet';
@@ -40,7 +40,7 @@ const Map = () => {
 
   return (
     <div>
-      <MapContainer center={position} zoom={zoom} id="map" ref={mapRef}>
+      <MapContainer center={position} zoom={zoom} className="service-area" ref={mapRef}>
         <TileLayer
           url="https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png"
           attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'

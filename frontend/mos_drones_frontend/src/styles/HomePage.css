@@ -284,6 +284,14 @@
   margin-top: -10px;
 }
 
+.dashboard-section__underline-drone {
+  width: 142px;
+  height: 5px;
+  background-color: #DF8B67;
+  margin: 10px auto;
+  margin-top: -10px;
+}
+
 .about-section p {
   max-width: 900px;
   font-size: 22px;
@@ -354,6 +362,10 @@
 
 .dashboard-image-bottom {
   margin-top: 40px;
+}
+
+.dashboard-image-bottom-drone {
+  margin-top: 20px;
 }
 
 

@@ -9,6 +9,7 @@
     "@testing-library/user-event": "^13.5.0",
     "ag-grid-community": "^31.2.0",
     "ag-grid-react": "^31.2.0",
+    "all": "^0.0.0",
     "axios": "^1.6.8",
     "jwt-decode": "^4.0.0",
     "leaflet": "^1.9.4",
