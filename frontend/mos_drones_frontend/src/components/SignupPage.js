@@ -1,7 +1,8 @@
 import { useNavigate, NavLink } from 'react-router-dom';
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import '../styles/SignupPage.css';
 import axios from 'axios';
+import { useJsApiLoader, Autocomplete } from '@react-google-maps/api';
 
 const SignupPage = () => {
   const [name, setName] = useState('');
@@ -11,6 +12,22 @@ const SignupPage = () => {
   const [message, setMessage] = useState('');
 
   const navigate = useNavigate();
+
+  const addrAutocompleteRef = useRef(null);
+
+
+  const { isLoaded } = useJsApiLoader({
+    id: 'google-map-script',
+    googleMapsApiKey: 'AIzaSyCfTn6UID_1mfAbHLjaFNsgAww13JewQzE',
+    libraries: ['places'],
+  });
+
+  const onPlaceChanged = (autocompleteRef) => {
+    if (autocompleteRef.current) {
+      const place = autocompleteRef.current.getPlace();
+      console.log("Selected place:", place);
+    }
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -103,14 +120,21 @@ const SignupPage = () => {
               <label htmlFor="address" className="signup-form-label">
                 Address
               </label>
-              <input
-                type="text"
-                id="address"
-                value={address}
-                onChange={(e) => setAddress(e.target.value)}
-                required
-                className="signup-form-input"
-              />
+              {isLoaded && (
+                <Autocomplete
+                  onLoad={(autocomplete) => { addrAutocompleteRef.current = autocomplete; }}
+                  onPlaceChanged={() => onPlaceChanged(addrAutocompleteRef)}
+                >
+                  <input
+                    type="text"
+                    id="address"
+                    value={address}
+                    onChange={(e) => setAddress(e.target.value)}
+                    required
+                    className="signup-form-input"
+                  />
+                </Autocomplete>
+              )}
             </div>
             <button type="submit" className="signup-form-button">
               Sign Up
@@ -124,9 +148,9 @@ const SignupPage = () => {
             and Privacy Notice.
           </p>
           <p className="signup-form-login-text">Already have an account?</p>
-          <a href="/login" className="signup-form-login-link">
+          <NavLink to="/login" className="signup-form-login-link">
             Sign In
-          </a>
+          </NavLink>
         </div>
       </div>
     </div>

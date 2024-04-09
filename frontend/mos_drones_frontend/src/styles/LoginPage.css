@@ -7,8 +7,8 @@
   height: 100vh;
   background: linear-gradient(
     135deg,
-    rgba(30, 81, 117, 0.9), /* #1E5175 with 80% opacity */
-    rgba(16, 177, 224, 0.9) /* #10B1E0 with 80% opacity */
+    rgba(30, 81, 117, 0.9),
+    rgba(16, 177, 224, 0.9)
   );
   font-family: 'JetBrainsMonoNerdFont', sans-serif;
 }

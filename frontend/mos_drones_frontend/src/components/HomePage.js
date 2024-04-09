@@ -1,25 +1,38 @@
-import React, { useState, useRef } from 'react';
-import axios from 'axios';
+import React, { useState, useRef, useEffect } from 'react';
 import drone from '../images/drone.png';
 import logo from '../images/logo.png';
 import mo from '../images/mo.png';
+import pkg from '../images/package.png'
 import '../styles/HomePage.css';
+import PackageGrid from './PackageGrid'
 import { useJsApiLoader, Autocomplete } from '@react-google-maps/api';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 
-const HomePage = () => {
+const HomePage = ({ loggedIn, onLogout, setLoggedIn }) => {
   const [activeTrackingTab, setActiveTrackingTab] = useState('tracking');
-  const [activeHeaderTab, setActiveHeaderTab] = useState('home');
+  const [activeHeaderTab, setActiveHeaderTab] = useState(loggedIn ? 'dashboard' : 'home');
   const [trackingNumber, setTrackingNumber] = useState('');
-
   const fromAutocompleteRef = useRef(null);
   const toAutocompleteRef = useRef(null);
+  const navigate = useNavigate();
 
   const { isLoaded } = useJsApiLoader({
     id: 'google-map-script',
     googleMapsApiKey: 'AIzaSyCfTn6UID_1mfAbHLjaFNsgAww13JewQzE',
     libraries: ['places'],
   });
+
+  const handleTrackButtonClick = () => {
+    if (trackingNumber) {
+      navigate(`/package/${trackingNumber}`);
+    }
+  };
+
+  const handleEnterKey = (e) => {
+    if (e.key === 'Enter') {
+      handleTrackButtonClick();
+    }
+  };
 
   const handleTrackingTabClick = (tabId) => {
     setActiveTrackingTab(tabId);
@@ -35,33 +48,9 @@ const HomePage = () => {
       console.log("Selected place:", place);
     }
   };
-
-  const handleTrackButtonClick = () => {
-    fetch("http://localhost:1111/api/mainviewcontroller", {
-      method: "GET",
-      redirect: "follow"
-    })
-      .then(response => response.json())
-      .then(result => console.log("Result:", result)) // corrected from "fire" to "Result:"
-      .catch(error => console.log("Error:", error)) // corrected from "Error: " to "Error:"
-  };
-
-  const TrackingComponent = () => {
-    return (
-      <div className={`tracking-section__tracking ${activeTrackingTab === 'tracking' ? '' : 'hidden'}`}>
-        <input
-          type="text"
-          className="tracking-section__tracking-input"
-          placeholder="Enter tracking number"
-          value={trackingNumber}
-          onChange={e => setTrackingNumber(e.target.value)}
-        />
-        <button className="tracking-section__tracking-btn" onClick={handleTrackButtonClick}>
-          Track &raquo;
-        </button>
-      </div>
-    );
-  };
+  useEffect(() => {
+    setActiveHeaderTab(loggedIn ? 'dashboard' : 'home');
+  }, [loggedIn]);
 
   return (
     <div className="homepage-body">
@@ -77,6 +66,24 @@ const HomePage = () => {
                 <span className="header__tab__span">Home</span>
                 <div className="header__tab-underline"></div>
               </div>
+              {loggedIn && (
+                <div
+                  className={`header__tab ${activeHeaderTab === 'dashboard' ? 'header__tab--active' : ''}`}
+                  onClick={() => handleHeaderTabClick('dashboard')}
+                >
+                  <span className="header__tab__span">Dashboard</span>
+                  <div className="header__tab-underline"></div>
+                </div>
+              )}
+              {loggedIn && (
+                <div
+                  className={`header__tab ${activeHeaderTab === 'account' ? 'header__tab--active' : ''}`}
+                  onClick={() => handleHeaderTabClick('account')}
+                >
+                  <span className="header__tab__span">Account</span>
+                  <div className="header__tab-underline"></div>
+                </div>
+              )}
               <div
                 className={`header__tab ${activeHeaderTab === 'about' ? 'header__tab--active' : ''}`}
                 onClick={() => handleHeaderTabClick('about')}
@@ -85,9 +92,15 @@ const HomePage = () => {
                 <div className="header__tab-underline"></div>
               </div>
             </div>
-            <NavLink to="/login">
-              <button className="header__signin-btn">Sign In &raquo;</button>
-            </NavLink>
+            {loggedIn ? (
+              <button className="header__signout-btn" onClick={onLogout}>
+                Sign Out &raquo;
+              </button>
+            ) : (
+              <NavLink to="/login">
+                <button className="header__signin-btn">Sign In &raquo;</button>
+              </NavLink>
+            )}
           </header>
           <main className="main-content">
             <section className={`home-section ${activeHeaderTab === 'home' ? '' : 'hidden'}`}>
@@ -110,13 +123,17 @@ const HomePage = () => {
                 {/* </div>
                 {/* <div className="tracking-section__content">
                   <div className={`tracking-section__tracking ${activeTrackingTab === 'tracking' ? '' : 'hidden'}`}>
-                    <input type="text" className="tracking-section__tracking-input" placeholder="Enter tracking number" />
-                    <button className="tracking-section__tracking-btn" onClick={() => handleTrackButtonClick()}>
+                    <input
+                      type="text"
+                      className="tracking-section__tracking-input"
+                      placeholder="Enter tracking number"
+                      value={trackingNumber}
+                      onChange={(e) => setTrackingNumber(e.target.value)}
+                      onKeyPress={handleEnterKey}
+                    />
+                    <button className="tracking-section__tracking-btn" onClick={handleTrackButtonClick}>
                       Track &raquo;
                     </button>
-                  </div> */}
-                  <div>
-                    <TrackingComponent></TrackingComponent>
                   </div>
                   <div className={`tracking-section__delivery ${activeTrackingTab === 'request-delivery' ? '' : 'hidden'}`}>
                     {isLoaded && (
@@ -158,6 +175,12 @@ const HomePage = () => {
                   <p className="speech-bubble-paragraph">Take it from me, Mr. Mo</p>
                 </div>
               </div>
+            </section>
+            <section className={`dashboard-section ${activeHeaderTab === 'dashboard' ? '' : 'hidden'}`}>
+              <h2>Packages</h2>
+              <div className="dashboard-section__underline"></div>
+              <PackageGrid />
+              <img className="dashboard-image-bottom" src={pkg} alt="Package" />
             </section>
           </main>
         </div>

@@ -1,0 +1,79 @@
+@import '../styles/Fonts.css';
+
+.pd-details-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background: linear-gradient(
+    135deg,
+    rgba(30, 81, 117, 0.9),
+    rgba(16, 177, 224, 0.9)
+  );
+  font-family: 'JetBrainsMonoNerdFont', sans-serif;
+}
+
+.pd-details-header {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  font-size: 32px;
+  margin-top: -2px;
+  margin-bottom: 20px;
+  color: white;
+}
+
+.pd-details__underline {
+  width: 460px;
+  height: 8px;
+  background-color: #DF8B67;
+  margin: 10px auto;
+  margin-top: -30px;
+}
+
+.pd-close-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 30px;
+  height: 30px;
+  background-color: #f0f0f0;
+  border-radius: 50%;
+  text-decoration: none;
+  color: #333;
+  font-size: 20px;
+  line-height: 1;
+  cursor: pointer;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+}
+
+.pd-close-button:hover {
+  background-color: #e0e0e0;
+}
+
+.pd-details-content {
+  width: 350px;
+  padding: 20px;
+  background-color: #e3f6fc;
+  border-radius: 12px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.pd-detail {
+  margin-bottom: 15px;
+}
+
+.pd-detail-label {
+  font-weight: bold;
+  margin-right: 5px;
+}
+
+.pd-image-bottom {
+  margin-top: 60px;
+  width: 25%;
+  height: auto;
+}
