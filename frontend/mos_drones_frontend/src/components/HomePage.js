@@ -6,20 +6,33 @@ import pkg from '../images/package.png'
 import '../styles/HomePage.css';
 import PackageGrid from './PackageGrid'
 import { useJsApiLoader, Autocomplete } from '@react-google-maps/api';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 
 const HomePage = ({ loggedIn, onLogout, setLoggedIn }) => {
   const [activeTrackingTab, setActiveTrackingTab] = useState('tracking');
   const [activeHeaderTab, setActiveHeaderTab] = useState(loggedIn ? 'dashboard' : 'home');
-
+  const [trackingNumber, setTrackingNumber] = useState('');
   const fromAutocompleteRef = useRef(null);
   const toAutocompleteRef = useRef(null);
+  const navigate = useNavigate();
 
   const { isLoaded } = useJsApiLoader({
     id: 'google-map-script',
     googleMapsApiKey: 'AIzaSyCfTn6UID_1mfAbHLjaFNsgAww13JewQzE',
     libraries: ['places'],
   });
+
+  const handleTrackButtonClick = () => {
+    if (trackingNumber) {
+      navigate(`/package/${trackingNumber}`);
+    }
+  };
+
+  const handleEnterKey = (e) => {
+    if (e.key === 'Enter') {
+      handleTrackButtonClick();
+    }
+  };
 
   const handleTrackingTabClick = (tabId) => {
     setActiveTrackingTab(tabId);
@@ -112,8 +125,17 @@ const HomePage = ({ loggedIn, onLogout, setLoggedIn }) => {
                 </div>
                 <div className="tracking-section__content">
                   <div className={`tracking-section__tracking ${activeTrackingTab === 'tracking' ? '' : 'hidden'}`}>
-                    <input type="text" className="tracking-section__tracking-input" placeholder="Enter tracking number" />
-                    <button className="tracking-section__tracking-btn">Track &raquo;</button>
+                    <input
+                      type="text"
+                      className="tracking-section__tracking-input"
+                      placeholder="Enter tracking number"
+                      value={trackingNumber}
+                      onChange={(e) => setTrackingNumber(e.target.value)}
+                      onKeyPress={handleEnterKey}
+                    />
+                    <button className="tracking-section__tracking-btn" onClick={handleTrackButtonClick}>
+                      Track &raquo;
+                    </button>
                   </div>
                   <div className={`tracking-section__delivery ${activeTrackingTab === 'request-delivery' ? '' : 'hidden'}`}>
                     {isLoaded && (

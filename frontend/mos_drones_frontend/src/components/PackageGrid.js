@@ -2,14 +2,14 @@ import React, { useState, useEffect } from 'react';
 import { AgGridReact } from 'ag-grid-react';
 import 'ag-grid-community/styles/ag-grid.css';
 import 'ag-grid-community/styles/ag-theme-alpine.css';
-import '../styles/PackageGrid.css'
+import '../styles/PackageGrid.css';
+import { Link } from 'react-router-dom';
 
 const PackageGrid = () => {
   const [rowData, setRowData] = useState([]);
 
   useEffect(() => {
-    // Simulating fetching data from an API or any other data source
-    const data = [
+    const mockData = [
       {
         id: '1',
         deliveryDate: '2024-04-10',
@@ -21,17 +21,23 @@ const PackageGrid = () => {
         status: 'Delivered',
       },
     ];
-    setRowData(data);
+    setRowData(mockData);
   }, []);
 
   const columnDefs = [
     {
       headerName: 'Tracking Number',
       field: 'id',
-      // lockPosition: 'left',
       suppressMovable: true,
       suppressSizeToFit: true,
-      cellStyle: { textAlign: 'left' }, // Align cell text to the left
+      cellStyle: { textAlign: 'left' },
+      cellRenderer: (params) => {
+        return (
+          <Link to={`/package/${params.value}`} className="package-link">
+            {params.value}
+          </Link>
+        );
+      },
     },
     {
       headerName: 'Delivery Date',
@@ -41,14 +47,14 @@ const PackageGrid = () => {
       },
       suppressMovable: true,
       suppressSizeToFit: true,
-      cellStyle: { textAlign: 'left' }, // Align cell text to the left
+      cellStyle: { textAlign: 'left' },
     },
     {
       headerName: 'Status',
       field: 'status',
       suppressMovable: true,
       suppressSizeToFit: true,
-      cellStyle: { textAlign: 'left' }, // Align cell text to the left
+      cellStyle: { textAlign: 'left' },
     },
   ];
 
