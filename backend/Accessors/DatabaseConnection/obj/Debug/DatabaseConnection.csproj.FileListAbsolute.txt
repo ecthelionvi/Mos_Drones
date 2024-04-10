@@ -1,7 +1,0 @@
-C:\Users\angiz\Source\Repos\ecthelionvi\Mos_Drones\DatabaseConnection\obj\Debug\DatabaseConnection.csproj.AssemblyReference.cache
-C:\Users\angiz\Source\Repos\ecthelionvi\Mos_Drones\DatabaseConnection\obj\Debug\DatabaseConnection.csproj.CoreCompileInputs.cache
-C:\Users\angiz\Source\Repos\ecthelionvi\Mos_Drones\DatabaseConnection\bin\Debug\DatabaseConnection.exe.config
-C:\Users\angiz\Source\Repos\ecthelionvi\Mos_Drones\DatabaseConnection\bin\Debug\DatabaseConnection.exe
-C:\Users\angiz\Source\Repos\ecthelionvi\Mos_Drones\DatabaseConnection\bin\Debug\DatabaseConnection.pdb
-C:\Users\angiz\Source\Repos\ecthelionvi\Mos_Drones\DatabaseConnection\obj\Debug\DatabaseConnection.exe
-C:\Users\angiz\Source\Repos\ecthelionvi\Mos_Drones\DatabaseConnection\obj\Debug\DatabaseConnection.pdb
