@@ -29,9 +29,9 @@ const LoginPage = ({ onLogin }) => {
       localStorage.setItem('role', role);
       onLogin();
 
-      if (role === 'staff') {
+      if (role === 'True') {
         navigate('/');
-      } else if (role === 'customer') {
+      } else if (role === 'False') {
         navigate('/');
       } else {
         console.log(decodedToken);

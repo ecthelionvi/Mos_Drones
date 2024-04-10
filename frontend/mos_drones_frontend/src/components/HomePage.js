@@ -209,7 +209,7 @@ const HomePage = ({ loggedIn, onLogout, setLoggedIn, role }) => {
             <section
               className={`dashboard-section ${activeHeaderTab === "dashboard" ? "" : "hidden"}`}
             >
-              {role === "staff" ? (
+              {role === "True" ? (
                 <>
                   <h2>Drones</h2>
                   <div className="dashboard-section__underline-drone"></div>
