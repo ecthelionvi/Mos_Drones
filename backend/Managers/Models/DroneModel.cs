@@ -1,17 +1,20 @@
-﻿using System;
+using System;
 
-public class Drone
+namespace Managers
 {
-    private int droneId {  get; set; }
-    private string transitStatus { get; set; }
-    private Order order { get; set; }
-    private Depot currentDepot { get; set; }
-
-    public Drone(int droneId, string transitStatus, Order order, Depot currentDepot)
+    public class Drone
     {
-        this.droneId = droneId;
-        this.transitStatus = transitStatus;
-        this.order = order;
-        this.currentDepot = currentDepot;
+        public int droneId { get; set; }
+        public string transitStatus { get; set; }
+        public Order order { get; set; }
+        public Depot currentDepot { get; set; }
+
+        public Drone(int droneId, string transitStatus, Order order, Depot currentDepot)
+        {
+            this.droneId = droneId;
+            this.transitStatus = transitStatus;
+            this.order = order;
+            this.currentDepot = currentDepot;
+        }
     }
 }
