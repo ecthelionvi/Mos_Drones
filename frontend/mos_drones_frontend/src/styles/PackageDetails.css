@@ -1,4 +1,4 @@
-@import '../styles/Fonts.css';
+@import "../styles/Fonts.css";
 
 .pd-details-container {
   display: flex;
@@ -6,12 +6,8 @@
   justify-content: center;
   align-items: center;
   height: 100vh;
-  background: linear-gradient(
-    135deg,
-    rgba(30, 81, 117, 0.9),
-    rgba(16, 177, 224, 0.9)
-  );
-  font-family: 'JetBrainsMonoNerdFont', sans-serif;
+  background: linear-gradient(135deg, rgba(30, 81, 117, 0.9), rgba(16, 177, 224, 0.9));
+  font-family: "JetBrainsMonoNerdFont", sans-serif;
 }
 
 .pd-details-header {
@@ -28,7 +24,7 @@
 .pd-details__underline {
   width: 460px;
   height: 6px;
-  background-color: #DF8B67;
+  background-color: #df8b67;
   margin: 10px auto;
   margin-top: -30px;
 }
