@@ -1,19 +1,22 @@
-﻿using System;
+using System;
 
-public class Address
+namespace Managers
 {
-    private int addressId { get; set; }
-    private string city { get; set; }
-    private string state { get; set; }
-    private string zipCode { get; set; }
-    private string addressLine { get; set; }
-
-    public Address(int addressId, string city, string state, string zipCode, string addressLine)
+    public class Address
     {
-        this.addressId = addressId;
-        this.city = city;
-        this.state = state;
-        this.zipCode = zipCode;
-        this.addressLine = addressLine;
+        public int addressId { get; set; }
+        public string city { get; set; }
+        public string state { get; set; }
+        public string zipCode { get; set; }
+        public string addressLine { get; set; }
+
+        public Address(int addressId, string city, string state, string zipCode, string addressLine)
+        {
+            this.addressId = addressId;
+            this.city = city;
+            this.state = state;
+            this.zipCode = zipCode;
+            this.addressLine = addressLine;
+        }
     }
 }
