@@ -1,15 +1,18 @@
-﻿using System;
+using System;
 
-public class User
+namespace Managers
 {
-    private int userId { get; set; }
-    private bool isAdmin { get; set; }
-    private Account userAccount { get; set; }
-
-    public User(int userId, bool isAdmin, Account userAccount)
+    public class User
     {
-        this.userId = userId;
-        this.isAdmin = isAdmin;
-        this.userAccount = userAccount;
+        public int userId { get; set; }
+        public bool isAdmin { get; set; }
+        public Account userAccount { get; set; }
+
+        public User(int userId, bool isAdmin, Account userAccount)
+        {
+            this.userId = userId;
+            this.isAdmin = isAdmin;
+            this.userAccount = userAccount;
+        }
     }
 }
