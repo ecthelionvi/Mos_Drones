@@ -42,7 +42,7 @@ const Map = () => {
     <div>
       <MapContainer center={position} zoom={zoom} className="service-area" ref={mapRef}>
         <TileLayer
-          url="https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png"
+          url="https://tile.openstreetmap.org/{z}/{x}/{y}.png"
           attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'
           subdomains="abcd"
           maxZoom={19}
