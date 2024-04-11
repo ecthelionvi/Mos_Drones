@@ -1,20 +1,21 @@
-import React from 'react';
-import { useParams, NavLink } from 'react-router-dom';
-import '../styles/PackageDetails.css';
-import pkg from '../images/open-pkg.png'
+import React from "react";
+import "../styles/PackageDetails.css";
+import pkg from "../images/open-pkg.png";
+import { useParams, NavLink } from "react-router-dom";
+
 const PackageDetails = () => {
   const { packageId } = useParams();
 
   const mockData = [
     {
-      id: '1',
-      deliveryDate: '2024-04-10',
-      status: 'In Transit',
+      id: "1",
+      deliveryDate: "2024-04-10",
+      status: "In Transit",
     },
     {
-      id: '2',
-      deliveryDate: '2024-03-30',
-      status: 'Delivered',
+      id: "2",
+      deliveryDate: "2024-03-30",
+      status: "Delivered",
     },
   ];
 
@@ -34,9 +35,15 @@ const PackageDetails = () => {
         </NavLink>
       </div>
       <div className="pd-details-content">
-        <p className="pd-detail"><span className="pd-detail-label">Package ID:</span> {packageDetails.id}</p>
-        <p className="pd-detail"><span className="pd-detail-label">Delivery Date:</span> {packageDetails.deliveryDate}</p>
-        <p className="pd-detail"><span className="pd-detail-label">Status:</span> {packageDetails.status}</p>
+        <p className="pd-detail">
+          <span className="pd-detail-label">Package ID:</span> {packageDetails.id}
+        </p>
+        <p className="pd-detail">
+          <span className="pd-detail-label">Delivery Date:</span> {packageDetails.deliveryDate}
+        </p>
+        <p className="pd-detail">
+          <span className="pd-detail-label">Status:</span> {packageDetails.status}
+        </p>
       </div>
       <img className="pd-image-bottom" src={pkg} alt="Package" />
     </div>

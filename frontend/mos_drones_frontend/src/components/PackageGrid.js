@@ -1,9 +1,9 @@
-import React, { useState, useEffect } from 'react';
-import { AgGridReact } from 'ag-grid-react';
-import 'ag-grid-community/styles/ag-grid.css';
-import 'ag-grid-community/styles/ag-theme-alpine.css';
-import '../styles/PackageGrid.css';
-import { Link } from 'react-router-dom';
+import "../styles/PackageGrid.css";
+import { Link } from "react-router-dom";
+import { AgGridReact } from "ag-grid-react";
+import "ag-grid-community/styles/ag-grid.css";
+import React, { useState, useEffect } from "react";
+import "ag-grid-community/styles/ag-theme-alpine.css";
 
 const PackageGrid = () => {
   const [rowData, setRowData] = useState([]);
@@ -11,14 +11,14 @@ const PackageGrid = () => {
   useEffect(() => {
     const mockData = [
       {
-        id: '1',
-        deliveryDate: '2024-04-10',
-        status: 'In Transit',
+        id: "1",
+        deliveryDate: "2024-04-10",
+        status: "In Transit",
       },
       {
-        id: '2',
-        deliveryDate: '2024-03-30',
-        status: 'Delivered',
+        id: "2",
+        deliveryDate: "2024-03-30",
+        status: "Delivered",
       },
     ];
     setRowData(mockData);
@@ -26,11 +26,11 @@ const PackageGrid = () => {
 
   const columnDefs = [
     {
-      headerName: 'Tracking Number',
-      field: 'id',
+      headerName: "Tracking Number",
+      field: "id",
       suppressMovable: true,
       suppressSizeToFit: true,
-      cellStyle: { textAlign: 'left' },
+      cellStyle: { textAlign: "left" },
       cellRenderer: (params) => {
         return (
           <Link to={`/package/${params.value}`} className="package-link">
@@ -40,21 +40,21 @@ const PackageGrid = () => {
       },
     },
     {
-      headerName: 'Delivery Date',
-      field: 'deliveryDate',
+      headerName: "Delivery Date",
+      field: "deliveryDate",
       valueFormatter: (params) => {
         return new Date(params.value).toLocaleDateString();
       },
       suppressMovable: true,
       suppressSizeToFit: true,
-      cellStyle: { textAlign: 'left' },
+      cellStyle: { textAlign: "left" },
     },
     {
-      headerName: 'Status',
-      field: 'status',
+      headerName: "Status",
+      field: "status",
       suppressMovable: true,
       suppressSizeToFit: true,
-      cellStyle: { textAlign: 'left' },
+      cellStyle: { textAlign: "left" },
     },
   ];
 

@@ -1,9 +1,9 @@
-import '../styles/ServiceArea.css';
-import warehouseIcon from '../images/warehouse.png';
-import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
-import L from 'leaflet';
-import 'leaflet/dist/leaflet.css';
-import React, { useEffect, useRef } from 'react';
+import L from "leaflet";
+import "leaflet/dist/leaflet.css";
+import "../styles/ServiceArea.css";
+import React, { useEffect, useRef } from "react";
+import warehouseIcon from "../images/warehouse.png";
+import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
 
 const Map = () => {
   const position = [40.9867827, -96.5746042];
@@ -14,9 +14,9 @@ const Map = () => {
     { name: "Depot 1 - Seward", lat: 40.911152, lng: -97.101418 },
     { name: "Depot 2 - Seward + 10 miles", lat: 40.8864233, lng: -96.9189836 },
     { name: "Depot 3 - Seward + 20 miles", lat: 40.8743983, lng: -96.7304361 },
-    { name: "Depot 4 - 27th St & 0 St", lat: 40.813800, lng: -96.758890 },
-    { name: "Depot 5 - 84th St & HWY 2", lat: 40.735820, lng: -96.606360 },
-    { name: "Depot 6 - O St & 84th St", lat: 40.813500, lng: -96.605940 },
+    { name: "Depot 4 - 27th St & 0 St", lat: 40.8138, lng: -96.75889 },
+    { name: "Depot 5 - 84th St & HWY 2", lat: 40.73582, lng: -96.60636 },
+    { name: "Depot 6 - O St & 84th St", lat: 40.8135, lng: -96.60594 },
     { name: "Depot 7 - Seward + 30 miles", lat: 40.897247, lng: -96.5727986 },
     { name: "Depot 8 - Seward + 40 miles", lat: 40.9575287, lng: -96.4078043 },
     { name: "Depot 9 - Seward + 50 miles", lat: 41.0570905, lng: -96.2939217 },
@@ -44,7 +44,7 @@ const Map = () => {
         <TileLayer
           url="https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png"
           attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'
-          subdomains='abcd'
+          subdomains="abcd"
           maxZoom={19}
         />
         {depots.map((depot, index) => (

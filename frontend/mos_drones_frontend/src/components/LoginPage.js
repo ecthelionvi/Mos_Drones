@@ -1,21 +1,21 @@
-import { useNavigate, NavLink } from 'react-router-dom';
-import React, { useState } from 'react';
-import { jwtDecode } from 'jwt-decode';
-import '../styles/LoginPage.css';
-import logo from '../images/logo.png';
-import axios from 'axios';
+import axios from "axios";
+import "../styles/LoginPage.css";
+import logo from "../images/logo.png";
+import { jwtDecode } from "jwt-decode";
+import React, { useState } from "react";
+import { useNavigate, NavLink } from "react-router-dom";
 
 const LoginPage = ({ onLogin }) => {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [message, setMessage] = useState('');
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [message, setMessage] = useState("");
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     try {
-      const response = await axios.post('http://localhost:5159/api/auth/login', {
+      const response = await axios.post("http://localhost:5159/api/auth/login", {
         email,
         password,
       });
@@ -25,21 +25,21 @@ const LoginPage = ({ onLogin }) => {
       const roleUri = "http://schemas.microsoft.com/ws/2008/06/identity/claims/role";
       const role = decodedToken[roleUri];
 
-      localStorage.setItem('token', token);
-      localStorage.setItem('role', role);
+      localStorage.setItem("token", token);
+      localStorage.setItem("role", role);
       onLogin();
 
-      if (role === 'True') {
-        navigate('/');
-      } else if (role === 'False') {
-        navigate('/');
+      if (role === "True") {
+        navigate("/");
+      } else if (role === "False") {
+        navigate("/");
       } else {
         console.log(decodedToken);
-        setMessage('Unknown user role.');
+        setMessage("Unknown user role.");
       }
     } catch (error) {
-      console.error('Login error:', error);
-      setMessage('Login failed. Please check your credentials.');
+      console.error("Login error:", error);
+      setMessage("Login failed. Please check your credentials.");
     }
   };
 

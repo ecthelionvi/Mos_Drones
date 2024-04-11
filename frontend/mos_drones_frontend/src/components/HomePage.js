@@ -1,19 +1,19 @@
-import React, { useState, useRef, useEffect } from "react";
-import drone from "../images/drone.png";
-import logo from "../images/logo.png";
-import mo from "../images/mo.png";
-import pkg from "../images/package.png";
-import drone_pkg from "../images/drone-pkg.png";
 import "../styles/HomePage.css";
+import mo from "../images/mo.png";
+import logo from "../images/logo.png";
+import drone from "../images/drone.png";
+import pkg from "../images/package.png";
 import PackageGrid from "./PackageGrid";
-import ServiceArea from "../components/SerivceArea";
+import drone_pkg from "../images/drone-pkg.png";
 import DroneGrid from "../components/DroneGrid";
-import { useJsApiLoader, Autocomplete } from "@react-google-maps/api";
+import ServiceArea from "../components/SerivceArea";
 import { NavLink, useNavigate } from "react-router-dom";
+import React, { useState, useRef, useEffect } from "react";
+import { useJsApiLoader, Autocomplete } from "@react-google-maps/api";
 
 const HomePage = ({ loggedIn, onLogout, setLoggedIn, role }) => {
-  const [activeTrackingTab, setActiveTrackingTab] = useState("tracking");
   const [activeHeaderTab, setActiveHeaderTab] = useState(loggedIn ? "dashboard" : "home");
+  const [activeTrackingTab, setActiveTrackingTab] = useState("tracking");
   const [trackingNumber, setTrackingNumber] = useState("");
   const fromAutocompleteRef = useRef(null);
   const toAutocompleteRef = useRef(null);

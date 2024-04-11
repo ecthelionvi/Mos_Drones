@@ -1,41 +1,41 @@
-import React, { useState, useEffect } from 'react';
-import { AgGridReact } from 'ag-grid-react';
-import 'ag-grid-community/styles/ag-grid.css';
-import 'ag-grid-community/styles/ag-theme-alpine.css';
-import '../styles/DroneGrid.css';
-import { Link } from 'react-router-dom';
+import "../styles/DroneGrid.css";
+import { Link } from "react-router-dom";
+import { AgGridReact } from "ag-grid-react";
+import "ag-grid-community/styles/ag-grid.css";
+import React, { useState, useEffect } from "react";
+import "ag-grid-community/styles/ag-theme-alpine.css";
 
 const DroneGrid = () => {
   const [rowData, setRowData] = useState([]);
 
   useEffect(() => {
     const mockData = {
-      "drones": [
+      drones: [
         {
-          "droneId": 1,
-          "transit_status": "In Transit",
-          "orderId": 101,
-          "depotId": 201
+          droneId: 1,
+          transit_status: "In Transit",
+          orderId: 101,
+          depotId: 201,
         },
         {
-          "droneId": 2,
-          "transit_status": "Delivered",
-          "orderId": 102,
-          "depotId": 202
+          droneId: 2,
+          transit_status: "Delivered",
+          orderId: 102,
+          depotId: 202,
         },
         {
-          "droneId": 3,
-          "transit_status": "Awaiting Dispatch",
-          "orderId": null,
-          "depotId": 201
+          droneId: 3,
+          transit_status: "Awaiting Dispatch",
+          orderId: null,
+          depotId: 201,
         },
         {
-          "droneId": 4,
-          "transit_status": "In Maintenance",
-          "orderId": null,
-          "depotId": 203
-        }
-      ]
+          droneId: 4,
+          transit_status: "In Maintenance",
+          orderId: null,
+          depotId: 203,
+        },
+      ],
     };
 
     setRowData(mockData.drones);
@@ -43,11 +43,11 @@ const DroneGrid = () => {
 
   const columnDefs = [
     {
-      headerName: 'Drone ID',
-      field: 'droneId',
+      headerName: "Drone ID",
+      field: "droneId",
       suppressMovable: true,
       suppressSizeToFit: true,
-      cellStyle: { textAlign: 'left' },
+      cellStyle: { textAlign: "left" },
       cellRenderer: (params) => {
         return (
           <Link to={`/drone/${params.value}`} className="drone-link">
@@ -57,25 +57,25 @@ const DroneGrid = () => {
       },
     },
     {
-      headerName: 'Transit Status',
-      field: 'transit_status',
+      headerName: "Transit Status",
+      field: "transit_status",
       suppressMovable: true,
       suppressSizeToFit: true,
-      cellStyle: { textAlign: 'left' },
+      cellStyle: { textAlign: "left" },
     },
     {
-      headerName: 'Order ID',
-      field: 'orderId',
+      headerName: "Order ID",
+      field: "orderId",
       suppressMovable: true,
       suppressSizeToFit: true,
-      cellStyle: { textAlign: 'left' },
+      cellStyle: { textAlign: "left" },
     },
     {
-      headerName: 'Depot ID',
-      field: 'depotId',
+      headerName: "Depot ID",
+      field: "depotId",
       suppressMovable: true,
       suppressSizeToFit: true,
-      cellStyle: { textAlign: 'left' },
+      cellStyle: { textAlign: "left" },
     },
   ];
 

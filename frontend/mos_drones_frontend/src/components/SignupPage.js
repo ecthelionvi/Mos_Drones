@@ -1,25 +1,24 @@
-import { useNavigate, NavLink } from 'react-router-dom';
-import React, { useState, useRef } from 'react';
-import '../styles/SignupPage.css';
-import axios from 'axios';
-import { useJsApiLoader, Autocomplete } from '@react-google-maps/api';
+import axios from "axios";
+import "../styles/SignupPage.css";
+import React, { useState, useRef } from "react";
+import { useNavigate, NavLink } from "react-router-dom";
+import { useJsApiLoader, Autocomplete } from "@react-google-maps/api";
 
 const SignupPage = () => {
-  const [name, setName] = useState('');
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [address, setAddress] = useState('');
-  const [message, setMessage] = useState('');
+  const [password, setPassword] = useState("");
+  const [address, setAddress] = useState("");
+  const [message, setMessage] = useState("");
+  const [email, setEmail] = useState("");
+  const [name, setName] = useState("");
 
   const navigate = useNavigate();
 
   const addrAutocompleteRef = useRef(null);
 
-
   const { isLoaded } = useJsApiLoader({
-    id: 'google-map-script',
-    googleMapsApiKey: 'AIzaSyCfTn6UID_1mfAbHLjaFNsgAww13JewQzE',
-    libraries: ['places'],
+    id: "google-map-script",
+    googleMapsApiKey: "AIzaSyCfTn6UID_1mfAbHLjaFNsgAww13JewQzE",
+    libraries: ["places"],
   });
 
   const onPlaceChanged = (autocompleteRef) => {
@@ -34,34 +33,34 @@ const SignupPage = () => {
 
     // Basic validation
     if (!name || !email || !password || !address) {
-      setMessage('Please fill in all fields.');
+      setMessage("Please fill in all fields.");
       return;
     }
 
     // Email validation
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailRegex.test(email)) {
-      setMessage('Please enter a valid email address.');
+      setMessage("Please enter a valid email address.");
       return;
     }
 
     // Password validation
     if (password.length < 6) {
-      setMessage('Password must be at least 6 characters long.');
+      setMessage("Password must be at least 6 characters long.");
       return;
     }
 
     try {
-      await axios.post('http://localhost:5159/api/auth/signup', {
+      await axios.post("http://localhost:5159/api/auth/signup", {
         name,
         email,
         password,
         address,
       });
-      navigate('/login');
+      navigate("/login");
     } catch (error) {
-      console.error('Signup error:', error);
-      setMessage('Signup failed. Please try again.');
+      console.error("Signup error:", error);
+      setMessage("Signup failed. Please try again.");
     }
   };
 
@@ -122,7 +121,9 @@ const SignupPage = () => {
               </label>
               {isLoaded && (
                 <Autocomplete
-                  onLoad={(autocomplete) => { addrAutocompleteRef.current = autocomplete; }}
+                  onLoad={(autocomplete) => {
+                    addrAutocompleteRef.current = autocomplete;
+                  }}
                   onPlaceChanged={() => onPlaceChanged(addrAutocompleteRef)}
                 >
                   <input
@@ -144,8 +145,7 @@ const SignupPage = () => {
         </div>
         <div className="signup-form-login-section">
           <p className="signup-form-terms">
-            By creating an account, you agree to Mo's Drones' Conditions of Use
-            and Privacy Notice.
+            By creating an account, you agree to Mo's Drones' Conditions of Use and Privacy Notice.
           </p>
           <p className="signup-form-login-text">Already have an account?</p>
           <NavLink to="/login" className="signup-form-login-link">
