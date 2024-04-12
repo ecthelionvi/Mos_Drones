@@ -1,14 +1,17 @@
-﻿using System;
+using System;
 
-public class Depot
+namespace Managers.Models
 {
-    private int depotId { get; set; }
-    private Address depotAddress { get; set; }
-
-    public Depot(int depotId, Address depotAddress)
+    public class Depot
     {
-        this.depotId = depotId;
-        this.depotAddress = depotAddress;
-    }
+        public int depotId { get; set; }
+        public Address depotAddress { get; set; }
 
+        public Depot(int depotId, Address depotAddress)
+        {
+            this.depotId = depotId;
+            this.depotAddress = depotAddress;
+        }
+
+    }
 }

@@ -1,6 +1,9 @@
-﻿using System;
+using System;
 
-public class DepotEngine
+namespace Engines.BizLogic 
 {
+    public class DepotEngine
+    {
 
+    }
 }

@@ -1,7 +1,10 @@
-﻿using System;
+using System;
 
-public class UserEngine
+namespace Engines.BizLogic 
 {
+    public class UserEngine
+    {
 
 
+    }
 }

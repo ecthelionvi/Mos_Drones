@@ -1,21 +1,24 @@
-﻿using System;
+using System;
 
-public class Order
+namespace Managers.Models
 {
-    private int orderId { get; set; }
-    private string packageId { get; set; }
-    private DateTime shipDate { get; set; }
-    private User user { get; set; }
-    private Address shippedFrom { get; set; }
-    private Address shippedTo { get; set; }
-
-    public Order(int orderId, string packageId, DateTime shipDate, User user, Address shippedFrom, Address shippedTo)
+    public class Order
     {
-        this.orderId = orderId;
-        this.packageId = packageId;
-        this.shipDate = shipDate;
-        this.user = user;
-        this.shippedFrom = shippedFrom;
-        this.shippedTo = shippedTo;
+        public int orderId { get; set; }
+        public string packageId { get; set; }
+        public DateTime shipDate { get; set; }
+        public User user { get; set; }
+        public Address shippedFrom { get; set; }
+        public Address shippedTo { get; set; }
+
+        public Order(int orderId, string packageId, DateTime shipDate, User user, Address shippedFrom, Address shippedTo)
+        {
+            this.orderId = orderId;
+            this.packageId = packageId;
+            this.shipDate = shipDate;
+            this.user = user;
+            this.shippedFrom = shippedFrom;
+            this.shippedTo = shippedTo;
+        }
     }
 }

@@ -1,6 +1,9 @@
-﻿using System;
+using System;
 
-public class DroneEngine
+namespace Engines.BizLogic 
 {
+    public class DroneEngine
+    {
 
+    }
 }
