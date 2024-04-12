@@ -58,7 +58,7 @@ const App = () => {
         />
         <Route path="/login" element={<LoginPage loggedIn={loggedIn} onLogin={handleLogin} />} />
         <Route path="/signup" element={<SignupPage />} />
-        <Route path="/drone/:doneId" element={<DroneDashboard />} />
+        {/* <Route path="/drone/:doneId" element={<DroneDashboard />} /> */}
         <Route path="/package/:packageId" element={<PackageDetails />} />
       </Routes>
     </Router>
