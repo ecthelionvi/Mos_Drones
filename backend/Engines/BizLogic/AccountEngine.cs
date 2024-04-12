@@ -1,7 +1,8 @@
 using System;
 using System.Text.RegularExpressions;
 
-namespace Engines {
+namespace Engines.BizLogic  
+{
     public class AccountEngine
     {
         // password input validation, use when creating an account
