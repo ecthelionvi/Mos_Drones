@@ -18,5 +18,10 @@ namespace Managers.Models
             this.zipCode = zipCode;
             this.addressLine = addressLine;
         }
+        
+        public override string ToString()
+        {
+            return $"Address Details: \naddressId: {addressId}\n{addressLine}, {city}, {state} {zipCode}\n";
+        }
     }
 }
