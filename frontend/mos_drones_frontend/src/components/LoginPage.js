@@ -27,9 +27,9 @@ const LoginPage = ({ onLogin }) => {
 
       localStorage.setItem("token", token);
       localStorage.setItem("role", role);
+
       onLogin();
       navigate("/");
-
     } catch (error) {
       console.error("Login error:", error);
       setMessage("Login failed. Please check your credentials.");
