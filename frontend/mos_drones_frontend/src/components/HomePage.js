@@ -37,6 +37,14 @@ const HomePage = ({ loggedIn, onLogout, setLoggedIn, role }) => {
     }
   };
 
+  const handleRequestDelivery = () => {
+    if (loggedIn) {
+      console.log("Requesting delivery...");
+    } else {
+      alert("Please log in to request a delivery.");
+    }
+  };
+
   const handleTrackingTabClick = (tabId) => {
     setActiveTrackingTab(tabId);
   };
@@ -173,7 +181,10 @@ const HomePage = ({ loggedIn, onLogout, setLoggedIn, role }) => {
                         </Autocomplete>
                       </>
                     )}
-                    <button className="tracking-section__delivery-btn">
+                    <button
+                      className="tracking-section__delivery-btn"
+                      onClick={handleRequestDelivery}
+                    >
                       Request Delivery &raquo;
                     </button>
                   </div>
