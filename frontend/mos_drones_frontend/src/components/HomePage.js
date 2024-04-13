@@ -9,12 +9,15 @@ import DroneGrid from "../components/DroneGrid";
 import ServiceArea from "../components/SerivceArea";
 import { NavLink, useNavigate } from "react-router-dom";
 import React, { useState, useRef, useEffect } from "react";
+import Modal from "react-modal";
+import "../styles/Modal.css";
 import { useJsApiLoader, Autocomplete } from "@react-google-maps/api";
 
 const HomePage = ({ loggedIn, onLogout, setLoggedIn, role }) => {
   const [activeHeaderTab, setActiveHeaderTab] = useState(loggedIn ? "dashboard" : "home");
   const [activeTrackingTab, setActiveTrackingTab] = useState("tracking");
   const [trackingNumber, setTrackingNumber] = useState("");
+  const [isModalOpen, setIsModalOpen] = useState(false);
   const fromAutocompleteRef = useRef(null);
   const toAutocompleteRef = useRef(null);
   const navigate = useNavigate();
@@ -41,7 +44,7 @@ const HomePage = ({ loggedIn, onLogout, setLoggedIn, role }) => {
     if (loggedIn) {
       console.log("Requesting delivery...");
     } else {
-      alert("Please log in to request a delivery.");
+      setIsModalOpen(true);
     }
   };
 
@@ -247,6 +250,28 @@ const HomePage = ({ loggedIn, onLogout, setLoggedIn, role }) => {
           </main>
         </div>
       </div>
+      <Modal
+        isOpen={isModalOpen}
+        onRequestClose={() => setIsModalOpen(false)}
+        contentLabel="Login Required"
+        className="modal"
+        overlayClassName="modal-overlay"
+        appElement={document.getElementById("root")}
+      >
+        <div className="modal-content">
+          <h2>Account Required</h2>
+          <p>
+            Please{" "}
+            <NavLink to="/login" className="modal-link" onClick={() => setIsModalOpen(false)}>
+              Sign In
+            </NavLink>{" "}
+            to request a delivery
+          </p>
+          <button className="modal-button" onClick={() => setIsModalOpen(false)}>
+            Close
+          </button>
+        </div>
+      </Modal>{" "}
     </div>
   );
 };
