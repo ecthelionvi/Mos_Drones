@@ -261,17 +261,17 @@ const HomePage = ({ loggedIn, onLogout, setLoggedIn, role }) => {
         <div className="modal-content">
           <h2>Account Required</h2>
           <p>
-            Please
+            Please{" "}
             <NavLink to="/login" className="modal-link" onClick={() => setIsModalOpen(false)}>
               Sign In
-            </NavLink>
+            </NavLink>{" "}
             to request a delivery
           </p>
           <button className="modal-button" onClick={() => setIsModalOpen(false)}>
             Close
           </button>
         </div>
-      </Modal>
+      </Modal>{" "}
     </div>
   );
 };

@@ -2,11 +2,10 @@ import React from "react";
 import "../styles/PackageDetails.css";
 import pkg from "../images/open-pkg.png";
 import pkg_not_found from "../images/package-not-found.png";
-import { useParams, NavLink, useNavigate } from "react-router-dom";
+import { useParams, NavLink } from "react-router-dom";
 
 const PackageDetails = () => {
   const { packageId } = useParams();
-  const navigate = useNavigate();
 
   const mockData = [
     {
