@@ -1,10 +1,12 @@
 import React from "react";
 import "../styles/PackageDetails.css";
 import pkg from "../images/open-pkg.png";
-import { useParams, NavLink } from "react-router-dom";
+import pkg_not_found from "../images/package-not-found.png";
+import { useParams, NavLink, useNavigate } from "react-router-dom";
 
 const PackageDetails = () => {
   const { packageId } = useParams();
+  const navigate = useNavigate();
 
   const mockData = [
     {
@@ -22,7 +24,23 @@ const PackageDetails = () => {
   const packageDetails = mockData.find((pkg) => pkg.id === packageId);
 
   if (!packageDetails) {
-    return <div className="pd-package-not-found">Package not found</div>;
+    return (
+      <div className="pd-details-container">
+        <div className="pd-details-header">
+          <h2 className="pd-details-title">Oops...</h2>
+          <div className="pd-details__underline-not-found"></div>
+          <NavLink to="/" className="pd-close-button">
+            <span>×</span>
+          </NavLink>
+        </div>
+        <div className="pd-image-container">
+          <img className="pd-image-bottom-not-found" src={pkg_not_found} alt="Baby Mo" />
+          <div className="pd-speech-bubble">
+            <p className="pd-speech-bubble-paragraph">Sorry, I can't find your package</p>
+          </div>
+        </div>
+      </div>
+    );
   }
 
   return (
