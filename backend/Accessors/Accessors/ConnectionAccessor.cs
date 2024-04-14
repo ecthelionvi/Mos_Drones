@@ -1,4 +1,6 @@
 using System.Data.SqlClient;
+using Accessors.Accessors;
+using Managers.Models;
 
 namespace Accessors.ConnectionAccessor
 {
@@ -33,7 +35,22 @@ namespace Accessors.ConnectionAccessor
 
         static void Main(string[] args)
         {
-            TestDatabaseConnection();
+            List<Address> addressList = AddressAccessor.GetAddressList();
+            Console.WriteLine("All Addresses: ");
+            foreach (Address address in addressList)
+            {
+                Console.WriteLine(address);
+            }
+
+            Console.WriteLine("The address with addressId of 1: ");
+            Address address1 = AddressAccessor.GetAddress(1);
+            Console.WriteLine(address1);
+
+            Account account = AccountAccessor.GetAccountWithEmail("avanarsdall0@cocolog-nifty.com");
+            Console.WriteLine("The account with email avanarsdall0@cocolog-nifty.com:");
+            Console.WriteLine(account);
+
+            Console.ReadLine();
         }
     }
 }
