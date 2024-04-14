@@ -20,5 +20,10 @@ namespace Managers.Models
             this.password = password;
             this.accountAddress = accountAddress;
         }
+
+        public override string ToString()
+        {
+            return $"Account Details: \naccountId: {accountId}\nEmail: {email}\nName: {firstName} {lastName}\nPassword: {password}\n{accountAddress}";
+        }        
     }
 }
