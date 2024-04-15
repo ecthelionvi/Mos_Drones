@@ -1,4 +1,5 @@
 using System;
+using System.Reflection.Emit;
 
 namespace Managers.Models
 {
@@ -11,6 +12,11 @@ namespace Managers.Models
         {
             this.depotId = depotId;
             this.depotAddress = depotAddress;
+        }
+
+        public override string ToString()
+        {
+            return $"depotId: {depotId}\n{depotAddress}";
         }
 
     }
