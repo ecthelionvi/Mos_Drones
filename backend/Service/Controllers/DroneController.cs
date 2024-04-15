@@ -2,7 +2,7 @@ using System.Data;
 using Microsoft.AspNetCore.Mvc;
 using System.Data.SqlClient;
 using System.Text.Json.Nodes;
-using Service.Models;
+using Managers.Models;
 
 namespace Service.Controllers;
 
@@ -10,20 +10,11 @@ namespace Service.Controllers;
 [ApiController]
 public class DroneController : Controller
 {
-    //should handle the actions of actions on the app, calls managers
-    //should have a controller for each page
-
-    // [HttpGet]
-    // public JsonResult GetDrones()
-    // {
-    //     
-    //     return new JsonResult();
-    // }
-    //
-    // [HttpPost]
-    // public JsonResult SaveUser(UserModel user)
-    // {
-    //
-    //     return new JsonResult();
-    // }
+    [HttpGet]
+    public JsonResult GetDrones()
+    {
+        //returns all data we have on all our drones
+        return new JsonResult();
+    }
+    
 }
