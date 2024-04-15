@@ -1,4 +1,5 @@
 using System;
+using System.Reflection.Emit;
 
 namespace Managers.Models
 {
@@ -10,8 +11,9 @@ namespace Managers.Models
         public string email { get; set; }
         public string password { get; set; }
         public Address accountAddress { get; set; }
+        public bool isAdmin { get; set; }
 
-        public Account(int accountId, string firstName, string lastName, string email, string password, Address accountAddress)
+        public Account(int accountId, string firstName, string lastName, string email, string password, Address accountAddress, bool isAdmin)
         {
             this.accountId = accountId;
             this.firstName = firstName;
@@ -19,11 +21,21 @@ namespace Managers.Models
             this.email = email;
             this.password = password;
             this.accountAddress = accountAddress;
+            this.isAdmin = isAdmin;
         }
 
         public override string ToString()
         {
-            return $"Account Details: \naccountId: {accountId}\nEmail: {email}\nName: {firstName} {lastName}\nPassword: {password}\n{accountAddress}";
-        }        
+            string adminString = "";
+            if (isAdmin)
+            {
+                adminString = "yes";
+            }
+            else
+            {
+                adminString = "no";
+            }
+            return $"accountId: {accountId}\nIs this user an admin? {adminString}\nEmail: {email}\nName: {firstName} {lastName}\nPassword: {password}\n{accountAddress}";
+        }
     }
 }
