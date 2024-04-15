@@ -1,19 +1,8 @@
-CREATE TABLE [User] (
-  [userId] int PRIMARY KEY,
-  [isAdmin] boolean,
-  [accountId] int
-)
-GO
-
-CREATE TABLE [Account] (
-  [accountId] int PRIMARY KEY,
-  [first_name] nvarchar(255),
-  [last_name] nvarchar(255),
-  [email] nvarchar(255),
-  [password] nvarchar(255),
-  [addressId] int
-)
-GO
+DROP TABLE IF EXISTS [Drone]
+DROP TABLE IF EXISTS [Depot]
+DROP TABLE IF EXISTS [Order]
+DROP TABLE IF EXISTS [Account]
+DROP TABLE IF EXISTS [Address]
 
 CREATE TABLE [Address] (
   [addressId] int PRIMARY KEY,
@@ -24,13 +13,30 @@ CREATE TABLE [Address] (
 )
 GO
 
+CREATE TABLE [Account] (
+  [accountId] int PRIMARY KEY,
+  [first_name] nvarchar(255),
+  [last_name] nvarchar(255),
+  [email] nvarchar(255),
+  [password] nvarchar(255),
+  [addressId] int,
+  [isAdmin] bit
+)
+GO
+
 CREATE TABLE [Order] (
   [orderId] int PRIMARY KEY,
   [packageId] nvarchar(255),
   [ship_date] datetime,
-  [userId] int,
+  [accountId] int,
   [shipped_from] int,
   [shipped_to] int
+)
+GO
+
+CREATE TABLE [Depot] (
+  [depotId] int PRIMARY KEY,
+  [addressId] int
 )
 GO
 
@@ -42,32 +48,23 @@ CREATE TABLE [Drone] (
 )
 GO
 
-CREATE TABLE [Depot] (
-  [depotId] int PRIMARY KEY,
-  [addressId] int
-)
+ALTER TABLE [Account] ADD CONSTRAINT account_to_address FOREIGN KEY ([addressId]) REFERENCES [Address] ([addressId])
 GO
 
-ALTER TABLE [Account] ADD FOREIGN KEY ([accountId]) REFERENCES [User] ([accountId])
+ALTER TABLE [Order] ADD CONSTRAINT order_to_account FOREIGN KEY ([accountId]) REFERENCES [Account] ([accountId])
 GO
 
-ALTER TABLE [Address] ADD FOREIGN KEY ([addressId]) REFERENCES [Account] ([addressId])
+ALTER TABLE [Order] ADD CONSTRAINT order_to_start_address FOREIGN KEY ([shipped_from]) REFERENCES [Address] ([addressId])
 GO
 
-ALTER TABLE [User] ADD FOREIGN KEY ([userId]) REFERENCES [Order] ([userId])
+ALTER TABLE [Order] ADD CONSTRAINT order_to_end_address FOREIGN KEY ([shipped_to]) REFERENCES [Address] ([addressId])
 GO
 
-ALTER TABLE [Address] ADD FOREIGN KEY ([addressId]) REFERENCES [Order] ([shipped_from])
+ALTER TABLE [Depot] ADD CONSTRAINT depot_to_address FOREIGN KEY ([addressId]) REFERENCES [Address] ([addressId])
 GO
 
-ALTER TABLE [Address] ADD FOREIGN KEY ([addressId]) REFERENCES [Order] ([shipped_to])
+ALTER TABLE [Drone] ADD CONSTRAINT drone_to_order FOREIGN KEY ([orderId]) REFERENCES [Order] ([orderId])
 GO
 
-ALTER TABLE [Order] ADD FOREIGN KEY ([orderId]) REFERENCES [Drone] ([orderId])
-GO
-
-ALTER TABLE [Depot] ADD FOREIGN KEY ([depotId]) REFERENCES [Drone] ([depotId])
-GO
-
-ALTER TABLE [Address] ADD FOREIGN KEY ([addressId]) REFERENCES [Depot] ([addressId])
+ALTER TABLE [Drone] ADD CONSTRAINT drone_to_depot FOREIGN KEY ([depotId]) REFERENCES [Depot] ([depotId])
 GO
