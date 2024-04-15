@@ -21,7 +21,7 @@ namespace Managers.Models
         
         public override string ToString()
         {
-            return $"Address Details: \naddressId: {addressId}\n{addressLine}, {city}, {state} {zipCode}\n";
+            return $"addressId: {addressId}\n{addressLine}, {city}, {state} {zipCode}\n";
         }
     }
 }
