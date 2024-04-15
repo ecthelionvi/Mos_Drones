@@ -1,4 +1,4 @@
-﻿using System.Data.SqlClient;
+using System.Data.SqlClient;
 using System.Security.Principal;
 using Managers.Models;
 
@@ -9,7 +9,6 @@ namespace Accessors.Accessors
         public static Order GetOrderWithOrderId(int orderId)
         {
             Order order = null;
-            //User user = null;
             Account account = null;
             Address origin = null;
             Address destination = null;
@@ -28,12 +27,10 @@ namespace Accessors.Accessors
                 {
                     string packageId = reader.GetString(reader.GetOrdinal("packageId"));
                     DateTime shipDate = reader.GetDateTime(reader.GetOrdinal("ship_date"));
-                    //int userId = reader.GetInt32(reader.GetOrdinal("userId"));
                     int accountId = reader.GetInt32(reader.GetOrdinal("accountId"));
                     int shippedFrom = reader.GetInt32(reader.GetOrdinal("shipped_from"));
                     int shippedTo = reader.GetInt32(reader.GetOrdinal("shipped_to"));
 
-                    //user = UserAccessor.GetUser(userId);
                     account = AccountAccessor.GetAccountWithAccountId(accountId);
                     origin = AddressAccessor.GetAddress(shippedFrom);
                     destination = AddressAccessor.GetAddress(shippedTo);
@@ -58,7 +55,6 @@ namespace Accessors.Accessors
         public static Order GetOrderWithPackageId(string packageId)
         {
             Order order = null;
-            //User user = null;
             Account account = null;
             Address origin = null;
             Address destination = null;
@@ -77,12 +73,10 @@ namespace Accessors.Accessors
                 {
                     int orderId = reader.GetInt32(reader.GetOrdinal("orderId"));
                     DateTime shipDate = reader.GetDateTime(reader.GetOrdinal("ship_date"));
-                    //int userId = reader.GetInt32(reader.GetOrdinal("userId"));
                     int accountId = reader.GetInt32(reader.GetOrdinal("accountId"));
                     int shippedFrom = reader.GetInt32(reader.GetOrdinal("shipped_from"));
                     int shippedTo = reader.GetInt32(reader.GetOrdinal("shipped_to"));
 
-                    //user = UserAccessor.GetUser(userId);
                     account = AccountAccessor.GetAccountWithAccountId(accountId);
                     origin = AddressAccessor.GetAddress(shippedFrom);
                     destination = AddressAccessor.GetAddress(shippedTo);
