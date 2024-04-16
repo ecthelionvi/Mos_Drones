@@ -1,14 +1,16 @@
 using Accessors.Accessors;
+using Accessors.DBModels;
+using Managers.Helpers;
 using Managers.Models;
 
 namespace Managers;
 
 public class OrderManager
 {
-    public static Order FindOrder(string orderId)
+    public static Order FindOrder(int orderId)
     {
-        Order order = new Order();
-        
-        OrderAccessor.
+        OrderDataModel orderData = OrderAccessor.GetOrderWithOrderId(orderId);
+        Order order = OrderHelper.OrderDataModelToOrderModel(orderData);
+        return order;
     }
 }

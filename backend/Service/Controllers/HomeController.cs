@@ -1,3 +1,4 @@
+using Managers;
 using Managers.Models;
 using Microsoft.AspNetCore.Mvc;
 
@@ -8,28 +9,10 @@ namespace Service.Controllers;
 public class HomeController : Controller
 {
         [HttpPost("FindOrder")]
-        public IActionResult FindOrder([FromBody] string orderId)
+        public IActionResult FindOrder([FromBody] int orderId)
         {
-            // In a real scenario, you would fetch the order from the database based on the orderId.
-            // For demonstration purposes, let's assume you have some mock data.
-            var order = new Order
-            {
-                OrderId = 12345, // Sample OrderId
-                PackageId = "PKG123", // Sample PackageId
-                ShipDate = DateTime.UtcNow, // Sample ShipDate
-                Account = new Account
-                {
-                    // Populate Account properties
-                },
-                ShippedFrom = new Address
-                {
-                    // Populate ShippedFrom properties
-                },
-                ShippedTo = new Address
-                {
-                    // Populate ShippedTo properties
-                }
-            };
+            Order order = OrderManager.FindOrder(orderId);
+            
 
             // Return the order as JSON response
             return Ok(order);
