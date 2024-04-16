@@ -61,6 +61,30 @@ namespace Accessors.ConnectionAccessor
             Console.WriteLine("The order with Package Id of 4829170638572946 is:");
             Console.WriteLine(o);
 
+            List<OrderDataModel> orderList = OrderAccessor.GetOrderListWithEmail("avanarsdall0@cocolog-nifty.com");
+            Console.WriteLine("All Orders for email avanarsdall0@cocolog-nifty.com:");
+            foreach (OrderDataModel or in orderList)
+            {
+                Console.WriteLine(or);
+            }
+            
+            // Testing DepotAccessor methods
+            DepotDataModel depot = DepotAccessor.GetDepotWithDepotId(80);
+            Console.WriteLine("The depot with depotId of 80 is:");
+            Console.WriteLine(depot);
+
+            // Testing DroneAccessor methods
+            DroneDataModel drone = DroneAccessor.GetDrone(101);
+            Console.WriteLine("The drone with droneId of 101 is:");
+            Console.WriteLine(drone);
+
+            List<DroneDataModel> droneList = DroneAccessor.GetDroneList();
+            Console.WriteLine("All Drones: ");
+            foreach (DroneDataModel d in droneList)
+            {
+                Console.WriteLine(d);
+            }        
+            
             Console.ReadLine();
         }
     }
