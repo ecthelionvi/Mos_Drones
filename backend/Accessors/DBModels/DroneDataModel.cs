@@ -15,4 +15,8 @@ public class DroneDataModel
         this.CurrentDepot = currentDepot;
     }
     
+    public override string ToString()
+    {
+        return $"droneId: {DroneId}\nTransit Status: {TransitStatus}\n{Order}{CurrentDepot}";
+    }    
 }
