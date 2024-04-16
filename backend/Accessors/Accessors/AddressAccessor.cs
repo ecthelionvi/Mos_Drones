@@ -1,5 +1,4 @@
-﻿using Managers.Models;
-using System.Data.SqlClient;
+﻿using System.Data.SqlClient;
 using System.Collections.Generic;
 using Accessors.ConnectionAccessor;
 

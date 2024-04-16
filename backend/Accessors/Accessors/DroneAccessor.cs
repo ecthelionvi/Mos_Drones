@@ -1,6 +1,5 @@
 using System.Data.SqlClient;
 using System.Data.SqlTypes;
-using Managers.Models;
 using Microsoft.AspNetCore.Components.Web;
 
 namespace Accessors.Accessors

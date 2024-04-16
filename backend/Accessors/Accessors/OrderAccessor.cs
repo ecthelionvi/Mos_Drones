@@ -1,6 +1,5 @@
 using System.Data.SqlClient;
 using System.Security.Principal;
-using Managers.Models;
 
 namespace Accessors.Accessors
 {

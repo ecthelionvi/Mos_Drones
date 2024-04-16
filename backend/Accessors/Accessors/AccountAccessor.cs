@@ -1,6 +1,5 @@
 using System.Data.SqlClient;
 using System.Net;
-using Managers.Models;
 
 namespace Accessors.Accessors
 {
