@@ -10,5 +10,9 @@ public class DepotDataModel
         this.DepotId = depotId;
         this.DepotAddress = depotAddress;
     }
-
+    
+    public override string ToString()
+    {
+        return $"depotId: {DepotId}\n{DepotAddress}";
+    }
 }
