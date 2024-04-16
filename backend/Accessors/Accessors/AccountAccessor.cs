@@ -1,14 +1,15 @@
 using System.Data.SqlClient;
 using System.Net;
+using Accessors.DBModels;
 
 namespace Accessors.Accessors
 {
     public class AccountAccessor
     {
-        public static Account GetAccountWithAccountId(int accountId)
+        public static AccountDataModel GetAccountWithAccountId(int accountId)
         {
-            Account account = null;
-            Address accountAddress = null;
+            AccountDataModel account = null;
+            AddressDataModel accountAddress = null;
 
             string query = "SELECT * FROM Account WHERE accountId = @AccountId";
 
@@ -31,7 +32,7 @@ namespace Accessors.Accessors
 
                     accountAddress = AddressAccessor.GetAddress(addressId);
 
-                    account = new Account(accountId, firstName, lastName, email, password, accountAddress,isAdmin);
+                    account = new AccountDataModel(accountId, firstName, lastName, email, password, accountAddress,isAdmin);
                 }
 
                 reader.Close();
@@ -47,10 +48,10 @@ namespace Accessors.Accessors
 
             return account;
         }
-        public static Account GetAccountWithEmail(string email)
+        public static AccountDataModel GetAccountWithEmail(string email)
         {
-            Account account = null;
-            Address accountAddress = null;
+            AccountDataModel account = null;
+            AddressDataModel accountAddress = null;
 
             string query = "SELECT * FROM Account WHERE email = @Email";
 
@@ -73,7 +74,7 @@ namespace Accessors.Accessors
 
                     accountAddress = AddressAccessor.GetAddress(addressId);
 
-                    account = new Account(accountId, firstName, lastName, email, password, accountAddress, isAdmin);
+                    account = new AccountDataModel(accountId, firstName, lastName, email, password, accountAddress, isAdmin);
                 }
 
                 reader.Close();

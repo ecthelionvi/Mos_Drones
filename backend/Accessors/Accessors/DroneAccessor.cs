@@ -1,16 +1,17 @@
 using System.Data.SqlClient;
 using System.Data.SqlTypes;
+using Accessors.DBModels;
 using Microsoft.AspNetCore.Components.Web;
 
 namespace Accessors.Accessors
 {
     public class DroneAccessor
     {
-        public static Drone GetDrone(int droneId)
+        public static DroneDataModel GetDrone(int droneId)
         {
-            Drone drone = null;
-            Order droneOrder = null;
-            Depot currDepot = null;
+            DroneDataModel drone = null;
+            OrderDataModel droneOrder = null;
+            DepotDataModel currDepot = null;
 
             string query = "Select * from [Drone] where droneId = @DroneId";
 
@@ -39,7 +40,7 @@ namespace Accessors.Accessors
 
                     droneOrder = OrderAccessor.GetOrderWithOrderId(orderId);
 
-                    drone = new Drone(droneId, status, droneOrder, currDepot);
+                    drone = new DroneDataModel(droneId, status, droneOrder, currDepot);
                 }
 
                 reader.Close();
@@ -56,9 +57,9 @@ namespace Accessors.Accessors
             return drone;
         }
         
-        public static List<Drone> GetDroneList()
+        public static List<DroneDataModel> GetDroneList()
         {
-            List<Drone> droneList = new List<Drone>();
+            List<DroneDataModel> droneList = new List<DroneDataModel>();
             string query = "SELECT * FROM Drone";
 
             SqlConnection connection = ConnectionAccessor.ConnectionAccessor.GetConnection();
@@ -72,7 +73,7 @@ namespace Accessors.Accessors
                 {
                     while (reader.Read())
                     {
-                        Depot currDepot = null;
+                        DepotDataModel currDepot = null;
 
                         int droneId = reader.GetInt32(reader.GetOrdinal("droneId"));
                         string transitStatus = reader.GetString(reader.GetOrdinal("transit_status"));
@@ -88,9 +89,9 @@ namespace Accessors.Accessors
                             currDepot = DepotAccessor.GetDepotWithDepotId(depotId.Value);
                         }
 
-                        Order droneOrder = OrderAccessor.GetOrderWithOrderId(orderId);
+                        OrderDataModel droneOrder = OrderAccessor.GetOrderWithOrderId(orderId);
 
-                        Drone d = new Drone(droneId, transitStatus, droneOrder, currDepot);
+                        DroneDataModel d = new DroneDataModel(droneId, transitStatus, droneOrder, currDepot);
                         droneList.Add(d);
                     }
                 }
