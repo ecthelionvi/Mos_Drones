@@ -1,17 +1,17 @@
 using System.Data.SqlClient;
 using System.Security.Principal;
-using Managers.Models;
+using Accessors.DBModels;
 
 namespace Accessors.Accessors
 {
     public class OrderAccessor
     {
-        public static Order GetOrderWithOrderId(int orderId)
+        public static OrderDataModel GetOrderWithOrderId(int orderId)
         {
-            Order order = null;
-            Account account = null;
-            Address origin = null;
-            Address destination = null;
+            OrderDataModel order = null;
+            AccountDataModel account = null;
+            AddressDataModel origin = null;
+            AddressDataModel destination = null;
 
             string query = "SELECT * FROM [Order] WHERE orderId = @OrderId";
 
@@ -35,7 +35,7 @@ namespace Accessors.Accessors
                     origin = AddressAccessor.GetAddress(shippedFrom);
                     destination = AddressAccessor.GetAddress(shippedTo);
 
-                    order = new Order(orderId, packageId, shipDate, account, origin, destination);
+                    order = new OrderDataModel(orderId, packageId, shipDate, account, origin, destination);
                 }
 
                 reader.Close();
@@ -52,12 +52,12 @@ namespace Accessors.Accessors
             return order;
         }
 
-        public static Order GetOrderWithPackageId(string packageId)
+        public static OrderDataModel GetOrderWithPackageId(string packageId)
         {
-            Order order = null;
-            Account account = null;
-            Address origin = null;
-            Address destination = null;
+            OrderDataModel order = null;
+            AccountDataModel account = null;
+            AddressDataModel origin = null;
+            AddressDataModel destination = null;
 
             string query = "SELECT * FROM [Order] WHERE packageId = @PackageId";
 
@@ -81,7 +81,7 @@ namespace Accessors.Accessors
                     origin = AddressAccessor.GetAddress(shippedFrom);
                     destination = AddressAccessor.GetAddress(shippedTo);
 
-                    order = new Order(orderId, packageId, shipDate, account, origin, destination);
+                    order = new OrderDataModel(orderId, packageId, shipDate, account, origin, destination);
                 }
 
                 reader.Close();
@@ -98,9 +98,9 @@ namespace Accessors.Accessors
             return order;
         }
 
-        public static List<Order> GetOrderListWithEmail(string email)
+        public static List<OrderDataModel> GetOrderListWithEmail(string email)
         {
-            List<Order> orderList = new List<Order>();
+            List<OrderDataModel> orderList = new List<OrderDataModel>();
             string query = "SELECT o.* FROM [Order] o JOIN [Account] a ON o.accountId = a.accountId WHERE a.email = @Email";
 
             SqlConnection connection = ConnectionAccessor.ConnectionAccessor.GetConnection();
@@ -121,11 +121,11 @@ namespace Accessors.Accessors
                         int shippedFrom = reader.GetInt32(reader.GetOrdinal("shipped_from"));
                         int shippedTo = reader.GetInt32(reader.GetOrdinal("shipped_to"));
 
-                        Account account = AccountAccessor.GetAccountWithEmail(email);
-                        Address origin = AddressAccessor.GetAddress(shippedFrom);
-                        Address destination = AddressAccessor.GetAddress(shippedTo);
+                        AccountDataModel account = AccountAccessor.GetAccountWithEmail(email);
+                        AddressDataModel origin = AddressAccessor.GetAddress(shippedFrom);
+                        AddressDataModel destination = AddressAccessor.GetAddress(shippedTo);
 
-                        Order o = new Order(orderId, packageId, shipDate, account, origin, destination);
+                        OrderDataModel o = new OrderDataModel(orderId, packageId, shipDate, account, origin, destination);
                         orderList.Add(o);
 
                     }

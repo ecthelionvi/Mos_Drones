@@ -28,7 +28,7 @@ namespace Engines.BizLogic
                 throw new InvalidOperationException("Password does not meet requirements.");
             }
             // check if account with the entered email already exists
-            else if ()
+            else if (true)
             {
                 // get account from database using email, if the result != null
                 throw new InvalidOperationException("Account with the entered email already exists");
@@ -53,7 +53,7 @@ namespace Engines.BizLogic
             {
                 // get account with the email and see if password matches
                 // what was entered
-                if ()
+                if (true)
                 {
                     // take user to dashboard
                 }

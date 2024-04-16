@@ -1,23 +1,23 @@
 using System;
 using System.Reflection.Emit;
 
-namespace Managers.Models
-{
+namespace Managers.Models;
+
     public class Depot
     {
-        public int depotId { get; set; }
-        public Address depotAddress { get; set; }
+        public int DepotId { get; set; }
+        public Address DepotAddress { get; set; }
 
         public Depot(int depotId, Address depotAddress)
         {
-            this.depotId = depotId;
-            this.depotAddress = depotAddress;
+            this.DepotId = depotId;
+            this.DepotAddress = depotAddress;
         }
 
         public override string ToString()
         {
-            return $"depotId: {depotId}\n{depotAddress}";
+            return $"depotId: {DepotId}\n{DepotAddress}";
         }
 
     }
-}
+

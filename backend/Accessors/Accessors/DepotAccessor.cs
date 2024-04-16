@@ -1,15 +1,15 @@
 ﻿using System.Data.SqlClient;
 using System.Security.Principal;
-using Managers.Models;
+using Accessors.DBModels;
 
 namespace Accessors.Accessors
 {
     public class DepotAccessor
     {
-        public static Depot GetDepotWithDepotId(int depotId)
+        public static DepotDataModel GetDepotWithDepotId(int depotId)
         {
-            Depot depot = null;
-            Address depotAddress = null;
+            DepotDataModel depot = null;
+            AddressDataModel depotAddress = null;
 
             string query = "SELECT * FROM Depot WHERE depotId = @DepotId";
 
@@ -27,7 +27,7 @@ namespace Accessors.Accessors
 
                     depotAddress = AddressAccessor.GetAddress(addressId);
 
-                    depot = new Depot(depotId, depotAddress);
+                    depot = new DepotDataModel(depotId, depotAddress);
                 }
 
                 reader.Close();

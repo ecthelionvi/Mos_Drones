@@ -1,41 +1,33 @@
 using System;
 using System.Reflection.Emit;
 
-namespace Managers.Models
-{
+namespace Managers.Models;
+
     public class Account
     {
-        public int accountId { get; set; }
-        public string firstName { get; set; }
-        public string lastName { get; set; }
-        public string email { get; set; }
-        public string password { get; set; }
-        public Address accountAddress { get; set; }
-        public bool isAdmin { get; set; }
+        public int AccountId { get; set; }
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
+        public string Email { get; set; }
+        public string Password { get; set; }
+        public Address AccountAddress { get; set; }
+        public bool IsAdmin { get; set; }
 
         public Account(int accountId, string firstName, string lastName, string email, string password, Address accountAddress, bool isAdmin)
         {
-            this.accountId = accountId;
-            this.firstName = firstName;
-            this.lastName = lastName;
-            this.email = email;
-            this.password = password;
-            this.accountAddress = accountAddress;
-            this.isAdmin = isAdmin;
+            this.AccountId = accountId;
+            this.FirstName = firstName;
+            this.LastName = lastName;
+            this.Email = email;
+            this.Password = password;
+            this.AccountAddress = accountAddress;
+            this.IsAdmin = isAdmin;
         }
 
         public override string ToString()
         {
-            string adminString = "";
-            if (isAdmin)
-            {
-                adminString = "yes";
-            }
-            else
-            {
-                adminString = "no";
-            }
-            return $"accountId: {accountId}\nIs this user an admin? {adminString}\nEmail: {email}\nName: {firstName} {lastName}\nPassword: {password}\n{accountAddress}";
+            string adminString = IsAdmin ? "yes" : "no";
+            return $"accountId: {AccountId}\nIs this user an admin? {adminString}\nEmail: {Email}\nName: {FirstName} {LastName}\nPassword: {Password}\n{AccountAddress}";
         }
     }
-}
+

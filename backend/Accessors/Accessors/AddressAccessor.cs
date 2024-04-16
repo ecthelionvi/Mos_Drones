@@ -1,15 +1,15 @@
-﻿using Managers.Models;
-using System.Data.SqlClient;
+﻿using System.Data.SqlClient;
 using System.Collections.Generic;
 using Accessors.ConnectionAccessor;
+using Accessors.DBModels;
 
 namespace Accessors.Accessors
 {
     public class AddressAccessor
     {
-        public static List<Address> GetAddressList()
+        public static List<AddressDataModel> GetAddressList()
         {
-            List<Address> addressList = new List<Address>();
+            List<AddressDataModel> addressList = new List<AddressDataModel>();
             string query = "SELECT * FROM Address";
 
             SqlConnection connection = ConnectionAccessor.ConnectionAccessor.GetConnection();
@@ -29,7 +29,7 @@ namespace Accessors.Accessors
                         string zip = reader.GetString(reader.GetOrdinal("zip"));
                         string addressLine = reader.GetString(reader.GetOrdinal("address_line"));
 
-                        Address a = new Address(addressId, city, state, zip, addressLine);
+                        AddressDataModel a = new AddressDataModel(addressId, city, state, zip, addressLine);
                         addressList.Add(a);
 
                     }
@@ -48,9 +48,9 @@ namespace Accessors.Accessors
             return addressList;
         }
 
-        public static Address GetAddress(int addressId)
+        public static AddressDataModel GetAddress(int addressId)
         {
-            Address address = null;
+            AddressDataModel address = null;
             string query = "SELECT * FROM Address WHERE addressId = @AddressId";
 
             SqlConnection connection = ConnectionAccessor.ConnectionAccessor.GetConnection();
@@ -68,7 +68,7 @@ namespace Accessors.Accessors
                     string zip = reader.GetString(reader.GetOrdinal("zip"));
                     string addressLine = reader.GetString(reader.GetOrdinal("address_line"));
                     
-                    address = new Address(addressId, city, state, zip, addressLine);
+                    address = new AddressDataModel(addressId, city, state, zip, addressLine);
                 }
 
                 reader.Close();

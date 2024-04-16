@@ -1,29 +1,28 @@
 using System;
 
-namespace Managers.Models
-{
+namespace Managers.Models;
     public class Order
     {
-        public int orderId { get; set; }
-        public string packageId { get; set; }
-        public DateTime shipDate { get; set; }
-        public Account account { get; set; }
-        public Address shippedFrom { get; set; }
-        public Address shippedTo { get; set; }
+        public int OrderId { get; set; }
+        public string PackageId { get; set; }
+        public DateTime ShipDate { get; set; }
+        public Account Account { get; set; }
+        public Address ShippedFrom { get; set; }
+        public Address ShippedTo { get; set; }
 
         public Order(int orderId, string packageId, DateTime shipDate, Account account, Address shippedFrom, Address shippedTo)
         {
-            this.orderId = orderId;
-            this.packageId = packageId;
-            this.shipDate = shipDate;
-            this.account = account;
-            this.shippedFrom = shippedFrom;
-            this.shippedTo = shippedTo;
+            this.OrderId = orderId;
+            this.PackageId = packageId;
+            this.ShipDate = shipDate;
+            this.Account = account;
+            this.ShippedFrom = shippedFrom;
+            this.ShippedTo = shippedTo;
         }
 
         public override string ToString()
         {
-            return $"orderId: {orderId}\nPackage Id (for tracking): {packageId}\n{account}Shipped from:\n{shippedFrom}Shipped To:\n{shippedTo}\n";
+            return $"orderId: {OrderId}\nPackage Id (for tracking): {PackageId}\n{Account}Shipped from:\n{ShippedFrom}Shipped To:\n{ShippedTo}\n";
         }
     }
-}
+

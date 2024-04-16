@@ -8,7 +8,7 @@ namespace Service.Controllers;
 public class LoginController : Controller {
     
     [HttpPost]
-    public JsonResult SaveUser(User user)
+    public JsonResult SaveUser(Account userAccount)
     {
         //used for adding a new account
         return new JsonResult();

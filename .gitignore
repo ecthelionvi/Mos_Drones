@@ -24,3 +24,6 @@ obj/
 **/obj/**/*.cache
 **/obj/**/*.editorconfig
 **/obj/**/*.AssemblyInfo.cs
+*.info
+.cache
+*/obj/
