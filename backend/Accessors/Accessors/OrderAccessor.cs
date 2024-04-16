@@ -97,5 +97,51 @@ namespace Accessors.Accessors
 
             return order;
         }
+
+        public static List<Order> GetOrderListWithEmail(string email)
+        {
+            List<Order> orderList = new List<Order>();
+            string query = "SELECT o.* FROM [Order] o JOIN [Account] a ON o.accountId = a.accountId WHERE a.email = @Email";
+
+            SqlConnection connection = ConnectionAccessor.ConnectionAccessor.GetConnection();
+
+            try
+            {
+                connection.Open();
+                SqlCommand command = new SqlCommand(query, connection);
+                command.Parameters.AddWithValue("@Email", email);
+                SqlDataReader reader = command.ExecuteReader();
+                if (reader.HasRows)
+                {
+                    while (reader.Read())
+                    {
+                        int orderId = reader.GetInt32(reader.GetOrdinal("orderId"));
+                        string packageId = reader.GetString(reader.GetOrdinal("packageId"));
+                        DateTime shipDate = reader.GetDateTime(reader.GetOrdinal("ship_date"));
+                        int shippedFrom = reader.GetInt32(reader.GetOrdinal("shipped_from"));
+                        int shippedTo = reader.GetInt32(reader.GetOrdinal("shipped_to"));
+
+                        Account account = AccountAccessor.GetAccountWithEmail(email);
+                        Address origin = AddressAccessor.GetAddress(shippedFrom);
+                        Address destination = AddressAccessor.GetAddress(shippedTo);
+
+                        Order o = new Order(orderId, packageId, shipDate, account, origin, destination);
+                        orderList.Add(o);
+
+                    }
+                }
+
+                reader.Close();
+            }
+            catch (SqlException ex)
+            {
+                Console.WriteLine($"SQL Exception: {ex.Message}");
+            }
+            finally
+            {
+                connection.Close();
+            }
+            return orderList;
+        }
     }
 }
