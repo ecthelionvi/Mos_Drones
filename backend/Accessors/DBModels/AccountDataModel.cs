@@ -20,4 +20,10 @@ public class AccountDataModel
         this.AccountAddress = accountAddress;
         this.IsAdmin = isAdmin;
     }
+
+    public override string ToString()
+    {
+        string adminString = IsAdmin ? "yes" : "no";
+        return $"accountId: {AccountId}\nIs this user an admin? {adminString}\nEmail: {Email}\nName: {FirstName} {LastName}\nPassword: {Password}\n{AccountAddress}";
+    }    
 }
