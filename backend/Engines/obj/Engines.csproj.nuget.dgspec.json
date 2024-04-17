@@ -1,25 +1,27 @@
 {
   "format": 1,
   "restore": {
-    "/Users/jonnyskelton/Mos_Drones/Engines/Engines.csproj": {}
+    "C:\\Users\\angiz\\Source\\Repos\\ecthelionvi\\Mos_Drones\\backend\\Engines\\Engines.csproj": {}
   },
   "projects": {
-    "/Users/jonnyskelton/Mos_Drones/Engines/Engines.csproj": {
+    "C:\\Users\\angiz\\Source\\Repos\\ecthelionvi\\Mos_Drones\\backend\\Engines\\Engines.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/jonnyskelton/Mos_Drones/Engines/Engines.csproj",
+        "projectUniqueName": "C:\\Users\\angiz\\Source\\Repos\\ecthelionvi\\Mos_Drones\\backend\\Engines\\Engines.csproj",
         "projectName": "Engines",
-        "projectPath": "/Users/jonnyskelton/Mos_Drones/Engines/Engines.csproj",
-        "packagesPath": "/Users/jonnyskelton/.nuget/packages/",
-        "outputPath": "/Users/jonnyskelton/Mos_Drones/Engines/obj/",
+        "projectPath": "C:\\Users\\angiz\\Source\\Repos\\ecthelionvi\\Mos_Drones\\backend\\Engines\\Engines.csproj",
+        "packagesPath": "C:\\Users\\angiz\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\angiz\\Source\\Repos\\ecthelionvi\\Mos_Drones\\backend\\Engines\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "/Users/jonnyskelton/.nuget/NuGet/NuGet.Config"
+          "C:\\Users\\angiz\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
           "net8.0"
         ],
         "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -32,6 +34,11 @@
           "warnAsError": [
             "NU1605"
           ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
         }
       },
       "frameworks": {
@@ -51,7 +58,6 @@
               "version": "[9.0.0-preview.2.24128.4, )"
             },
             "NETStandard.Library": {
-              "suppressParent": "All",
               "target": "Package",
               "version": "[2.0.3, )"
             }
@@ -72,7 +78,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/8.0.203/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.204/PortableRuntimeIdentifierGraph.json"
         }
       }
     }

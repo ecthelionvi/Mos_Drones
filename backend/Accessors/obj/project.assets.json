@@ -1259,24 +1259,26 @@
     ]
   },
   "packageFolders": {
-    "/Users/jonnyskelton/.nuget/packages/": {}
+    "C:\\Users\\angiz\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/Users/jonnyskelton/Mos_Drones/Accessors/Accessors.csproj",
+      "projectUniqueName": "C:\\Users\\angiz\\Source\\Repos\\ecthelionvi\\Mos_Drones\\backend\\Accessors\\Accessors.csproj",
       "projectName": "Accessors",
-      "projectPath": "/Users/jonnyskelton/Mos_Drones/Accessors/Accessors.csproj",
-      "packagesPath": "/Users/jonnyskelton/.nuget/packages/",
-      "outputPath": "/Users/jonnyskelton/Mos_Drones/Accessors/obj/",
+      "projectPath": "C:\\Users\\angiz\\Source\\Repos\\ecthelionvi\\Mos_Drones\\backend\\Accessors\\Accessors.csproj",
+      "packagesPath": "C:\\Users\\angiz\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\angiz\\Source\\Repos\\ecthelionvi\\Mos_Drones\\backend\\Accessors\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "/Users/jonnyskelton/.nuget/NuGet/NuGet.Config"
+        "C:\\Users\\angiz\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
         "net8.0"
       ],
       "sources": {
+        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
@@ -1289,6 +1291,11 @@
         "warnAsError": [
           "NU1605"
         ]
+      },
+      "restoreAuditProperties": {
+        "enableAudit": "true",
+        "auditLevel": "low",
+        "auditMode": "direct"
       }
     },
     "frameworks": {
@@ -1304,7 +1311,6 @@
             "version": "[8.0.3, )"
           },
           "NETStandard.Library": {
-            "suppressParent": "All",
             "target": "Package",
             "version": "[2.0.3, )"
           },
@@ -1340,7 +1346,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/8.0.203/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.204/PortableRuntimeIdentifierGraph.json"
       }
     }
   }
