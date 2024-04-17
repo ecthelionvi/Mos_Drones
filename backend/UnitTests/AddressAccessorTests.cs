@@ -1,7 +1,7 @@
 namespace UnitTests
 {
     [TestClass]
-    public class UnitTest1
+    public class AddressAccessorTests
     {
         [TestMethod]
         public void TestMethod1()
