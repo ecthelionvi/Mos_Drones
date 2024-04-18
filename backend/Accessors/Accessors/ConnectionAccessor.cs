@@ -53,8 +53,8 @@ namespace Accessors.ConnectionAccessor
             Console.WriteLine(account);
 
             // Testing OrderAccessor methods
-            OrderDataModel order = OrderAccessor.GetOrderWithOrderId(60);
-            Console.WriteLine("The order with orderId of 60 is:");
+            OrderDataModel order = OrderAccessor.GetOrderWithOrderId(3);
+            Console.WriteLine("The order with orderId of 3 is:");
             Console.WriteLine(order);
 
             OrderDataModel o = OrderAccessor.GetOrderWithPackageId("4829170638572946");
@@ -69,13 +69,20 @@ namespace Accessors.ConnectionAccessor
             }
             
             // Testing DepotAccessor methods
-            DepotDataModel depot = DepotAccessor.GetDepotWithDepotId(80);
-            Console.WriteLine("The depot with depotId of 80 is:");
+            DepotDataModel depot = DepotAccessor.GetDepotWithDepotId(1);
+            Console.WriteLine("The depot with depotId of 1 is:");
             Console.WriteLine(depot);
 
+            List<DepotDataModel> depotList = DepotAccessor.GetDepotList();
+            Console.WriteLine("All Depots:");
+            foreach (DepotDataModel d in depotList)
+            {
+                Console.WriteLine(d);
+            }
+
             // Testing DroneAccessor methods
-            DroneDataModel drone = DroneAccessor.GetDrone(101);
-            Console.WriteLine("The drone with droneId of 101 is:");
+            DroneDataModel drone = DroneAccessor.GetDrone(2);
+            Console.WriteLine("The drone with droneId of 2 is:");
             Console.WriteLine(drone);
 
             List<DroneDataModel> droneList = DroneAccessor.GetDroneList();
@@ -83,8 +90,12 @@ namespace Accessors.ConnectionAccessor
             foreach (DroneDataModel d in droneList)
             {
                 Console.WriteLine(d);
-            }        
-            
+            }
+
+            // Inserting into the database
+            int addressId = AddressAccessor.InsertAddress("Pleasant Dale", "Nebraska", "68423", "2468 North 10th Road");
+            Console.WriteLine("The addressId of the selected/inserted address is " + addressId);
+
             Console.ReadLine();
         }
     }
