@@ -6,25 +6,25 @@ namespace Accessors.ConnectionAccessor
 {
     class ConnectionAccessor
     {
-        public static void TestDatabaseConnection()
-        {
-            SqlConnection conn = GetConnection();
-            Console.WriteLine("Getting Connection ...");
-            try
-            {
-                Console.WriteLine("Opening Connection ...");
-                conn.Open();
-                Console.WriteLine("Connection successful!");
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine("Error: " + e.Message);
-            }
-            Console.Read();
-            conn.Close();
-            Console.WriteLine("Connection closed");
+        //public static void TestDatabaseConnection()
+        //{
+        //    SqlConnection conn = GetConnection();
+        //    Console.WriteLine("Getting Connection ...");
+        //    try
+        //    {
+        //        Console.WriteLine("Opening Connection ...");
+        //        conn.Open();
+        //        Console.WriteLine("Connection successful!");
+        //    }
+        //    catch (Exception e)
+        //    {
+        //        Console.WriteLine("Error: " + e.Message);
+        //    }
+        //    Console.Read();
+        //    conn.Close();
+        //    Console.WriteLine("Connection closed");
 
-        }
+        //}
 
         public static SqlConnection GetConnection()
         {
@@ -94,7 +94,16 @@ namespace Accessors.ConnectionAccessor
 
             // Inserting into the database
             int addressId = AddressAccessor.InsertAddress("Pleasant Dale", "Nebraska", "68423", "2468 North 10th Road");
-            Console.WriteLine("The addressId of the selected/inserted address is " + addressId);
+            Console.WriteLine("The addressId of the selected/inserted address is " + addressId + "\n");
+
+            int accountId = AccountAccessor.InsertAccount("Angie", "Zheng", "azheng2@huskers.unl.edu", "password123", "Lincoln", "Nebraska", "68588", "1400 R St", false);
+            Console.WriteLine("The accountId of the selected/inserted account is " + accountId + "\n");
+
+            int accountId2 = AccountAccessor.InsertAccount("Angie", "Zheng", "angizheng4201@gmail.com", "password123", "Lincoln", "Nebraska", "68588", "1400 R St", false);
+            Console.WriteLine("The accountId of the selected/inserted account is " + accountId2 + "\n");
+
+            int orderId = OrderAccessor.InsertOrder("angizheng4201@gmail.com", "Lincoln", "Nebraska", "68588", "1400 R St", "Pleasant Dale", "Nebraska", "68423", "2468 North 10th Road");
+            Console.WriteLine("The orderId of the inserted Order is " + orderId);
 
             Console.ReadLine();
         }
