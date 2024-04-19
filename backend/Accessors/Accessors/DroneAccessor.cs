@@ -7,6 +7,12 @@ namespace Accessors.Accessors
 {
     public class DroneAccessor
     {
+        /// <summary>
+        /// Method to return a Drone instance loaded from the database corresponding
+        /// to the given droneId.
+        /// </summary>
+        /// <param name="droneId"></param>
+        /// <returns></returns>
         public static DroneDataModel GetDrone(int droneId)
         {
             DroneDataModel drone = null;
@@ -56,7 +62,11 @@ namespace Accessors.Accessors
 
             return drone;
         }
-        
+
+        /// <summary>
+        /// Method to return a list of all Drone instances from the database.
+        /// </summary>
+        /// <returns></returns>
         public static List<DroneDataModel> GetDroneList()
         {
             List<DroneDataModel> droneList = new List<DroneDataModel>();

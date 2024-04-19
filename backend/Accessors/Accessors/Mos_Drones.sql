@@ -5,7 +5,7 @@ DROP TABLE IF EXISTS [Account]
 DROP TABLE IF EXISTS [Address]
 
 CREATE TABLE [Address] (
-  [addressId] int PRIMARY KEY,
+  [addressId] int IDENTITY(1,1) PRIMARY KEY,
   [city] nvarchar(255),
   [state] nvarchar(255),
   [zip] nvarchar(255),
@@ -14,7 +14,7 @@ CREATE TABLE [Address] (
 GO
 
 CREATE TABLE [Account] (
-  [accountId] int PRIMARY KEY,
+  [accountId] int IDENTITY(1,1) PRIMARY KEY,
   [first_name] nvarchar(255),
   [last_name] nvarchar(255),
   [email] nvarchar(255),
@@ -25,7 +25,7 @@ CREATE TABLE [Account] (
 GO
 
 CREATE TABLE [Order] (
-  [orderId] int PRIMARY KEY,
+  [orderId] int IDENTITY(1,1) PRIMARY KEY,
   [packageId] nvarchar(255),
   [ship_date] datetime,
   [accountId] int,
@@ -35,13 +35,13 @@ CREATE TABLE [Order] (
 GO
 
 CREATE TABLE [Depot] (
-  [depotId] int PRIMARY KEY,
+  [depotId] int IDENTITY(1,1) PRIMARY KEY,
   [addressId] int
 )
 GO
 
 CREATE TABLE [Drone] (
-  [droneId] int PRIMARY KEY,
+  [droneId] int IDENTITY(1,1) PRIMARY KEY,
   [transit_status] nvarchar(255),
   [orderId] int,
   [depotId] int
