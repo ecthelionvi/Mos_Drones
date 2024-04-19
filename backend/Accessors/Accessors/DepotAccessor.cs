@@ -6,6 +6,12 @@ namespace Accessors.Accessors
 {
     public class DepotAccessor
     {
+        /// <summary>
+        /// Method to return a Depot instance loaded from the database corresponding
+        /// to the given depotId.
+        /// </summary>
+        /// <param name="depotId"></param>
+        /// <returns></returns>
         public static DepotDataModel GetDepotWithDepotId(int depotId)
         {
             DepotDataModel depot = null;
@@ -44,6 +50,10 @@ namespace Accessors.Accessors
             return depot;
         }
 
+        /// <summary>
+        /// Method to return a list of all Depot instances loaded from the database.
+        /// </summary>
+        /// <returns></returns>
         public static List<DepotDataModel> GetDepotList()
         {
             List<DepotDataModel> depotList = new List<DepotDataModel>();
