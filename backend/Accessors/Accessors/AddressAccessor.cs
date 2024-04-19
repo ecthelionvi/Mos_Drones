@@ -128,7 +128,7 @@ namespace Accessors.Accessors
                 if (address != null && address != DBNull.Value) // Address already exists in database
                 {
                     addressId = Convert.ToInt32(address);
-                    Console.WriteLine("Address already exists in the database.");
+                    //Console.WriteLine("Address already exists in the database.");
                 }
                 else
                 {
@@ -141,7 +141,7 @@ namespace Accessors.Accessors
                     // Insert the record and get its id
                     address = insertCommand.ExecuteScalar();
                     addressId = Convert.ToInt32(address);
-                    Console.WriteLine("Address inserted successfully.");
+                    //Console.WriteLine("Address inserted successfully.");
                 }
             }
             catch (SqlException ex)
