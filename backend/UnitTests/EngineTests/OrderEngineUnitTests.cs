@@ -1,27 +1,29 @@
 using System;
 using System.Text.RegularExpressions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Managers.Models;
-using Engines.Engines;
+using Engines.BizLogic;
 
-namespace Engines.BizLogic{
-    [TestFixture]
+namespace UnitTests.EngineTests
+{
+    [TestClass]
     public class OrderEngineTest
     {
-        [Test]
+        [TestMethod]
         public void ValidOrderEngine()
         {
             throw new NotImplementedException();
         }
 
-        [Test]
+        [TestMethod]
         public void InvalidOrderEngine()
         {
             throw new NotImplementedException();
         }
-        [Test]
+
+        [TestMethod]
         public void NullOrderEngine()
         {
             throw new NotImplementedException();
         }
     }
+}
