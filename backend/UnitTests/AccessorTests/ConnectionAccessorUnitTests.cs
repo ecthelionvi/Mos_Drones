@@ -1,59 +1,71 @@
 using System;
 using System.Text.RegularExpressions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Managers.Models;
+using Accessors.DBModels;
 using Accessors.Accessors;
 
-namespace backend{
-    [TestFixture]
+namespace UnitTests.AccessorTests
+{
+    [TestClass]
     public class TestDatabaseConnectionAccessorTest
     {
-        [Test]
+        [TestMethod]
         public void ValidTestDatabaseConnection()
         {
             throw new NotImplementedException();
+        }
 
-        [Test]
+        [TestMethod]
         public void InvalidTestDatabaseConnection()
         {
             throw new NotImplementedException();
         }
+
+        [TestMethod]
         public void NullTestDatabaseConnection()
         {
             throw new NotImplementedException();
         }
     }
-    [TestFixture]
+
+    [TestClass]
     public class GetConnectionAccessorTest
     {
-        [Test]
+        [TestMethod]
         public void ValidGetConnection()
         {
             throw new NotImplementedException();
+        }
 
-        [Test]
+        [TestMethod]
         public void InvalidGetConnection()
         {
             throw new NotImplementedException();
         }
+
+        [TestMethod]
         public void NullGetConnection()
         {
             throw new NotImplementedException();
         }
     }
-    [TestFixture]
+
+    [TestClass]
     public class MainConnectionAccessorTest
     {
-        [Test]
+        [TestMethod]
         public void ValidMain()
         {
             throw new NotImplementedException();
+        }
 
-        [Test]
+        [TestMethod]
         public void InvalidMain()
         {
             throw new NotImplementedException();
         }
+
+        [TestMethod]
         public void NullMain()
         {
             throw new NotImplementedException();
