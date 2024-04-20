@@ -1,27 +1,29 @@
 using System;
 using System.Text.RegularExpressions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Managers.Models;
-using Engines.Engines;
+using Engines.BizLogic;
 
-namespace Engines.BizLogic{
-    [TestFixture]
-    public class AccountPasswordEngineTest
+namespace UnitTests.EngineTests
+{
+    [TestClass]
+    public class DepotEngineTest
     {
-        [Test]
+        [TestMethod]
         public void ValidDepotEngine()
         {
             throw new NotImplementedException();
         }
 
-        [Test]
+        [TestMethod]
         public void InvalidDepotEngine()
         {
             throw new NotImplementedException();
         }
-        [Test]
+
+        [TestMethod]
         public void NullDepotEngine()
         {
             throw new NotImplementedException();
         }
     }
+}
