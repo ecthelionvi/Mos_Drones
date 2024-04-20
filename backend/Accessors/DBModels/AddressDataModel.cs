@@ -1,3 +1,6 @@
+using System.IO;
+using System.Net;
+
 namespace Accessors.DBModels;
 
 public class AddressDataModel
@@ -17,6 +20,15 @@ public class AddressDataModel
         this.AddressLine = addressLine;
     }
 
+    public override bool Equals(object obj)
+    {
+        if (obj == null || GetType() != obj.GetType())
+            return false;
+
+        AddressDataModel other = (AddressDataModel)obj;
+        return (AddressId == other.AddressId && City == other.City && State == other.State
+            && ZipCode == other.ZipCode && AddressLine == other.AddressLine);
+    }
     public override string ToString()
     {
         return $"addressId: {AddressId}\n{AddressLine}, {City}, {State} {ZipCode}\n";
