@@ -1,22 +1,24 @@
 using System;
 using System.Text.RegularExpressions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Managers.Models;
+using Accessors.DBModels;
 using Accessors.Accessors;
 
-namespace backend{
-    [TestFixture]
+namespace UnitTests.AccessorTests
+{
+    [TestClass]
     public class GetDepotWithDepotIdAccessorTest
     {
-        [Test]
+        [TestMethod]
         public void ValidGetDepotWithDepotId()
         {
             throw new NotImplementedException();
             //Assert.AreEqual(true, GetDepotWithDepotId(1));
             //Assert.AreEqual(true, GetDepotWithDepotId(2));
             //Assert.AreEqual(true, GetDepotWithDepotId(3));
+        }
 
-        [Test]
+        [TestMethod]
         public void InvalidGetDepotWithDepotId()
         {
             throw new NotImplementedException();
@@ -24,6 +26,8 @@ namespace backend{
             //Assert.AreEqual(NULL, GetDepotWithDepotId(-2));
             //Assert.AreEqual(NULL, GetDepotWithDepotId(-3));
         }
+
+        [TestMethod]
         public void NullGetDepotWithDepotId()
         {
             throw new NotImplementedException();
