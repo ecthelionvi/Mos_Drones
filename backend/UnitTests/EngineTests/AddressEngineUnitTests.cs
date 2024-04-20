@@ -1,23 +1,26 @@
 using System;
 using System.Text.RegularExpressions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Managers.Models;
-using Engines.Engines;
+using Engines.BizLogic;
 
-namespace backend{
-    [TestFixture]
-    public class AccountPasswordEngineTest
+namespace UnitTests.EngineTests
+{
+    [TestClass]
+    public class AddressEngineTest
     {
-        [Test]
+        [TestMethod]
         public void ValidAddressEngine()
         {
             throw new NotImplementedException();
+        }
 
-        [Test]
+        [TestMethod]
         public void InvalidAddressEngine()
         {
             throw new NotImplementedException();
         }
+
+        [TestMethod]
         public void NullAdressEngine()
         {
             throw new NotImplementedException();
