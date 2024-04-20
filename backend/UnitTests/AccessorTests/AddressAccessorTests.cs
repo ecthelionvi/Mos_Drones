@@ -1,24 +1,24 @@
 using System;
 using System.Collections.Generic;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Accessors.DBModels;
+using Managers.Models;
 using Accessors.Accessors;
 
-namespace UnitTests.AccessorTests
+namespace UnitTests
 {
     [TestClass]
     public class AddressAccessorTests
     {
         [TestMethod]
-        public void Load_All_Addresses_From_Db()
+        public void LoadAllAddressesFromDb()
         {
-            List<AddressDataModel> addressList = new List<AddressDataModel>();
+            List<Address> addressList = new List<Address>();
         }
 
         [TestMethod]
-        public void Load_One_Address_From_Db_Using_Id()
+        public void LoadOneAddressFromDbUsingId()
         {
-            AddressDataModel a = null;
+            Address a = null;
         }
     }
 }
