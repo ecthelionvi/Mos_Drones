@@ -1,27 +1,29 @@
 using System;
 using System.Text.RegularExpressions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Managers.Models;
-using Engines.Engines;
+using Engines.BizLogic;
 
-namespace Engines.BizLogic{
-    [TestFixture]
+namespace UnitTests.EngineTests
+{
+    [TestClass]
     public class DroneDataModelEngineTest
     {
-        [Test]
+        [TestMethod]
         public void DroneDataModelValidEngine()
         {
             throw new NotImplementedException();
         }
 
-        [Test]
+        [TestMethod]
         public void InvalidDroneDataModelEngine()
         {
             throw new NotImplementedException();
         }
-        [Test]
+
+        [TestMethod]
         public void NullDroneDataModelEngine()
         {
             throw new NotImplementedException();
         }
     }
+}
