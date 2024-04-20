@@ -1,22 +1,24 @@
 using System;
 using System.Text.RegularExpressions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Managers.Models;
+using Accessors.DBModels;
 using Accessors.Accessors;
 
-namespace backend{
-    [TestFixture]
+namespace UnitTests.AccessorTests
+{
+    [TestClass]
     public class GetOrderWithOrderIdAccessorTest
     {
-        [Test]
+        [TestMethod]
         public void ValidGetOrderWithOrderId()
         {
             throw new NotImplementedException();
             //Assert.AreEqual(order, GetOrderWithOrderId(1));
             //Assert.AreEqual(order, GetOrderWithOrderId(2));
             //Assert.AreEqual(order, GetOrderWithOrderId(3));
+        }
 
-        [Test]
+        [TestMethod]
         public void InvalidGetOrderWithOrderId()
         {
             throw new NotImplementedException();
@@ -24,6 +26,8 @@ namespace backend{
             //Assert.AreEqual(NULL, GetOrderWithOrderId(-2));
             //Assert.AreEqual(NULL, GetOrderWithOrderId(-3));
         }
+
+        [TestMethod]
         public void NullGetOrderWithOrderId()
         {
             throw new NotImplementedException();
@@ -32,18 +36,20 @@ namespace backend{
             //Assert.AreEqual(NULL, GetOrderWithOrderId(3));
         }
     }
-    [TestFixture]
+
+    [TestClass]
     public class GetOrderWithPackageIdAccessorTest
     {
-        [Test]
+        [TestMethod]
         public void ValidGetOrderWithPackageId()
         {
             throw new NotImplementedException();
             //Assert.AreEqual(order, GetOrderWithPackageId(1));
             //Assert.AreEqual(order, GetOrderWithPackageId(2));
             //Assert.AreEqual(order, GetOrderWithPackageId(3));
+        }
 
-        [Test]
+        [TestMethod]
         public void InvalidGetOrderWithPackageId()
         {
             throw new NotImplementedException();
@@ -51,6 +57,8 @@ namespace backend{
             //Assert.AreEqual(Null, GetOrderWithPackageId(-2));
             //Assert.AreEqual(NULL, GetOrderWithPackageId(-3));
         }
+
+        [TestMethod]
         public void NullGetOrderWithPackageId()
         {
             throw new NotImplementedException();
@@ -59,18 +67,20 @@ namespace backend{
             //Assert.AreEqual(NULL, GetOrderWithPackageId(NULL));
         }
     }
-    [TestFixture]
+
+    [TestClass]
     public class GetOrderListWithEmailAccessorTest
     {
-        [Test]
+        [TestMethod]
         public void ValidGetOrderListWithEmail()
         {
             throw new NotImplementedException();
             //Assert.AreEqual(orderList, GetOrderListWithEmail("123456@gmail.com"));
             //Assert.AreEqual(orderList, GetOrderListWithEmail("ThisIsATest@gmail.com"));
             //Assert.AreEqual(orderList, GetOrderListWithEmail("WhatAnEmail@gmail.com"));
+        }
 
-        [Test]
+        [TestMethod]
         public void InvalidGetOrderListWithEmail()
         {
             throw new NotImplementedException();
@@ -78,6 +88,8 @@ namespace backend{
             //Assert.AreEqual(!orderList, GetOrderListWithEmail("IDkThisIsABadTest@gmail.com"));
             //Assert.AreEqual(!orderList, GetOrderListWithEmail("ThridTimesCharm@gmail.com"));
         }
+
+        [TestMethod]
         public void NullGetOrderListWithEmail()
         {
             throw new NotImplementedException();
