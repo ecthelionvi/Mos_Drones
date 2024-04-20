@@ -1,22 +1,24 @@
 using System;
 using System.Text.RegularExpressions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Managers.Models;
+using Accessors.DBModels;
 using Accessors.Accessors;
 
-namespace backend{
-    [TestFixture]
+namespace UnitTests.AccessorTests
+{
+    [TestClass]
     public class GetDroneAccessorTest
     {
-        [Test]
+        [TestMethod]
         public void ValidGetDrone()
         {
             throw new NotImplementedException();
             //Assert.AreEqual(drone, GetDrone(1));
             //Assert.AreEqual(drone, GetDrone(2));
             //Assert.AreEqual(drone, GetDrone(3));
+        }
 
-        [Test]
+        [TestMethod]
         public void InvalidGetDrone()
         {
             throw new NotImplementedException();
@@ -24,30 +26,14 @@ namespace backend{
             //Assert.AreEqual(Not_Drone, GetDrone(-2));
             //Assert.AreEqual(Not_Drone, GetDrone(-3));
         }
+
+        [TestMethod]
         public void NullGetDrone()
         {
             throw new NotImplementedException();
             //Assert.AreEqual(NULL, GetDrone(NULL));
             //Assert.AreEqual(NULL, GetDrone(NULL));
             //Assert.AreEqual(NULL, GetDrone(NULL));
-        }
-    }
-    [TestFixture]
-    public class GetDroneAccessorTest
-    {
-        [Test]
-        public void ValidTestDatabaseConnection()
-        {
-            throw new NotImplementedException();
-
-        [Test]
-        public void InvalidTestDatabaseConnection()
-        {
-            throw new NotImplementedException();
-        }
-        public void NullTestDatabaseConnection()
-        {
-            throw new NotImplementedException();
         }
     }
 }
