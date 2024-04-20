@@ -1,66 +1,66 @@
 using System;
 using System.Text.RegularExpressions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Managers.Models;
-using Engines.Engines;
+using Engines.BizLogic;
 
-namespace backend{
-    [TestFixture]
+namespace UnitTests.EngineTests
+{
+    [TestClass]
     public class AccountPasswordEngineTest
     {
-        [Test]
+        [TestMethod]
         public void ValidPasswordStrength()
         {
-            Assert.AreEqual(true, ValidPasswordStrength("R@inb0w$un5h!n3"));
-            Assert.AreEqual(true, ValidPasswordStrength("!8G&vP#2qR!5sY@9"));
-            Assert.AreEqual(true, ValidPasswordStrength("S3cureP@ssw0rd!"));
+            Assert.AreEqual(true, AccountEngine.ValidPasswordStrength("R@inb0w$un5h!n3"));
+            Assert.AreEqual(true, AccountEngine.ValidPasswordStrength("!8G&vP#2qR!5sY@9"));
+            Assert.AreEqual(true, AccountEngine.ValidPasswordStrength("S3cureP@ssw0rd!"));
         }
 
-        [Test]
+        [TestMethod]
         public void InvalidPasswordStrength()
         {
-            Assert.AreEqual(false,ValidPasswordStrength("abcdefghijklmnopqrstuvwxyzABCDEF"));
-            Assert.AreEqual(false, ValidPasswordStrength("ImyNameIsTom"));
-            Assert.AreEqual(false, ValidPasswordStrength("L697"));
+            Assert.AreEqual(false, AccountEngine.ValidPasswordStrength("abcdefghijklmnopqrstuvwxyzABCDEF"));
+            Assert.AreEqual(false, AccountEngine.ValidPasswordStrength("ImyNameIsTom"));
+            Assert.AreEqual(false, AccountEngine.ValidPasswordStrength("L697"));
         }
     }
-    [TestFixture]
+    [TestClass]
     public class AccountSignUpEngineTest
     {
-        [Test]
+        [TestMethod]
         public void ValidSignUp()
         {
             throw new NotImplementedException();
         }
 
-        [Test]
+        [TestMethod]
         public void InvalidSignUp()
         {
             throw new NotImplementedException();
         }
 
-        [Test]
+        [TestMethod]
         public void NullSignUp()
         {
             throw new NotImplementedException();
         }
     }
-    [TestFixture]
+    [TestClass]
     public class AccountLoginEngineTest
     {
-        [Test]
+        [TestMethod]
         public void ValidSignUp()
         {
             throw new NotImplementedException();
         }
 
-        [Test]
+        [TestMethod]
         public void InvalidSignUp()
         {
             throw new NotImplementedException();
         }
 
-        [Test]
+        [TestMethod]
         public void NullSignUp()
         {
             throw new NotImplementedException();
