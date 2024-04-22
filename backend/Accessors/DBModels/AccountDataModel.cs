@@ -20,8 +20,6 @@ public class AccountDataModel
         this.AccountAddress = accountAddress;
         this.IsAdmin = isAdmin;
     }
-
-    public string GetPassword() { return Password; }
     public override string ToString()
     {
         string adminString = IsAdmin ? "yes" : "no";

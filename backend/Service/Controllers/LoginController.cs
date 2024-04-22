@@ -1,3 +1,4 @@
+using Managers;
 using Microsoft.AspNetCore.Mvc;
 using Managers.Models;
 
@@ -17,8 +18,6 @@ public class LoginController : Controller {
     [HttpPost]
     public JsonResult ValidateLogin(String username, String password)
     {
-        //should hit db to get account by email
-        //should hit engine to validate password
-        //returns user object
+        Account? account = AccountManager.ValidateLogin(username, password);
     }
 }

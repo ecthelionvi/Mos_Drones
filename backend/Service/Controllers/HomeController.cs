@@ -23,7 +23,7 @@ public class HomeController : Controller
         }
         
         [HttpPost("GetUserOrders")]
-        public IActionResult FindOrder([FromBody] int accoundId)
+        public IActionResult GetAllOrders([FromBody] int accoundId)
         {
             List<Order> userOrders = OrderManager.GetUserOrders(accoundId);
             return Ok(userOrders);
