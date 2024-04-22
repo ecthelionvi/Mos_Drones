@@ -21,6 +21,7 @@ public class AccountDataModel
         this.IsAdmin = isAdmin;
     }
 
+    public string GetPassword() { return Password; }
     public override string ToString()
     {
         string adminString = IsAdmin ? "yes" : "no";

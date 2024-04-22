@@ -6,6 +6,12 @@ namespace Accessors.Accessors
 {
     public class AccountAccessor
     {
+        /// <summary>
+        /// Method to return an Account instance loaded from the database 
+        /// corresponding to the given accountId.
+        /// </summary>
+        /// <param name="accountId"></param>
+        /// <returns></returns>
         public static AccountDataModel GetAccountWithAccountId(int accountId)
         {
             AccountDataModel account = null;
@@ -48,6 +54,13 @@ namespace Accessors.Accessors
 
             return account;
         }
+
+        /// <summary>
+        /// Method to return an Account instance loaded from the database with the
+        /// email associated with the account.
+        /// </summary>
+        /// <param name="email"></param>
+        /// <returns></returns>
         public static AccountDataModel GetAccountWithEmail(string email)
         {
             AccountDataModel account = null;
@@ -89,6 +102,75 @@ namespace Accessors.Accessors
             }
 
             return account;
+        }
+
+        /// <summary>
+        /// This method checks if the Account record with the given parameters already
+        /// exists in the database and inserts a new Account record if it doesn't.
+        /// </summary>
+        /// <param name="firstName"></param>
+        /// <param name="lastName"></param>
+        /// <param name="email"></param>
+        /// <param name="password"></param>
+        /// <param name="city"></param>
+        /// <param name="state"></param>
+        /// <param name="zip"></param>
+        /// <param name="addressLine"></param>
+        /// <param name="isAdmin"></param>
+        /// <returns></returns>
+        public static int InsertAccount(string firstName, string lastName, string email, string password, string city, string state, string zip, string addressLine, bool isAdmin)
+        {
+            string selectQuery = @"SELECT accountId FROM Account WHERE email = @Email";
+
+            string insertQuery = @"INSERT INTO Account (first_name, last_name, email, password, addressId, isAdmin) 
+                             VALUES (@FirstName, @LastName, @Email, @Password, @AddressId, @IsAdmin); SELECT SCOPE_IDENTITY();";
+
+            int accountId = -1;
+
+            SqlConnection connection = ConnectionAccessor.ConnectionAccessor.GetConnection();
+
+            try
+            {
+                connection.Open();
+                SqlCommand selectCommand = new SqlCommand(selectQuery, connection);
+                selectCommand.Parameters.AddWithValue("@Email", email);
+
+                object account = selectCommand.ExecuteScalar();
+
+                if (account != null && account != DBNull.Value) // Address already exists in database
+                {
+                    accountId = Convert.ToInt32(account);
+                    //Console.WriteLine("Account already exists in the database.");
+                }
+                else
+                {
+                    int addressId = AddressAccessor.InsertAddress(city, state, zip, addressLine);
+                    
+                    SqlCommand insertCommand = new SqlCommand(insertQuery, connection);
+                    insertCommand.Parameters.AddWithValue("@FirstName", firstName);
+                    insertCommand.Parameters.AddWithValue("@LastName", lastName);
+                    insertCommand.Parameters.AddWithValue("@Email", email);
+                    insertCommand.Parameters.AddWithValue("@Password", password);
+                    insertCommand.Parameters.AddWithValue("@AddressId", addressId);
+                    insertCommand.Parameters.AddWithValue("@IsAdmin", isAdmin);
+
+                    // Insert the record and get its id
+                    account = insertCommand.ExecuteScalar();
+                    accountId = Convert.ToInt32(account);
+                    //Console.WriteLine("Account inserted successfully.");
+                    //Console.WriteLine("The addressId for the inserted account is " + addressId);
+                }
+            }
+            catch (SqlException ex)
+            {
+                Console.WriteLine($"SQL Exception: {ex.Message}");
+            }
+            finally
+            {
+                connection.Close();
+            }
+
+            return accountId;
         }
     }
 }
