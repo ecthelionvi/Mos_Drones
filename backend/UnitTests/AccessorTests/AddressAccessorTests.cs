@@ -1,8 +1,9 @@
 using System;
+using System.Data.SqlClient;
 using System.Collections.Generic;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Accessors.DBModels;
-using Accessors.Accessors;
+using Accessors.ConnectionAccessor;
 
 namespace UnitTests.AccessorTests
 {
