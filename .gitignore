@@ -27,5 +27,6 @@ obj/
 *.info
 .cache
 */obj/
-backend/.idea/.idea.mos_drones/.idea/vcs.xml
+.vs/
 backend/mos_drones.sln.DotSettings.user
+**/vcs.xml
