@@ -8,24 +8,24 @@ public class AddressHelper
     public static Address AddressDataModelToAddress(AddressDataModel addressDataModel)
     {
         return new Address
-        {
-            AddressId = addressDataModel.AddressId,
-            City = addressDataModel.City,
-            State = addressDataModel.State,
-            ZipCode = addressDataModel.ZipCode,
-            AddressLine = addressDataModel.AddressLine
-        };
+        (
+            addressDataModel.AddressId,
+            addressDataModel.City,
+            addressDataModel.State,
+            addressDataModel.ZipCode,
+            addressDataModel.AddressLine
+        );
 }
 
     public static AddressDataModel AddressToAddressDataModel(Address address)
     {
         return new AddressDataModel
-        {
-            AddressId = address.AddressId,
-            City = address.City,
-            State = address.State,
-            ZipCode = address.ZipCode,
-            AddressLine = address.AddressLine
-        };
+        (
+            address.AddressId,
+            address.City,
+            address.State,
+            address.ZipCode,
+            address.AddressLine
+        );
     }
 }

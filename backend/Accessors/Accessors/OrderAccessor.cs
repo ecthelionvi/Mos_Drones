@@ -6,6 +6,11 @@ namespace Accessors.Accessors
 {
     public class OrderAccessor
     {
+
+        public static void AddOrderToDB(OrderDataModel order)
+        {
+            //TODO: implement
+        }
         public static OrderDataModel GetOrderWithOrderId(int orderId)
         {
             OrderDataModel order = null;
