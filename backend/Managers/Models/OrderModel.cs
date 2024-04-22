@@ -3,7 +3,7 @@ using System;
 namespace Managers.Models;
     public class Order
     {
-        public int OrderId { get; set; }
+        public int? OrderId { get; set; }
         public string PackageId { get; set; }
         public DateTime ShipDate { get; set; }
         
