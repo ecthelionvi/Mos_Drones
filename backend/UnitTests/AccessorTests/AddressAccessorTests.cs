@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Accessors.DBModels;
 using Accessors.ConnectionAccessor;
+using Accessors.Accessors;
 
 namespace UnitTests.AccessorTests
 {
