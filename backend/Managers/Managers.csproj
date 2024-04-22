@@ -15,6 +15,7 @@
 
     <ItemGroup>
       <ProjectReference Include="..\Accessors\Accessors.csproj" />
+      <ProjectReference Include="..\Engines\Engines.csproj" />
     </ItemGroup>
 
 </Project>

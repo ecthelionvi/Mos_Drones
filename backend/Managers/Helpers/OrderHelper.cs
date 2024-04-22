@@ -8,26 +8,28 @@ public class OrderHelper
     public static Order OrderDataModelToOrderModel(OrderDataModel oDM)
     {
         return new Order
-        {
-            OrderId = oDM.OrderId,
-            PackageId = oDM.PackageId,
-            ShipDate = oDM.ShipDate,
-            Account = oDM.Account,
-            ShippedFrom = oDM.ShippedFrom,
-            ShippedTo = oDM.ShippedTo
-        };
+        (
+            oDM.OrderId,
+            oDM.PackageId,
+            oDM.ShipDate,
+            oDM.DeliveryDate,
+            AccountHelper.AccountDataModelToAccount(oDM.Account),
+            AddressHelper.AddressDataModelToAddress(oDM.ShippedFrom),
+            AddressHelper.AddressDataModelToAddress(oDM.ShippedTo)
+        );
     }
 
     public static OrderDataModel OrderToOrderDataModel(Order order)
     {
         return new OrderDataModel
-        {
-            OrderId = order.OrderId,
-            PackageId = order.PackageId,
-            ShipDate = order.ShipDate,
-            Account = order.Account,
-            ShippedFrom = order.ShippedFrom,
-            ShippedTo = order.ShippedTo
-        };
+        (
+            order.OrderId,
+            order.PackageId,
+            order.ShipDate,
+            order.DeliveryDate,
+            AccountHelper.AccountToAccountDataModel(order.Account),
+            AddressHelper.AddressToAddressDataModel(order.ShippedFrom),
+            AddressHelper.AddressToAddressDataModel(order.ShippedTo)
+        );
     }
 }

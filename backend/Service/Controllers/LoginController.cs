@@ -1,3 +1,4 @@
+using Managers;
 using Microsoft.AspNetCore.Mvc;
 using Managers.Models;
 
@@ -8,17 +9,15 @@ namespace Service.Controllers;
 public class LoginController : Controller {
     
     [HttpPost]
-    public JsonResult SaveUser(Account userAccount)
+    public void SaveUser(string firstName, string lastName, string email, string password, string city, string state, string zipCode, string addressLine)
     {
-        //used for adding a new account
-        return new JsonResult();
+        AccountManager.AddAccount(firstName, lastName, email, password, city, state, zipCode, addressLine);
     }
 
     [HttpPost]
     public JsonResult ValidateLogin(String username, String password)
     {
-        //should hit db to get account by email
-        //should hit engine to validate password
-        //returns user object
+        Account? account = AccountManager.ValidateLogin(username, password);
+        return new JsonResult(account);
     }
 }

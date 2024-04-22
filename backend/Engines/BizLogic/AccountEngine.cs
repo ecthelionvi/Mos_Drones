@@ -47,16 +47,9 @@ namespace Engines.BizLogic
         /// <param name="email"></param>
         /// <param name="password"></param>
         /// <exception cref="InvalidOperationException"></exception>
-        public static void ValidateLogin(string email, string password)
+        public static bool ValidateLogin(AccountDataModel account, string password)
         {
-            // get account with the email and see if password matches what was entered
-            AccountDataModel account = AccountAccessor.GetAccountWithEmail(email);
-            string accountPassword = account.GetPassword();
-
-            if (accountPassword != password)
-            {
-                throw new InvalidOperationException("The password or email entered is incorrect");
-            } 
+            return (string.Compare(account.Password, password) == 0);
         }
     }
 }
