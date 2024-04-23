@@ -28,6 +28,7 @@ CREATE TABLE [Order] (
   [orderId] int IDENTITY(1,1) PRIMARY KEY,
   [packageId] nvarchar(255),
   [ship_date] datetime,
+  [deliveryDate] datetime,
   [accountId] int,
   [shipped_from] int,
   [shipped_to] int
