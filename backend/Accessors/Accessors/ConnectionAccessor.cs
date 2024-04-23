@@ -102,7 +102,8 @@ namespace Accessors.ConnectionAccessor
             int accountId2 = AccountAccessor.InsertAccount("Angie", "Zheng", "angizheng4201@gmail.com", "password123", "Lincoln", "Nebraska", "68588", "1400 R St", false);
             Console.WriteLine("The accountId of the selected/inserted account is " + accountId2 + "\n");
 
-            int orderId = OrderAccessor.InsertOrder("angizheng4201@gmail.com", "Lincoln", "Nebraska", "68588", "1400 R St", "Pleasant Dale", "Nebraska", "68423", "2468 North 10th Road");
+            DateTime deliveryDate = new DateTime(2024, 4, 23, 17, 02, 00);
+            int orderId = OrderAccessor.InsertOrder("angizheng4201@gmail.com", deliveryDate, "Lincoln", "Nebraska", "68588", "1400 R St", "Pleasant Dale", "Nebraska", "68423", "2468 North 10th Road");
             Console.WriteLine("The orderId of the inserted Order is " + orderId);
 
             Console.ReadLine();
