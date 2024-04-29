@@ -1,32 +1,29 @@
 import axios from "axios";
 import "../styles/LoginPage.css";
 import logo from "../images/logo.png";
-import { jwtDecode } from "jwt-decode";
 import React, { useState } from "react";
 import { useNavigate, NavLink } from "react-router-dom";
 
 const LoginPage = ({ onLogin }) => {
-  const [email, setEmail] = useState("");
+  const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [message, setMessage] = useState("");
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
     try {
-      const response = await axios.post("http://localhost:5159/api/auth/login", {
-        email,
+      const response = await axios.post("http://localhost:5000/api/Login", {
+        username,
         password,
       });
+      const { accountId, firstName, lastName, email, isAdmin } = response.data;
 
-      const token = response.data.token;
-      const decodedToken = jwtDecode(token);
-      const roleUri = "http://schemas.microsoft.com/ws/2008/06/identity/claims/role";
-      const role = decodedToken[roleUri];
-
-      localStorage.setItem("token", token);
-      localStorage.setItem("role", role);
+      localStorage.setItem("accountId", accountId);
+      localStorage.setItem("firstName", firstName);
+      localStorage.setItem("lastName", lastName);
+      localStorage.setItem("email", email);
+      localStorage.setItem("isAdmin", isAdmin);
 
       onLogin();
       navigate("/");
@@ -49,14 +46,14 @@ const LoginPage = ({ onLogin }) => {
           <h2 className="login-form-title">Sign In</h2>
           <form onSubmit={handleSubmit} className="login-form">
             <div className="login-form-group">
-              <label htmlFor="email" className="login-form-label">
-                Email
+              <label htmlFor="username" className="login-form-label">
+                Username
               </label>
               <input
-                type="email"
-                id="email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
+                type="text"
+                id="username"
+                value={username}
+                onChange={(e) => setUsername(e.target.value)}
                 required
                 className="login-form-input"
               />
