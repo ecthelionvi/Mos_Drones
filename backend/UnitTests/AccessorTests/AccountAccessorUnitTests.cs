@@ -1,72 +1,67 @@
-using System;
-using System.Text.RegularExpressions;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System.Data.SqlClient;
-using System.Net;
 using Accessors.Accessors;
 using Accessors.DBModels;
 
 namespace UnitTests.AccessorTests
 {
     [TestClass]
-    public class GetAccountWithAccountIdAccessorTest
+    public class GetAccountWithAccountIdAccessorTests
     {
         [TestMethod]
         public void ValidGetAccountWithAccountId()
         {
-            throw new NotImplementedException();
-            //Assert.AreEqual(true, AccountAccessor.GetAccountWithAccountId(1));
-            //Assert.AreEqual(true, AccountAccessor.GetAccountWithAccountId(2));
-            //Assert.AreEqual(true, AccountAccessor.GetAccountWithAccountId(3));
+            AddressDataModel accountAddress = new AddressDataModel(1, "Lincoln", "Nebraska", "68510", "4321 O Street");
+            AccountDataModel expectedAccount = new AccountDataModel(1, "Alfred", "Van Arsdall", "avanarsdall0@cocolog-nifty.com", "uI7lq}{e0WU", accountAddress, true);
+
+            AccountDataModel actualAccount = AccountAccessor.GetAccountWithAccountId(1);
+            Assert.AreEqual(expectedAccount, actualAccount);
         }
 
         [TestMethod]
         public void InvalidGetAccountWithAccountId()
         {
-            throw new NotImplementedException();
-            //Assert.AreEqual(false, AccountAccessor.GetAccountWithAccountId(-1));
-            //Assert.AreEqual(false, AccountAccessor.GetAccountWithAccountId(-2));
-            //Assert.AreEqual(false, AccountAccessor.GetAccountWithAccountId(-3));
-        }
-
-        [TestMethod]
-        public void NullGetAccountWithAccountId()
-        {
-            throw new NotImplementedException();
-            //Assert.AreEqual(false, AccountAccessor.GetAccountWithAccountId());
-            //Assert.AreEqual(false, AccountAccessor.GetAccountWithAccountId());
-            //Assert.AreEqual(false, AccountAccessor.GetAccountWithAccountId());
+            AccountDataModel account = AccountAccessor.GetAccountWithAccountId(-1);
+            Assert.IsNull(account);
         }
     }
 
     [TestClass]
-    public class GetAccountWithEmailAccessorTest
+    public class GetAccountWithEmailAccessorTests
     {
         [TestMethod]
         public void ValidGetAccountWithEmail()
         {
-            throw new NotImplementedException();
-            //Assert.AreEqual(true, AccountAccessor.GetAccountWithEmail("123456@gmail.com"));
-            //Assert.AreEqual(true, AccountAccessor.GetAccountWithEmail("ThisIsATest@gmail.com"));
-            //Assert.AreEqual(true, AccountAccessor.GetAccountWithEmail("WhatAnEmail@gmail.com"));
+            AddressDataModel accountAddress = new AddressDataModel(2, "Lincoln", "Nebraska", "68521", "2468 North 27th Street");
+            AccountDataModel expectedAccount = new AccountDataModel(2, "Beltran", "Lillie", "blillie1@imdb.com", "hC7S>lx+N7a(?2>k", accountAddress, false);
+
+            AccountDataModel actualAccount = AccountAccessor.GetAccountWithEmail("blillie1@imdb.com");
+            Assert.AreEqual(expectedAccount, actualAccount);
         }
 
         [TestMethod]
         public void InvalidGetAccountWithEmail()
         {
-            throw new NotImplementedException();
-            //Assert.AreEqual(false, AccountAccessor.GetAccountWithEmail("NOTInDataBase@gmail.com"));
-            //Assert.AreEqual(false, AccountAccessor.GetAccountWithEmail("IDkThisIsABadTest@gmail.com"));
-            //Assert.AreEqual(false, AccountAccessor.GetAccountWithEmail("ThridTimesCharm@gmail.com"));
+            AccountDataModel invalidAccount = AccountAccessor.GetAccountWithEmail("random_email123@example.com");
+            Assert.IsNull(invalidAccount);
         }
 
         [TestMethod]
         public void NullGetAccountWithEmail()
         {
-            throw new NotImplementedException();
-            //Assert.AreEqual(false, AccountAccessor.GetAccountWithEmail());
-            //Assert.AreEqual(false, AccountAccessor.GetAccountWithEmail());
-            //Assert.AreEqual(false, AccountAccessor.GetAccountWithEmail());
-        }     
+            AccountDataModel accountWithNullEmail = AccountAccessor.GetAccountWithEmail(null);
+            Assert.IsNull(accountWithNullEmail);
+        }
+    }
+
+    [TestClass]
+    public class InsertAccountTests
+    {
+        [TestMethod]
+        public void ValidInsertAccount()
+        {
+            int expectedAccountId = 3;
+
+            int actualAccountId = AccountAccessor.InsertAccount("Angie", "Zheng", "azheng2@huskers.unl.edu", "password123", "Lincoln", "Nebraska", "68588", "1400 R St", false);
+            Assert.AreEqual(expectedAccountId, actualAccountId);
+        }
     }
 }
