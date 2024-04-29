@@ -14,6 +14,7 @@ public class DroneController : Controller
     public JsonResult GetDrones()
     {
         //returns all data we have on all our drones
+        //changelaksdjflkajsdf
         return new JsonResult("");
     }
     
