@@ -12,7 +12,6 @@ namespace Engines.BizLogic
         public static void isDeliveryRequestInRange(AddressDataModel address)
         {
             float range = float.MaxValue;
-            int i = 0;
             List<DepotDataModel> depots = DepotAccessor.GetDepotList();
 
             for (i = 0; i < depots.Count; i++)
@@ -26,7 +25,7 @@ namespace Engines.BizLogic
 
                 range = sCoord.GetDistanceTo(eCoord);
                 range = range * 0.00062137;
-                if (range < 5)
+                if (range <= 5)
                 {
                     return;
                 }
