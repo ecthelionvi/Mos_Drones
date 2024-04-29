@@ -10,14 +10,17 @@ public class AddressDataModel
     public string State { get; set; }
     public string ZipCode { get; set; }
     public string AddressLine { get; set; }
+    
+    public Coordinate? Coordinates { get; set; }
 
-    public AddressDataModel(int addressId, string city, string state, string zipCode, string addressLine)
+    public AddressDataModel(int addressId, string city, string state, string zipCode, string addressLine, Coordinate? coordinates)
     {
         this.AddressId = addressId;
         this.City = city;
         this.State = state;
         this.ZipCode = zipCode;
         this.AddressLine = addressLine;
+        this.Coordinates = coordinates;
     }
 
     public override bool Equals(object obj)

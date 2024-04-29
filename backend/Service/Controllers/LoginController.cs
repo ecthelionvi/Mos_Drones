@@ -8,13 +8,13 @@ namespace Service.Controllers;
 [ApiController]
 public class LoginController : Controller {
     
-    [HttpPost]
+    [HttpPost("CreateAccount")]
     public void SaveUser(string firstName, string lastName, string email, string password, string city, string state, string zipCode, string addressLine)
     {
         AccountManager.AddAccount(firstName, lastName, email, password, city, state, zipCode, addressLine);
     }
 
-    [HttpPost]
+    [HttpPost("auth")]
     public JsonResult ValidateLogin(String username, String password)
     {
         Account? account = AccountManager.ValidateLogin(username, password);

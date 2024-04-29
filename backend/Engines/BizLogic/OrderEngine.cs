@@ -11,20 +11,22 @@ namespace Engines.BizLogic
             return shippedDate.AddDays(3);
         }
 
-        public static void getOrderStatus()
+        public static string getOrderStatus(DateTime deliveryDate)
         {
-            // gives either, delivered, Package-In-transit, Drone-in-route
+            int compare = deliveryDate.CompareTo(DateTime.Now);
+            return compare < 0 ? "Package-In-Transit" : "delivered";
         }
 
-        public static void getAdminOrderStatus()
+        public static string getAdminOrderStatus(DateTime deliveryDate)
         {
-            //this gives a more descriptive status for admin
-            //En-route to <Depot_9>/<Desination>/<Pickup>
+            int compare = deliveryDate.CompareTo(DateTime.Now);
+            return compare < 0 ? "Package-In-Transit" : "delivered";
         }
 
-        public static void validateOrderRequest()
+        public static Boolean validateOrderRequest(AddressDataModel destination)
         {
-            //this should validate that the requested delivery address is in range of a depot
+            //TODO check if in range
+            return true;
         }
     }
 }
