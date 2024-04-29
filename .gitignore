@@ -30,3 +30,4 @@ obj/
 .vs/
 backend/mos_drones.sln.DotSettings.user
 **/vcs.xml
+package-lock.json

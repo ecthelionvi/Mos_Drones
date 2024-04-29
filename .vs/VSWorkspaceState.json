@@ -1,7 +1,8 @@
 {
   "ExpandedNodes": [
-    ""
+    "",
+    "\\backend"
   ],
-  "SelectedNode": "\\mos_drones.sln",
+  "SelectedNode": "\\backend\\mos_drones.sln",
   "PreviewInSolutionExplorer": false
 }
