@@ -4,7 +4,7 @@ using Accessors.DBModels;
 
 namespace Accessors.Accessors
 {
-    public class AccountAccessor
+    public class AccountAccessor : IAccountAccessor
     {
         /// <summary>
         /// Method to return an Account instance loaded from the database 
