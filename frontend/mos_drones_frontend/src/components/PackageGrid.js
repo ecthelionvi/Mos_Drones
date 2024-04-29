@@ -4,30 +4,32 @@ import { AgGridReact } from "ag-grid-react";
 import "ag-grid-community/styles/ag-grid.css";
 import React, { useState, useEffect } from "react";
 import "ag-grid-community/styles/ag-theme-alpine.css";
+import axios from "axios";
 
 const PackageGrid = () => {
   const [rowData, setRowData] = useState([]);
 
   useEffect(() => {
-    const mockData = [
-      {
-        id: "1",
-        deliveryDate: "2024-04-10",
-        status: "In Transit",
-      },
-      {
-        id: "2",
-        deliveryDate: "2024-03-30",
-        status: "Delivered",
-      },
-    ];
-    setRowData(mockData);
+    const fetchPackages = async () => {
+      try {
+        const accountId = localStorage.getItem("accountId");
+        const response = await axios.post("http://localhost:5000/api/Home/GetUserOrders", {
+          accountId: parseInt(accountId),
+        });
+        const packages = response.data;
+        setRowData(packages);
+      } catch (error) {
+        console.error("Error fetching packages:", error);
+      }
+    };
+
+    fetchPackages();
   }, []);
 
   const columnDefs = [
     {
       headerName: "Tracking Number",
-      field: "id",
+      field: "packageId",
       suppressMovable: true,
       suppressSizeToFit: true,
       cellStyle: { textAlign: "left" },

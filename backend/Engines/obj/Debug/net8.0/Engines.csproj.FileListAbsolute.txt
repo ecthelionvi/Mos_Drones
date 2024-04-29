@@ -1,0 +1,6 @@
+C:\Users\angiz\Source\Repos\ecthelionvi\Mos_Drones\backend\Engines\obj\Debug\net8.0\Engines.csproj.AssemblyReference.cache
+C:\Users\angiz\Source\Repos\ecthelionvi\Mos_Drones\backend\Engines\obj\Debug\net8.0\Engines.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\angiz\Source\Repos\ecthelionvi\Mos_Drones\backend\Engines\obj\Debug\net8.0\Engines.AssemblyInfoInputs.cache
+C:\Users\angiz\Source\Repos\ecthelionvi\Mos_Drones\backend\Engines\obj\Debug\net8.0\Engines.AssemblyInfo.cs
+C:\Users\angiz\Source\Repos\ecthelionvi\Mos_Drones\backend\Engines\obj\Debug\net8.0\Engines.csproj.CoreCompileInputs.cache
+C:\Users\angiz\Source\Repos\ecthelionvi\Mos_Drones\backend\Engines\obj\Debug\net8.0\Engines.sourcelink.json

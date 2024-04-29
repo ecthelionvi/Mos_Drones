@@ -1,26 +1,28 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import "../styles/PackageDetails.css";
 import pkg from "../images/open-pkg.png";
 import pkg_not_found from "../images/package-not-found.png";
 import { useParams, NavLink } from "react-router-dom";
+import axios from "axios";
 
 const PackageDetails = () => {
   const { packageId } = useParams();
+  const [packageDetails, setPackageDetails] = useState(null);
 
-  const mockData = [
-    {
-      id: "1",
-      deliveryDate: "2024-04-10",
-      status: "In Transit",
-    },
-    {
-      id: "2",
-      deliveryDate: "2024-03-30",
-      status: "Delivered",
-    },
-  ];
+  useEffect(() => {
+    const fetchPackageDetails = async () => {
+      try {
+        const response = await axios.post("http://localhost:5000/api/Home/FindOrder", {
+          orderId: parseInt(packageId),
+        });
+        setPackageDetails(response.data);
+      } catch (error) {
+        console.error("Error fetching package details:", error);
+      }
+    };
 
-  const packageDetails = mockData.find((pkg) => pkg.id === packageId);
+    fetchPackageDetails();
+  }, [packageId]);
 
   if (!packageDetails) {
     return (
@@ -53,10 +55,11 @@ const PackageDetails = () => {
       </div>
       <div className="pd-details-content">
         <p className="pd-detail">
-          <span className="pd-detail-label">Package ID:</span> {packageDetails.id}
+          <span className="pd-detail-label">Package ID:</span> {packageDetails.packageId}
         </p>
         <p className="pd-detail">
-          <span className="pd-detail-label">Delivery Date:</span> {packageDetails.deliveryDate}
+          <span className="pd-detail-label">Delivery Date:</span>{" "}
+          {new Date(packageDetails.deliveryDate).toLocaleDateString()}
         </p>
         <p className="pd-detail">
           <span className="pd-detail-label">Status:</span> {packageDetails.status}

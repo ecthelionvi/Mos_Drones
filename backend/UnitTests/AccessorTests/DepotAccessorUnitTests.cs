@@ -1,39 +1,47 @@
-using System;
-using System.Text.RegularExpressions;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Accessors.DBModels;
 using Accessors.Accessors;
 
 namespace UnitTests.AccessorTests
 {
     [TestClass]
-    public class GetDepotWithDepotIdAccessorTest
+    public class GetDepotWithDepotIdAccessorTests
     {
         [TestMethod]
         public void ValidGetDepotWithDepotId()
         {
-            throw new NotImplementedException();
-            //Assert.AreEqual(true, GetDepotWithDepotId(1));
-            //Assert.AreEqual(true, GetDepotWithDepotId(2));
-            //Assert.AreEqual(true, GetDepotWithDepotId(3));
+            AddressDataModel depotAddress = new AddressDataModel(3, "Lincoln", "Nebraska", "68516", "9876 Pine Lake Road");
+            DepotDataModel expectedDepot = new DepotDataModel(1, depotAddress);
+
+            DepotDataModel actualDepot = DepotAccessor.GetDepotWithDepotId(1);
+            Assert.AreEqual(expectedDepot, actualDepot);
         }
 
         [TestMethod]
         public void InvalidGetDepotWithDepotId()
         {
-            throw new NotImplementedException();
-            //Assert.AreEqual(NULL, GetDepotWithDepotId(-1));
-            //Assert.AreEqual(NULL, GetDepotWithDepotId(-2));
-            //Assert.AreEqual(NULL, GetDepotWithDepotId(-3));
+            DepotDataModel depot = DepotAccessor.GetDepotWithDepotId(-1);
+            Assert.IsNull(depot);
         }
+    }
 
+    [TestClass]
+    public class GetDepotListTests
+    {
         [TestMethod]
-        public void NullGetDepotWithDepotId()
+        public void ValidGetDepotList()
         {
-            throw new NotImplementedException();
-            //Assert.AreEqual(NULL, GetDepotWithDepotId( ));
-            //Assert.AreEqual(NULL, GetDepotWithDepotId( ));
-            //Assert.AreEqual(NULL, GetDepotWithDepotId( ));
+            AddressDataModel address3 = new AddressDataModel(3, "Lincoln", "Nebraska", "68516", "9876 Pine Lake Road");
+            DepotDataModel depot1 = new DepotDataModel(1, address3);
+
+            AddressDataModel address4 = new AddressDataModel(4, "Lincoln", "Nebraska", "68505", "8020 Holdrege Street");
+            DepotDataModel depot2 = new DepotDataModel(2, address4);
+
+            List<DepotDataModel> expectedDepotList = new List<DepotDataModel>();
+            expectedDepotList.Add(depot1);
+            expectedDepotList.Add(depot2);
+
+            List<DepotDataModel> actualDepotList = DepotAccessor.GetDepotList();
+            CollectionAssert.AreEquivalent(actualDepotList, expectedDepotList);
         }
     }
 }

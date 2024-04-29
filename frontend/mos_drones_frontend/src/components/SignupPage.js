@@ -9,7 +9,12 @@ const SignupPage = () => {
   const [address, setAddress] = useState("");
   const [message, setMessage] = useState("");
   const [email, setEmail] = useState("");
-  const [name, setName] = useState("");
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
+  const [city, setCity] = useState("");
+  const [state, setState] = useState("");
+  const [zipCode, setZipCode] = useState("");
+  const [addressLine, setAddressLine] = useState("");
 
   const navigate = useNavigate();
 
@@ -24,38 +29,69 @@ const SignupPage = () => {
   const onPlaceChanged = (autocompleteRef) => {
     if (autocompleteRef.current) {
       const place = autocompleteRef.current.getPlace();
-      console.log("Selected place:", place);
+      const addressComponents = place.address_components;
+
+      const streetNumber = addressComponents.find((component) =>
+        component.types.includes("street_number"),
+      )?.long_name;
+      const route = addressComponents.find((component) =>
+        component.types.includes("route"),
+      )?.long_name;
+      const locality = addressComponents.find((component) =>
+        component.types.includes("locality"),
+      )?.long_name;
+      const administrativeAreaLevel1 = addressComponents.find((component) =>
+        component.types.includes("administrative_area_level_1"),
+      )?.short_name;
+      const postalCode = addressComponents.find((component) =>
+        component.types.includes("postal_code"),
+      )?.long_name;
+
+      setCity(locality || "");
+      setState(administrativeAreaLevel1 || "");
+      setZipCode(postalCode || "");
+      setAddressLine(`${streetNumber} ${route}` || "");
     }
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    // Basic validation
-    if (!name || !email || !password || !address) {
+    if (
+      !firstName ||
+      !lastName ||
+      !email ||
+      !password ||
+      !city ||
+      !state ||
+      !zipCode ||
+      !addressLine
+    ) {
       setMessage("Please fill in all fields.");
       return;
     }
 
-    // Email validation
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailRegex.test(email)) {
       setMessage("Please enter a valid email address.");
       return;
     }
 
-    // Password validation
     if (password.length < 6) {
       setMessage("Password must be at least 6 characters long.");
       return;
     }
 
     try {
-      await axios.post("http://localhost:5159/api/auth/signup", {
-        name,
+      await axios.post("http://localhost:5000/api/Login", {
+        firstName,
+        lastName,
         email,
         password,
-        address,
+        city,
+        state,
+        zipCode,
+        addressLine,
       });
       navigate("/login");
     } catch (error) {
@@ -76,14 +112,27 @@ const SignupPage = () => {
           <h2 className="signup-form-title">Create Account</h2>
           <form onSubmit={handleSubmit} className="signup-form">
             <div className="signup-form-group">
-              <label htmlFor="name" className="signup-form-label">
-                Name
+              <label htmlFor="firstName" className="signup-form-label">
+                First Name
               </label>
               <input
                 type="text"
-                id="name"
-                value={name}
-                onChange={(e) => setName(e.target.value)}
+                id="firstName"
+                value={firstName}
+                onChange={(e) => setFirstName(e.target.value)}
+                required
+                className="signup-form-input"
+              />
+            </div>
+            <div className="signup-form-group">
+              <label htmlFor="lastName" className="signup-form-label">
+                Last Name
+              </label>
+              <input
+                type="text"
+                id="lastName"
+                value={lastName}
+                onChange={(e) => setLastName(e.target.value)}
                 required
                 className="signup-form-input"
               />
