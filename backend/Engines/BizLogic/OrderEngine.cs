@@ -7,7 +7,7 @@ namespace Engines.BizLogic
     {
         public static DateTime getDeliveryDate(DateTime shippedDate, AddressDataModel origin, AddressDataModel destination)
         {
-            //TODO:add more complex logic
+            //TODO:add more complex logic using 
             return shippedDate.AddDays(3);
         }
 
@@ -20,6 +20,11 @@ namespace Engines.BizLogic
         {
             //this gives a more descriptive status for admin
             //En-route to <Depot_9>/<Desination>/<Pickup>
+        }
+
+        public static void validateOrderRequest()
+        {
+            //this should validate that the requested delivery address is in range of a depot
         }
     }
 }

@@ -17,6 +17,7 @@ public class OrderManager
 
     public static void NewOrder(int accountId, Address deliveryTo)
     {
+        
         //get account information
         AccountDataModel accountData = AccountAccessor.GetAccountWithAccountId(accountId);
         AddressDataModel destination = AddressHelper.AddressToAddressDataModel(deliveryTo);
