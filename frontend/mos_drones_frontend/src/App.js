@@ -5,40 +5,43 @@ import PackageDetails from "./components/PackageDetails";
 import HomePage from "./components/HomePage";
 import SignupPage from "./components/SignupPage";
 import PackageGrid from "./components/PackageGrid";
-// import DroneDashboard from './components/DroneDashboard';
 
 const App = () => {
-  const [loggedIn, setLoggedIn] = useState(() => {
-    const sessionLoggedIn = sessionStorage.getItem("loggedIn");
-    return sessionLoggedIn === "true";
-  });
-
-  const [role, setRole] = useState(() => {
-    const storedRole = localStorage.getItem("role");
-    return storedRole || "";
-  });
+  const [user, setUser] = useState(null);
 
   useEffect(() => {
-    sessionStorage.setItem("loggedIn", loggedIn);
-  }, [loggedIn]);
+    const storedUser = {
+      accountId: localStorage.getItem("accountId"),
+      firstName: localStorage.getItem("firstName"),
+      lastName: localStorage.getItem("lastName"),
+      email: localStorage.getItem("email"),
+      isAdmin: localStorage.getItem("isAdmin") === "true",
+    };
 
-  useEffect(() => {
-    const storedRole = localStorage.getItem("role");
-    if (storedRole) {
-      setRole(storedRole);
+    if (storedUser.accountId) {
+      setUser(storedUser);
     }
   }, []);
 
   const handleLogin = () => {
-    setLoggedIn(true);
-    setRole(localStorage.getItem("role"));
+    const loggedInUser = {
+      accountId: localStorage.getItem("accountId"),
+      firstName: localStorage.getItem("firstName"),
+      lastName: localStorage.getItem("lastName"),
+      email: localStorage.getItem("email"),
+      isAdmin: localStorage.getItem("isAdmin") === "true",
+    };
+
+    setUser(loggedInUser);
   };
 
   const handleLogout = () => {
-    setLoggedIn(false);
-    localStorage.removeItem("token");
-    localStorage.removeItem("role");
-    setRole("");
+    localStorage.removeItem("accountId");
+    localStorage.removeItem("firstName");
+    localStorage.removeItem("lastName");
+    localStorage.removeItem("email");
+    localStorage.removeItem("isAdmin");
+    setUser(null);
   };
 
   return (
@@ -48,17 +51,15 @@ const App = () => {
           path="/"
           element={
             <HomePage
-              loggedIn={loggedIn}
-              setLoggedIn={setLoggedIn}
+              loggedIn={!!user}
               onLogout={handleLogout}
-              role={role}
+              user={user}
               component={PackageGrid}
             />
           }
         />
-        <Route path="/login" element={<LoginPage loggedIn={loggedIn} onLogin={handleLogin} />} />
+        <Route path="/login" element={<LoginPage onLogin={handleLogin} />} />
         <Route path="/signup" element={<SignupPage />} />
-        {/* <Route path="/drone/:doneId" element={<DroneDashboard />} /> */}
         <Route path="/package/:packageId" element={<PackageDetails />} />
       </Routes>
     </Router>
