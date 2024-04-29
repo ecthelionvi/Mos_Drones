@@ -3,24 +3,52 @@
   "WorkspaceRootPath": "C:\\Users\\angiz\\source\\repos\\ecthelionvi\\Mos_Drones\\backend\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{B7D4A2EC-523C-417B-AC42-25AAE0B1B4BA}|UnitTests\\UnitTests.csproj|c:\\users\\angiz\\source\\repos\\ecthelionvi\\mos_drones\\backend\\unittests\\accessortests\\accountaccessorunittests.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{B7D4A2EC-523C-417B-AC42-25AAE0B1B4BA}|UnitTests\\UnitTests.csproj|solutionrelative:unittests\\accessortests\\accountaccessorunittests.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{766EAB48-18BE-420F-AEA4-7483DB8C4C32}|Accessors\\Accessors.csproj|c:\\users\\angiz\\source\\repos\\ecthelionvi\\mos_drones\\backend\\accessors\\accessors\\openrouteaccessor.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{766EAB48-18BE-420F-AEA4-7483DB8C4C32}|Accessors\\Accessors.csproj|solutionrelative:accessors\\accessors\\openrouteaccessor.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{B7D4A2EC-523C-417B-AC42-25AAE0B1B4BA}|UnitTests\\UnitTests.csproj|c:\\users\\angiz\\source\\repos\\ecthelionvi\\mos_drones\\backend\\unittests\\accessortests\\connectionaccessorunittests.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{B7D4A2EC-523C-417B-AC42-25AAE0B1B4BA}|UnitTests\\UnitTests.csproj|solutionrelative:unittests\\accessortests\\connectionaccessorunittests.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{766EAB48-18BE-420F-AEA4-7483DB8C4C32}|Accessors\\Accessors.csproj|c:\\users\\angiz\\source\\repos\\ecthelionvi\\mos_drones\\backend\\accessors\\accessors\\addressaccessor.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{766EAB48-18BE-420F-AEA4-7483DB8C4C32}|Accessors\\Accessors.csproj|solutionrelative:accessors\\accessors\\addressaccessor.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{B7D4A2EC-523C-417B-AC42-25AAE0B1B4BA}|UnitTests\\UnitTests.csproj|c:\\users\\angiz\\source\\repos\\ecthelionvi\\mos_drones\\backend\\unittests\\accessortests\\addressaccessortests.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{B7D4A2EC-523C-417B-AC42-25AAE0B1B4BA}|UnitTests\\UnitTests.csproj|solutionrelative:unittests\\accessortests\\addressaccessortests.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{13FF87BC-AA2C-48C5-AAC6-5A8A85CB0C81}|Managers\\Managers.csproj|c:\\users\\angiz\\source\\repos\\ecthelionvi\\mos_drones\\backend\\managers\\managers\\ordermanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{13FF87BC-AA2C-48C5-AAC6-5A8A85CB0C81}|Managers\\Managers.csproj|solutionrelative:managers\\managers\\ordermanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{766EAB48-18BE-420F-AEA4-7483DB8C4C32}|Accessors\\Accessors.csproj|c:\\users\\angiz\\source\\repos\\ecthelionvi\\mos_drones\\backend\\accessors\\accessors\\connectionaccessor.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{766EAB48-18BE-420F-AEA4-7483DB8C4C32}|Accessors\\Accessors.csproj|solutionrelative:accessors\\accessors\\connectionaccessor.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{13FF87BC-AA2C-48C5-AAC6-5A8A85CB0C81}|Managers\\Managers.csproj|c:\\users\\angiz\\source\\repos\\ecthelionvi\\mos_drones\\backend\\managers\\models\\ordermodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{13FF87BC-AA2C-48C5-AAC6-5A8A85CB0C81}|Managers\\Managers.csproj|solutionrelative:managers\\models\\ordermodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{766EAB48-18BE-420F-AEA4-7483DB8C4C32}|Accessors\\Accessors.csproj|c:\\users\\angiz\\source\\repos\\ecthelionvi\\mos_drones\\backend\\accessors\\dbmodels\\accountdatamodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{766EAB48-18BE-420F-AEA4-7483DB8C4C32}|Accessors\\Accessors.csproj|solutionrelative:accessors\\dbmodels\\accountdatamodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{13FF87BC-AA2C-48C5-AAC6-5A8A85CB0C81}|Managers\\Managers.csproj|c:\\users\\angiz\\source\\repos\\ecthelionvi\\mos_drones\\backend\\managers\\helpers\\orderhelper.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{13FF87BC-AA2C-48C5-AAC6-5A8A85CB0C81}|Managers\\Managers.csproj|solutionrelative:managers\\helpers\\orderhelper.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{766EAB48-18BE-420F-AEA4-7483DB8C4C32}|Accessors\\Accessors.csproj|c:\\users\\angiz\\source\\repos\\ecthelionvi\\mos_drones\\backend\\accessors\\dbmodels\\orderdatamodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{766EAB48-18BE-420F-AEA4-7483DB8C4C32}|Accessors\\Accessors.csproj|solutionrelative:accessors\\dbmodels\\orderdatamodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E78FB5EB-FB3B-4B93-8F4F-1CDA616F4B9C}|Service\\Service.csproj|c:\\users\\angiz\\source\\repos\\ecthelionvi\\mos_drones\\backend\\service\\controllers\\homecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E78FB5EB-FB3B-4B93-8F4F-1CDA616F4B9C}|Service\\Service.csproj|solutionrelative:service\\controllers\\homecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E78FB5EB-FB3B-4B93-8F4F-1CDA616F4B9C}|Service\\Service.csproj|c:\\users\\angiz\\source\\repos\\ecthelionvi\\mos_drones\\backend\\service\\controllers\\logincontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E78FB5EB-FB3B-4B93-8F4F-1CDA616F4B9C}|Service\\Service.csproj|solutionrelative:service\\controllers\\logincontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E78FB5EB-FB3B-4B93-8F4F-1CDA616F4B9C}|Service\\Service.csproj|c:\\users\\angiz\\source\\repos\\ecthelionvi\\mos_drones\\backend\\service\\controllers\\dronecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E78FB5EB-FB3B-4B93-8F4F-1CDA616F4B9C}|Service\\Service.csproj|solutionrelative:service\\controllers\\dronecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{13FF87BC-AA2C-48C5-AAC6-5A8A85CB0C81}|Managers\\Managers.csproj|c:\\users\\angiz\\source\\repos\\ecthelionvi\\mos_drones\\backend\\managers\\helpers\\addresshelper.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{13FF87BC-AA2C-48C5-AAC6-5A8A85CB0C81}|Managers\\Managers.csproj|solutionrelative:managers\\helpers\\addresshelper.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E78FB5EB-FB3B-4B93-8F4F-1CDA616F4B9C}|Service\\Service.csproj|c:\\users\\angiz\\source\\repos\\ecthelionvi\\mos_drones\\backend\\service\\drones.http||{5703B403-55E7-4C63-8C88-A8F52C7A45C5}",
+      "RelativeMoniker": "D:0:0:{E78FB5EB-FB3B-4B93-8F4F-1CDA616F4B9C}|Service\\Service.csproj|solutionrelative:service\\drones.http||{5703B403-55E7-4C63-8C88-A8F52C7A45C5}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{766EAB48-18BE-420F-AEA4-7483DB8C4C32}|Accessors\\Accessors.csproj|c:\\users\\angiz\\source\\repos\\ecthelionvi\\mos_drones\\backend\\accessors\\dbmodels\\addressdatamodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{766EAB48-18BE-420F-AEA4-7483DB8C4C32}|Accessors\\Accessors.csproj|solutionrelative:accessors\\dbmodels\\addressdatamodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{766EAB48-18BE-420F-AEA4-7483DB8C4C32}|Accessors\\Accessors.csproj|c:\\users\\angiz\\source\\repos\\ecthelionvi\\mos_drones\\backend\\accessors\\accessors\\orderaccessor.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -58,84 +86,184 @@
             },
             {
               "$type": "Bookmark",
-              "Name": "ST:128:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
+              "Name": "ST:131:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:132:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
             },
             {
               "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "ConnectionAccessorUnitTests.cs",
-              "DocumentMoniker": "C:\\Users\\angiz\\source\\repos\\ecthelionvi\\Mos_Drones\\backend\\UnitTests\\AccessorTests\\ConnectionAccessorUnitTests.cs",
-              "RelativeDocumentMoniker": "UnitTests\\AccessorTests\\ConnectionAccessorUnitTests.cs",
-              "ToolTip": "C:\\Users\\angiz\\source\\repos\\ecthelionvi\\Mos_Drones\\backend\\UnitTests\\AccessorTests\\ConnectionAccessorUnitTests.cs",
-              "RelativeToolTip": "UnitTests\\AccessorTests\\ConnectionAccessorUnitTests.cs",
-              "ViewState": "AQIAAAkAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Title": "AddressAccessor.cs",
+              "DocumentMoniker": "C:\\Users\\angiz\\source\\repos\\ecthelionvi\\Mos_Drones\\backend\\Accessors\\Accessors\\AddressAccessor.cs",
+              "RelativeDocumentMoniker": "Accessors\\Accessors\\AddressAccessor.cs",
+              "ToolTip": "C:\\Users\\angiz\\source\\repos\\ecthelionvi\\Mos_Drones\\backend\\Accessors\\Accessors\\AddressAccessor.cs",
+              "RelativeToolTip": "Accessors\\Accessors\\AddressAccessor.cs",
+              "ViewState": "AQIAAEgAAAAAAAAAAAApwE8AAABMAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-04-28T23:56:32.483Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "AccountDataModel.cs",
-              "DocumentMoniker": "C:\\Users\\angiz\\source\\repos\\ecthelionvi\\Mos_Drones\\backend\\Accessors\\DBModels\\AccountDataModel.cs",
-              "RelativeDocumentMoniker": "Accessors\\DBModels\\AccountDataModel.cs",
-              "ToolTip": "C:\\Users\\angiz\\source\\repos\\ecthelionvi\\Mos_Drones\\backend\\Accessors\\DBModels\\AccountDataModel.cs",
-              "RelativeToolTip": "Accessors\\DBModels\\AccountDataModel.cs",
-              "ViewState": "AQIAABcAAAAAAAAAAAAmwBYAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-04-28T23:01:06.301Z",
+              "WhenOpened": "2024-04-29T18:03:40.905Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "AccountAccessorUnitTests.cs",
-              "DocumentMoniker": "C:\\Users\\angiz\\source\\repos\\ecthelionvi\\Mos_Drones\\backend\\UnitTests\\AccessorTests\\AccountAccessorUnitTests.cs",
-              "RelativeDocumentMoniker": "UnitTests\\AccessorTests\\AccountAccessorUnitTests.cs",
-              "ToolTip": "C:\\Users\\angiz\\source\\repos\\ecthelionvi\\Mos_Drones\\backend\\UnitTests\\AccessorTests\\AccountAccessorUnitTests.cs",
-              "RelativeToolTip": "UnitTests\\AccessorTests\\AccountAccessorUnitTests.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAEgAAAAAAAAA",
+              "Title": "OpenRouteAccessor.cs",
+              "DocumentMoniker": "C:\\Users\\angiz\\source\\repos\\ecthelionvi\\Mos_Drones\\backend\\Accessors\\Accessors\\OpenRouteAccessor.cs",
+              "RelativeDocumentMoniker": "Accessors\\Accessors\\OpenRouteAccessor.cs",
+              "ToolTip": "C:\\Users\\angiz\\source\\repos\\ecthelionvi\\Mos_Drones\\backend\\Accessors\\Accessors\\OpenRouteAccessor.cs",
+              "RelativeToolTip": "Accessors\\Accessors\\OpenRouteAccessor.cs",
+              "ViewState": "AQIAAA0AAAAAAAAAAAAlwBgAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-04-28T22:37:15.183Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "AddressAccessorTests.cs",
-              "DocumentMoniker": "C:\\Users\\angiz\\source\\repos\\ecthelionvi\\Mos_Drones\\backend\\UnitTests\\AccessorTests\\AddressAccessorTests.cs",
-              "RelativeDocumentMoniker": "UnitTests\\AccessorTests\\AddressAccessorTests.cs",
-              "ToolTip": "C:\\Users\\angiz\\source\\repos\\ecthelionvi\\Mos_Drones\\backend\\UnitTests\\AccessorTests\\AddressAccessorTests.cs",
-              "RelativeToolTip": "UnitTests\\AccessorTests\\AddressAccessorTests.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAkAAAABAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-04-28T22:36:33.863Z",
+              "WhenOpened": "2024-04-29T18:03:09.025Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 3,
-              "Title": "ConnectionAccessor.cs",
-              "DocumentMoniker": "C:\\Users\\angiz\\source\\repos\\ecthelionvi\\Mos_Drones\\backend\\Accessors\\Accessors\\ConnectionAccessor.cs",
-              "RelativeDocumentMoniker": "Accessors\\Accessors\\ConnectionAccessor.cs",
-              "ToolTip": "C:\\Users\\angiz\\source\\repos\\ecthelionvi\\Mos_Drones\\backend\\Accessors\\Accessors\\ConnectionAccessor.cs",
-              "RelativeToolTip": "Accessors\\Accessors\\ConnectionAccessor.cs",
-              "ViewState": "AQIAABwAAAAAAAAAAAAzwGgAAABKAAAA",
+              "Title": "OrderModel.cs",
+              "DocumentMoniker": "C:\\Users\\angiz\\source\\repos\\ecthelionvi\\Mos_Drones\\backend\\Managers\\Models\\OrderModel.cs",
+              "RelativeDocumentMoniker": "Managers\\Models\\OrderModel.cs",
+              "ToolTip": "C:\\Users\\angiz\\source\\repos\\ecthelionvi\\Mos_Drones\\backend\\Managers\\Models\\OrderModel.cs",
+              "RelativeToolTip": "Managers\\Models\\OrderModel.cs",
+              "ViewState": "AQIAAAUAAAAAAAAAAAAAwAAAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-04-23T22:00:33.015Z",
+              "WhenOpened": "2024-04-29T18:00:25.719Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "OrderHelper.cs",
+              "DocumentMoniker": "C:\\Users\\angiz\\source\\repos\\ecthelionvi\\Mos_Drones\\backend\\Managers\\Helpers\\OrderHelper.cs",
+              "RelativeDocumentMoniker": "Managers\\Helpers\\OrderHelper.cs",
+              "ToolTip": "C:\\Users\\angiz\\source\\repos\\ecthelionvi\\Mos_Drones\\backend\\Managers\\Helpers\\OrderHelper.cs",
+              "RelativeToolTip": "Managers\\Helpers\\OrderHelper.cs",
+              "ViewState": "AQIAAAUAAAAAAAAAAAAxwAgAAAAFAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-04-29T17:21:12.405Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "OrderManager.cs",
+              "DocumentMoniker": "C:\\Users\\angiz\\source\\repos\\ecthelionvi\\Mos_Drones\\backend\\Managers\\Managers\\OrderManager.cs",
+              "RelativeDocumentMoniker": "Managers\\Managers\\OrderManager.cs",
+              "ToolTip": "C:\\Users\\angiz\\source\\repos\\ecthelionvi\\Mos_Drones\\backend\\Managers\\Managers\\OrderManager.cs",
+              "RelativeToolTip": "Managers\\Managers\\OrderManager.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAcAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-04-29T17:20:58.607Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "HomeController.cs",
+              "DocumentMoniker": "C:\\Users\\angiz\\source\\repos\\ecthelionvi\\Mos_Drones\\backend\\Service\\Controllers\\HomeController.cs",
+              "RelativeDocumentMoniker": "Service\\Controllers\\HomeController.cs",
+              "ToolTip": "C:\\Users\\angiz\\source\\repos\\ecthelionvi\\Mos_Drones\\backend\\Service\\Controllers\\HomeController.cs",
+              "RelativeToolTip": "Service\\Controllers\\HomeController.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAA4AAAAdAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-04-29T17:22:13.923Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 5,
+              "Title": "OrderDataModel.cs",
+              "DocumentMoniker": "C:\\Users\\angiz\\source\\repos\\ecthelionvi\\Mos_Drones\\backend\\Accessors\\DBModels\\OrderDataModel.cs",
+              "RelativeDocumentMoniker": "Accessors\\DBModels\\OrderDataModel.cs",
+              "ToolTip": "C:\\Users\\angiz\\source\\repos\\ecthelionvi\\Mos_Drones\\backend\\Accessors\\DBModels\\OrderDataModel.cs",
+              "RelativeToolTip": "Accessors\\DBModels\\OrderDataModel.cs",
+              "ViewState": "AQIAABgAAAAAAAAAAAAhwCUAAABXAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-04-29T17:14:07.494Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "AddressHelper.cs",
+              "DocumentMoniker": "C:\\Users\\angiz\\source\\repos\\ecthelionvi\\Mos_Drones\\backend\\Managers\\Helpers\\AddressHelper.cs",
+              "RelativeDocumentMoniker": "Managers\\Helpers\\AddressHelper.cs",
+              "ToolTip": "C:\\Users\\angiz\\source\\repos\\ecthelionvi\\Mos_Drones\\backend\\Managers\\Helpers\\AddressHelper.cs",
+              "RelativeToolTip": "Managers\\Helpers\\AddressHelper.cs",
+              "ViewState": "AQIAAA4AAAAAAAAAAAD4vxUAAAATAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-04-29T17:21:19.717Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "DroneController.cs",
+              "DocumentMoniker": "C:\\Users\\angiz\\source\\repos\\ecthelionvi\\Mos_Drones\\backend\\Service\\Controllers\\DroneController.cs",
+              "RelativeDocumentMoniker": "Service\\Controllers\\DroneController.cs",
+              "ToolTip": "C:\\Users\\angiz\\source\\repos\\ecthelionvi\\Mos_Drones\\backend\\Service\\Controllers\\DroneController.cs",
+              "RelativeToolTip": "Service\\Controllers\\DroneController.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-04-29T17:25:47.003Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "LoginController.cs",
+              "DocumentMoniker": "C:\\Users\\angiz\\source\\repos\\ecthelionvi\\Mos_Drones\\backend\\Service\\Controllers\\LoginController.cs",
+              "RelativeDocumentMoniker": "Service\\Controllers\\LoginController.cs",
+              "ToolTip": "C:\\Users\\angiz\\source\\repos\\ecthelionvi\\Mos_Drones\\backend\\Service\\Controllers\\LoginController.cs",
+              "RelativeToolTip": "Service\\Controllers\\LoginController.cs",
+              "ViewState": "AQIAAAsAAAAAAAAAAAAAwAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-04-29T17:26:04.213Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "drones.http",
+              "DocumentMoniker": "C:\\Users\\angiz\\source\\repos\\ecthelionvi\\Mos_Drones\\backend\\Service\\drones.http",
+              "RelativeDocumentMoniker": "Service\\drones.http",
+              "ToolTip": "C:\\Users\\angiz\\source\\repos\\ecthelionvi\\Mos_Drones\\backend\\Service\\drones.http",
+              "RelativeToolTip": "Service\\drones.http",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003502|",
+              "WhenOpened": "2024-04-29T17:20:05.843Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "AddressDataModel.cs",
+              "DocumentMoniker": "C:\\Users\\angiz\\source\\repos\\ecthelionvi\\Mos_Drones\\backend\\Accessors\\DBModels\\AddressDataModel.cs",
+              "RelativeDocumentMoniker": "Accessors\\DBModels\\AddressDataModel.cs",
+              "ToolTip": "C:\\Users\\angiz\\source\\repos\\ecthelionvi\\Mos_Drones\\backend\\Accessors\\DBModels\\AddressDataModel.cs",
+              "RelativeToolTip": "Accessors\\DBModels\\AddressDataModel.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAuwAUAAAANAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-04-29T16:52:19.752Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
               "Title": "OrderAccessor.cs",
               "DocumentMoniker": "C:\\Users\\angiz\\source\\repos\\ecthelionvi\\Mos_Drones\\backend\\Accessors\\Accessors\\OrderAccessor.cs",
               "RelativeDocumentMoniker": "Accessors\\Accessors\\OrderAccessor.cs",
               "ToolTip": "C:\\Users\\angiz\\source\\repos\\ecthelionvi\\Mos_Drones\\backend\\Accessors\\Accessors\\OrderAccessor.cs",
               "RelativeToolTip": "Accessors\\Accessors\\OrderAccessor.cs",
-              "ViewState": "AQIAAOUAAAAAAAAAAAAkwOwAAAAJAAAA",
+              "ViewState": "AQIAAB4BAAAAAAAAAAAkwAAAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-04-23T20:38:22.739Z"
+              "WhenOpened": "2024-04-29T16:50:02.147Z",
+              "EditorCaption": ""
             }
           ]
         }
