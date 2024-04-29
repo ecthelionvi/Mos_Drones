@@ -15,25 +15,28 @@ public class OrderManager
         return order;
     }
 
-    public static void NewOrder(int accountId, Address deliveryTo)
+    public static Boolean NewOrder(int accountId, Address deliveryTo)
     {
-        //get account information
         AccountDataModel accountData = AccountAccessor.GetAccountWithAccountId(accountId);
         AddressDataModel destination = AddressHelper.AddressToAddressDataModel(deliveryTo);
-        
-        //get delivery information
-        DateTime shippedDate = DateTime.Now;
-        DateTime deliveryDate = OrderEngine.getDeliveryDate(shippedDate, accountData.AccountAddress, destination);
 
-        OrderDataModel oDM = new OrderDataModel(null, null, shippedDate, deliveryDate, accountId,
-            accountData.AccountAddress, destination);
+        if (OrderEngine.validateOrderRequest(destination))
+        {
+            DateTime shippedDate = DateTime.Now;
+            DateTime deliveryDate = OrderEngine.getDeliveryDate(shippedDate, accountData.AccountAddress, destination);
+
+            OrderDataModel oDM = new OrderDataModel(null, null, shippedDate, deliveryDate, accountId,
+                accountData.AccountAddress, destination);
         
-        OrderAccessor.AddOrderToDB(oDM);
+            OrderAccessor.InsertOrder(oDM);
+            return true;
+        }
+        return false;
     }
     
     public static List<Order> GetUserOrders(int accountId)
     {
-        List<OrderDataModel> orderDataModels = OrderAccessor.GetOrderListWithEmail(accountId);
+        List<OrderDataModel> orderDataModels = OrderAccessor.GetOrderListWithAccountId(accountId);
     
         List<Order> userOrders = new List<Order>();
     

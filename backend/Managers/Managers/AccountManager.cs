@@ -20,7 +20,6 @@ public class AccountManager
         if (accountDataModel != null)
         {
             isValid = AccountEngine.ValidateLogin(accountDataModel, password);
-            
         }
         
         return isValid == true ? AccountHelper.AccountDataModelToAccount(accountDataModel!) : null;

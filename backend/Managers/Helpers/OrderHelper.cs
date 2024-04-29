@@ -13,7 +13,7 @@ public class OrderHelper
             oDM.PackageId,
             oDM.ShipDate,
             oDM.DeliveryDate,
-            AccountHelper.AccountDataModelToAccount(oDM.Account),
+            oDM.AccountId,
             AddressHelper.AddressDataModelToAddress(oDM.ShippedFrom),
             AddressHelper.AddressDataModelToAddress(oDM.ShippedTo)
         );
@@ -27,7 +27,7 @@ public class OrderHelper
             order.PackageId,
             order.ShipDate,
             order.DeliveryDate,
-            AccountHelper.AccountToAccountDataModel(order.Account),
+            order.AccountId,
             AddressHelper.AddressToAddressDataModel(order.ShippedFrom),
             AddressHelper.AddressToAddressDataModel(order.ShippedTo)
         );

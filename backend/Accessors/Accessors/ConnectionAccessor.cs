@@ -61,12 +61,12 @@ namespace Accessors.ConnectionAccessor
             Console.WriteLine("The order with Package Id of 4829170638572946 is:");
             Console.WriteLine(o);
 
-            List<OrderDataModel> orderList = OrderAccessor.GetOrderListWithEmail("avanarsdall0@cocolog-nifty.com");
-            Console.WriteLine("All Orders for email avanarsdall0@cocolog-nifty.com:");
-            foreach (OrderDataModel or in orderList)
-            {
-                Console.WriteLine(or);
-            }
+            //List<OrderDataModel> orderList = OrderAccessor.GetOrderListWithEmail("avanarsdall0@cocolog-nifty.com");
+            //Console.WriteLine("All Orders for email avanarsdall0@cocolog-nifty.com:");
+            // foreach (OrderDataModel or in orderList)
+            // {
+            //     Console.WriteLine(or);
+            // }
             
             // Testing DepotAccessor methods
             DepotDataModel depot = DepotAccessor.GetDepotWithDepotId(1);
@@ -103,8 +103,8 @@ namespace Accessors.ConnectionAccessor
             Console.WriteLine("The accountId of the selected/inserted account is " + accountId2 + "\n");
 
             DateTime deliveryDate = new DateTime(2024, 4, 23, 17, 02, 00);
-            int orderId = OrderAccessor.InsertOrder("angizheng4201@gmail.com", deliveryDate, "Lincoln", "Nebraska", "68588", "1400 R St", "Pleasant Dale", "Nebraska", "68423", "2468 North 10th Road");
-            Console.WriteLine("The orderId of the inserted Order is " + orderId);
+            //int orderId = OrderAccessor.InsertOrder("angizheng4201@gmail.com", deliveryDate, "Lincoln", "Nebraska", "68588", "1400 R St", "Pleasant Dale", "Nebraska", "68423", "2468 North 10th Road");
+            //Console.WriteLine("The orderId of the inserted Order is " + orderId);
 
             Console.ReadLine();
         }
