@@ -9,21 +9,21 @@ namespace Service.Controllers;
 public class HomeController : Controller
 {
         [HttpPost("FindOrder")]
-        public IActionResult FindOrder([FromBody] int orderId)
+        public IActionResult FindOrder(int orderId)
         {
             Order order = OrderManager.FindOrder(orderId);
             return Ok(order);
         }
 
         [HttpPost("NewOrder")]
-        public IActionResult NewOrder([FromBody] int accountId, Address deliverTo)
+        public IActionResult NewOrder(int accountId, Address deliverTo)
         {
             OrderManager.NewOrder(accountId, deliverTo);
             return Ok(null);
         }
         
         [HttpPost("GetUserOrders")]
-        public IActionResult GetAllOrders([FromBody] int accoundId)
+        public IActionResult GetAllOrders(int accoundId)
         {
             List<Order> userOrders = OrderManager.GetUserOrders(accoundId);
             return Ok(userOrders);

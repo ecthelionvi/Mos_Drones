@@ -17,17 +17,17 @@ public class OpenRouteAccessor
         client.DefaultRequestHeaders.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
     }
 
-    static async Task<Coordinate> GetCoordinatesAsync(string path)
-    {
-
-        Coordinate coord = null;
-        HttpResponseMessage response = await client.GetAsync(path);
-
-        if (response.IsSuccessStatusCode)
-        {
-            coord = await response.Content.ReadAsStringAsync<Coordinate>();
-        }
-
-        return coord;
-    }
+    // static async Task<Coordinate> GetCoordinatesAsync(string path)
+    // {
+    //
+    //     Coordinate coord = null;
+    //     HttpResponseMessage response = await client.GetAsync(path);
+    //
+    //     if (response.IsSuccessStatusCode)
+    //     {
+    //         coord = await response.Content.ReadAsStringAsync<Coordinate>();
+    //     }
+    //
+    //     return coord;
+    // }
 }
