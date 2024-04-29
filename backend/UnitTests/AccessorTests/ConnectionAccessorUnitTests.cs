@@ -1,74 +1,21 @@
-using System;
-using System.Text.RegularExpressions;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Accessors.DBModels;
-using Accessors.Accessors;
+using System.Data.SqlClient;
+using Accessors.ConnectionAccessor;
 
 namespace UnitTests.AccessorTests
 {
     [TestClass]
-    public class TestDatabaseConnectionAccessorTest
-    {
-        [TestMethod]
-        public void ValidTestDatabaseConnection()
-        {
-            throw new NotImplementedException();
-        }
-
-        [TestMethod]
-        public void InvalidTestDatabaseConnection()
-        {
-            throw new NotImplementedException();
-        }
-
-        [TestMethod]
-        public void NullTestDatabaseConnection()
-        {
-            throw new NotImplementedException();
-        }
-    }
-
-    [TestClass]
     public class GetConnectionAccessorTest
     {
         [TestMethod]
-        public void ValidGetConnection()
+        public void ValidGetConnection_ReturnsValidSqlConnection()
         {
-            throw new NotImplementedException();
-        }
+            string expectedConnectionString = "Data Source=ANGIE-DELL-XPS\\SQLEXPRESS01; Initial Catalog=mos_drones; Integrated Security=True; MultipleActiveResultSets=True;";
 
-        [TestMethod]
-        public void InvalidGetConnection()
-        {
-            throw new NotImplementedException();
-        }
+            SqlConnection connection = ConnectionAccessor.GetConnection();
+            string actualConnectionString = connection.ConnectionString;
 
-        [TestMethod]
-        public void NullGetConnection()
-        {
-            throw new NotImplementedException();
-        }
-    }
-
-    [TestClass]
-    public class MainConnectionAccessorTest
-    {
-        [TestMethod]
-        public void ValidMain()
-        {
-            throw new NotImplementedException();
-        }
-
-        [TestMethod]
-        public void InvalidMain()
-        {
-            throw new NotImplementedException();
-        }
-
-        [TestMethod]
-        public void NullMain()
-        {
-            throw new NotImplementedException();
+            Assert.IsNotNull(connection);
+            Assert.AreEqual(expectedConnectionString, actualConnectionString);
         }
     }
 }

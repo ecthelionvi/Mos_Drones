@@ -1,101 +1,134 @@
-using System;
-using System.Text.RegularExpressions;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Accessors.DBModels;
 using Accessors.Accessors;
+using Accessors.DBModels;
 
 namespace UnitTests.AccessorTests
 {
     [TestClass]
-    public class GetOrderWithOrderIdAccessorTest
+    public class GetOrderWithOrderIdAccessorTests
     {
         [TestMethod]
         public void ValidGetOrderWithOrderId()
         {
-            throw new NotImplementedException();
-            //Assert.AreEqual(order, GetOrderWithOrderId(1));
-            //Assert.AreEqual(order, GetOrderWithOrderId(2));
-            //Assert.AreEqual(order, GetOrderWithOrderId(3));
+            DateTime shipDate = new DateTime(2024, 04, 14, 10, 30, 0, 0);
+            DateTime deliveryDate = new DateTime(2024, 04, 17, 15, 44, 0, 0);
+            AddressDataModel accountAddress = new AddressDataModel(1, "Lincoln", "Nebraska", "68510", "4321 O Street");
+            AccountDataModel account = new AccountDataModel(1, "Alfred", "Van Arsdall", "avanarsdall0@cocolog-nifty.com", "uI7lq}{e0WU", accountAddress, true);
+            AddressDataModel shippedFrom = accountAddress;
+            AddressDataModel shippedTo = new AddressDataModel(2, "Lincoln", "Nebraska", "68521", "2468 North 27th Street");
+            OrderDataModel expectedOrder = new OrderDataModel(1, "4829170638572946", shipDate, deliveryDate, account, shippedFrom, shippedTo);
+
+            OrderDataModel actualOrder = OrderAccessor.GetOrderWithOrderId(1);
+            Assert.AreEqual(expectedOrder, actualOrder);
         }
 
         [TestMethod]
         public void InvalidGetOrderWithOrderId()
         {
-            throw new NotImplementedException();
-            //Assert.AreEqual(NULL, GetOrderWithOrderId(-1));
-            //Assert.AreEqual(NULL, GetOrderWithOrderId(-2));
-            //Assert.AreEqual(NULL, GetOrderWithOrderId(-3));
-        }
-
-        [TestMethod]
-        public void NullGetOrderWithOrderId()
-        {
-            throw new NotImplementedException();
-            //Assert.AreEqual(NULL, GetOrderWithOrderId(1));
-            //Assert.AreEqual(NULL, GetOrderWithOrderId(2));
-            //Assert.AreEqual(NULL, GetOrderWithOrderId(3));
+            OrderDataModel invalidOrder = OrderAccessor.GetOrderWithOrderId(-1);
+            Assert.IsNull(invalidOrder);
         }
     }
 
     [TestClass]
-    public class GetOrderWithPackageIdAccessorTest
+    public class GetOrderWithPackageIdAccessorTests
     {
         [TestMethod]
         public void ValidGetOrderWithPackageId()
         {
-            throw new NotImplementedException();
-            //Assert.AreEqual(order, GetOrderWithPackageId(1));
-            //Assert.AreEqual(order, GetOrderWithPackageId(2));
-            //Assert.AreEqual(order, GetOrderWithPackageId(3));
+            DateTime shipDate = new DateTime(2024, 04, 01, 17, 12, 0, 0);
+            DateTime deliveryDate = new DateTime(2024, 04, 05, 08, 15, 0, 0);
+            AddressDataModel accountAddress = new AddressDataModel(2, "Lincoln", "Nebraska", "68521", "2468 North 27th Street");
+            AccountDataModel account = new AccountDataModel(2, "Beltran", "Lillie", "blillie1@imdb.com", "hC7S>lx+N7a(?2>k", accountAddress, false);
+            AddressDataModel shippedFrom = accountAddress;
+            AddressDataModel shippedTo = new AddressDataModel(1, "Lincoln", "Nebraska", "68510", "4321 O Street");
+            OrderDataModel expectedOrder = new OrderDataModel(2, "7294061538206194", shipDate, deliveryDate, account, shippedFrom, shippedTo);
+
+            OrderDataModel actualOrder = OrderAccessor.GetOrderWithPackageId("7294061538206194");
+            Assert.AreEqual(expectedOrder, actualOrder);
         }
 
         [TestMethod]
         public void InvalidGetOrderWithPackageId()
         {
-            throw new NotImplementedException();
-            //Assert.AreEqual(NULL, GetOrderWithPackageId(-1));
-            //Assert.AreEqual(Null, GetOrderWithPackageId(-2));
-            //Assert.AreEqual(NULL, GetOrderWithPackageId(-3));
+            OrderDataModel invalidOrder = OrderAccessor.GetOrderWithPackageId("invalidId");
+            Assert.IsNull(invalidOrder);
         }
 
         [TestMethod]
         public void NullGetOrderWithPackageId()
         {
-            throw new NotImplementedException();
-            //Assert.AreEqual(NULL, GetOrderWithPackageId(NULL));
-            //Assert.AreEqual(NULL, GetOrderWithPackageId(NULL));
-            //Assert.AreEqual(NULL, GetOrderWithPackageId(NULL));
+            OrderDataModel nullOrder = OrderAccessor.GetOrderWithPackageId(null);
+            Assert.IsNull(nullOrder);
         }
     }
 
     [TestClass]
-    public class GetOrderListWithEmailAccessorTest
+    public class GetOrderListWithEmailAccessorTests
     {
         [TestMethod]
         public void ValidGetOrderListWithEmail()
         {
-            throw new NotImplementedException();
-            //Assert.AreEqual(orderList, GetOrderListWithEmail("123456@gmail.com"));
-            //Assert.AreEqual(orderList, GetOrderListWithEmail("ThisIsATest@gmail.com"));
-            //Assert.AreEqual(orderList, GetOrderListWithEmail("WhatAnEmail@gmail.com"));
-        }
+            DateTime shipDate = new DateTime(2024, 04, 14, 10, 30, 0, 0);
+            DateTime deliveryDate = new DateTime(2024, 04, 17, 15, 44, 0, 0);
+            AddressDataModel accountAddress = new AddressDataModel(1, "Lincoln", "Nebraska", "68510", "4321 O Street");
+            AccountDataModel account = new AccountDataModel(1, "Alfred", "Van Arsdall", "avanarsdall0@cocolog-nifty.com", "uI7lq}{e0WU", accountAddress, true);
+            AddressDataModel shippedFrom = accountAddress;
+            AddressDataModel shippedTo = new AddressDataModel(2, "Lincoln", "Nebraska", "68521", "2468 North 27th Street");
+            OrderDataModel order1 = new OrderDataModel(1, "4829170638572946", shipDate, deliveryDate, account, shippedFrom, shippedTo);
 
-        [TestMethod]
-        public void InvalidGetOrderListWithEmail()
-        {
-            throw new NotImplementedException();
-            //Assert.AreEqual(!orderList, GetOrderListWithEmail("NOTInDataBase@gmail.com"));
-            //Assert.AreEqual(!orderList, GetOrderListWithEmail("IDkThisIsABadTest@gmail.com"));
-            //Assert.AreEqual(!orderList, GetOrderListWithEmail("ThridTimesCharm@gmail.com"));
-        }
+            DateTime shipDate2 = new DateTime(2024, 04, 15, 19, 33, 0, 0);
+            DateTime deliveryDate2 = new DateTime(2024, 04, 18, 09, 17, 0, 0);
+            OrderDataModel order2 = new OrderDataModel(3, "7632987401568235", shipDate2, deliveryDate2, account, shippedFrom, shippedTo);
 
+            List<OrderDataModel> expectedOrderList = new List<OrderDataModel>();
+            expectedOrderList.Add(order1);
+            expectedOrderList.Add(order2);
+
+            List<OrderDataModel> actualOrderList = OrderAccessor.GetOrderListWithEmail("avanarsdall0@cocolog-nifty.com");
+            CollectionAssert.AreEquivalent(expectedOrderList, actualOrderList);
+        }
+    }
+
+    [TestClass]
+    public class GetOrderListWithAccountIdTests()
+    {
         [TestMethod]
-        public void NullGetOrderListWithEmail()
+        public void ValidGetOrderListWithAccountId()
         {
-            throw new NotImplementedException();
-            //Assert.AreEqual(NULL, GetOrderListWithEmail(NULL));
-            //Assert.AreEqual(NULL, GetOrderListWithEmail(NULL));
-            //Assert.AreEqual(NULL, GetOrderListWithEmail(NULL));
+            DateTime shipDate = new DateTime(2024, 04, 14, 10, 30, 0, 0);
+            DateTime deliveryDate = new DateTime(2024, 04, 17, 15, 44, 0, 0);
+            AddressDataModel accountAddress = new AddressDataModel(1, "Lincoln", "Nebraska", "68510", "4321 O Street");
+            AccountDataModel account = new AccountDataModel(1, "Alfred", "Van Arsdall", "avanarsdall0@cocolog-nifty.com", "uI7lq}{e0WU", accountAddress, true);
+            AddressDataModel shippedFrom = accountAddress;
+            AddressDataModel shippedTo = new AddressDataModel(2, "Lincoln", "Nebraska", "68521", "2468 North 27th Street");
+            OrderDataModel order1 = new OrderDataModel(1, "4829170638572946", shipDate, deliveryDate, account, shippedFrom, shippedTo);
+
+            DateTime shipDate2 = new DateTime(2024, 04, 15, 19, 33, 0, 0);
+            DateTime deliveryDate2 = new DateTime(2024, 04, 18, 09, 17, 0, 0);
+            OrderDataModel order2 = new OrderDataModel(3, "7632987401568235", shipDate2, deliveryDate2, account, shippedFrom, shippedTo);
+
+            List<OrderDataModel> expectedOrderList = new List<OrderDataModel>();
+            expectedOrderList.Add(order1);
+            expectedOrderList.Add(order2);
+
+            List<OrderDataModel> actualOrderList = OrderAccessor.GetOrderListWithAccountId(1);
+            CollectionAssert.AreEquivalent(expectedOrderList, actualOrderList);
+        }
+    }
+
+    [TestClass]
+    public class InsertOrderTests
+    {
+        [TestMethod]
+        public void ValidInsertOrder()
+        {
+            int expectedOrderId = 4;
+
+            DateTime deliveryDate = new DateTime(2024, 05, 01, 10, 14, 0, 0);
+            int actualOrderId = OrderAccessor.InsertOrder("blillie1@imdb.com", deliveryDate, "Lincoln", "Nebraska", "68521", "2468 North 27th Street",
+                "Lincoln", "Nebraska", "68516", "9876 Pine Lake Road");
+
+            Assert.AreEqual(expectedOrderId, actualOrderId);
         }
     }
 }

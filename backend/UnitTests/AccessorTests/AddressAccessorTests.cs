@@ -1,9 +1,4 @@
-using System;
-using System.Data.SqlClient;
-using System.Collections.Generic;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Accessors.DBModels;
-using Accessors.ConnectionAccessor;
 using Accessors.Accessors;
 
 namespace UnitTests.AccessorTests
@@ -12,7 +7,7 @@ namespace UnitTests.AccessorTests
     public class AddressAccessorTests
     {
         [TestMethod]
-        public void LoadAllAddressesFromDb_ReturnsExpectedList()
+        public void ValidGetAddressList_ReturnsExpectedList()
         {
             List<AddressDataModel> expectedAddressList = new List<AddressDataModel>();
             AddressDataModel a = new AddressDataModel(1, "Lincoln", "Nebraska", "68510", "4321 O Street");
@@ -32,13 +27,30 @@ namespace UnitTests.AccessorTests
         }
 
         [TestMethod]
-        public void LoadOneAddressFromDbUsingId_ReturnsCorrectAddress()
+        public void ValidGetAddress_ReturnsCorrectAddress()
         {
             AddressDataModel expectedAddress = new AddressDataModel(1, "Lincoln", "Nebraska", "68510", "4321 O Street");
 
             AddressDataModel actualAddress = AddressAccessor.GetAddress(1);
 
             Assert.AreEqual(expectedAddress, actualAddress);
+        }
+
+        [TestMethod]
+        public void InvalidGetAddress_ReturnsNull()
+        {
+            AddressDataModel invalidAddress = AddressAccessor.GetAddress(-1);
+            Assert.IsNull(invalidAddress);
+        }
+
+        [TestMethod]
+        public void ValidInsertAddress_ReturnsCorrectAddressId()
+        {
+            int expectedAddressId = 6;
+
+            int actualAddressId = AddressAccessor.InsertAddress("Pleasant Dale", "Nebraska", "68423", "2468 North 10th Road");
+
+            Assert.AreEqual(expectedAddressId, actualAddressId);
         }
     }
 }

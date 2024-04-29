@@ -4,7 +4,7 @@ using Accessors.DBModels;
 
 namespace Accessors.ConnectionAccessor
 {
-    class ConnectionAccessor
+    public class ConnectionAccessor
     {
         //public static void TestDatabaseConnection()
         //{

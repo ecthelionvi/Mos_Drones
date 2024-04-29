@@ -20,6 +20,18 @@ public class AccountDataModel
         this.AccountAddress = accountAddress;
         this.IsAdmin = isAdmin;
     }
+
+    public override bool Equals(object obj)
+    {
+        if (obj == null || GetType() != obj.GetType())
+            return false;
+
+        AccountDataModel other = (AccountDataModel)obj;
+        return (AccountId == other.AccountId && FirstName == other.FirstName && LastName == other.LastName
+            && Email == other.Email && Password == other.Password && AccountAddress.Equals(other.AccountAddress)
+            && IsAdmin == other.IsAdmin);
+    }
+
     public override string ToString()
     {
         string adminString = IsAdmin ? "yes" : "no";

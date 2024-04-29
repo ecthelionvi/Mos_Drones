@@ -21,7 +21,17 @@ public class OrderDataModel
         this.ShippedFrom = shippedFrom;
         this.ShippedTo = shippedTo;
     }
-        
+    public override bool Equals(object obj)
+    {
+        if (obj == null || GetType() != obj.GetType())
+            return false;
+
+        OrderDataModel other = (OrderDataModel)obj;
+        return (OrderId == other.OrderId && PackageId == other.PackageId && ShipDate.Equals(other.ShipDate)
+                && DeliveryDate.Equals(other.DeliveryDate) && Account.Equals(other.Account)
+                && ShippedFrom.Equals(other.ShippedFrom) && ShippedTo.Equals(other.ShippedTo));
+    }
+
     public override string ToString()
     {
         return $"orderId: {OrderId}\nPackage Id (for tracking): {PackageId}\n{Account}Shipped from:\n{ShippedFrom}Shipped To:\n{ShippedTo}\n";
