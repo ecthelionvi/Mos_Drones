@@ -1,5 +1,6 @@
 using System;
 using Accessors.DBModels;
+using Accessors.Accessors;
 
 namespace Engines.BizLogic 
 {
@@ -11,9 +12,11 @@ namespace Engines.BizLogic
             
         }
 
-        public void getLatitudeAndLongitude()
+        // If long and lat are null in database, convert address, save to database, and return coordinates
+        public void getLatitudeAndLongitude(AddressDataModel address)
         {
-            
+            Coordinate coordinate = OpenRouteAccessor(address);
+            return coordinate;
         }
     }
 }
