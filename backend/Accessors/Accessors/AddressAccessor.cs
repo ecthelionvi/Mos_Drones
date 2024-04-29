@@ -106,7 +106,7 @@ namespace Accessors.Accessors
         /// <param name="addressLine"></param>
         /// <param name="latitude"</param>
         /// <param name="longitude"</param>
-        public static int InsertAddress(string city, string state, string zip, string addressLine, null, null)
+        public static int InsertAddress(string city, string state, string zip, string addressLine, float latitude, float longitude)
         {
             string selectQuery = @"SELECT addressId FROM Address WHERE city = @City 
                            AND state = @State AND zip = @Zip AND address_line = @AddressLine";
