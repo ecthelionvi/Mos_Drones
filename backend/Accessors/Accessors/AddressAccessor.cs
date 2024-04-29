@@ -80,7 +80,7 @@ namespace Accessors.Accessors
                     string zip = reader.GetString(reader.GetOrdinal("zip"));
                     string addressLine = reader.GetString(reader.GetOrdinal("address_line"));
                     
-                    address = new AddressDataModel(addressId, city, state, zip, addressLine);
+                    address = new AddressDataModel(addressId, city, state, zip, addressLine, null);
                 }
 
                 reader.Close();
