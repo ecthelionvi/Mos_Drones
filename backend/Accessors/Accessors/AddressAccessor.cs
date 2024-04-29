@@ -5,6 +5,7 @@ using Accessors.DBModels;
 
 namespace Accessors.Accessors
 {
+    //TODO: add support for storing coordinates in db (Datamodel has been updated)
     public class AddressAccessor
     {
         /// <summary>
@@ -25,6 +26,7 @@ namespace Accessors.Accessors
                 SqlDataReader reader = command.ExecuteReader();
                 if (reader.HasRows)
                 {
+                    
                     while (reader.Read())
                     {
                         int addressId = reader.GetInt32(reader.GetOrdinal("addressId"));
@@ -32,8 +34,8 @@ namespace Accessors.Accessors
                         string state = reader.GetString(reader.GetOrdinal("state"));
                         string zip = reader.GetString(reader.GetOrdinal("zip"));
                         string addressLine = reader.GetString(reader.GetOrdinal("address_line"));
-
-                        AddressDataModel a = new AddressDataModel(addressId, city, state, zip, addressLine);
+                        
+                        AddressDataModel a = new AddressDataModel(addressId, city, state, zip, addressLine, null);
                         addressList.Add(a);
 
                     }

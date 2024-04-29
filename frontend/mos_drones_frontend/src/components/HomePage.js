@@ -13,7 +13,7 @@ import Modal from "react-modal";
 import "../styles/Modal.css";
 import { useJsApiLoader, Autocomplete } from "@react-google-maps/api";
 
-const HomePage = ({ loggedIn, onLogout, setLoggedIn, role }) => {
+const HomePage = ({ loggedIn, onLogout, user }) => {
   const [activeHeaderTab, setActiveHeaderTab] = useState(loggedIn ? "dashboard" : "home");
   const [activeTrackingTab, setActiveTrackingTab] = useState("tracking");
   const [trackingNumber, setTrackingNumber] = useState("");
@@ -223,7 +223,7 @@ const HomePage = ({ loggedIn, onLogout, setLoggedIn, role }) => {
             <section
               className={`dashboard-section ${activeHeaderTab === "dashboard" ? "" : "hidden"}`}
             >
-              {role === "True" ? (
+              {user && user.isAdmin ? (
                 <>
                   <h2>Drones</h2>
                   <div className="dashboard-section__underline-drone"></div>

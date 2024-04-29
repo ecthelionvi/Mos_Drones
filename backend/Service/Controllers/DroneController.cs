@@ -10,11 +10,11 @@ namespace Service.Controllers;
 [ApiController]
 public class DroneController : Controller
 {
-    [HttpGet]
+    [HttpGet("GetDrones")]
     public JsonResult GetDrones()
     {
         //returns all data we have on all our drones
-        return new JsonResult();
+        return new JsonResult("");
     }
     
 }

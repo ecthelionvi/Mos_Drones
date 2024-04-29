@@ -19,8 +19,4 @@
     <ProjectReference Include="..\Managers\Managers.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Models\" />
-  </ItemGroup>
-
 </Project>

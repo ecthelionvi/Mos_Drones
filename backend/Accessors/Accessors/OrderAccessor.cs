@@ -4,6 +4,7 @@ using Accessors.DBModels;
 
 namespace Accessors.Accessors
 {
+    //TODO: ADD SUPPORT FOR NULL in insertOrder
     public class OrderAccessor
     {
         /// <summary>
@@ -42,7 +43,8 @@ namespace Accessors.Accessors
                     origin = AddressAccessor.GetAddress(shippedFrom);
                     destination = AddressAccessor.GetAddress(shippedTo);
 
-                    order = new OrderDataModel(orderId, packageId, shipDate, deliveryDate, account, origin, destination);
+                    order = new OrderDataModel(orderId, packageId, shipDate, deliveryDate, accountId, origin,
+                        destination);
                 }
 
                 reader.Close();
@@ -91,11 +93,11 @@ namespace Accessors.Accessors
                     int shippedFrom = reader.GetInt32(reader.GetOrdinal("shipped_from"));
                     int shippedTo = reader.GetInt32(reader.GetOrdinal("shipped_to"));
 
-                    account = AccountAccessor.GetAccountWithAccountId(accountId);
                     origin = AddressAccessor.GetAddress(shippedFrom);
                     destination = AddressAccessor.GetAddress(shippedTo);
 
-                    order = new OrderDataModel(orderId, packageId, shipDate, deliveryDate, account, origin, destination);
+                    order = new OrderDataModel(orderId, packageId, shipDate, deliveryDate, accountId, origin,
+                        destination);
                 }
 
                 reader.Close();
@@ -118,52 +120,55 @@ namespace Accessors.Accessors
         /// </summary>
         /// <param name="email"></param>
         /// <returns></returns>
-        public static List<OrderDataModel> GetOrderListWithEmail(string email)
-        {
-            List<OrderDataModel> orderList = new List<OrderDataModel>();
-            string query = "SELECT o.* FROM [Order] o JOIN [Account] a ON o.accountId = a.accountId WHERE a.email = @Email";
-
-            SqlConnection connection = ConnectionAccessor.ConnectionAccessor.GetConnection();
-
-            try
-            {
-                connection.Open();
-                SqlCommand command = new SqlCommand(query, connection);
-                command.Parameters.AddWithValue("@Email", email);
-                SqlDataReader reader = command.ExecuteReader();
-                if (reader.HasRows)
-                {
-                    while (reader.Read())
-                    {
-                        int orderId = reader.GetInt32(reader.GetOrdinal("orderId"));
-                        string packageId = reader.GetString(reader.GetOrdinal("packageId"));
-                        DateTime shipDate = reader.GetDateTime(reader.GetOrdinal("ship_date"));
-                        DateTime deliveryDate = reader.GetDateTime(reader.GetOrdinal("deliveryDate"));
-                        int shippedFrom = reader.GetInt32(reader.GetOrdinal("shipped_from"));
-                        int shippedTo = reader.GetInt32(reader.GetOrdinal("shipped_to"));
-
-                        AccountDataModel account = AccountAccessor.GetAccountWithEmail(email);
-                        AddressDataModel origin = AddressAccessor.GetAddress(shippedFrom);
-                        AddressDataModel destination = AddressAccessor.GetAddress(shippedTo);
-
-                        OrderDataModel o = new OrderDataModel(orderId, packageId, shipDate, deliveryDate, account, origin, destination);
-                        orderList.Add(o);
-
-                    }
-                }
-
-                reader.Close();
-            }
-            catch (SqlException ex)
-            {
-                Console.WriteLine($"SQL Exception: {ex.Message}");
-            }
-            finally
-            {
-                connection.Close();
-            }
-            return orderList;
-        }
+        // public static List<OrderDataModel> GetOrderListWithEmail(string email)
+        // {
+        //     List<OrderDataModel> orderList = new List<OrderDataModel>();
+        //     string query =
+        //         "SELECT o.* FROM [Order] o JOIN [Account] a ON o.accountId = a.accountId WHERE a.email = @Email";
+        //
+        //     SqlConnection connection = ConnectionAccessor.ConnectionAccessor.GetConnection();
+        //
+        //     try
+        //     {
+        //         connection.Open();
+        //         SqlCommand command = new SqlCommand(query, connection);
+        //         command.Parameters.AddWithValue("@Email", email);
+        //         SqlDataReader reader = command.ExecuteReader();
+        //         if (reader.HasRows)
+        //         {
+        //             while (reader.Read())
+        //             {
+        //                 int orderId = reader.GetInt32(reader.GetOrdinal("orderId"));
+        //                 string packageId = reader.GetString(reader.GetOrdinal("packageId"));
+        //                 DateTime shipDate = reader.GetDateTime(reader.GetOrdinal("ship_date"));
+        //                 DateTime deliveryDate = reader.GetDateTime(reader.GetOrdinal("deliveryDate"));
+        //                 int shippedFrom = reader.GetInt32(reader.GetOrdinal("shipped_from"));
+        //                 int shippedTo = reader.GetInt32(reader.GetOrdinal("shipped_to"));
+        //
+        //                 AccountDataModel account = AccountAccessor.GetAccountWithEmail(email);
+        //                 AddressDataModel origin = AddressAccessor.GetAddress(shippedFrom);
+        //                 AddressDataModel destination = AddressAccessor.GetAddress(shippedTo);
+        //
+        //                 OrderDataModel o = new OrderDataModel(orderId, packageId, shipDate, deliveryDate, account,
+        //                     origin, destination);
+        //                 orderList.Add(o);
+        //
+        //             }
+        //         }
+        //
+        //         reader.Close();
+        //     }
+        //     catch (SqlException ex)
+        //     {
+        //         Console.WriteLine($"SQL Exception: {ex.Message}");
+        //     }
+        //     finally
+        //     {
+        //         connection.Close();
+        //     }
+        //
+        //     return orderList;
+        // }
 
         /// <summary>
         /// Method to return all Order instances loaded from the database 
@@ -174,7 +179,8 @@ namespace Accessors.Accessors
         public static List<OrderDataModel> GetOrderListWithAccountId(int accountId)
         {
             List<OrderDataModel> orderList = new List<OrderDataModel>();
-            string query = "SELECT o.* FROM [Order] o JOIN [Account] a ON o.accountId = a.accountId WHERE o.accountId = @AccountId";
+            string query =
+                "SELECT o.* FROM [Order] o JOIN [Account] a ON o.accountId = a.accountId WHERE o.accountId = @AccountId";
 
             SqlConnection connection = ConnectionAccessor.ConnectionAccessor.GetConnection();
 
@@ -194,14 +200,13 @@ namespace Accessors.Accessors
                         DateTime deliveryDate = reader.GetDateTime(reader.GetOrdinal("deliveryDate"));
                         int shippedFrom = reader.GetInt32(reader.GetOrdinal("shipped_from"));
                         int shippedTo = reader.GetInt32(reader.GetOrdinal("shipped_to"));
-
-                        AccountDataModel account = AccountAccessor.GetAccountWithAccountId(accountId);
+                        
                         AddressDataModel origin = AddressAccessor.GetAddress(shippedFrom);
                         AddressDataModel destination = AddressAccessor.GetAddress(shippedTo);
 
-                        OrderDataModel o = new OrderDataModel(orderId, packageId, shipDate, deliveryDate, account, origin, destination);
+                        OrderDataModel o = new OrderDataModel(orderId, packageId, shipDate, deliveryDate, accountId,
+                            origin, destination);
                         orderList.Add(o);
-
                     }
                 }
 
@@ -215,9 +220,10 @@ namespace Accessors.Accessors
             {
                 connection.Close();
             }
+
             return orderList;
         }
-
+        
         /// <summary>
         /// This method inserts a new Order record into the database. It generates a
         /// sixteen character string for the packageId and sets the ship date to the current date/time.
@@ -232,16 +238,17 @@ namespace Accessors.Accessors
         /// <param name="destZip"></param>
         /// <param name="destAddressLine"></param>
         /// <returns></returns>
-        public static int InsertOrder(string accountEmail, DateTime deliveryDate, string originCity, string originState, string originZip, string originAddressLine,
-                                        string destCity, string destState, string destZip, string destAddressLine)
+        public static int InsertOrder(OrderDataModel order)
         {
             string packageId = Guid.NewGuid().ToString("N").Substring(0, 16);
             DateTime shipDate = DateTime.Now;
+            AccountDataModel orderAccount = AccountAccessor.GetAccountWithAccountId(order.AccountId);
 
             string selectQuery = @"SELECT accountId FROM Account WHERE email = @Email";
 
-            string insertQuery = @"INSERT INTO [Order] (packageId, ship_date, deliveryDate, accountId, shipped_from, shipped_to) 
-                             VALUES (@PackageId, @ShipDate, @DeliveryDate, @AccountId, @ShippedFrom, @ShippedTo); SELECT SCOPE_IDENTITY();";
+            string insertQuery =
+                @"INSERT INTO [Order] (packageId, ship_date, deliveryDate, accountId, shipped_from, shipped_to) 
+                                   VALUES (@PackageId, @ShipDate, @DeliveryDate, @AccountId, @ShippedFrom, @ShippedTo); SELECT SCOPE_IDENTITY();";
 
             int orderId = -1;
 
@@ -252,28 +259,27 @@ namespace Accessors.Accessors
                 connection.Open();
 
                 SqlCommand selectCommand = new SqlCommand(selectQuery, connection);
-                selectCommand.Parameters.AddWithValue("@Email", accountEmail);
+                selectCommand.Parameters.AddWithValue("@Email", orderAccount.Email);
 
                 object account = selectCommand.ExecuteScalar();
                 int accountId = Convert.ToInt32(account);
 
-                int originId = AddressAccessor.InsertAddress(originCity, originState, originZip, originAddressLine);
-                int destinationId = AddressAccessor.InsertAddress(destCity, destState, destZip, destAddressLine);
+                int originId = AddressAccessor.InsertAddress(order.ShippedFrom.City, order.ShippedFrom.State,
+                    order.ShippedFrom.ZipCode, order.ShippedFrom.AddressLine);
+                int destinationId = AddressAccessor.InsertAddress(order.ShippedTo.City, order.ShippedTo.State,
+                    order.ShippedTo.ZipCode, order.ShippedTo.AddressLine);
 
                 SqlCommand insertCommand = new SqlCommand(insertQuery, connection);
                 insertCommand.Parameters.AddWithValue("@PackageId", packageId);
                 insertCommand.Parameters.AddWithValue("@ShipDate", shipDate);
-                insertCommand.Parameters.AddWithValue("@DeliveryDate", deliveryDate);
+                insertCommand.Parameters.AddWithValue("@DeliveryDate", order.DeliveryDate);
                 insertCommand.Parameters.AddWithValue("@AccountId", accountId);
                 insertCommand.Parameters.AddWithValue("@ShippedFrom", originId);
                 insertCommand.Parameters.AddWithValue("@ShippedTo", destinationId);
 
                 // Insert the record and get its id
-                object order = insertCommand.ExecuteScalar();
-                orderId = Convert.ToInt32(order);
-                //Console.WriteLine("Order inserted successfully.");
-                //Console.WriteLine("The accountId for the inserted order is " + accountId);
-
+                object orderResult = insertCommand.ExecuteScalar();
+                orderId = Convert.ToInt32(orderResult);
             }
             catch (SqlException ex)
             {

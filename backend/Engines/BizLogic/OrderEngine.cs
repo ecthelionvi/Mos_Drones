@@ -7,19 +7,26 @@ namespace Engines.BizLogic
     {
         public static DateTime getDeliveryDate(DateTime shippedDate, AddressDataModel origin, AddressDataModel destination)
         {
-            //TODO:add more complex logic
+            //TODO:add more complex logic using 
             return shippedDate.AddDays(3);
         }
 
-        public static void getOrderStatus()
+        public static string getOrderStatus(DateTime deliveryDate)
         {
-            // gives either, delivered, Package-In-transit, Drone-in-route
+            int compare = deliveryDate.CompareTo(DateTime.Now);
+            return compare < 0 ? "Package-In-Transit" : "delivered";
         }
 
-        public static void getAdminOrderStatus()
+        public static string getAdminOrderStatus(DateTime deliveryDate)
         {
-            //this gives a more descriptive status for admin
-            //En-route to <Depot_9>/<Desination>/<Pickup>
+            int compare = deliveryDate.CompareTo(DateTime.Now);
+            return compare < 0 ? "Package-In-Transit" : "delivered";
+        }
+
+        public static Boolean validateOrderRequest(AddressDataModel destination)
+        {
+            //TODO check if in range
+            return true;
         }
     }
 }

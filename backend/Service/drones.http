@@ -1,6 +1,23 @@
-@drones_HostAddress = http://localhost:5171
+@drones_HostAddress = http://localhost:3000
 
-GET {{drones_HostAddress}}/weatherforecast/
+GET {{drones_HostAddress}}/api/Drone
 Accept: application/json
 
 ###
+POST{{drones_HostAddress}}/api/Home/FindOrder/
+Content-Type: application/json
+###
+POST {{drones_HostAddress}}/api/Home/GetUserOrders
+Content-Type: application/json
+###
+POST {{drones_HostAddress}}/api/Home/NewOrder
+Content-Type: application/json
+###
+POST {{drones_HostAddress}}/api/Login/CreateAccount
+Content-Type: application/json
+###
+POST {{drones_HostAddress}}/api/Login/auth
+Content-Type: application/json
+###
+GET {{drones_HostAddress}}/api/Drone/GetDrones
+Accept: application/json
