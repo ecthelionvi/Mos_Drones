@@ -6,7 +6,7 @@ using Accessors.DBModels;
 namespace Accessors.Accessors
 {
     //TODO: add support for storing coordinates in db (Datamodel has been updated)
-    public class AddressAccessor
+    public class AddressAccessor : IAddressAccessor
     {
         /// <summary>
         /// Method to return all Address instances loaded from the database.

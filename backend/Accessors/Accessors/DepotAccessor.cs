@@ -4,7 +4,7 @@ using Accessors.DBModels;
 
 namespace Accessors.Accessors
 {
-    public class DepotAccessor
+    public class DepotAccessor : IDepotAccessor
     {
         /// <summary>
         /// Method to return a Depot instance loaded from the database corresponding
