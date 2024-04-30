@@ -5,7 +5,7 @@ using Accessors.DBModels;
 namespace Accessors.Accessors
 {
     //TODO: ADD SUPPORT FOR NULL in insertOrder
-    public class OrderAccessor
+    public class OrderAccessor : IOrderAccessor
     {
         /// <summary>
         /// Method to return an Order instance loaded from the database corresponding
