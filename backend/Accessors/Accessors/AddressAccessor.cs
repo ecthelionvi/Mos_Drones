@@ -6,7 +6,7 @@ using Accessors.DBModels;
 namespace Accessors.Accessors
 {
     //TODO: add support for storing coordinates in db (Datamodel has been updated)
-    public class AddressAccessor
+    public class AddressAccessor : IAddressAccessor
     {
         /// <summary>
         /// Method to return all Address instances loaded from the database.
@@ -104,7 +104,9 @@ namespace Accessors.Accessors
         /// <param name="state"></param>
         /// <param name="zip"></param>
         /// <param name="addressLine"></param>
-        public static int InsertAddress(string city, string state, string zip, string addressLine)
+        /// <param name="latitude"</param>
+        /// <param name="longitude"</param>
+        public static int InsertAddress(string city, string state, string zip, string addressLine, float latitude, float longitude)
         {
             string selectQuery = @"SELECT addressId FROM Address WHERE city = @City 
                            AND state = @State AND zip = @Zip AND address_line = @AddressLine";
@@ -124,6 +126,8 @@ namespace Accessors.Accessors
                 selectCommand.Parameters.AddWithValue("@State", state);
                 selectCommand.Parameters.AddWithValue("@Zip", zip);
                 selectCommand.Parameters.AddWithValue("@AddressLine", addressLine);
+                selectCommand.Parameters.AddWithValue("@latitude", latitude);
+                selectCommand.Parameters.AddWithValue("@longitude", longitude);
 
                 object address = selectCommand.ExecuteScalar();
 

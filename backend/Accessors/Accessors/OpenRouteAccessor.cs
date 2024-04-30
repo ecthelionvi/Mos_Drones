@@ -2,7 +2,7 @@ using Accessors.DBModels;
 
 namespace Accessors.Accessors;
 
-public class OpenRouteAccessor
+public class OpenRouteAccessor : IOpenRouteAccessor
 {
     static HttpClient client = new HttpClient();
         
@@ -16,18 +16,19 @@ public class OpenRouteAccessor
         client.DefaultRequestHeaders.Accept.Clear();
         client.DefaultRequestHeaders.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
     }
+    static async Task<Coordinate> GetCoordinatesAsync(string path)
+    {
 
-    // static async Task<Coordinate> GetCoordinatesAsync(string path)
-    // {
-    //
-    //     Coordinate coord = null;
-    //     HttpResponseMessage response = await client.GetAsync(path);
-    //
-    //     if (response.IsSuccessStatusCode)
-    //     {
-    //         coord = await response.Content.ReadAsStringAsync<Coordinate>();
-    //     }
-    //
-    //     return coord;
-    // }
+        Coordinate coord = null;
+        HttpResponseMessage response = await client.GetAsync(path);
+
+        if (response.IsSuccessStatusCode)
+        {
+            coord = await response.Content.ReadAsStringAsync<Coordinate>();
+
+            // Just insert into address db model from here, only calls one function in address engine
+        }
+
+        return coord;
+    }
 }

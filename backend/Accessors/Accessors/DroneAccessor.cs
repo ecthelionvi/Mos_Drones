@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Components.Web;
 
 namespace Accessors.Accessors
 {
-    public class DroneAccessor
+    public class DroneAccessor : IDroneAccessor
     {
         /// <summary>
         /// Method to return a Drone instance loaded from the database corresponding

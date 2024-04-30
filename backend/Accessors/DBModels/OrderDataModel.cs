@@ -29,7 +29,7 @@ public class OrderDataModel
 
         OrderDataModel other = (OrderDataModel)obj;
         return (OrderId == other.OrderId && PackageId == other.PackageId && ShipDate.Equals(other.ShipDate)
-                && DeliveryDate.Equals(other.DeliveryDate) && AccountId.Equals(other.AccountId)
+                && DeliveryDate.Equals(other.DeliveryDate) && AccountId == other.AccountId
                 && ShippedFrom.Equals(other.ShippedFrom) && ShippedTo.Equals(other.ShippedTo));
     }
 
