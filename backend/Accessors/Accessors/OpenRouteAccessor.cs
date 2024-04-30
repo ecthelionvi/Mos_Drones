@@ -16,7 +16,6 @@ public class OpenRouteAccessor : IOpenRouteAccessor
         client.DefaultRequestHeaders.Accept.Clear();
         client.DefaultRequestHeaders.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
     }
-
     static async Task<Coordinate> GetCoordinatesAsync(string path)
     {
 

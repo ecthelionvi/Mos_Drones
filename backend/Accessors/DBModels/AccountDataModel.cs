@@ -2,7 +2,7 @@ namespace Accessors.DBModels;
 
 public class AccountDataModel
 {
-    public int AccountId { get; set; }
+    public int? AccountId { get; set; }
     public string FirstName { get; set; }
     public string LastName { get; set; }
     public string Email { get; set; }
@@ -10,7 +10,7 @@ public class AccountDataModel
     public AddressDataModel AccountAddress { get; set; }
     public bool IsAdmin { get; set; }
 
-    public AccountDataModel(int accountId, string firstName, string lastName, string email, string password, AddressDataModel accountAddress, bool isAdmin)
+    public AccountDataModel(int? accountId, string firstName, string lastName, string email, string password, AddressDataModel accountAddress, bool isAdmin)
     {
         this.AccountId = accountId;
         this.FirstName = firstName;

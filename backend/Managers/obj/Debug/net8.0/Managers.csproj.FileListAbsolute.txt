@@ -21,3 +21,4 @@ C:\Users\angiz\Source\Repos\ecthelionvi\Mos_Drones\backend\Managers\obj\Debug\ne
 C:\Users\angiz\Source\Repos\ecthelionvi\Mos_Drones\backend\Managers\obj\Debug\net8.0\Managers.pdb
 C:\Users\angiz\Source\Repos\ecthelionvi\Mos_Drones\backend\Managers\obj\Debug\net8.0\Managers.genruntimeconfig.cache
 C:\Users\angiz\Source\Repos\ecthelionvi\Mos_Drones\backend\Managers\obj\Debug\net8.0\ref\Managers.dll
+

@@ -7,17 +7,22 @@ namespace Service.Controllers;
 [Route("api/[controller]")]
 [ApiController]
 public class LoginController : Controller {
-    
-    [HttpPost("CreateAccount")]
-    public void SaveUser(string firstName, string lastName, string email, string password, string city, string state, string zipCode, string addressLine)
-    {
-        AccountManager.AddAccount(firstName, lastName, email, password, city, state, zipCode, addressLine);
-    }
 
     [HttpPost("auth")]
-    public JsonResult ValidateLogin(String username, String password)
+    public JsonResult ValidateLogin([FromBody]LoginRequest loginRequest)
     {
-        Account? account = AccountManager.ValidateLogin(username, password);
+        Account? account = AccountManager.ValidateLogin(loginRequest.Email, loginRequest.Password);
+        HomeController.AccountId = account.AccountId ?? -1;
         return new JsonResult(account);
     }
+    [HttpPost("CreateAccount")]
+    public void SaveUser([FromBody] Account account)
+    {
+        AccountManager.AddAccount(account);
+    }
+}
+public class LoginRequest
+{
+    public string Email { get; set; }
+    public string Password { get; set; }
 }

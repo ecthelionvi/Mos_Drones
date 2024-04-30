@@ -8,9 +8,9 @@ namespace Managers;
 
 public class AccountManager
 {
-    public static void AddAccount(string firstName, string lastName, string email, string password, string city, string state, string zipCode, string addressLine)
+    public static void AddAccount(Account account)
     {
-        AccountAccessor.InsertAccount(firstName, lastName, email, password, city, state, zipCode, addressLine, false);
+        AccountAccessor.InsertAccount(account.FirstName, account.LastName, account.Email, account.Password, account.AccountAddress.City, account.AccountAddress.State, account.AccountAddress.ZipCode, account.AccountAddress.AddressLine, false);
     }
     public static Account? ValidateLogin(string username, string password)
     {

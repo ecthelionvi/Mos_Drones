@@ -15,7 +15,7 @@ public class OrderManager
         return order;
     }
 
-    public static Boolean NewOrder(int accountId, Address deliveryTo)
+    public static string NewOrder(int accountId, Address deliveryTo)
     {
         AccountDataModel accountData = AccountAccessor.GetAccountWithAccountId(accountId);
         AddressDataModel destination = AddressHelper.AddressToAddressDataModel(deliveryTo);
@@ -29,9 +29,9 @@ public class OrderManager
                 accountData.AccountAddress, destination);
         
             OrderAccessor.InsertOrder(oDM);
-            return true;
+            return "Order Successfully Added";
         }
-        return false;
+        return "Order out of range";
     }
     
     public static List<Order> GetUserOrders(int accountId)
