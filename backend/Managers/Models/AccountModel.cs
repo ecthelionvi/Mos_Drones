@@ -5,7 +5,7 @@ namespace Managers.Models;
 
     public class Account
     {
-        public int AccountId { get; set; }
+        public int? AccountId { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public string Email { get; set; }
@@ -13,7 +13,7 @@ namespace Managers.Models;
         public Address AccountAddress { get; set; }
         public bool IsAdmin { get; set; }
 
-        public Account(int accountId, string firstName, string lastName, string email, string password, Address accountAddress, bool isAdmin)
+        public Account(int? accountId, string firstName, string lastName, string email, string password, Address accountAddress, bool isAdmin)
         {
             this.AccountId = accountId;
             this.FirstName = firstName;

@@ -8,24 +8,30 @@ namespace Service.Controllers;
 [ApiController]
 public class HomeController : Controller
 {
-        [HttpPost("FindOrder")]
-        public IActionResult FindOrder(int orderId)
-        {
-            Order order = OrderManager.FindOrder(orderId);
-            return Ok(order);
-        }
-
-        [HttpPost("NewOrder")]
-        public IActionResult NewOrder(int accountId, Address deliverTo)
-        {
-            OrderManager.NewOrder(accountId, deliverTo);
-            return Ok(null);
-        }
-        
-        [HttpPost("GetUserOrders")]
-        public IActionResult GetAllOrders(int accoundId)
-        {
-            List<Order> userOrders = OrderManager.GetUserOrders(accoundId);
-            return Ok(userOrders);
-        }
+    public static int AccountId = -1;   
+    
+    [HttpPost("FindOrder")]
+    public IActionResult FindOrder([FromBody]int orderId)
+    {
+        Order order = OrderManager.FindOrder(orderId);
+        return Ok(order);
     }
+
+    [HttpPost("NewOrder")]
+    public IActionResult NewOrder([FromBody]Address deliverTo)
+    {
+        string response = "Please Login";
+        if (AccountId != -1)
+        {
+            response = OrderManager.NewOrder(AccountId, deliverTo);
+        }
+        return Ok(response);
+    }
+    
+    [HttpPost("GetUserOrders")]
+    public JsonResult GetAllOrders(int id)
+    {
+        List<Order> userOrders = OrderManager.GetUserOrders(id);
+        return Json(userOrders);
+    }
+}

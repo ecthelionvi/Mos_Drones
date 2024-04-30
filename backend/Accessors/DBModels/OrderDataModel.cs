@@ -29,12 +29,12 @@ public class OrderDataModel
 
         OrderDataModel other = (OrderDataModel)obj;
         return (OrderId == other.OrderId && PackageId == other.PackageId && ShipDate.Equals(other.ShipDate)
-                && DeliveryDate.Equals(other.DeliveryDate) && Account.Equals(other.Account)
+                && DeliveryDate.Equals(other.DeliveryDate) && AccountId.Equals(other.AccountId)
                 && ShippedFrom.Equals(other.ShippedFrom) && ShippedTo.Equals(other.ShippedTo));
     }
 
     public override string ToString()
     {
-        return $"orderId: {OrderId}\nPackage Id (for tracking): {PackageId}\n{Account}Shipped from:\n{ShippedFrom}Shipped To:\n{ShippedTo}\n";
+        return $"orderId: {OrderId}\nPackage Id (for tracking): {PackageId}\n{AccountId}Shipped from:\n{ShippedFrom}Shipped To:\n{ShippedTo}\n";
     }
 }
