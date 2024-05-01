@@ -5,6 +5,7 @@ import PackageDetails from "./components/PackageDetails";
 import HomePage from "./components/HomePage";
 import SignupPage from "./components/SignupPage";
 import PackageGrid from "./components/PackageGrid";
+import DronePage from "./components/DronePage";
 
 const App = () => {
   const [user, setUser] = useState(null);
@@ -43,6 +44,16 @@ const App = () => {
     localStorage.removeItem("isAdmin");
     setUser(null);
   };
+
+  /* 
+  Original code
+  Update to incorporate the depot list for selection
+  Maybe validation to ensure that they are an admin or that the depot exists
+  const handleDroneRelocation = (drone, newDepotId) => {
+      console.log('New Depot Number:', newDepotId);
+      drone.depotId = newDepotId;
+  } */
+
 
   return (
     <Router>
