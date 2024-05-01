@@ -6,7 +6,6 @@ namespace Accessors.ConnectionAccessor
 {
     interface IConnectionAccessor
     {
-        public static SqlConnection GetConnection();
-        static void Main(string[] args);
+        SqlConnection GetConnection();
     }
 }

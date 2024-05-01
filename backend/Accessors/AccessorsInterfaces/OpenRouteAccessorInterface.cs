@@ -4,7 +4,7 @@ namespace Accessors.Accessors
 {
     interface IOpenRouteAccessor
     {
-        static async Task RunAsync(AddressDataModel address);
-        static async Task<Coordinate> GetCoordinatesAsync(string path);
+        Task RunAsync(AddressDataModel address);
+        Task<Coordinate> GetCoordinatesAsync(string path);
     }
 }

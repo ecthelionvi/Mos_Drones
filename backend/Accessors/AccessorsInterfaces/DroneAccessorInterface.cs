@@ -7,7 +7,7 @@ namespace Accessors.Accessors
 {
     interface IDroneAccessor
     {
-        public static DroneDataModel GetDrone(int droneId);
-        public static List<DroneDataModel> GetDroneList();
+        DroneDataModel GetDrone(int droneId);
+        List<DroneDataModel> GetDroneList();
     }
 }

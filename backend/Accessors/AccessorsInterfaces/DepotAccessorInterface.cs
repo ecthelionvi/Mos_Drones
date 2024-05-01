@@ -6,7 +6,7 @@ namespace Accessors.Accessor
 {
     interface IDepotAccessor
     {
-        public static DepotDataModel GetDepotWithDepotId(int depotId);
-        public static List<DepotDataModel> GetDepotList();
+        DepotDataModel GetDepotWithDepotId(int depotId);
+        List<DepotDataModel> GetDepotList();
     }
 }

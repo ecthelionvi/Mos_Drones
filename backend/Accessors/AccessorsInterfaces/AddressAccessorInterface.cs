@@ -7,8 +7,8 @@ namespace Accessors.Accessors
 {
     interface IAddressAccessor
     {
-        public static List<AddressDataModel> GetAddressList();
-        public static AddressDataModel GetAddress(int addressId);
-        public static int InsertAddress(string city, string state, string zip, string addressLine);
+        List<AddressDataModel> GetAddressList();
+        AddressDataModel GetAddress(int addressId);
+        int InsertAddress(string city, string state, string zip, string addressLine);
     }
 }
