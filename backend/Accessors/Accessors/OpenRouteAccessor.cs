@@ -2,7 +2,7 @@ using Accessors.DBModels;
 
 namespace Accessors.Accessors;
 
-public class OpenRouteAccessor : IOpenRouteAccessor
+public class OpenRouteAccessor //: IOpenRouteAccessor
 {
     static HttpClient client = new HttpClient();
         

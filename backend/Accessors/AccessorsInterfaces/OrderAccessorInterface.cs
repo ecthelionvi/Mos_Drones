@@ -6,9 +6,9 @@ namespace Accessors.Accessors
 {
     interface IOrderAccessor
     {
-        public static OrderDataModel GetOrderWithOrderId(int orderId);
-        public static OrderDataModel GetOrderWithPackageId(string packageId);
-        public static List<OrderDataModel> GetOrderListWithAccountId(int accountId);
-        public static int InsertOrder(OrderDataModel order);
+        OrderDataModel GetOrderWithOrderId(int orderId);
+        OrderDataModel GetOrderWithPackageId(string packageId);
+        List<OrderDataModel> GetOrderListWithAccountId(int accountId);
+        int InsertOrder(OrderDataModel order);
     }
 }

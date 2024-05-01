@@ -5,7 +5,7 @@ using Accessors.DBModels;
 namespace Accessors.Accessors
 {
     //TODO: ADD SUPPORT FOR NULL in insertOrder
-    public class OrderAccessor : IOrderAccessor
+    public class OrderAccessor //: IOrderAccessor
     {
         /// <summary>
         /// Method to return an Order instance loaded from the database corresponding
@@ -265,9 +265,9 @@ namespace Accessors.Accessors
                 int accountId = Convert.ToInt32(account);
 
                 int originId = AddressAccessor.InsertAddress(order.ShippedFrom.City, order.ShippedFrom.State,
-                    order.ShippedFrom.ZipCode, order.ShippedFrom.AddressLine);
+                    order.ShippedFrom.ZipCode, order.ShippedFrom.AddressLine, order.ShippedFrom.Coordinates.Latitude, order.ShippedFrom.Coordinates.Longitude);
                 int destinationId = AddressAccessor.InsertAddress(order.ShippedTo.City, order.ShippedTo.State,
-                    order.ShippedTo.ZipCode, order.ShippedTo.AddressLine);
+                    order.ShippedTo.ZipCode, order.ShippedTo.AddressLine, order.ShippedTo.Coordinates.Latitude, order.ShippedTo.Coordinates.Longitude);
 
                 SqlCommand insertCommand = new SqlCommand(insertQuery, connection);
                 insertCommand.Parameters.AddWithValue("@PackageId", packageId);

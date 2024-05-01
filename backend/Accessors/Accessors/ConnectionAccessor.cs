@@ -4,7 +4,7 @@ using Accessors.DBModels;
 
 namespace Accessors.ConnectionAccessor
 {
-    public class ConnectionAccessor : IConnectionAccessor
+    public class ConnectionAccessor
     {
         //public static void TestDatabaseConnection()
         //{
@@ -63,11 +63,11 @@ namespace Accessors.ConnectionAccessor
 
             //List<OrderDataModel> orderList = OrderAccessor.GetOrderListWithEmail("avanarsdall0@cocolog-nifty.com");
             //Console.WriteLine("All Orders for email avanarsdall0@cocolog-nifty.com:");
-            // foreach (OrderDataModel or in orderList)
-            // {
-            //     Console.WriteLine(or);
-            // }
-            
+            //foreach (OrderDataModel or in orderList)
+            //{
+            //    Console.WriteLine(or);
+            //}
+
             // Testing DepotAccessor methods
             DepotDataModel depot = DepotAccessor.GetDepotWithDepotId(1);
             Console.WriteLine("The depot with depotId of 1 is:");
@@ -93,18 +93,24 @@ namespace Accessors.ConnectionAccessor
             }
 
             // Inserting into the database
-            int addressId = AddressAccessor.InsertAddress("Pleasant Dale", "Nebraska", "68423", "2468 North 10th Road");
+            int addressId = AddressAccessor.InsertAddress("Pleasant Dale", "Nebraska", "68423", "2468 North 10th Road", 40.828410, -96.929760);
             Console.WriteLine("The addressId of the selected/inserted address is " + addressId + "\n");
 
-            int accountId = AccountAccessor.InsertAccount("Angie", "Zheng", "azheng2@huskers.unl.edu", "password123", "Lincoln", "Nebraska", "68588", "1400 R St", false);
+            int accountId = AccountAccessor.InsertAccount("Angie", "Zheng", "azheng2@huskers.unl.edu", "password123", "Lincoln", "Nebraska", "68588", "1400 R St", 40.817638, -96.699997, false);
             Console.WriteLine("The accountId of the selected/inserted account is " + accountId + "\n");
 
-            int accountId2 = AccountAccessor.InsertAccount("Angie", "Zheng", "angizheng4201@gmail.com", "password123", "Lincoln", "Nebraska", "68588", "1400 R St", false);
+            int accountId2 = AccountAccessor.InsertAccount("Angie", "Zheng", "angizheng4201@gmail.com", "password123", "Lincoln", "Nebraska", "68588", "1400 R St", 40.817638, -96.699997, false);
             Console.WriteLine("The accountId of the selected/inserted account is " + accountId2 + "\n");
 
             DateTime deliveryDate = new DateTime(2024, 4, 23, 17, 02, 00);
-            //int orderId = OrderAccessor.InsertOrder("angizheng4201@gmail.com", deliveryDate, "Lincoln", "Nebraska", "68588", "1400 R St", "Pleasant Dale", "Nebraska", "68423", "2468 North 10th Road");
-            //Console.WriteLine("The orderId of the inserted Order is " + orderId);
+            DateTime shipDate = DateTime.Now;
+            Coordinate c1 = new Coordinate(40.817638, -96.699997);
+            AddressDataModel shippedFrom = new AddressDataModel(null, "Lincoln", "Nebraska", "68588", "1400 R St", c1);
+            Coordinate c2 = new Coordinate(40.828410, -96.929760);
+            AddressDataModel shippedTo = new AddressDataModel(null, "Pleasant Dale", "Nebraska", "68423", "2468 North 10th Road", c2);
+            OrderDataModel order2 = new OrderDataModel(null, null, shipDate, deliveryDate, 1, shippedFrom, shippedTo);
+            int orderId = OrderAccessor.InsertOrder(order2);
+            Console.WriteLine("The orderId of the inserted Order is " + orderId);
 
             Console.ReadLine();
         }
