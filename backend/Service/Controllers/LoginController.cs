@@ -6,15 +6,18 @@ namespace Service.Controllers;
 
 [Route("api/[controller]")]
 [ApiController]
-public class LoginController : Controller {
+public class LoginController : Controller
+{
+    private int? AccountId;
 
     [HttpPost("auth")]
     public JsonResult ValidateLogin([FromBody]LoginRequest loginRequest)
     {
         Account? account = AccountManager.ValidateLogin(loginRequest.Email, loginRequest.Password);
-        HomeController.AccountId = account.AccountId ?? -1;
-        return new JsonResult(account);
+        AccountId = account?.AccountId;
+        return AccountId is null ? Json("Incorrect Email and Password") : Json(AccountId);
     }
+    
     [HttpPost("CreateAccount")]
     public void SaveUser([FromBody] Account account)
     {
