@@ -8,13 +8,18 @@ namespace Service.Controllers;
 [ApiController]
 public class LoginController : Controller
 {
-    private int? AccountId;
+    private static int? _AccountId;
+    
+    public static int? AccountId
+    {
+        get { return _AccountId; }
+    }
 
     [HttpPost("auth")]
     public JsonResult ValidateLogin([FromBody]LoginRequest loginRequest)
     {
         Account? account = AccountManager.ValidateLogin(loginRequest.Email, loginRequest.Password);
-        AccountId = account?.AccountId;
+        _AccountId = account?.AccountId;
         return AccountId is null ? Json("Incorrect Email and Password") : Json(AccountId);
     }
     
