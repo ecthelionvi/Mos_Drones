@@ -26,7 +26,7 @@ namespace Accessors.Accessors
                 SqlDataReader reader = command.ExecuteReader();
                 if (reader.HasRows)
                 {
-                    
+
                     while (reader.Read())
                     {
                         int addressId = reader.GetInt32(reader.GetOrdinal("addressId"));
@@ -34,8 +34,11 @@ namespace Accessors.Accessors
                         string state = reader.GetString(reader.GetOrdinal("state"));
                         string zip = reader.GetString(reader.GetOrdinal("zip"));
                         string addressLine = reader.GetString(reader.GetOrdinal("address_line"));
-                        
-                        AddressDataModel a = new AddressDataModel(addressId, city, state, zip, addressLine, null);
+                        double latitude = reader.GetDouble(reader.GetOrdinal("latitude"));
+                        double longitude = reader.GetDouble(reader.GetOrdinal("longitude"));
+
+                        Coordinate coordinate = new Coordinate(latitude, longitude);
+                        AddressDataModel a = new AddressDataModel(addressId, city, state, zip, addressLine, coordinate);
                         addressList.Add(a);
 
                     }
@@ -79,8 +82,11 @@ namespace Accessors.Accessors
                     string state = reader.GetString(reader.GetOrdinal("state"));
                     string zip = reader.GetString(reader.GetOrdinal("zip"));
                     string addressLine = reader.GetString(reader.GetOrdinal("address_line"));
-                    
-                    address = new AddressDataModel(addressId, city, state, zip, addressLine, null);
+                    double latitude = reader.GetDouble(reader.GetOrdinal("latitude"));
+                    double longitude = reader.GetDouble(reader.GetOrdinal("longitude"));
+
+                    Coordinate coordinate = new Coordinate(latitude, longitude);
+                    address = new AddressDataModel(addressId, city, state, zip, addressLine, coordinate);
                 }
 
                 reader.Close();
@@ -104,13 +110,16 @@ namespace Accessors.Accessors
         /// <param name="state"></param>
         /// <param name="zip"></param>
         /// <param name="addressLine"></param>
-        public static int InsertAddress(string city, string state, string zip, string addressLine)
+        /// <param name="latitude"</param>
+        /// <param name="longitude"</param>
+        public static int InsertAddress(string city, string state, string zip, string addressLine, double latitude, double longitude)
         {
             string selectQuery = @"SELECT addressId FROM Address WHERE city = @City 
-                           AND state = @State AND zip = @Zip AND address_line = @AddressLine";
+                           AND state = @State AND zip = @Zip AND address_line = @AddressLine
+                           AND latitude = @Latitude AND longitude = @Longitude";
 
-            string insertQuery = @"INSERT INTO Address (city, state, zip, address_line) 
-                             VALUES (@City, @State, @Zip, @AddressLine); SELECT SCOPE_IDENTITY();";
+            string insertQuery = @"INSERT INTO Address (city, state, zip, address_line, latitude, longitude) 
+                             VALUES (@City, @State, @Zip, @AddressLine, @Latitude, @Longitude); SELECT SCOPE_IDENTITY();";
 
             int addressId = -1;
 
@@ -124,6 +133,8 @@ namespace Accessors.Accessors
                 selectCommand.Parameters.AddWithValue("@State", state);
                 selectCommand.Parameters.AddWithValue("@Zip", zip);
                 selectCommand.Parameters.AddWithValue("@AddressLine", addressLine);
+                selectCommand.Parameters.AddWithValue("@Latitude", latitude);
+                selectCommand.Parameters.AddWithValue("@Longitude", longitude);
 
                 object address = selectCommand.ExecuteScalar();
 
@@ -139,6 +150,8 @@ namespace Accessors.Accessors
                     insertCommand.Parameters.AddWithValue("@State", state);
                     insertCommand.Parameters.AddWithValue("@Zip", zip);
                     insertCommand.Parameters.AddWithValue("@AddressLine", addressLine);
+                    insertCommand.Parameters.AddWithValue("@Latitude", latitude);
+                    insertCommand.Parameters.AddWithValue("@Longitude", longitude);
 
                     // Insert the record and get its id
                     address = insertCommand.ExecuteScalar();

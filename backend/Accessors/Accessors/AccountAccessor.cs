@@ -38,7 +38,7 @@ namespace Accessors.Accessors
 
                     accountAddress = AddressAccessor.GetAddress(addressId);
 
-                    account = new AccountDataModel(accountId, firstName, lastName, email, password, accountAddress,isAdmin);
+                    account = new AccountDataModel(accountId, firstName, lastName, email, password, accountAddress, isAdmin);
                 }
 
                 reader.Close();
@@ -118,7 +118,7 @@ namespace Accessors.Accessors
         /// <param name="addressLine"></param>
         /// <param name="isAdmin"></param>
         /// <returns></returns>
-        public static int InsertAccount(string firstName, string lastName, string email, string password, string city, string state, string zip, string addressLine, bool isAdmin)
+        public static int InsertAccount(string firstName, string lastName, string email, string password, string city, string state, string zip, string addressLine, double latitude, double longitude, bool isAdmin)
         {
             string selectQuery = @"SELECT accountId FROM Account WHERE email = @Email";
 
@@ -144,8 +144,8 @@ namespace Accessors.Accessors
                 }
                 else
                 {
-                    int addressId = AddressAccessor.InsertAddress(city, state, zip, addressLine);
-                    
+                    int addressId = AddressAccessor.InsertAddress(city, state, zip, addressLine, latitude, longitude);
+
                     SqlCommand insertCommand = new SqlCommand(insertQuery, connection);
                     insertCommand.Parameters.AddWithValue("@FirstName", firstName);
                     insertCommand.Parameters.AddWithValue("@LastName", lastName);

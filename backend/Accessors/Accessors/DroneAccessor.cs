@@ -32,7 +32,16 @@ namespace Accessors.Accessors
                 if (reader.HasRows && reader.Read())
                 {
                     string status = reader.GetString(reader.GetOrdinal("transit_status"));
-                    int orderId = reader.GetInt32(reader.GetOrdinal("orderId"));
+                    int? orderId = null;
+                    if (!reader.IsDBNull(reader.GetOrdinal("orderId")))
+                    {
+                        orderId = reader.GetInt32(reader.GetOrdinal("orderId"));
+                    }
+                    if (orderId.HasValue)
+                    {
+                        droneOrder = OrderAccessor.GetOrderWithOrderId(orderId.Value);
+                    }
+
                     int? depotId = null; // Nullable depotId
                     if (!reader.IsDBNull(reader.GetOrdinal("depotId")))
                     {
@@ -43,8 +52,6 @@ namespace Accessors.Accessors
                     {
                         currDepot = DepotAccessor.GetDepotWithDepotId(depotId.Value);
                     }
-
-                    droneOrder = OrderAccessor.GetOrderWithOrderId(orderId);
 
                     drone = new DroneDataModel(droneId, status, droneOrder, currDepot);
                 }
@@ -84,10 +91,20 @@ namespace Accessors.Accessors
                     while (reader.Read())
                     {
                         DepotDataModel currDepot = null;
+                        OrderDataModel droneOrder = null;
 
                         int droneId = reader.GetInt32(reader.GetOrdinal("droneId"));
                         string transitStatus = reader.GetString(reader.GetOrdinal("transit_status"));
-                        int orderId = reader.GetInt32(reader.GetOrdinal("orderId"));
+                        int? orderId = null;
+                        if (!reader.IsDBNull(reader.GetOrdinal("orderId")))
+                        {
+                            orderId = reader.GetInt32(reader.GetOrdinal("orderId"));
+                        }
+                        if (orderId.HasValue)
+                        {
+                            droneOrder = OrderAccessor.GetOrderWithOrderId(orderId.Value);
+                        }
+
                         int? depotId = null; // Nullable depotId
                         if (!reader.IsDBNull(reader.GetOrdinal("depotId")))
                         {
@@ -98,8 +115,6 @@ namespace Accessors.Accessors
                         {
                             currDepot = DepotAccessor.GetDepotWithDepotId(depotId.Value);
                         }
-
-                        OrderDataModel droneOrder = OrderAccessor.GetOrderWithOrderId(orderId);
 
                         DroneDataModel d = new DroneDataModel(droneId, transitStatus, droneOrder, currDepot);
                         droneList.Add(d);

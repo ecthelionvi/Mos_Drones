@@ -4,10 +4,10 @@ public class DroneDataModel
 {
     public int DroneId { get; set; }
     public string TransitStatus { get; set; }
-    public OrderDataModel Order { get; set; }
+    public OrderDataModel? Order { get; set; }
     public DepotDataModel? CurrentDepot { get; set; }
 
-    public DroneDataModel(int droneId, string transitStatus, OrderDataModel order, DepotDataModel? currentDepot)
+    public DroneDataModel(int droneId, string transitStatus, OrderDataModel? order, DepotDataModel? currentDepot)
     {
         this.DroneId = droneId;
         this.TransitStatus = transitStatus;
@@ -31,5 +31,5 @@ public class DroneDataModel
     public override string ToString()
     {
         return $"droneId: {DroneId}\nTransit Status: {TransitStatus}\n{Order}{CurrentDepot}";
-    }    
+    }
 }
