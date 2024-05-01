@@ -6,29 +6,9 @@ namespace Accessors.ConnectionAccessor
 {
     public class ConnectionAccessor
     {
-        //public static void TestDatabaseConnection()
-        //{
-        //    SqlConnection conn = GetConnection();
-        //    Console.WriteLine("Getting Connection ...");
-        //    try
-        //    {
-        //        Console.WriteLine("Opening Connection ...");
-        //        conn.Open();
-        //        Console.WriteLine("Connection successful!");
-        //    }
-        //    catch (Exception e)
-        //    {
-        //        Console.WriteLine("Error: " + e.Message);
-        //    }
-        //    Console.Read();
-        //    conn.Close();
-        //    Console.WriteLine("Connection closed");
-
-        //}
-
         public static SqlConnection GetConnection()
         {
-            string connString = "Data Source=ANGIE-DELL-XPS\\SQLEXPRESS01; Initial Catalog=mos_drones; Integrated Security=True; MultipleActiveResultSets=True;";
+            string connString = "Server=localhost,1433;Database=master;User Id=SA;Password=MyStrongPassword123;Integrated Security=False;;";
             SqlConnection connection = new SqlConnection(connString);
             return connection;
         }

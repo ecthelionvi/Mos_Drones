@@ -8,8 +8,6 @@ namespace Service.Controllers;
 [ApiController]
 public class HomeController : Controller
 {
-    public static int AccountId = -1;   
-    
     [HttpPost("FindOrder")]
     public IActionResult FindOrder([FromBody]int orderId)
     {
@@ -20,10 +18,10 @@ public class HomeController : Controller
     [HttpPost("NewOrder")]
     public IActionResult NewOrder([FromBody]Address deliverTo)
     {
-        string response = "Please Login";
-        if (AccountId != -1)
+        var response = "Please Login";
+        if (LoginController.AccountId != null)
         {
-            response = OrderManager.NewOrder(AccountId, deliverTo);
+            response = OrderManager.NewOrder(LoginController.AccountId ?? 0, deliverTo);
         }
         return Ok(response);
     }

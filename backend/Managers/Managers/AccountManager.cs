@@ -12,10 +12,10 @@ public class AccountManager
     {
         AccountAccessor.InsertAccount(account.FirstName, account.LastName, account.Email, account.Password, account.AccountAddress.City, account.AccountAddress.State, account.AccountAddress.ZipCode, account.AccountAddress.AddressLine, false);
     }
-    public static Account? ValidateLogin(string username, string password)
+    public static Account? ValidateLogin(string email, string password)
     {
         bool isValid = false;
-        AccountDataModel? accountDataModel = AccountAccessor.GetAccountWithEmail(username);
+        AccountDataModel accountDataModel = AccountAccessor.GetAccountWithEmail(email);
 
         if (accountDataModel != null)
         {

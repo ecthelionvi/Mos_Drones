@@ -15,10 +15,11 @@ public class OrderManager
         return order;
     }
 
-    public static string NewOrder(int accountId, Address deliveryTo)
+    public static string NewOrder(int accountId, Address deliverTo)
     {
+        string response = "Invalid Order Request: Out of Range";
         AccountDataModel accountData = AccountAccessor.GetAccountWithAccountId(accountId);
-        AddressDataModel destination = AddressHelper.AddressToAddressDataModel(deliveryTo);
+        AddressDataModel destination = AddressHelper.AddressToAddressDataModel(deliverTo);
 
         if (OrderEngine.validateOrderRequest(destination))
         {
@@ -29,9 +30,9 @@ public class OrderManager
                 accountData.AccountAddress, destination);
         
             OrderAccessor.InsertOrder(oDM);
-            return "Order Successfully Added";
+            response = "Order Successfully Added";
         }
-        return "Order out of range";
+        return response;
     }
     
     public static List<Order> GetUserOrders(int accountId)
