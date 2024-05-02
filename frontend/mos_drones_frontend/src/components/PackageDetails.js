@@ -8,16 +8,35 @@ import axios from "axios";
 const PackageDetails = () => {
   const { packageId } = useParams();
   const [packageDetails, setPackageDetails] = useState(null);
+  const [useMockData, setUseMockData] = useState(true);
 
   useEffect(() => {
+    const mockData = [
+      {
+        packageId: "1",
+        deliveryDate: "2024-04-10",
+        status: "In Transit",
+      },
+      {
+        packageId: "2",
+        deliveryDate: "2024-03-30",
+        status: "Delivered",
+      },
+    ];
     const fetchPackageDetails = async () => {
-      try {
-        const response = await axios.post("http://localhost:3000/api/Home/FindOrder", {
-          orderId: parseInt(packageId),
-        });
-        setPackageDetails(response.data);
-      } catch (error) {
-        console.error("Error fetching package details:", error);
+      if (useMockData) {
+        const mockPackage = mockData.find((p) => p.packageId === packageId);
+        setPackageDetails(mockPackage);
+        return;
+      } else {
+        try {
+          const response = await axios.post("http://localhost:3000/api/Home/FindOrder", {
+            orderId: parseInt(packageId),
+          });
+          setPackageDetails(response.data);
+        } catch (error) {
+          console.error("Error fetching package details:", error);
+        }
       }
     };
 

@@ -7,59 +7,59 @@ import "ag-grid-community/styles/ag-theme-alpine.css";
 
 const DroneGrid = () => {
   const [rowData, setRowData] = useState([]);
-  const [usemockData, setMockData] = useState(false);
-
-  const mockData = {
-    drones: [
-      {
-        droneId: 1,
-        transit_status: "In Transit",
-        orderId: 101,
-        depotId: 201,
-      },
-      {
-        droneId: 2,
-        transit_status: "Delivered",
-        orderId: 102,
-        depotId: 202,
-      },
-      {
-        droneId: 3,
-        transit_status: "Awaiting Dispatch",
-        orderId: null,
-        depotId: 201,
-      },
-      {
-        droneId: 4,
-        transit_status: "In Maintenance",
-        orderId: null,
-        depotId: 203,
-      },
-    ],
-  };
+  const [useMockData, setMockData] = useState(false);
 
   useEffect(() => {
-    fetchDroneData();
     setMockData(true);
-  }, []);
-
-  const fetchDroneData = async () => {
-    if (usemockData) {
-      setRowData(mockData.drones);
-      return;
-    }
-    try {
-      const response = await fetch("http://localhost:3000/api/Drone/GetDrones");
-      if (response.ok) {
-        const data = await response.json();
-        setRowData(data);
-      } else {
-        console.error("Error fetching drone data:", response.status);
+    const mockData = {
+      drones: [
+        {
+          droneId: 1,
+          transit_status: "In Transit",
+          orderId: 101,
+          depotId: 201,
+        },
+        {
+          droneId: 2,
+          transit_status: "Delivered",
+          orderId: 102,
+          depotId: 202,
+        },
+        {
+          droneId: 3,
+          transit_status: "Awaiting Dispatch",
+          orderId: null,
+          depotId: 201,
+        },
+        {
+          droneId: 4,
+          transit_status: "In Maintenance",
+          orderId: null,
+          depotId: 203,
+        },
+      ],
+    };
+    const fetchDroneData = async () => {
+      if (useMockData) {
+        setRowData(mockData.drones);
+        return;
       }
-    } catch (error) {
-      console.error("Error fetching drone data:", error);
-    }
-  };
+
+      try {
+        const response = await fetch("http://localhost:3000/api/Drone/GetDrones");
+        if (response.ok) {
+          const data = await response.json();
+          setRowData(data);
+        } else {
+          console.error("Error fetching drone data:", response.status);
+        }
+      } catch (error) {
+        console.error("Error fetching drone data:", error);
+      }
+    };
+
+    fetchDroneData();
+  }, [useMockData]);
 
   const columnDefs = [
     {

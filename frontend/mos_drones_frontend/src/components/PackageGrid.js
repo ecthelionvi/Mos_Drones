@@ -8,22 +8,21 @@ import axios from "axios";
 
 const PackageGrid = () => {
   const [rowData, setRowData] = useState([]);
-  const [useMockData, setUseMockData] = useState(false);
-  const mockData = [
-    {
-      id: "1",
-      deliveryDate: "2024-04-10",
-      status: "In Transit",
-    },
-    {
-      id: "2",
-      deliveryDate: "2024-03-30",
-      status: "Delivered",
-    },
-  ];
-
+  const [useMockData, setUseMockData] = useState(true);
   useEffect(() => {
-    setUseMockData(true);
+    const mockData = [
+      {
+        packageId: "1",
+        deliveryDate: "2024-04-10",
+        status: "In Transit",
+      },
+      {
+        packageId: "2",
+        deliveryDate: "2024-03-30",
+        status: "Delivered",
+      },
+    ];
+
     if (useMockData) {
       setRowData(mockData);
       return;

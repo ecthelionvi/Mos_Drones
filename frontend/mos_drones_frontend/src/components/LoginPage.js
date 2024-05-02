@@ -32,7 +32,7 @@ const LoginPage = ({ onLogin }) => {
 
       onLogin();
       navigate("/");
-    } else if (username === "robert.scott.sears@icloud.com " && password === "password") {
+    } else if (username === "robert.scott.sears@icloud.com" && password === "password") {
       const testUser = {
         accountId: 1,
         firstName: "Robert",
@@ -46,6 +46,9 @@ const LoginPage = ({ onLogin }) => {
       localStorage.setItem("lastName", testUser.lastName);
       localStorage.setItem("email", testUser.email);
       localStorage.setItem("isAdmin", testUser.isAdmin);
+
+      onLogin();
+      navigate("/");
     } else {
       try {
         const response = await axios.post("http://localhost:3000/api/Login/auth", {
