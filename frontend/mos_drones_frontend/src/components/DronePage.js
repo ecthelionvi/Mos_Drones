@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import "../styles/DronePage.css";
+import axios from 'axios';
 
-const DronePage = ({ drone, onDepotIdChange }) => {
+const DronePage = ({ drone }) => {
 
     const DroneStatus = ({ drone }) => {
         const hasOrder = (drone.orderId != null);
@@ -36,15 +37,33 @@ const DronePage = ({ drone, onDepotIdChange }) => {
     const RelocationButton = ({ drone }) => {
 
         const [depotId, setDepotId] = useState(drone.depotId);
+        const [message, setMessage] = useState('');
+
         const handleInputChange = (event) => {
             setDepotId(event.target.value);
         };
 
-        const handleClick = () => {
+        const handleClick = async () => {
             const newDepotId = parseInt(depotId, 10);
 
             if (!isNaN(newDepotId)) {
-                onDepotIdChange(newDepotId);
+                try {
+                    const response = await axios.post("http://localhost:3000/api/Drone/depotChange,", {
+                        droneId: drone.Id,
+                        depotId: newDepotId,
+                    });
+
+                    const { droneId, transit_status, orderId, depotId } = response.data;
+
+                    localStorage.setItem("droneId", droneId);
+                    localStorage.setItem("transit_status", transit_status);
+                    localStorage.setItem("orderId", orderId);
+                    localStorage.setItem("depotId", depotId);
+
+                } catch (error) {
+                    console.error("Depot Selection Error:", error);
+                    setMessage("Drone Relocation failed");
+                }
                 setDepotId(newDepotId);
             } else {
                 alert('Please enter a value Depot Number');

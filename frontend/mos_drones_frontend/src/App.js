@@ -50,9 +50,9 @@ const App = () => {
   Update to incorporate the depot list for selection
   Maybe validation to ensure that they are an admin or that the depot exists
   const handleDroneRelocation = (drone, newDepotId) => {
-      console.log('New Depot Number:', newDepotId);
-      drone.depotId = newDepotId;
-  } */
+      
+  }
+  */
 
   return (
     <Router>
