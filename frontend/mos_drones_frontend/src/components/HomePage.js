@@ -65,6 +65,7 @@ const HomePage = ({ loggedIn, onLogout, setLoggedIn, role }) => {
         .then((response) => response.text())
         .then((data) => {
           console.log("New order response:", data);
+          alert("Delivery requested successfully!");
           // Handle the response data as needed
         })
         .catch((error) => {
