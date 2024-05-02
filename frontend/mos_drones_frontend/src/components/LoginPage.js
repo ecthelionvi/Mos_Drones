@@ -57,9 +57,9 @@ const LoginPage = ({ onLogin }) => {
       navigate("/");
     } else {
       try {
-        const response = await axios.post("http://localhost:5000/api/Login", {
-          username,
-          password,
+        const response = await axios.post("http://localhost:3000/api/Login/auth", {
+          email: username,
+          password: password,
         });
 
         const { accountId, firstName, lastName, email, isAdmin } = response.data;
@@ -71,14 +71,13 @@ const LoginPage = ({ onLogin }) => {
         localStorage.setItem("isAdmin", isAdmin);
 
         onLogin();
-        navigate("/");
+        navigate("/login");
       } catch (error) {
         console.error("Login error:", error);
         setMessage("Login failed. Please check your credentials.");
       }
     }
   };
-
   return (
     <div className="login-form-container">
       <div className="close-button-container">

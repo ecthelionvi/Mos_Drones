@@ -12,7 +12,7 @@ const PackageDetails = () => {
   useEffect(() => {
     const fetchPackageDetails = async () => {
       try {
-        const response = await axios.post("http://localhost:5000/api/Home/FindOrder", {
+        const response = await axios.post("http://localhost:3000/api/Home/FindOrder", {
           orderId: parseInt(packageId),
         });
         setPackageDetails(response.data);

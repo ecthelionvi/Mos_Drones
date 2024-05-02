@@ -13,7 +13,7 @@ import Modal from "react-modal";
 import "../styles/Modal.css";
 import { useJsApiLoader, Autocomplete } from "@react-google-maps/api";
 
-const HomePage = ({ loggedIn, onLogout, user }) => {
+const HomePage = ({ loggedIn, onLogout, setLoggedIn, role }) => {
   const [activeHeaderTab, setActiveHeaderTab] = useState(loggedIn ? "dashboard" : "home");
   const [activeTrackingTab, setActiveTrackingTab] = useState("tracking");
   const [trackingNumber, setTrackingNumber] = useState("");
@@ -21,10 +21,14 @@ const HomePage = ({ loggedIn, onLogout, user }) => {
   const fromAutocompleteRef = useRef(null);
   const toAutocompleteRef = useRef(null);
   const navigate = useNavigate();
+  const [city, setCity] = useState("");
+  const [state, setState] = useState("");
+  const [zipCode, setZipCode] = useState("");
+  const [addressLine, setAddressLine] = useState("");
 
   const { isLoaded } = useJsApiLoader({
     id: "google-map-script",
-    googleMapsApiKey: "AIzaSyCfTn6UID_1mfAbHLjaFNsgAww13JewQzE",
+    googleMapsApiKey: "AIzaSyD9EOVlGpDT2Tj7c6b2xDU8CzYEto-ofN8",
     libraries: ["places"],
   });
 
@@ -42,7 +46,31 @@ const HomePage = ({ loggedIn, onLogout, user }) => {
 
   const handleRequestDelivery = () => {
     if (loggedIn) {
-      console.log("Requesting delivery...");
+      const requestBody = {
+        city: city,
+        state: state,
+        zipCode: zipCode,
+        addressLine: addressLine,
+      };
+
+      console.log("Request body:", requestBody);
+
+      fetch("http://localhost:3000/api/Home/NewOrder", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(requestBody),
+      })
+        .then((response) => response.text())
+        .then((data) => {
+          console.log("New order response:", data);
+          // Handle the response data as needed
+        })
+        .catch((error) => {
+          console.error("Error creating new order:", error);
+          // Handle any errors that occurred during the request
+        });
     } else {
       setIsModalOpen(true);
     }
@@ -59,10 +87,30 @@ const HomePage = ({ loggedIn, onLogout, user }) => {
   const onPlaceChanged = (autocompleteRef) => {
     if (autocompleteRef.current) {
       const place = autocompleteRef.current.getPlace();
-      console.log("Selected place:", place);
+      const addressComponents = place.address_components;
+
+      const streetNumber = addressComponents.find((component) =>
+        component.types.includes("street_number"),
+      )?.long_name;
+      const route = addressComponents.find((component) =>
+        component.types.includes("route"),
+      )?.long_name;
+      const locality = addressComponents.find((component) =>
+        component.types.includes("locality"),
+      )?.long_name;
+      const administrativeAreaLevel1 = addressComponents.find((component) =>
+        component.types.includes("administrative_area_level_1"),
+      )?.short_name;
+      const postalCode = addressComponents.find((component) =>
+        component.types.includes("postal_code"),
+      )?.long_name;
+
+      setCity(locality || "");
+      setState(administrativeAreaLevel1 || "");
+      setZipCode(postalCode || "");
+      setAddressLine(`${streetNumber} ${route}` || "");
     }
   };
-
   useEffect(() => {
     setActiveHeaderTab(loggedIn ? "dashboard" : "home");
   }, [loggedIn]);
@@ -223,7 +271,7 @@ const HomePage = ({ loggedIn, onLogout, user }) => {
             <section
               className={`dashboard-section ${activeHeaderTab === "dashboard" ? "" : "hidden"}`}
             >
-              {user && user.isAdmin ? (
+              {role === "True" ? (
                 <>
                   <h2>Drones</h2>
                   <div className="dashboard-section__underline-drone"></div>

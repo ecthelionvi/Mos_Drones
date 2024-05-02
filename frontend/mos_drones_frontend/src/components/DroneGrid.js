@@ -9,37 +9,22 @@ const DroneGrid = () => {
   const [rowData, setRowData] = useState([]);
 
   useEffect(() => {
-    const mockData = {
-      drones: [
-        {
-          droneId: 1,
-          transit_status: "In Transit",
-          orderId: 101,
-          depotId: 201,
-        },
-        {
-          droneId: 2,
-          transit_status: "Delivered",
-          orderId: 102,
-          depotId: 202,
-        },
-        {
-          droneId: 3,
-          transit_status: "Awaiting Dispatch",
-          orderId: null,
-          depotId: 201,
-        },
-        {
-          droneId: 4,
-          transit_status: "In Maintenance",
-          orderId: null,
-          depotId: 203,
-        },
-      ],
-    };
-
-    setRowData(mockData.drones);
+    fetchDroneData();
   }, []);
+
+  const fetchDroneData = async () => {
+    try {
+      const response = await fetch("http://localhost:3000/api/Drone/GetDrones");
+      if (response.ok) {
+        const data = await response.json();
+        setRowData(data);
+      } else {
+        console.error("Error fetching drone data:", response.status);
+      }
+    } catch (error) {
+      console.error("Error fetching drone data:", error);
+    }
+  };
 
   const columnDefs = [
     {

@@ -54,7 +54,6 @@ const App = () => {
       drone.depotId = newDepotId;
   } */
 
-
   return (
     <Router>
       <Routes>
@@ -65,6 +64,7 @@ const App = () => {
               loggedIn={!!user}
               onLogout={handleLogout}
               user={user}
+              role={user?.isAdmin ? "True" : "False"}
               component={PackageGrid}
             />
           }
@@ -72,6 +72,7 @@ const App = () => {
         <Route path="/login" element={<LoginPage onLogin={handleLogin} />} />
         <Route path="/signup" element={<SignupPage />} />
         <Route path="/package/:packageId" element={<PackageDetails />} />
+        <Route path="/drone/:droneId" element={<DronePage />} />
       </Routes>
     </Router>
   );
