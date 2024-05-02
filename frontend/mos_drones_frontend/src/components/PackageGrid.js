@@ -8,8 +8,26 @@ import axios from "axios";
 
 const PackageGrid = () => {
   const [rowData, setRowData] = useState([]);
+  const [useMockData, setUseMockData] = useState(false);
+  const mockData = [
+    {
+      id: "1",
+      deliveryDate: "2024-04-10",
+      status: "In Transit",
+    },
+    {
+      id: "2",
+      deliveryDate: "2024-03-30",
+      status: "Delivered",
+    },
+  ];
 
   useEffect(() => {
+    setUseMockData(true);
+    if (useMockData) {
+      setRowData(mockData);
+      return;
+    }
     const fetchPackages = async () => {
       try {
         const accountId = localStorage.getItem("accountId");

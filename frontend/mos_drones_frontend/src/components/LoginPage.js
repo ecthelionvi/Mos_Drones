@@ -10,29 +10,6 @@ const LoginPage = ({ onLogin }) => {
   const [message, setMessage] = useState("");
   const navigate = useNavigate();
 
-  // const handleSubmit = async (e) => {
-  //   e.preventDefault();
-  //   try {
-  //     const response = await axios.post("http://localhost:5000/api/Login", {
-  //       username,
-  //       password,
-  //     });
-  //     const { accountId, firstName, lastName, email, isAdmin } = response.data;
-
-  //     localStorage.setItem("accountId", accountId);
-  //     localStorage.setItem("firstName", firstName);
-  //     localStorage.setItem("lastName", lastName);
-  //     localStorage.setItem("email", email);
-  //     localStorage.setItem("isAdmin", isAdmin);
-
-  //     onLogin();
-  //     navigate("/");
-  //   } catch (error) {
-  //     console.error("Login error:", error);
-  //     setMessage("Login failed. Please check your credentials.");
-  //   }
-  // };
-
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -55,6 +32,20 @@ const LoginPage = ({ onLogin }) => {
 
       onLogin();
       navigate("/");
+    } else if (username === "robert.scott.sears@icloud.com " && password === "password") {
+      const testUser = {
+        accountId: 1,
+        firstName: "Robert",
+        lastName: "Sears",
+        email: "robert.scott.sears@icloud.com",
+        isAdmin: false,
+      };
+
+      localStorage.setItem("accountId", testUser.accountId);
+      localStorage.setItem("firstName", testUser.firstName);
+      localStorage.setItem("lastName", testUser.lastName);
+      localStorage.setItem("email", testUser.email);
+      localStorage.setItem("isAdmin", testUser.isAdmin);
     } else {
       try {
         const response = await axios.post("http://localhost:3000/api/Login/auth", {
