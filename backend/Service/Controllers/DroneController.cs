@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using System.Data.SqlClient;
 using System.Text.Json.Nodes;
 using Managers.Models;
+using Managers;
 
 namespace Service.Controllers;
 
@@ -17,5 +18,11 @@ public class DroneController : Controller
         //changelaksdjflkajsdf
         return new JsonResult("");
     }
+
+    [HttpPost("ChangeDepot")]
+    public void UpdateDepot([FromBody] Drone drone)
+    {
+        // updates drone depotId in the drone object
+    } 
     
 }
