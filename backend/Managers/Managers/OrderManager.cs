@@ -21,7 +21,9 @@ public class OrderManager
         AccountDataModel accountData = AccountAccessor.GetAccountWithAccountId(accountId);
         AddressDataModel destination = AddressHelper.AddressToAddressDataModel(deliverTo);
 
-        if (OrderEngine.validateOrderRequest(destination))
+        OrderEngine oEngine = new OrderEngine();
+        
+        if (oEngine.validateOrderRequest(destination).Result)
         {
             DateTime shippedDate = DateTime.Now;
             DateTime deliveryDate = OrderEngine.getDeliveryDate(shippedDate, accountData.AccountAddress, destination);

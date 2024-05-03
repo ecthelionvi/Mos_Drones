@@ -8,7 +8,7 @@ namespace Service.Controllers;
 [ApiController]
 public class LoginController : Controller
 {
-    private static int? _AccountId;
+    private static int? _AccountId = 1;
     
     public static int? AccountId
     {
