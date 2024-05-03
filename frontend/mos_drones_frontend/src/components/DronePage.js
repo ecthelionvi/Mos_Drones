@@ -1,10 +1,37 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import "../styles/DronePage.css";
 import axios from 'axios';
 
-const DronePage = ({ drone }) => {
+const DronePage = ({ droneId, onRelocate }) => {
+    const [droneData, setDroneData] = useState([]);
+    const depotList = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
+    const [drone, setDrone] = useState({});
+     
+    useEffect(() => {
+        const fetchDroneData = async () => {
+            try {
+                const response = await axios.post("http://localhost:3000/api/Drone/GetDrones");
+                if (response.ok) {
+                    const data = await response.json();
+                    setDroneData(data);
+                } else {
+                    console.error("Error fetching drone data:", response.status);
+                }
+            } catch (error) {
+                console.error("Error fetching data:", error);
+            }
+        }
+        fetchDroneData();
+    }, []);
 
-    const DroneStatus = ({ drone }) => {
+    useEffect(() => {
+        if (droneData.length > 0) {
+            const drone = droneData.find(drone => drone.droneId === droneId);
+            setDrone(drone);
+        }
+    }, [droneData, droneId]);
+
+    const DroneStatus = () => {
         const hasOrder = (drone.orderId != null);
 
         let statusMessage = '';
@@ -21,7 +48,7 @@ const DronePage = ({ drone }) => {
         );
     };
 
-    const OrderStatus = ({ drone }) => {
+    const OrderStatus = () => {
         let orderStatusMessage = '';
         if (drone.orderId === null) {
             orderStatusMessage = 'Current Order Number: N/A';
@@ -34,9 +61,9 @@ const DronePage = ({ drone }) => {
         );
     };
 
-    const RelocationButton = ({ drone }) => {
+    const RelocationButton = (droneId, depotList, onRelocate) => {
 
-        const [depotId, setDepotId] = useState(drone.depotId);
+        const [depotId, setDepotId] = useState('');
         const [message, setMessage] = useState('');
 
         const handleInputChange = (event) => {
@@ -44,45 +71,40 @@ const DronePage = ({ drone }) => {
         };
 
         const handleClick = async () => {
-            const newDepotId = parseInt(depotId, 10);
+            if (!depotId) {
+                setMessage('Please elect a depot');
+                return;
+            }
 
-            if (!isNaN(newDepotId)) {
+            const newDepotId = parseInt(depotId);
+
+            if ((!isNaN(newDepotId)) && (depotList.includes(newDepotId))) {
                 try {
-                    const response = await axios.post("http://localhost:3000/api/Drone/depotChange,", {
-                        droneId: drone.Id,
-                        depotId: newDepotId,
+                    await axios.post("http://localhost:3000/api/Drone/ChangeDepot", {
+                        droneId,
+                        depotId: newDepotId
                     });
-
-                    const { droneId, transit_status, orderId, depotId } = response.data;
-
-                    localStorage.setItem("droneId", droneId);
-                    localStorage.setItem("transit_status", transit_status);
-                    localStorage.setItem("orderId", orderId);
-                    localStorage.setItem("depotId", depotId);
-
+                    onRelocate(newDepotId);
+                    setMessage('Drone relocated successfully')
                 } catch (error) {
                     console.error("Depot Selection Error:", error);
                     setMessage("Drone Relocation failed");
                 }
-                setDepotId(newDepotId);
-            } else {
-                alert('Please enter a value Depot Number');
             }
         };
 
         return (
             <div>
-                <input
-                    type="number"
-                    value={depotId}
-                    onChange={handleInputChange}
-                    placeholder="Enter Depot Id"
-                />
-                <button
-                    disabled={drone.transit_status === 'In Transit'}
-                    onClick={handleClick}>
-                    Relocate
-                </button>
+                <select value={depotId} onChange={handleInputChange}>
+                    <option value="">Select Depot</option>
+                    {depotList.map((depot, index) => (
+                        <option key={index} value={depot}>
+                            {depot}
+                        </option>
+                    ))}
+                </select>
+                <button disabled={drone.transit_status === 'In Transit'} onClick={handleClick}>Relocate</button>
+                {message && <p>{message}</p>}
             </div>
         )
     };
