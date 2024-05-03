@@ -5,6 +5,7 @@ import PackageDetails from "./components/PackageDetails";
 import HomePage from "./components/HomePage";
 import SignupPage from "./components/SignupPage";
 import PackageGrid from "./components/PackageGrid";
+import DronePage from "./components/DronePage";
 
 const App = () => {
   const [user, setUser] = useState(null);
@@ -44,6 +45,15 @@ const App = () => {
     setUser(null);
   };
 
+  /* 
+  Original code
+  Update to incorporate the depot list for selection
+  Maybe validation to ensure that they are an admin or that the depot exists
+  const handleDroneRelocation = (drone, newDepotId) => {
+      
+  }
+  */
+
   return (
     <Router>
       <Routes>
@@ -54,6 +64,7 @@ const App = () => {
               loggedIn={!!user}
               onLogout={handleLogout}
               user={user}
+              role={user?.isAdmin ? "True" : "False"}
               component={PackageGrid}
             />
           }
@@ -61,6 +72,7 @@ const App = () => {
         <Route path="/login" element={<LoginPage onLogin={handleLogin} />} />
         <Route path="/signup" element={<SignupPage />} />
         <Route path="/package/:packageId" element={<PackageDetails />} />
+        <Route path="/drone/:droneId" element={<DronePage />} />
       </Routes>
     </Router>
   );

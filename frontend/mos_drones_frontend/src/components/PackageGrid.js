@@ -8,12 +8,29 @@ import axios from "axios";
 
 const PackageGrid = () => {
   const [rowData, setRowData] = useState([]);
-
+  const [useMockData, setUseMockData] = useState(true);
   useEffect(() => {
+    const mockData = [
+      {
+        packageId: "1",
+        deliveryDate: "2024-04-10",
+        status: "In Transit",
+      },
+      {
+        packageId: "2",
+        deliveryDate: "2024-03-30",
+        status: "Delivered",
+      },
+    ];
+
+    if (useMockData) {
+      setRowData(mockData);
+      return;
+    }
     const fetchPackages = async () => {
       try {
         const accountId = localStorage.getItem("accountId");
-        const response = await axios.post("http://localhost:5000/api/Home/GetUserOrders", {
+        const response = await axios.post("http://localhost:3000/api/Home/GetUserOrders", {
           accountId: parseInt(accountId),
         });
         const packages = response.data;

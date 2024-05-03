@@ -7,8 +7,10 @@ import "ag-grid-community/styles/ag-theme-alpine.css";
 
 const DroneGrid = () => {
   const [rowData, setRowData] = useState([]);
+  const [useMockData, setMockData] = useState(false);
 
   useEffect(() => {
+    setMockData(true);
     const mockData = {
       drones: [
         {
@@ -37,9 +39,27 @@ const DroneGrid = () => {
         },
       ],
     };
+    const fetchDroneData = async () => {
+      if (useMockData) {
+        setRowData(mockData.drones);
+        return;
+      }
 
-    setRowData(mockData.drones);
-  }, []);
+      try {
+        const response = await fetch("http://localhost:3000/api/Drone/GetDrones");
+        if (response.ok) {
+          const data = await response.json();
+          setRowData(data);
+        } else {
+          console.error("Error fetching drone data:", response.status);
+        }
+      } catch (error) {
+        console.error("Error fetching drone data:", error);
+      }
+    };
+
+    fetchDroneData();
+  }, [useMockData]);
 
   const columnDefs = [
     {

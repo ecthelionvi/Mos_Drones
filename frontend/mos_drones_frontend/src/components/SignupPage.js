@@ -22,7 +22,7 @@ const SignupPage = () => {
 
   const { isLoaded } = useJsApiLoader({
     id: "google-map-script",
-    googleMapsApiKey: "AIzaSyCfTn6UID_1mfAbHLjaFNsgAww13JewQzE",
+    googleMapsApiKey: "AIzaSyD9EOVlGpDT2Tj7c6b2xDU8CzYEto-ofN8",
     libraries: ["places"],
   });
 
@@ -83,7 +83,7 @@ const SignupPage = () => {
     }
 
     try {
-      await axios.post("http://localhost:5000/api/Login", {
+      await axios.post("http://localhost:3000/api/Login/CreateAccount", {
         firstName,
         lastName,
         email,
@@ -93,7 +93,7 @@ const SignupPage = () => {
         zipCode,
         addressLine,
       });
-      navigate("/login");
+      navigate("/");
     } catch (error) {
       console.error("Signup error:", error);
       setMessage("Signup failed. Please try again.");
