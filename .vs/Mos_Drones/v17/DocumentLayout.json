@@ -30,7 +30,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 475,
-          "SelectedChildIndex": 12,
+          "SelectedChildIndex": 10,
           "Children": [
             {
               "$type": "Bookmark",
@@ -54,19 +54,11 @@
             },
             {
               "$type": "Bookmark",
-              "Name": "ST:128:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
-            },
-            {
-              "$type": "Bookmark",
               "Name": "ST:131:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
             },
             {
               "$type": "Bookmark",
               "Name": "ST:132:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
-            },
-            {
-              "$type": "Bookmark",
-              "Name": "ST:129:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
             },
             {
               "$type": "Document",
@@ -78,8 +70,7 @@
               "RelativeToolTip": "backend\\Accessors\\Accessors\\OrderAccessor.cs",
               "ViewState": "AQIAAOwAAAAAAAAAAAAAAPcAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-03T17:00:37.167Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-05-03T17:00:37.167Z"
             },
             {
               "$type": "Document",
@@ -103,8 +94,7 @@
               "RelativeToolTip": "backend\\Accessors\\Accessors\\AccountAccessor.cs",
               "ViewState": "AQIAAHIAAAAAAAAAAAAAAAAAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-03T16:55:00.896Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-05-03T16:55:00.896Z"
             },
             {
               "$type": "Document",
