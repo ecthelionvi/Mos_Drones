@@ -105,18 +105,10 @@ namespace Accessors.Accessors
         }
 
         /// <summary>
-        /// This method checks if the Account record with the given parameters already
-        /// exists in the database and inserts a new Account record if it doesn't.
+        /// This method checks if the given Account instance already exists in the database and inserts a new Account record if it doesn't.
+        /// It returns the account id of the newly inserted record or the existing Account record.
         /// </summary>
-        /// <param name="firstName"></param>
-        /// <param name="lastName"></param>
-        /// <param name="email"></param>
-        /// <param name="password"></param>
-        /// <param name="city"></param>
-        /// <param name="state"></param>
-        /// <param name="zip"></param>
-        /// <param name="addressLine"></param>
-        /// <param name="isAdmin"></param>
+        /// <param name="acc"></param>
         /// <returns></returns>
         public static int InsertAccount(AccountDataModel acc)
         {

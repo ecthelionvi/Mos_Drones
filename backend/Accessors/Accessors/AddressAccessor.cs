@@ -5,7 +5,6 @@ using Accessors.DBModels;
 
 namespace Accessors.Accessors
 {
-    //TODO: add support for storing coordinates in db (Datamodel has been updated)
     public class AddressAccessor
     {
         /// <summary>
@@ -103,15 +102,11 @@ namespace Accessors.Accessors
         }
 
         /// <summary>
-        /// This method checks if the Address record with the given parameters already
-        /// exists in the database and inserts a new Address record if it doesn't.
+        /// This method checks if the given Address instance already exists in the database and inserts a new Address record if it doesn't. 
+        /// It returns the address id of the newly inserted record or the existing Address record.
         /// </summary>
-        /// <param name="city"></param>
-        /// <param name="state"></param>
-        /// <param name="zip"></param>
-        /// <param name="addressLine"></param>
-        /// <param name="latitude"</param>
-        /// <param name="longitude"</param>
+        /// <param name="a"></param>
+        /// <returns></returns>
         public static int InsertAddress(AddressDataModel a)
         {
             string selectQuery = @"SELECT addressId FROM Address WHERE city = @City 

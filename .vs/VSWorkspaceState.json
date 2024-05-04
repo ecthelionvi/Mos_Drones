@@ -1,17 +1,6 @@
 {
   "ExpandedNodes": [
-    "",
-    "\\backend",
-    "\\backend\\Service",
-    "\\backend\\Service\\Controllers",
-    "\\backend\\UnitTests",
-    "\\backend\\UnitTests\\AccessorTests",
-    "\\backend\\UnitTests\\EngineTests",
-    "\\backend\\UnitTests\\ManagerTests",
-    "\\frontend",
-    "\\frontend\\mos_drones_frontend",
-    "\\frontend\\mos_drones_frontend\\src"
+    ""
   ],
-  "SelectedNode": "\\backend\\Accessors\\Accessors\\OrderAccessor.cs",
   "PreviewInSolutionExplorer": false
 }

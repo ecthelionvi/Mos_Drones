@@ -9,7 +9,8 @@ namespace UnitTests.AccessorTests
         [TestMethod]
         public void ValidGetAccountWithAccountId()
         {
-            AddressDataModel accountAddress = new AddressDataModel(1, "Lincoln", "Nebraska", "68510", "4321 O Street");
+            Coordinate coord = new Coordinate(40.81338, -96.65949);
+            AddressDataModel accountAddress = new AddressDataModel(1, "Lincoln", "Nebraska", "68510", "4321 O Street", coord);
             AccountDataModel expectedAccount = new AccountDataModel(1, "Alfred", "Van Arsdall", "avanarsdall0@cocolog-nifty.com", "uI7lq}{e0WU", accountAddress, true);
 
             AccountDataModel actualAccount = AccountAccessor.GetAccountWithAccountId(1);
@@ -30,7 +31,8 @@ namespace UnitTests.AccessorTests
         [TestMethod]
         public void ValidGetAccountWithEmail()
         {
-            AddressDataModel accountAddress = new AddressDataModel(2, "Lincoln", "Nebraska", "68521", "2468 North 27th Street");
+            Coordinate coord = new Coordinate(40.83762, -96.68203);
+            AddressDataModel accountAddress = new AddressDataModel(2, "Lincoln", "Nebraska", "68521", "2468 North 27th Street", coord);
             AccountDataModel expectedAccount = new AccountDataModel(2, "Beltran", "Lillie", "blillie1@imdb.com", "hC7S>lx+N7a(?2>k", accountAddress, false);
 
             AccountDataModel actualAccount = AccountAccessor.GetAccountWithEmail("blillie1@imdb.com");
@@ -60,7 +62,11 @@ namespace UnitTests.AccessorTests
         {
             int expectedAccountId = 3;
 
-            int actualAccountId = AccountAccessor.InsertAccount("Angie", "Zheng", "azheng2@huskers.unl.edu", "password123", "Lincoln", "Nebraska", "68588", "1400 R St", false);
+            Coordinate coord = new Coordinate(40.817638, -96.699997);
+            AddressDataModel address = new AddressDataModel(null, "Lincoln", "Nebraska", "68588", "1400 R St", coord);
+            AccountDataModel account = new AccountDataModel(null, "Angie", "Zheng", "azheng2@huskers.unl.edu", "password123", address, false);
+            
+            int actualAccountId = AccountAccessor.InsertAccount(account);
             Assert.AreEqual(expectedAccountId, actualAccountId);
         }
     }

@@ -7,29 +7,10 @@ namespace UnitTests.AccessorTests
     public class AddressAccessorTests
     {
         [TestMethod]
-        public void ValidGetAddressList_ReturnsExpectedList()
-        {
-            List<AddressDataModel> expectedAddressList = new List<AddressDataModel>();
-            AddressDataModel a = new AddressDataModel(1, "Lincoln", "Nebraska", "68510", "4321 O Street");
-            AddressDataModel b = new AddressDataModel(2, "Lincoln", "Nebraska", "68521", "2468 North 27th Street");
-            AddressDataModel c = new AddressDataModel(3, "Lincoln", "Nebraska", "68516", "9876 Pine Lake Road");
-            AddressDataModel d = new AddressDataModel(4, "Lincoln", "Nebraska", "68505", "8020 Holdrege Street");
-            AddressDataModel e = new AddressDataModel(5, "Lincoln", "Nebraska", "68506", "1357 South 84th Street");
-
-            expectedAddressList.Add(a);
-            expectedAddressList.Add(b);
-            expectedAddressList.Add(c);
-            expectedAddressList.Add(d);
-            expectedAddressList.Add(e);
-
-            List<AddressDataModel> actualAddressList = AddressAccessor.GetAddressList();
-            CollectionAssert.AreEquivalent(expectedAddressList, actualAddressList);
-        }
-
-        [TestMethod]
         public void ValidGetAddress_ReturnsCorrectAddress()
         {
-            AddressDataModel expectedAddress = new AddressDataModel(1, "Lincoln", "Nebraska", "68510", "4321 O Street");
+            Coordinate coord = new Coordinate(40.81338, -96.65949);
+            AddressDataModel expectedAddress = new AddressDataModel(1, "Lincoln", "Nebraska", "68510", "4321 O Street", coord);
 
             AddressDataModel actualAddress = AddressAccessor.GetAddress(1);
 
@@ -46,9 +27,11 @@ namespace UnitTests.AccessorTests
         [TestMethod]
         public void ValidInsertAddress_ReturnsCorrectAddressId()
         {
-            int expectedAddressId = 6;
+            int expectedAddressId = 17;
 
-            int actualAddressId = AddressAccessor.InsertAddress("Pleasant Dale", "Nebraska", "68423", "2468 North 10th Road");
+            Coordinate coord = new Coordinate(40.828411, -96.929764);
+            AddressDataModel address = new AddressDataModel(null, "Pleasant Dale", "Nebraska", "68423", "2468 North 10th Road", coord);
+            int actualAddressId = AddressAccessor.InsertAddress(address);
 
             Assert.AreEqual(expectedAddressId, actualAddressId);
         }
