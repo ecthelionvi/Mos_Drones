@@ -112,7 +112,7 @@ namespace Accessors.Accessors
         /// <param name="addressLine"></param>
         /// <param name="latitude"</param>
         /// <param name="longitude"</param>
-        public static int InsertAddress(string city, string state, string zip, string addressLine, double latitude, double longitude)
+        public static int InsertAddress(AddressDataModel a)
         {
             string selectQuery = @"SELECT addressId FROM Address WHERE city = @City 
                            AND state = @State AND zip = @Zip AND address_line = @AddressLine
@@ -121,6 +121,13 @@ namespace Accessors.Accessors
             string insertQuery = @"INSERT INTO Address (city, state, zip, address_line, latitude, longitude) 
                              VALUES (@City, @State, @Zip, @AddressLine, @Latitude, @Longitude); SELECT SCOPE_IDENTITY();";
 
+            string city = a.City;
+            string state = a.State;
+            string zip = a.ZipCode;
+            string addressLine = a.AddressLine;
+            double latitude = a.Coordinates.Latitude;
+            double longitude = a.Coordinates.Longitude;
+            
             int addressId = -1;
 
             SqlConnection connection = ConnectionAccessor.ConnectionAccessor.GetConnection();

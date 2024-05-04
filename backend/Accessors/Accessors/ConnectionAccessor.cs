@@ -8,7 +8,8 @@ namespace Accessors.ConnectionAccessor
     {
         public static SqlConnection GetConnection()
         {
-            string connString = "Server=localhost,1433;Database=master;User Id=SA;Password=MyStrongPassword123;Integrated Security=False;;";
+            //string connString = "Server=localhost,1433;Database=master;User Id=SA;Password=MyStrongPassword123;Integrated Security=False;;";
+            string connString = "Data Source=ANGIE-DELL-XPS\\SQLEXPRESS01; Initial Catalog=mos_drones; Integrated Security=True; MultipleActiveResultSets=True;";
             SqlConnection connection = new SqlConnection(connString);
             return connection;
         }
@@ -18,9 +19,9 @@ namespace Accessors.ConnectionAccessor
             // Testing AddressAccessor methods
             List<AddressDataModel> addressList = AddressAccessor.GetAddressList();
             Console.WriteLine("All Addresses: ");
-            foreach (AddressDataModel address in addressList)
+            foreach (AddressDataModel addr in addressList)
             {
-                Console.WriteLine(address);
+                Console.WriteLine(addr);
             }
 
             Console.WriteLine("The address with addressId of 1: ");
@@ -73,13 +74,19 @@ namespace Accessors.ConnectionAccessor
             }
 
             // Inserting into the database
-            int addressId = AddressAccessor.InsertAddress("Pleasant Dale", "Nebraska", "68423", "2468 North 10th Road", 40.828410, -96.929760);
+            Coordinate c = new Coordinate(40.828410, -96.929760);
+            AddressDataModel address = new AddressDataModel(null, "Pleasant Dale", "Nebraska", "68423", "2468 North 10th Road", c);
+            int addressId = AddressAccessor.InsertAddress(address);
             Console.WriteLine("The addressId of the selected/inserted address is " + addressId + "\n");
 
-            int accountId = AccountAccessor.InsertAccount("Angie", "Zheng", "azheng2@huskers.unl.edu", "password123", "Lincoln", "Nebraska", "68588", "1400 R St", 40.817638, -96.699997, false);
+            Coordinate coord = new Coordinate(40.817638, -96.699997);
+            AddressDataModel address2 = new AddressDataModel(null, "Lincoln", "Nebraska", "68588", "1400 R St", coord);
+            AccountDataModel acc = new AccountDataModel(null, "Angie", "Zheng", "azheng2@huskers.unl.edu", "password123", address2, false);
+            int accountId = AccountAccessor.InsertAccount(acc);
             Console.WriteLine("The accountId of the selected/inserted account is " + accountId + "\n");
 
-            int accountId2 = AccountAccessor.InsertAccount("Angie", "Zheng", "angizheng4201@gmail.com", "password123", "Lincoln", "Nebraska", "68588", "1400 R St", 40.817638, -96.699997, false);
+            AccountDataModel acc2 = new AccountDataModel(null, "Angie", "Zheng", "angizheng4201@gmail.com", "password123", address2, false);
+            int accountId2 = AccountAccessor.InsertAccount(acc2);
             Console.WriteLine("The accountId of the selected/inserted account is " + accountId2 + "\n");
 
             DateTime deliveryDate = new DateTime(2024, 4, 23, 17, 02, 00);

@@ -118,7 +118,7 @@ namespace Accessors.Accessors
         /// <param name="addressLine"></param>
         /// <param name="isAdmin"></param>
         /// <returns></returns>
-        public static int InsertAccount(string firstName, string lastName, string email, string password, string city, string state, string zip, string addressLine, double latitude, double longitude, bool isAdmin)
+        public static int InsertAccount(AccountDataModel acc)
         {
             string selectQuery = @"SELECT accountId FROM Account WHERE email = @Email";
 
@@ -133,7 +133,7 @@ namespace Accessors.Accessors
             {
                 connection.Open();
                 SqlCommand selectCommand = new SqlCommand(selectQuery, connection);
-                selectCommand.Parameters.AddWithValue("@Email", email);
+                selectCommand.Parameters.AddWithValue("@Email", acc.Email);
 
                 object account = selectCommand.ExecuteScalar();
 
@@ -144,15 +144,15 @@ namespace Accessors.Accessors
                 }
                 else
                 {
-                    int addressId = AddressAccessor.InsertAddress(city, state, zip, addressLine, latitude, longitude);
+                    int addressId = AddressAccessor.InsertAddress(acc.AccountAddress);
 
                     SqlCommand insertCommand = new SqlCommand(insertQuery, connection);
-                    insertCommand.Parameters.AddWithValue("@FirstName", firstName);
-                    insertCommand.Parameters.AddWithValue("@LastName", lastName);
-                    insertCommand.Parameters.AddWithValue("@Email", email);
-                    insertCommand.Parameters.AddWithValue("@Password", password);
+                    insertCommand.Parameters.AddWithValue("@FirstName", acc.FirstName);
+                    insertCommand.Parameters.AddWithValue("@LastName", acc.LastName);
+                    insertCommand.Parameters.AddWithValue("@Email", acc.Email);
+                    insertCommand.Parameters.AddWithValue("@Password", acc.Password);
                     insertCommand.Parameters.AddWithValue("@AddressId", addressId);
-                    insertCommand.Parameters.AddWithValue("@IsAdmin", isAdmin);
+                    insertCommand.Parameters.AddWithValue("@IsAdmin", acc.IsAdmin);
 
                     // Insert the record and get its id
                     account = insertCommand.ExecuteScalar();
