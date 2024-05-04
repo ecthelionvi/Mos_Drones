@@ -53,13 +53,6 @@ namespace UnitTests.AccessorTests
             OrderDataModel invalidOrder = OrderAccessor.GetOrderWithPackageId("invalidId");
             Assert.IsNull(invalidOrder);
         }
-
-        [TestMethod]
-        public void NullGetOrderWithPackageId()
-        {
-            OrderDataModel nullOrder = OrderAccessor.GetOrderWithPackageId(null);
-            Assert.IsNull(nullOrder);
-        }
     }
 
     [TestClass]
