@@ -264,10 +264,8 @@ namespace Accessors.Accessors
                 object account = selectCommand.ExecuteScalar();
                 int accountId = Convert.ToInt32(account);
 
-                int originId = AddressAccessor.InsertAddress(order.ShippedFrom.City, order.ShippedFrom.State,
-                    order.ShippedFrom.ZipCode, order.ShippedFrom.AddressLine, order.ShippedFrom.Coordinates.Latitude, order.ShippedFrom.Coordinates.Longitude);
-                int destinationId = AddressAccessor.InsertAddress(order.ShippedTo.City, order.ShippedTo.State,
-                    order.ShippedTo.ZipCode, order.ShippedTo.AddressLine, order.ShippedTo.Coordinates.Latitude, order.ShippedTo.Coordinates.Longitude);
+                int originId = AddressAccessor.InsertAddress(order.ShippedFrom);
+                int destinationId = AddressAccessor.InsertAddress(order.ShippedTo);
 
                 SqlCommand insertCommand = new SqlCommand(insertQuery, connection);
                 insertCommand.Parameters.AddWithValue("@PackageId", packageId);
