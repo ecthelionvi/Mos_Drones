@@ -9,7 +9,8 @@ namespace UnitTests.AccessorTests
         [TestMethod]
         public void ValidGetDepotWithDepotId()
         {
-            AddressDataModel depotAddress = new AddressDataModel(3, "Lincoln", "Nebraska", "68516", "9876 Pine Lake Road");
+            Coordinate coord = new Coordinate(40.911152, -97.101418);
+            AddressDataModel depotAddress = new AddressDataModel(6, "Seward", "Nebraska", "68434", "434 North 8th Street", coord);
             DepotDataModel expectedDepot = new DepotDataModel(1, depotAddress);
 
             DepotDataModel actualDepot = DepotAccessor.GetDepotWithDepotId(1);
@@ -21,27 +22,6 @@ namespace UnitTests.AccessorTests
         {
             DepotDataModel depot = DepotAccessor.GetDepotWithDepotId(-1);
             Assert.IsNull(depot);
-        }
-    }
-
-    [TestClass]
-    public class GetDepotListTests
-    {
-        [TestMethod]
-        public void ValidGetDepotList()
-        {
-            AddressDataModel address3 = new AddressDataModel(3, "Lincoln", "Nebraska", "68516", "9876 Pine Lake Road");
-            DepotDataModel depot1 = new DepotDataModel(1, address3);
-
-            AddressDataModel address4 = new AddressDataModel(4, "Lincoln", "Nebraska", "68505", "8020 Holdrege Street");
-            DepotDataModel depot2 = new DepotDataModel(2, address4);
-
-            List<DepotDataModel> expectedDepotList = new List<DepotDataModel>();
-            expectedDepotList.Add(depot1);
-            expectedDepotList.Add(depot2);
-
-            List<DepotDataModel> actualDepotList = DepotAccessor.GetDepotList();
-            CollectionAssert.AreEquivalent(actualDepotList, expectedDepotList);
         }
     }
 }

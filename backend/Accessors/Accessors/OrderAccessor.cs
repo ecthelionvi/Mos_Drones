@@ -172,7 +172,7 @@ namespace Accessors.Accessors
 
         /// <summary>
         /// Method to return all Order instances loaded from the database 
-        /// that are associated with a specific Account with the given accountId,
+        /// that are associated with a specific Account with the given accountId.
         /// </summary>
         /// <param name="accountId"></param>
         /// <returns></returns>
@@ -223,20 +223,13 @@ namespace Accessors.Accessors
 
             return orderList;
         }
-        
+
         /// <summary>
         /// This method inserts a new Order record into the database. It generates a
-        /// sixteen character string for the packageId and sets the ship date to the current date/time.
+        /// sixteen character string for the packageId and sets the ship date to the current date/time. 
+        /// Returns the order id of the newly inserted Order record.
         /// </summary>
-        /// <param name="accountEmail"></param>
-        /// <param name="originCity"></param>
-        /// <param name="originState"></param>
-        /// <param name="originZip"></param>
-        /// <param name="originAddressLine"></param>
-        /// <param name="destCity"></param>
-        /// <param name="destState"></param>
-        /// <param name="destZip"></param>
-        /// <param name="destAddressLine"></param>
+        /// <param name="order"></param>
         /// <returns></returns>
         public static int InsertOrder(OrderDataModel order)
         {
@@ -264,10 +257,8 @@ namespace Accessors.Accessors
                 object account = selectCommand.ExecuteScalar();
                 int accountId = Convert.ToInt32(account);
 
-                int originId = AddressAccessor.InsertAddress(order.ShippedFrom.City, order.ShippedFrom.State,
-                    order.ShippedFrom.ZipCode, order.ShippedFrom.AddressLine, order.ShippedFrom.Coordinates.Latitude, order.ShippedFrom.Coordinates.Longitude);
-                int destinationId = AddressAccessor.InsertAddress(order.ShippedTo.City, order.ShippedTo.State,
-                    order.ShippedTo.ZipCode, order.ShippedTo.AddressLine, order.ShippedTo.Coordinates.Latitude, order.ShippedTo.Coordinates.Longitude);
+                int originId = AddressAccessor.InsertAddress(order.ShippedFrom);
+                int destinationId = AddressAccessor.InsertAddress(order.ShippedTo);
 
                 SqlCommand insertCommand = new SqlCommand(insertQuery, connection);
                 insertCommand.Parameters.AddWithValue("@PackageId", packageId);

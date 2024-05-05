@@ -5,7 +5,6 @@ using Accessors.DBModels;
 
 namespace Accessors.Accessors
 {
-    //TODO: add support for storing coordinates in db (Datamodel has been updated)
     public class AddressAccessor
     {
         /// <summary>
@@ -103,16 +102,12 @@ namespace Accessors.Accessors
         }
 
         /// <summary>
-        /// This method checks if the Address record with the given parameters already
-        /// exists in the database and inserts a new Address record if it doesn't.
+        /// This method checks if the given Address instance already exists in the database and inserts a new Address record if it doesn't. 
+        /// It returns the address id of the newly inserted record or the existing Address record.
         /// </summary>
-        /// <param name="city"></param>
-        /// <param name="state"></param>
-        /// <param name="zip"></param>
-        /// <param name="addressLine"></param>
-        /// <param name="latitude"</param>
-        /// <param name="longitude"</param>
-        public static int InsertAddress(string city, string state, string zip, string addressLine, double latitude, double longitude)
+        /// <param name="a"></param>
+        /// <returns></returns>
+        public static int InsertAddress(AddressDataModel a)
         {
             string selectQuery = @"SELECT addressId FROM Address WHERE city = @City 
                            AND state = @State AND zip = @Zip AND address_line = @AddressLine
@@ -121,6 +116,13 @@ namespace Accessors.Accessors
             string insertQuery = @"INSERT INTO Address (city, state, zip, address_line, latitude, longitude) 
                              VALUES (@City, @State, @Zip, @AddressLine, @Latitude, @Longitude); SELECT SCOPE_IDENTITY();";
 
+            string city = a.City;
+            string state = a.State;
+            string zip = a.ZipCode;
+            string addressLine = a.AddressLine;
+            double latitude = a.Coordinates.Latitude;
+            double longitude = a.Coordinates.Longitude;
+            
             int addressId = -1;
 
             SqlConnection connection = ConnectionAccessor.ConnectionAccessor.GetConnection();

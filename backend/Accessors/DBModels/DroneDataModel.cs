@@ -21,10 +21,11 @@ public class DroneDataModel
 
         DroneDataModel other = (DroneDataModel)obj;
 
+        bool orderEqual = (Order == null && other.Order == null) || (Order != null && Order.Equals(other.Order));
         bool currentDepotEqual = (CurrentDepot == null && other.CurrentDepot == null) ||
                          (CurrentDepot != null && CurrentDepot.Equals(other.CurrentDepot));
 
-        return (DroneId == other.DroneId && TransitStatus == other.TransitStatus && Order.Equals(other.Order)
+        return (DroneId == other.DroneId && TransitStatus == other.TransitStatus && orderEqual
                 && currentDepotEqual);
     }
 

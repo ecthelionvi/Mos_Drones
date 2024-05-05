@@ -21,28 +21,29 @@ namespace Engines.BizLogic
         }
 
         /// <summary>
-        /// 
+        /// This method returns true if the email and password given are valid to create
+        /// a new account with. Otherwise, it returns false.
         /// </summary>
         /// <param name="email"></param>
         /// <param name="password"></param>
-        /// <exception cref="InvalidOperationException"></exception>
-        public static void ValidateSignUp(string email, string password)
+        /// <returns></returns>
+        public static bool ValidateSignUp(string email, string password)
         {
             if (!ValidPasswordStrength(password))
             {
-                throw new InvalidOperationException("Password does not meet requirements.");
+                return false;
             }
             // check if account with the entered email already exists
             AccountDataModel account = AccountAccessor.GetAccountWithEmail(email);
             if (account != null)
             {
-                throw new InvalidOperationException("Account with the entered email already exists.");
+                return false;
             }
+            return true;
         }
 
         /// <summary>
-        /// This method gets the Account instance with the given email and checks if the password used to 
-        /// login matches the existing Account's password.
+        /// This method if the password used to login matches the existing Account's password.
         /// </summary>
         /// <param name="email"></param>
         /// <param name="password"></param>

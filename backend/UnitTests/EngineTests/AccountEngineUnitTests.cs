@@ -1,12 +1,10 @@
-using System;
-using System.Text.RegularExpressions;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Accessors.DBModels;
 using Engines.BizLogic;
 
 namespace UnitTests.EngineTests
 {
     [TestClass]
-    public class AccountPasswordEngineTest
+    public class ValidPasswordStrengthTests
     {
         [TestMethod]
         public void ValidPasswordStrength()
@@ -19,51 +17,60 @@ namespace UnitTests.EngineTests
         [TestMethod]
         public void InvalidPasswordStrength()
         {
+            // No digit
             Assert.AreEqual(false, AccountEngine.ValidPasswordStrength("abcdefghijklmnopqrstuvwxyzABCDEF"));
             Assert.AreEqual(false, AccountEngine.ValidPasswordStrength("ImyNameIsTom"));
+            // Not long enough
             Assert.AreEqual(false, AccountEngine.ValidPasswordStrength("L697"));
+            // No uppercase letter
+            Assert.AreEqual(false, AccountEngine.ValidPasswordStrength("password123"));
+            // No lowercase letter
+            Assert.AreEqual(false, AccountEngine.ValidPasswordStrength("PASSWORD123"));
         }
     }
+
     [TestClass]
-    public class AccountSignUpEngineTest
+    public class ValidSignUpTests
     {
         [TestMethod]
         public void ValidSignUp()
         {
-            throw new NotImplementedException();
+            Assert.AreEqual(true, AccountEngine.ValidateSignUp("random123@gmail.com", "Password123"));
         }
 
         [TestMethod]
-        public void InvalidSignUp()
+        public void InvalidSignUp_WithExistingEmail()
         {
-            throw new NotImplementedException();
+
+            Assert.AreEqual(false, AccountEngine.ValidateSignUp("blillie1@imdb.com", "Password123"));
         }
 
         [TestMethod]
-        public void NullSignUp()
+        public void InvalidSignUp_WithInvalidPassword()
         {
-            throw new NotImplementedException();
+            Assert.AreEqual(false, AccountEngine.ValidateSignUp("random123@gmail.com", "password123"));
         }
     }
+
     [TestClass]
-    public class AccountLoginEngineTest
+    public class ValidateLoginTests
     {
         [TestMethod]
-        public void ValidSignUp()
+        public void ValidLogin()
         {
-            throw new NotImplementedException();
+            Coordinate coord = new Coordinate(40.81338, -96.65949);
+            AddressDataModel accountAddress = new AddressDataModel(1, "Lincoln", "Nebraska", "68510", "4321 O Street", coord);
+            AccountDataModel account = new AccountDataModel(1, "Alfred", "Van Arsdall", "avanarsdall0@cocolog-nifty.com", "uI7lq}{e0WU", accountAddress, true);
+            Assert.AreEqual(true, AccountEngine.ValidateLogin(account, "uI7lq}{e0WU"));
         }
 
         [TestMethod]
-        public void InvalidSignUp()
+        public void InvalidLogin()
         {
-            throw new NotImplementedException();
-        }
-
-        [TestMethod]
-        public void NullSignUp()
-        {
-            throw new NotImplementedException();
+            Coordinate coord = new Coordinate(40.81338, -96.65949);
+            AddressDataModel accountAddress = new AddressDataModel(1, "Lincoln", "Nebraska", "68510", "4321 O Street", coord);
+            AccountDataModel account = new AccountDataModel(1, "Alfred", "Van Arsdall", "avanarsdall0@cocolog-nifty.com", "uI7lq}{e0WU", accountAddress, true);
+            Assert.AreEqual(false, AccountEngine.ValidateLogin(account, "uI7lq}{e0WU!"));
         }
     }
 }

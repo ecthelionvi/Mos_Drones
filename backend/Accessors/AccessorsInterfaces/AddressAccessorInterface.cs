@@ -9,6 +9,6 @@ namespace Accessors.Accessors
     {
         List<AddressDataModel> GetAddressList();
         AddressDataModel GetAddress(int addressId);
-        int InsertAddress(string city, string state, string zip, string addressLine);
+        int InsertAddress(AddressDataModel a);
     }
 }
