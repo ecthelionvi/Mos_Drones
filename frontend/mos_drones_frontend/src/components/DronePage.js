@@ -61,7 +61,7 @@ const DronePage = ({ droneId, onRelocate }) => {
         );
     };
 
-    const RelocationButton = (droneId, depotList, onRelocate) => {
+    const RelocationButton = ({ droneId, depotList, onRelocate }) => {
 
         const [depotId, setDepotId] = useState('');
         const [message, setMessage] = useState('');
@@ -112,7 +112,7 @@ const DronePage = ({ droneId, onRelocate }) => {
     return (
         <div className="dronepage-body">
             <div className="body-container">
-                <h1>Drone {drone.id} Dashboard</h1>
+                <h1>Drone {droneId} Dashboard</h1>
                 <div className="drone-card">
                     <DroneStatus drone={drone} />
                     <p>Transit Status: {drone.transit_status}</p>
@@ -121,7 +121,7 @@ const DronePage = ({ droneId, onRelocate }) => {
                 </div>
                 <h2>Drone {drone.id} Status</h2>
             </div>
-            <RelocationButton drone={drone} />
+            <RelocationButton droneId={drone.id} depotList={depotList} />
         </div>
     );
 }
