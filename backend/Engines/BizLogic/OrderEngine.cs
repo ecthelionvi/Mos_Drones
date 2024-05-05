@@ -52,8 +52,9 @@ namespace Engines.BizLogic
             var openRouteAccessor = new OpenRouteAccessor();
             Coordinate coordinate = await openRouteAccessor.GetCoordinatesAsync(destination);
             destination.Coordinates = coordinate;
+            Boolean result = AddressEngine.IsDeliveryRequestInRange(destination);
             
-            return AddressEngine.IsDeliveryRequestInRange(destination);
+            return result;
         }
     }
 }

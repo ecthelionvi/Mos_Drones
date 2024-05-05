@@ -8,7 +8,7 @@ namespace Service.Controllers;
 [ApiController]
 public class LoginController : Controller
 {
-    private static int? _AccountId = 1;
+    private static int? _AccountId = 2;
     
     public static int? AccountId
     {
@@ -20,7 +20,7 @@ public class LoginController : Controller
     {
         Account? account = AccountManager.ValidateLogin(loginRequest.Email, loginRequest.Password);
         _AccountId = account?.AccountId;
-        return AccountId is null ? Json("Incorrect Email and Password") : Json(AccountId);
+        return AccountId is null ? Json("Incorrect Email and Password") : Json(account);
     }
     
     [HttpPost("CreateAccount")]

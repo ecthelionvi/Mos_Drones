@@ -32,8 +32,8 @@ public class OpenRouteAccessor
                     PropertyNameCaseInsensitive = true
                 };
                 GeoJsonData geoJsonData = JsonSerializer.Deserialize<GeoJsonData>(jsonResponse, options);
-                double latitude = geoJsonData.Features[geoJsonData.Features.Count - 1].Geometry.Coordinates[0];
-                double longitude = geoJsonData.Features[geoJsonData.Features.Count - 1].Geometry.Coordinates[1];
+                double latitude = geoJsonData.Features[geoJsonData.Features.Count - 1].Geometry.Coordinates[1];
+                double longitude = geoJsonData.Features[geoJsonData.Features.Count - 1].Geometry.Coordinates[0];
                 return new Coordinate(latitude, longitude);
             }
             else

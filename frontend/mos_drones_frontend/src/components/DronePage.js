@@ -10,7 +10,7 @@ const DronePage = ({ droneId, onRelocate }) => {
     useEffect(() => {
         const fetchDroneData = async () => {
             try {
-                const response = await axios.post("http://localhost:3000/api/Drone/GetDrones");
+                const response = await axios.post("http://localhost:3001/api/Drone/GetDrones");
                 if (response.ok) {
                     const data = await response.json();
                     setDroneData(data);
