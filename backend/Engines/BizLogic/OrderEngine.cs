@@ -17,10 +17,11 @@ namespace Engines.BizLogic
             int pickupIdx = depotList.IndexOf(pickup);
             int deliveryIdx = depotList.IndexOf(deliveryDepot);
 
-            double pickupDistance = 2 * AddressEngine.DistanceBetween(origin.Coordinates.Longitude,
+            //gets the total distance in miles between the depot and the address there and back
+            double pickupDistance = 2 * 0.00062137 * AddressEngine.DistanceBetween(origin.Coordinates.Longitude,
                 origin.Coordinates.Latitude, pickup.DepotAddress.Coordinates.Longitude,
                 pickup.DepotAddress.Coordinates.Latitude);
-            double dropoffDistance = 2 * AddressEngine.DistanceBetween(destination.Coordinates.Longitude,
+            double dropoffDistance = 2 * 0.00062137 * AddressEngine.DistanceBetween(destination.Coordinates.Longitude,
                 destination.Coordinates.Latitude, deliveryDepot.DepotAddress.Coordinates.Longitude,
                 deliveryDepot.DepotAddress.Coordinates.Latitude);
             
@@ -35,10 +36,78 @@ namespace Engines.BizLogic
             return shippedDate.AddMinutes(deliveryTime);
         }
 
-        public static string getOrderStatus(DateTime deliveryDate)
+        public static string GetOrderStatus(int orderId)
         {
-            int compare = deliveryDate.CompareTo(DateTime.Now);
-            return compare < 0 ? "Package-In-Transit" : "delivered";
+            string status = "";
+            OrderDataModel dm = OrderAccessor.GetOrderWithOrderId(orderId);
+
+            if (dm.DeliveryDate.CompareTo(DateTime.Now) > 0)
+            {
+                status = "Delivered";
+            }
+            else
+            {
+                TimeSpan timeInTrasit = DateTime.Now.Subtract(dm.ShipDate);
+                
+                DepotDataModel pickup = AddressEngine.GetClosestDepot(dm.ShippedFrom);
+                DepotDataModel deliveryDepot = AddressEngine.GetClosestDepot(dm.ShippedTo);
+                
+                List<DepotDataModel> depotList = DepotAccessor.GetDepotList();
+                depotList.Sort((depot1, depot2) => depot2.DepotAddress.Coordinates.Latitude.CompareTo(depot1.DepotAddress.Coordinates.Latitude));
+
+                int pickupIdx = depotList.IndexOf(pickup);
+                int deliveryIdx = depotList.IndexOf(deliveryDepot);
+                
+                double pickupDistance = 2 * 0.00062137 * AddressEngine.DistanceBetween(dm.ShippedFrom.Coordinates.Longitude,
+                    dm.ShippedFrom.Coordinates.Latitude, pickup.DepotAddress.Coordinates.Longitude,
+                    pickup.DepotAddress.Coordinates.Latitude);
+                double dropoffDistance = 2 * 0.00062137 * AddressEngine.DistanceBetween(dm.ShippedTo.Coordinates.Longitude,
+                    dm.ShippedTo.Coordinates.Latitude, deliveryDepot.DepotAddress.Coordinates.Longitude,
+                    deliveryDepot.DepotAddress.Coordinates.Latitude);
+                
+                int numRouteDepots = Math.Abs(deliveryIdx - pickupIdx);
+
+                List<DateTime> routeTimes = new List<DateTime>();
+                routeTimes.Add(dm.ShipDate);
+                routeTimes.Add(dm.ShipDate.AddMinutes((30 / pickupDistance) * 60));
+                foreach(DepotDataModel depot in depotList.GetRange(Math.Min(pickupIdx, deliveryIdx), numRouteDepots))
+                {
+                    routeTimes.Add(routeTimes[routeTimes.Count - 1].AddMinutes(20));
+                    routeTimes.Add(routeTimes[routeTimes.Count - 1].AddMinutes(10));
+                }
+                routeTimes.Add(routeTimes[routeTimes.Count - 1].AddMinutes((30 / dropoffDistance) * 60));
+
+                foreach (DateTime time in routeTimes)
+                {
+                    if (time.CompareTo(DateTime.Now) > 0)
+                    {
+                        int position = routeTimes.IndexOf(time);
+                        if (position < 2)
+                        {
+                            status = "Drone-in-Route to Pickup";
+                        }
+                        else if (position == routeTimes.Count - 1)
+                        {
+                            status = "Drone-in-Route to Dropoff";
+                        }
+                        else if (position % 2 == 0)
+                        {
+                            string depotName = depotList[pickupIdx + position / 2].DepotId.ToString();
+                            status = "Package-in-Route to Depot " + depotName;
+                        }
+                        else if (position % 2 == 1)
+                        {
+                            position++;
+                            string depotName = depotList[pickupIdx + (position / 2)].DepotId.ToString();
+                            status = "Package-at-Depot " + depotName;
+                        }
+
+                        break;
+                    }
+                }
+
+            }
+            return status;
         }
 
         public static string getAdminOrderStatus(DateTime deliveryDate)
@@ -52,8 +121,9 @@ namespace Engines.BizLogic
             var openRouteAccessor = new OpenRouteAccessor();
             Coordinate coordinate = await openRouteAccessor.GetCoordinatesAsync(destination);
             destination.Coordinates = coordinate;
+            Boolean result = AddressEngine.IsDeliveryRequestInRange(destination);
             
-            return AddressEngine.IsDeliveryRequestInRange(destination);
+            return result;
         }
     }
 }

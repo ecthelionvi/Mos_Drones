@@ -29,7 +29,7 @@ public class OrderManager
             DateTime deliveryDate = OrderEngine.getDeliveryDate(shippedDate, accountData.AccountAddress, destination);
 
             OrderDataModel oDM = new OrderDataModel(null, null, shippedDate, deliveryDate, accountId,
-                accountData.AccountAddress, destination);
+                accountData.AccountAddress, destination, "");
         
             OrderAccessor.InsertOrder(oDM);
             response = "Order Successfully Added";
@@ -49,5 +49,19 @@ public class OrderManager
             userOrders.Add(o);
         }
         return userOrders;
+    }
+
+    public static List<Order> GetOrders()
+    {
+        List<OrderDataModel> orderDataModels = OrderAccessor.GetActiveOrders();
+        
+        List<Order> orders = new List<Order>();
+        
+        foreach (OrderDataModel orderDataModel in orderDataModels)
+        {
+            orders.Add(OrderHelper.OrderDataModelToOrderModel(orderDataModel));
+        }
+
+        return orders;
     }
 }

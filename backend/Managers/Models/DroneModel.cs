@@ -6,7 +6,7 @@ namespace Managers.Models;
     {
         public int DroneId { get; set; }
         public string TransitStatus { get; set; }
-        public Order Order { get; set; }
+        public Order? Order { get; set; }
         public Depot? CurrentDepot { get; set; }
 
         public Drone(int droneId, string transitStatus, Order order, Depot? currentDepot)

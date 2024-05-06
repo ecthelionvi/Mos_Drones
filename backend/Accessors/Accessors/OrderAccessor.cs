@@ -44,7 +44,7 @@ namespace Accessors.Accessors
                     destination = AddressAccessor.GetAddress(shippedTo);
 
                     order = new OrderDataModel(orderId, packageId, shipDate, deliveryDate, accountId, origin,
-                        destination);
+                        destination, "");
                 }
 
                 reader.Close();
@@ -97,7 +97,7 @@ namespace Accessors.Accessors
                     destination = AddressAccessor.GetAddress(shippedTo);
 
                     order = new OrderDataModel(orderId, packageId, shipDate, deliveryDate, accountId, origin,
-                        destination);
+                        destination, "");
                 }
 
                 reader.Close();
@@ -113,62 +113,6 @@ namespace Accessors.Accessors
 
             return order;
         }
-
-        /// <summary>
-        /// Method to return all Order instances loaded from the database 
-        /// that are associated with a specific Account with the given email,
-        /// </summary>
-        /// <param name="email"></param>
-        /// <returns></returns>
-        // public static List<OrderDataModel> GetOrderListWithEmail(string email)
-        // {
-        //     List<OrderDataModel> orderList = new List<OrderDataModel>();
-        //     string query =
-        //         "SELECT o.* FROM [Order] o JOIN [Account] a ON o.accountId = a.accountId WHERE a.email = @Email";
-        //
-        //     SqlConnection connection = ConnectionAccessor.ConnectionAccessor.GetConnection();
-        //
-        //     try
-        //     {
-        //         connection.Open();
-        //         SqlCommand command = new SqlCommand(query, connection);
-        //         command.Parameters.AddWithValue("@Email", email);
-        //         SqlDataReader reader = command.ExecuteReader();
-        //         if (reader.HasRows)
-        //         {
-        //             while (reader.Read())
-        //             {
-        //                 int orderId = reader.GetInt32(reader.GetOrdinal("orderId"));
-        //                 string packageId = reader.GetString(reader.GetOrdinal("packageId"));
-        //                 DateTime shipDate = reader.GetDateTime(reader.GetOrdinal("ship_date"));
-        //                 DateTime deliveryDate = reader.GetDateTime(reader.GetOrdinal("deliveryDate"));
-        //                 int shippedFrom = reader.GetInt32(reader.GetOrdinal("shipped_from"));
-        //                 int shippedTo = reader.GetInt32(reader.GetOrdinal("shipped_to"));
-        //
-        //                 AccountDataModel account = AccountAccessor.GetAccountWithEmail(email);
-        //                 AddressDataModel origin = AddressAccessor.GetAddress(shippedFrom);
-        //                 AddressDataModel destination = AddressAccessor.GetAddress(shippedTo);
-        //
-        //                 OrderDataModel o = new OrderDataModel(orderId, packageId, shipDate, deliveryDate, account,
-        //                     origin, destination);
-        //                 orderList.Add(o);
-        //
-        //             }
-        //         }
-        //
-        //         reader.Close();
-        //     }
-        //     catch (SqlException ex)
-        //     {
-        //         Console.WriteLine($"SQL Exception: {ex.Message}");
-        //     }
-        //     finally
-        //     {
-        //         connection.Close();
-        //     }
-        //
-        //     return orderList;
-        // }
 
         /// <summary>
         /// Method to return all Order instances loaded from the database 
@@ -205,7 +149,7 @@ namespace Accessors.Accessors
                         AddressDataModel destination = AddressAccessor.GetAddress(shippedTo);
 
                         OrderDataModel o = new OrderDataModel(orderId, packageId, shipDate, deliveryDate, accountId,
-                            origin, destination);
+                            origin, destination, "");
                         orderList.Add(o);
                     }
                 }
@@ -282,6 +226,53 @@ namespace Accessors.Accessors
             }
 
             return orderId;
+        }
+
+        public static List<OrderDataModel> GetActiveOrders()
+        {
+            string query = "SELECT * FROM [Order] WHERE deliveryDate < @CurrentDateTime";
+            List<OrderDataModel> orderList = new List<OrderDataModel>();
+            SqlConnection connection = ConnectionAccessor.ConnectionAccessor.GetConnection();
+
+            try
+            {
+                connection.Open();
+                SqlCommand command = new SqlCommand(query, connection);
+                command.Parameters.AddWithValue("@CurrentDateTime", DateTime.Now);
+                SqlDataReader reader = command.ExecuteReader();
+                if (reader.HasRows)
+                {
+                    while (reader.Read())
+                    {
+                        int orderId = reader.GetInt32(reader.GetOrdinal("orderId"));
+                        string packageId = reader.GetString(reader.GetOrdinal("packageId"));
+                        int accountId = reader.GetInt32(reader.GetOrdinal("accountId"));
+                        DateTime shipDate = reader.GetDateTime(reader.GetOrdinal("ship_date"));
+                        DateTime deliveryDate = reader.GetDateTime(reader.GetOrdinal("deliveryDate"));
+                        int shippedFrom = reader.GetInt32(reader.GetOrdinal("shipped_from"));
+                        int shippedTo = reader.GetInt32(reader.GetOrdinal("shipped_to"));
+                        
+                        AddressDataModel origin = AddressAccessor.GetAddress(shippedFrom);
+                        AddressDataModel destination = AddressAccessor.GetAddress(shippedTo);
+
+                        OrderDataModel o = new OrderDataModel(orderId, packageId, shipDate, deliveryDate, accountId,
+                            origin, destination, "");
+                        orderList.Add(o);
+                    }
+                }
+
+                reader.Close();
+            }
+            catch (SqlException ex)
+            {
+                Console.WriteLine($"SQL Exception: {ex.Message}");
+            }
+            finally
+            {
+                connection.Close();
+            }
+
+            return orderList;
         }
     }
 }

@@ -14,15 +14,21 @@ public class DroneController : Controller
     [HttpGet("GetDrones")]
     public JsonResult GetDrones()
     {
-        //returns all data we have on all our drones
-        //changelaksdjflkajsdf
-        return new JsonResult("");
+        List<Drone> droneList = DroneManager.GetDrones();
+        return new JsonResult(droneList);
     }
 
     [HttpPost("ChangeDepot")]
     public void UpdateDepot([FromBody] Drone drone)
     {
         // updates drone depotId in the drone object
-    } 
+    }
+
+    [HttpPost("GetOrders")]
+    public JsonResult GetOrders()
+    {
+        List<Order> orders = OrderManager.GetOrders();
+        return new JsonResult(orders);
+    }
     
 }

@@ -47,6 +47,7 @@ const HomePage = ({ loggedIn, onLogout, setLoggedIn, role }) => {
   const handleRequestDelivery = () => {
     if (loggedIn) {
       const requestBody = {
+        addressId: null,
         city: city,
         state: state,
         zipCode: zipCode,
@@ -55,7 +56,7 @@ const HomePage = ({ loggedIn, onLogout, setLoggedIn, role }) => {
 
       console.log("Request body:", requestBody);
 
-      fetch("http://localhost:3000/api/Home/NewOrder", {
+      fetch("http://localhost:3001/api/Home/NewOrder", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

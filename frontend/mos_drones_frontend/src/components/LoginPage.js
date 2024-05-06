@@ -48,15 +48,23 @@ const LoginPage = ({ onLogin }) => {
       localStorage.setItem("isAdmin", testUser.isAdmin);
 
       onLogin();
-      navigate("/");
+      navigate("/Home");
     } else {
       try {
-        const response = await axios.post("http://localhost:3000/api/Login/auth", {
+        const response = await axios.post("http://localhost:3001/api/Login/auth", {
           email: username,
           password: password,
         });
 
-        const { accountId, firstName, lastName, email, isAdmin } = response.data;
+        if (response.data === "Incorrect Email and Password") {
+          throw new Error('Incorrect email or password');
+        }
+
+        const accountId = response.data.accountId;
+        const firstName = response.data.firstName;
+        const lastName = response.data.lastName;
+        const email = response.data.email;
+        const isAdmin = response.data.isAdmin;
 
         localStorage.setItem("accountId", accountId);
         localStorage.setItem("firstName", firstName);
@@ -65,7 +73,7 @@ const LoginPage = ({ onLogin }) => {
         localStorage.setItem("isAdmin", isAdmin);
 
         onLogin();
-        navigate("/login");
+        navigate("/");
       } catch (error) {
         console.error("Login error:", error);
         setMessage("Login failed. Please check your credentials.");

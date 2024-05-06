@@ -82,17 +82,21 @@ const SignupPage = () => {
       return;
     }
 
-    try {
-      await axios.post("http://localhost:3000/api/Login/CreateAccount", {
-        firstName,
-        lastName,
-        email,
-        password,
-        city,
-        state,
-        zipCode,
-        addressLine,
-      });
+      try {
+        const accountData = {
+          firstName: firstName,
+          lastName: lastName,
+          email: email,
+          password: password,
+          accountAddress: {
+            city: city,
+            state: state,
+            zipCode: zipCode,
+            addressLine: addressLine
+          }
+        };
+
+      await axios.post("http://localhost:3001/api/Login/CreateAccount", accountData);
       navigate("/");
     } catch (error) {
       console.error("Signup error:", error);

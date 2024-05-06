@@ -10,8 +10,10 @@ public class OrderDataModel
     public int AccountId { get; set; }
     public AddressDataModel ShippedFrom { get; set; }
     public AddressDataModel ShippedTo { get; set; }
+    
+    public string Status { get; set; }
 
-    public OrderDataModel(int? orderId, string? packageId, DateTime shipDate, DateTime deliveryDate, int accountId, AddressDataModel shippedFrom, AddressDataModel shippedTo)
+    public OrderDataModel(int? orderId, string? packageId, DateTime shipDate, DateTime deliveryDate, int accountId, AddressDataModel shippedFrom, AddressDataModel shippedTo, string status)
     {
         this.OrderId = orderId;
         this.PackageId = packageId;
@@ -20,6 +22,7 @@ public class OrderDataModel
         this.AccountId = accountId;
         this.ShippedFrom = shippedFrom;
         this.ShippedTo = shippedTo;
+        this.Status = status;
     }
 
     public override bool Equals(object obj)
