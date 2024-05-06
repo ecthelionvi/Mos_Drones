@@ -95,7 +95,7 @@ namespace Accessors.ConnectionAccessor
             AddressDataModel shippedFrom = new AddressDataModel(null, "Lincoln", "Nebraska", "68588", "1400 R St", c1);
             Coordinate c2 = new Coordinate(40.828410, -96.929760);
             AddressDataModel shippedTo = new AddressDataModel(null, "Pleasant Dale", "Nebraska", "68423", "2468 North 10th Road", c2);
-            OrderDataModel order2 = new OrderDataModel(null, null, shipDate, deliveryDate, 1, shippedFrom, shippedTo);
+            OrderDataModel order2 = new OrderDataModel(null, null, shipDate, deliveryDate, 1, shippedFrom, shippedTo, "");
             int orderId = OrderAccessor.InsertOrder(order2);
             Console.WriteLine("The orderId of the inserted Order is " + orderId);
 

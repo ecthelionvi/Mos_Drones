@@ -15,7 +15,8 @@ public class OrderHelper
             oDM.DeliveryDate,
             oDM.AccountId,
             AddressHelper.AddressDataModelToAddress(oDM.ShippedFrom),
-            AddressHelper.AddressDataModelToAddress(oDM.ShippedTo)
+            AddressHelper.AddressDataModelToAddress(oDM.ShippedTo), 
+            oDM.Status
         );
     }
 
@@ -29,7 +30,8 @@ public class OrderHelper
             order.DeliveryDate,
             order.AccountId,
             AddressHelper.AddressToAddressDataModel(order.ShippedFrom),
-            AddressHelper.AddressToAddressDataModel(order.ShippedTo)
+            AddressHelper.AddressToAddressDataModel(order.ShippedTo),
+            order.Status
         );
     }
 }

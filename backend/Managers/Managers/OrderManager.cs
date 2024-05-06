@@ -29,7 +29,7 @@ public class OrderManager
             DateTime deliveryDate = OrderEngine.getDeliveryDate(shippedDate, accountData.AccountAddress, destination);
 
             OrderDataModel oDM = new OrderDataModel(null, null, shippedDate, deliveryDate, accountId,
-                accountData.AccountAddress, destination);
+                accountData.AccountAddress, destination, "");
         
             OrderAccessor.InsertOrder(oDM);
             response = "Order Successfully Added";

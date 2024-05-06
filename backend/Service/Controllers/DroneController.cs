@@ -14,9 +14,8 @@ public class DroneController : Controller
     [HttpGet("GetDrones")]
     public JsonResult GetDrones()
     {
-        //returns all data we have on all our drones
-        //changelaksdjflkajsdf
-        return new JsonResult("");
+        List<Drone> droneList = DroneManager.GetDrones();
+        return new JsonResult(droneList);
     }
 
     [HttpPost("ChangeDepot")]

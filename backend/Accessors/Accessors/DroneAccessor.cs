@@ -133,5 +133,29 @@ namespace Accessors.Accessors
             }
             return droneList;
         }
+        
+        public static void UpdateDroneStatus(int droneId, string newStatus)
+        {
+            string query = "UPDATE Drone SET transit_status = @NewStatus WHERE droneId = @DroneId";
+
+            SqlConnection connection = ConnectionAccessor.ConnectionAccessor.GetConnection();
+
+            try
+            {
+                connection.Open();
+                SqlCommand command = new SqlCommand(query, connection);
+                command.Parameters.AddWithValue("@NewStatus", newStatus);
+                command.Parameters.AddWithValue("@DroneId", droneId);
+                command.ExecuteNonQuery();
+            }
+            catch (SqlException ex)
+            {
+                Console.WriteLine($"SQL Exception: {ex.Message}");
+            }
+            finally
+            {
+                connection.Close();
+            }
+        }
     }
 }
