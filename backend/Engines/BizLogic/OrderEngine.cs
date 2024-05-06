@@ -41,7 +41,7 @@ namespace Engines.BizLogic
             string status = "";
             OrderDataModel dm = OrderAccessor.GetOrderWithOrderId(orderId);
 
-            if (dm.DeliveryDate.CompareTo(DateTime.Now) > 0)
+            if (dm.DeliveryDate.CompareTo(DateTime.Now) < 0)
             {
                 status = "Delivered";
             }
@@ -69,13 +69,13 @@ namespace Engines.BizLogic
 
                 List<DateTime> routeTimes = new List<DateTime>();
                 routeTimes.Add(dm.ShipDate);
-                routeTimes.Add(dm.ShipDate.AddMinutes((30 / pickupDistance) * 60));
+                routeTimes.Add(dm.ShipDate.AddMinutes( pickupDistance * 2));
                 foreach(DepotDataModel depot in depotList.GetRange(Math.Min(pickupIdx, deliveryIdx), numRouteDepots))
                 {
                     routeTimes.Add(routeTimes[routeTimes.Count - 1].AddMinutes(20));
                     routeTimes.Add(routeTimes[routeTimes.Count - 1].AddMinutes(10));
                 }
-                routeTimes.Add(routeTimes[routeTimes.Count - 1].AddMinutes((30 / dropoffDistance) * 60));
+                routeTimes.Add(routeTimes[routeTimes.Count - 1].AddMinutes(dropoffDistance * 2));
 
                 foreach (DateTime time in routeTimes)
                 {
@@ -108,12 +108,6 @@ namespace Engines.BizLogic
 
             }
             return status;
-        }
-
-        public static string getAdminOrderStatus(DateTime deliveryDate)
-        {
-            int compare = deliveryDate.CompareTo(DateTime.Now);
-            return compare < 0 ? "Package-In-Transit" : "delivered";
         }
 
         public async Task<Boolean> validateOrderRequest(AddressDataModel destination)

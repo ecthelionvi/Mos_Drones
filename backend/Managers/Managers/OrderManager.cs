@@ -10,8 +10,9 @@ public class OrderManager
 {
     public static Order FindOrder(int orderId)
     {
-        OrderDataModel orderData = OrderAccessor.GetOrderWithOrderId(orderId);
-        Order order = OrderHelper.OrderDataModelToOrderModel(orderData);
+        OrderDataModel orderDataModel = OrderAccessor.GetOrderWithOrderId(orderId);
+        orderDataModel.Status = OrderEngine.GetOrderStatus(orderId);
+        Order order = OrderHelper.OrderDataModelToOrderModel(orderDataModel);
         return order;
     }
 
@@ -45,6 +46,7 @@ public class OrderManager
     
         foreach(OrderDataModel orderDataModel in orderDataModels)
         {
+            orderDataModel.Status = OrderEngine.GetOrderStatus(orderDataModel.OrderId ?? 0);
             Order o = OrderHelper.OrderDataModelToOrderModel(orderDataModel);
             userOrders.Add(o);
         }
@@ -59,6 +61,7 @@ public class OrderManager
         
         foreach (OrderDataModel orderDataModel in orderDataModels)
         {
+            orderDataModel.Status = OrderEngine.GetOrderStatus(orderDataModel.OrderId ?? 0);
             orders.Add(OrderHelper.OrderDataModelToOrderModel(orderDataModel));
         }
 
