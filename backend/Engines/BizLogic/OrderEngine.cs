@@ -28,10 +28,11 @@ namespace Engines.BizLogic
             //20 minutues between each depot (10 miles * 30 miles/hour)
             //10 Minutes at each depot to switch packages
             //Number of minutes between 
+            //Drones travel at 30 miles per hour, so dropoff and pickup distance is multiplied by 2 to calculate travel time
             int numRouteDepots = Math.Abs(deliveryIdx - pickupIdx);
             
             double deliveryTime = ((numRouteDepots - 1) * 20) + (numRouteDepots * 10);
-            deliveryTime += ((30 / pickupDistance) + (30 / dropoffDistance)) * 60;
+            deliveryTime += (pickupDistance + dropoffDistance) * 2;
             
             return shippedDate.AddMinutes(deliveryTime);
         }
@@ -41,7 +42,7 @@ namespace Engines.BizLogic
             string status = "";
             OrderDataModel dm = OrderAccessor.GetOrderWithOrderId(orderId);
 
-            if (dm.DeliveryDate.CompareTo(DateTime.Now) > 0)
+            if (dm.DeliveryDate.CompareTo(DateTime.Now) < 0)
             {
                 status = "Delivered";
             }
@@ -69,13 +70,13 @@ namespace Engines.BizLogic
 
                 List<DateTime> routeTimes = new List<DateTime>();
                 routeTimes.Add(dm.ShipDate);
-                routeTimes.Add(dm.ShipDate.AddMinutes((30 / pickupDistance) * 60));
+                routeTimes.Add(dm.ShipDate.AddMinutes( pickupDistance * 2));
                 foreach(DepotDataModel depot in depotList.GetRange(Math.Min(pickupIdx, deliveryIdx), numRouteDepots))
                 {
                     routeTimes.Add(routeTimes[routeTimes.Count - 1].AddMinutes(20));
                     routeTimes.Add(routeTimes[routeTimes.Count - 1].AddMinutes(10));
                 }
-                routeTimes.Add(routeTimes[routeTimes.Count - 1].AddMinutes((30 / dropoffDistance) * 60));
+                routeTimes.Add(routeTimes[routeTimes.Count - 1].AddMinutes(dropoffDistance * 2));
 
                 foreach (DateTime time in routeTimes)
                 {
@@ -108,12 +109,6 @@ namespace Engines.BizLogic
 
             }
             return status;
-        }
-
-        public static string getAdminOrderStatus(DateTime deliveryDate)
-        {
-            int compare = deliveryDate.CompareTo(DateTime.Now);
-            return compare < 0 ? "Package-In-Transit" : "delivered";
         }
 
         public async Task<Boolean> validateOrderRequest(AddressDataModel destination)
