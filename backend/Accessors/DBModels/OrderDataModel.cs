@@ -38,6 +38,6 @@ public class OrderDataModel
 
     public override string ToString()
     {
-        return $"orderId: {OrderId}\nPackage Id (for tracking): {PackageId}\n{AccountId}Shipped from:\n{ShippedFrom}Shipped To:\n{ShippedTo}\n";
+        return $"orderId: {OrderId}\nPackage Id (for tracking): {PackageId}\n{AccountId}Shipped from:\n{ShippedFrom}Shipped To:\n{ShippedTo}\nOrder status: {Status}\n";
     }
 }

@@ -1,6 +1,14 @@
 {
   "ExpandedNodes": [
-    ""
+    "",
+    "\\backend",
+    "\\backend\\.idea",
+    "\\backend\\.idea\\.idea.mos_drones",
+    "\\backend\\.idea\\.idea.mos_drones\\.idea",
+    "\\backend\\Accessors",
+    "\\backend\\Accessors\\Accessors",
+    "\\backend\\Service"
   ],
+  "SelectedNode": "\\backend\\mos_drones.sln",
   "PreviewInSolutionExplorer": false
 }
