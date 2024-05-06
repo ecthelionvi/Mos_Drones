@@ -50,4 +50,18 @@ public class OrderManager
         }
         return userOrders;
     }
+
+    public static List<Order> GetOrders()
+    {
+        List<OrderDataModel> orderDataModels = OrderAccessor.GetActiveOrders();
+        
+        List<Order> orders = new List<Order>();
+        
+        foreach (OrderDataModel orderDataModel in orderDataModels)
+        {
+            orders.Add(OrderHelper.OrderDataModelToOrderModel(orderDataModel));
+        }
+
+        return orders;
+    }
 }

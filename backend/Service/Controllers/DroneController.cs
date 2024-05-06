@@ -22,6 +22,13 @@ public class DroneController : Controller
     public void UpdateDepot([FromBody] Drone drone)
     {
         // updates drone depotId in the drone object
-    } 
+    }
+
+    [HttpPost("GetOrders")]
+    public JsonResult GetOrders()
+    {
+        List<Order> orders = OrderManager.GetOrders();
+        return new JsonResult(orders);
+    }
     
 }

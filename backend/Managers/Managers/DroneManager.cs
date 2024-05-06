@@ -11,7 +11,6 @@ public class DroneManager
 {
     public static List<Drone> GetDrones()
     {
-        
         DroneEngine.UpdateDroneStatus();
         
         List<DroneDataModel> droneList = DroneAccessor.GetDroneList();

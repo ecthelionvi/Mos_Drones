@@ -24,7 +24,7 @@ public class LoginController : Controller
     }
     
     [HttpPost("CreateAccount")]
-    public void SaveUser([FromBody] Account account)
+    public void CreateAccount([FromBody] Account account)
     {
         AccountManager.AddAccount(account);
     }
