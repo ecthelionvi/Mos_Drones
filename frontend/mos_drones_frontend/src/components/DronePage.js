@@ -80,7 +80,7 @@ const DronePage = ({ droneId, onRelocate }) => {
 
             if ((!isNaN(newDepotId)) && (depotList.includes(newDepotId))) {
                 try {
-                    await axios.post("http://localhost:3000/api/Drone/ChangeDepot", {
+                    await axios.post("http://localhost:3001/api/Drone/ChangeDepot", {
                         droneId,
                         depotId: newDepotId
                     });
