@@ -28,10 +28,11 @@ namespace Engines.BizLogic
             //20 minutues between each depot (10 miles * 30 miles/hour)
             //10 Minutes at each depot to switch packages
             //Number of minutes between 
+            //Drones travel at 30 miles per hour, so dropoff and pickup distance is multiplied by 2 to calculate travel time
             int numRouteDepots = Math.Abs(deliveryIdx - pickupIdx);
             
             double deliveryTime = ((numRouteDepots - 1) * 20) + (numRouteDepots * 10);
-            deliveryTime += ((30 / pickupDistance) + (30 / dropoffDistance)) * 60;
+            deliveryTime += (pickupDistance + dropoffDistance) * 2;
             
             return shippedDate.AddMinutes(deliveryTime);
         }
