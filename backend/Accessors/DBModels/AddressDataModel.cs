@@ -34,6 +34,6 @@ public class AddressDataModel
     }
     public override string ToString()
     {
-        return $"addressId: {AddressId}\n{AddressLine}, {City}, {State} {ZipCode}\n";
+        return $"addressId: {AddressId}\n{AddressLine}, {City}, {State} {ZipCode}\nCoordinates: ({Coordinates.Latitude}, {Coordinates.Longitude})\n";
     }
 }
