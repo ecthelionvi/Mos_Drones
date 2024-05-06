@@ -39,8 +39,14 @@ For detailed installation instructions, refer to the documentation provided in t
 
 ## Contributions
 
-We welcome contributions from the community to enhance the functionality and reliability of the Package Tracker system. If you identify bugs, have suggestions for improvements, or wish to add new features, please submit a pull request or open an issue on GitHub.
+All contributions are the result of collaborative teamwork. Meet the awesome team behind this project:
+- [Angie Zheng](https://github.com/angzheng22)
+- [Jonathan Skelton](https://github.com/Jonny-Skelton)
+- [Parker Allen](https://github.com/pallen44)
+- [Robert Sear](https://github.com/ecthelionvi)
+- [Sabrina Benford](https://github.com/SabrinaB286)
 
+Feel free to connect with each team member via their GitHub profiles!
 ## License
 
 This software is distributed under the [MIT License](LICENSE), granting you the freedom to use, modify, and distribute the software for any purpose, subject to the terms outlined in the license agreement.
