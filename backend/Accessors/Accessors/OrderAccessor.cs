@@ -4,7 +4,6 @@ using Accessors.DBModels;
 
 namespace Accessors.Accessors
 {
-    //TODO: ADD SUPPORT FOR NULL in insertOrder
     public class OrderAccessor //: IOrderAccessor
     {
         /// <summary>
@@ -38,13 +37,14 @@ namespace Accessors.Accessors
                     int accountId = reader.GetInt32(reader.GetOrdinal("accountId"));
                     int shippedFrom = reader.GetInt32(reader.GetOrdinal("shipped_from"));
                     int shippedTo = reader.GetInt32(reader.GetOrdinal("shipped_to"));
+                    string status = reader.GetString(reader.GetOrdinal("status"));
 
                     account = AccountAccessor.GetAccountWithAccountId(accountId);
                     origin = AddressAccessor.GetAddress(shippedFrom);
                     destination = AddressAccessor.GetAddress(shippedTo);
 
                     order = new OrderDataModel(orderId, packageId, shipDate, deliveryDate, accountId, origin,
-                        destination, "");
+                        destination, status);
                 }
 
                 reader.Close();
@@ -92,12 +92,13 @@ namespace Accessors.Accessors
                     int accountId = reader.GetInt32(reader.GetOrdinal("accountId"));
                     int shippedFrom = reader.GetInt32(reader.GetOrdinal("shipped_from"));
                     int shippedTo = reader.GetInt32(reader.GetOrdinal("shipped_to"));
+                    string status = reader.GetString(reader.GetOrdinal("status"));
 
                     origin = AddressAccessor.GetAddress(shippedFrom);
                     destination = AddressAccessor.GetAddress(shippedTo);
 
                     order = new OrderDataModel(orderId, packageId, shipDate, deliveryDate, accountId, origin,
-                        destination, "");
+                        destination, status);
                 }
 
                 reader.Close();
@@ -144,12 +145,13 @@ namespace Accessors.Accessors
                         DateTime deliveryDate = reader.GetDateTime(reader.GetOrdinal("deliveryDate"));
                         int shippedFrom = reader.GetInt32(reader.GetOrdinal("shipped_from"));
                         int shippedTo = reader.GetInt32(reader.GetOrdinal("shipped_to"));
+                        string status = reader.GetString(reader.GetOrdinal("status"));
                         
                         AddressDataModel origin = AddressAccessor.GetAddress(shippedFrom);
                         AddressDataModel destination = AddressAccessor.GetAddress(shippedTo);
 
                         OrderDataModel o = new OrderDataModel(orderId, packageId, shipDate, deliveryDate, accountId,
-                            origin, destination, "");
+                            origin, destination, status);
                         orderList.Add(o);
                     }
                 }
@@ -184,8 +186,8 @@ namespace Accessors.Accessors
             string selectQuery = @"SELECT accountId FROM Account WHERE email = @Email";
 
             string insertQuery =
-                @"INSERT INTO [Order] (packageId, ship_date, deliveryDate, accountId, shipped_from, shipped_to) 
-                                   VALUES (@PackageId, @ShipDate, @DeliveryDate, @AccountId, @ShippedFrom, @ShippedTo); SELECT SCOPE_IDENTITY();";
+                @"INSERT INTO [Order] (packageId, ship_date, deliveryDate, accountId, shipped_from, shipped_to, status) 
+                                   VALUES (@PackageId, @ShipDate, @DeliveryDate, @AccountId, @ShippedFrom, @ShippedTo, @Status); SELECT SCOPE_IDENTITY();";
 
             int orderId = -1;
 
@@ -211,6 +213,7 @@ namespace Accessors.Accessors
                 insertCommand.Parameters.AddWithValue("@AccountId", accountId);
                 insertCommand.Parameters.AddWithValue("@ShippedFrom", originId);
                 insertCommand.Parameters.AddWithValue("@ShippedTo", destinationId);
+                insertCommand.Parameters.AddWithValue("@Status", order.Status);
 
                 // Insert the record and get its id
                 object orderResult = insertCommand.ExecuteScalar();
@@ -251,12 +254,13 @@ namespace Accessors.Accessors
                         DateTime deliveryDate = reader.GetDateTime(reader.GetOrdinal("deliveryDate"));
                         int shippedFrom = reader.GetInt32(reader.GetOrdinal("shipped_from"));
                         int shippedTo = reader.GetInt32(reader.GetOrdinal("shipped_to"));
+                        string status = reader.GetString(reader.GetOrdinal("status"));
                         
                         AddressDataModel origin = AddressAccessor.GetAddress(shippedFrom);
                         AddressDataModel destination = AddressAccessor.GetAddress(shippedTo);
 
                         OrderDataModel o = new OrderDataModel(orderId, packageId, shipDate, deliveryDate, accountId,
-                            origin, destination, "");
+                            origin, destination, status);
                         orderList.Add(o);
                     }
                 }

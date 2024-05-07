@@ -33,7 +33,8 @@ CREATE TABLE [Order] (
   [deliveryDate] datetime,
   [accountId] int,
   [shipped_from] int,
-  [shipped_to] int
+  [shipped_to] int,
+  [status] nvarchar(255)
 )
 GO
 
@@ -92,13 +93,12 @@ insert into [Address] (city, state, zip, address_line, latitude, longitude) valu
 insert into [Address] (city, state, zip, address_line, latitude, longitude) values ('Omaha', 'Nebraska', '68138', 'I-80 East', 41.1520287, -96.1537872);
 insert into [Address] (city, state, zip, address_line, latitude, longitude) values ('Omaha', 'Nebraska', '68106', '6907 B Street', 41.224722, -96.01937);
 
-
 insert into [Account] (first_name, last_name, email, password, addressId, isAdmin) values ('Alfred', 'Van Arsdall', 'avanarsdall0@cocolog-nifty.com', 'uI7lq}{e0WU', 1, 1);
 insert into [Account] (first_name, last_name, email, password, addressId, isAdmin) values ('Beltran', 'Lillie', 'blillie1@imdb.com', 'hC7S>lx+N7a(?2>k', 2, 0);
 
-insert into [Order] (packageId, ship_date, deliveryDate, accountId, shipped_from, shipped_to) values ('4829170638572946', '2024-04-14 10:30:00', '2024-04-17 15:44:00', 1, 1, 2);
-insert into [Order] (packageId, ship_date, deliveryDate, accountId, shipped_from, shipped_to) values ('7294061538206194', '2024-04-01 17:12:00', '2024-04-05 08:15:00', 2, 2, 1);
-insert into [Order] (packageId, ship_date, deliveryDate, accountId, shipped_from, shipped_to) values ('7632987401568235', '2024-04-15 19:33:00', '2024-04-18 09:17:00', 1, 1, 2);
+insert into [Order] (packageId, ship_date, deliveryDate, accountId, shipped_from, shipped_to, status) values ('4829170638572946', '2024-04-14 10:30:00', '2024-04-17 15:44:00', 1, 1, 2, 'Delivered');
+insert into [Order] (packageId, ship_date, deliveryDate, accountId, shipped_from, shipped_to, status) values ('7294061538206194', '2024-04-01 17:12:00', '2024-04-05 08:15:00', 2, 2, 1, 'Delivered');
+insert into [Order] (packageId, ship_date, deliveryDate, accountId, shipped_from, shipped_to, status) values ('7632987401568235', '2024-04-15 19:33:00', '2024-04-18 09:17:00', 1, 1, 2, 'Delivered');
 
 insert into Depot (addressId) values (6);
 insert into Depot (addressId) values (7);
@@ -111,7 +111,6 @@ insert into Depot (addressId) values (13);
 insert into Depot (addressId) values (14);
 insert into Depot (addressId) values (15);
 insert into Depot (addressId) values (16);
-
 
 insert into Drone (transit_status, orderId, depotId) values ('Free', null, null);
 insert into Drone (transit_status, orderId, depotId) values ('Free', null, null);
@@ -136,7 +135,7 @@ SELECT * FROM Account WHERE email = 'avanarsdall0@cocolog-nifty.com';
 select * from [Order];
 SELECT * FROM [Order] WHERE orderId = 3;
 SELECT * FROM [Order] WHERE packageId = '4829170638572946';
-SELECT o.* FROM [Order] o JOIN [Account] a ON o.accountId = a.accountId WHERE o.accountId = 1;
+SELECT o.* FROM [Order] o JOIN [Account] a ON o.accountId = a.accountId WHERE o.accountId = 2;
 
 SELECT o.* FROM [Order] o JOIN [Account] a ON o.accountId = a.accountId WHERE a.email = 'avanarsdall0@cocolog-nifty.com';
 
@@ -144,4 +143,4 @@ select * from Depot;
 select * from Depot d JOIN [Address] a ON d.addressId = a.addressId;
 SELECT * FROM Depot WHERE depotId = 1;
 select * from Drone;
-Select * from [Drone] where droneId = 2;
+Select * from [Drone] where droneId = 1;

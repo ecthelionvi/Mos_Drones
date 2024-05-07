@@ -1,289 +1,121 @@
-﻿
+﻿@import "../styles/Fonts.css";
 
-.dronepage-body {
-    margin: 0;
-    padding: 0;
-    height: 100%;
-    font-family: Arial, sans-serif;
+.dronepage-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
     background: linear-gradient(135deg, rgba(30, 81, 117, 0.9), rgba(16, 177, 224, 0.9));
     font-family: "JetBrainsMonoNerdFont", sans-serif;
 }
 
-.body-container {
+.dronepage-header {
     display: flex;
+    justify-content: center;
     flex-direction: column;
     align-items: center;
-    justify-content: flex-start;
-    padding: 20px;
-    overflow-y: auto;
-    margin-top: 40px;
+    font-size: 32px;
+    margin-top: -2px;
+    margin-bottom: 20px;
+    color: white;
 }
 
-.drone-card {
-    margin: 0 auto;
-    text-align: center;
-    margin-top: 24px;
-    background-color: #fff; 
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
-
-    .drone-card p {
-        color: #333; 
-        font-size: 18px;
-    }
-
-    .drone-card h2 {
-        font-size: 24px;
-        margin-bottom: 20px;
-        color: #333; 
-    }
-
-.drone-card__underline {
-    width: 180px; 
-    height: 5px;
+.dronepage__underline {
+    width: 460px;
+    height: 6px;
     background-color: #df8b67;
     margin: 10px auto;
-    margin-top: -10px;
+    margin-top: -30px;
 }
 
-.relocation-section {
-    margin: 0 auto;
-    text-align: center;
-    margin-top: 30px;
-    padding: 20px;
+.dronepage-close-button {
     display: flex;
-    flex-direction: column;
     justify-content: center;
     align-items: center;
-}
-
-    .relocation-section h2 {
-        font-size: 32px;
-        margin-top: -2px;
-        margin-bottom: 20px;
-        color: white; 
-    }
-
-.relocation-section__underline {
-    width: 180px;
-    height: 5px;
-    background-color: #df8b67; 
-    margin: 10px auto;
-    margin-top: -10px;
-}
-
-.relocation-section__select {
-    padding: 10px;
-    margin-right: 10px;
-    border-radius: 3px;
-    width: 265px;
-    height: 40px;
-    border: 1px solid #ccc;
-    box-sizing: border-box;
-}
-
-.relocation-section__button {
-    padding: 10px 20px;
-    border-radius: 3px;
-    background-color: #df8b67; 
-    color: white; 
-    border: none;
-    cursor: pointer;
-    height: 40px;
-    transition: background-color 0.3s ease;
-}
-
-    .relocation-section__button:hover {
-        background-color: #ba7658;
-    }
-
-.message {
-    color: #333; 
-    font-size: 16px;
-}
-
-.hidden {
-    display: none;
-}
-
-.header {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    background-color: #e3f6fc;
-    padding: 20px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    box-sizing: border-box;
-}
-
-.header__logo {
-    width: 8%;
-    height: auto;
-    margin-top: -42px;
-    margin-bottom: -42px;
-}
-
-.header__tabs {
-    display: flex;
-    margin-left: auto;
-}
-
-.header__tab {
-    padding: 10px 20px;
-    cursor: pointer;
-    position: relative;
-    text-align: center;
-}
-
-.header__tab__span {
+    width: 30px;
+    height: 30px;
+    background-color: #f0f0f0;
+    border-radius: 50%;
+    text-decoration: none;
     color: #333;
-}
-
-.header__tab-underline {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    height: 5px;
-    background-color: transparent;
-    transition: background-color 0.3s ease;
-}
-
-.header__tab--active .header__tab-underline {
-    background-color: #df8b67;
-}
-
-.header__signout-btn {
-    padding: 10px 20px;
-    border-radius: 3px;
-    margin-left: 10px;
-    background-color: #df8b67;
-    color: white;
-    border: none;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-}
-
-    .header__signout-btn:hover {
-        background-color: #ba7658;
-    }
-
-.home-section {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: flex-start;
-    padding: 20px;
-}
-
-.about-section {
-    margin: 0 auto;
-    text-align: center;
-    margin-top: 20px;
-    padding: 20px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    height: 100%;
-}
-
-    .about-section h2 {
-        font-size: 32px;
-        margin-top: -26px;
-        margin-bottom: 20px;
-        color: white;
-    }
-
-.dashboard-section {
-    margin: 0 auto;
-    text-align: center;
-    margin-top: 30px;
-    padding: 20px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-}
-
-    .dashboard-section h2 {
-        font-size: 32px;
-        margin-top: -2px;
-        margin-bottom: 20px;
-        color: white;
-    }
-
-.dashboard-section__underline {
-    width: 180px;
-    height: 5px;
-    background-color: #df8b67;
-    margin: 10px auto;
-    margin-top: -10px;
-}
-
-.dashboard-section__underline-drone {
-    width: 142px;
-    height: 5px;
-    background-color: #df8b67;
-    margin: 10px auto;
-    margin-top: -10px;
-}
-
-.about-section p {
-    max-width: 900px;
-    font-size: 22px;
-    color: white;
-}
-
-.hidden {
-    display: none;
-}
-
-.about-section__underline {
-    width: 180px;
-    height: 5px;
-    background-color: #df8b67;
-    margin: 10px auto;
-    margin-top: -10px;
-}
-
-.about-image-top {
-    width: 50%;
-    height: auto;
-    margin-top: 40px;
-}
-
-.about-section-paragraph {
     font-size: 20px;
-    font-weight: bold;
-    width: auto;
-    line-height: 1.4;
+    line-height: 1;
+    cursor: pointer;
+    position: absolute;
+    top: 10px;
+    right: 10px;
 }
 
-.image-container {
+    .dronepage-close-button:hover {
+        background-color: #e0e0e0;
+    }
+
+.dronepage-content {
+    width: 350px;
+    padding: 20px;
+    background-color: #e3f6fc;
+    border-radius: 12px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.dronepage-detail {
+    margin-bottom: 15px;
+}
+
+.dronepage-detail-label {
+    font-weight: bold;
+    margin-right: 5px;
+}
+
+.dronepage-image-bottom {
+    margin-top: 60px;
+    width: 25%;
+    height: auto;
+}
+
+.dronepage-content-not-found {
+    width: 256px;
+    padding: 20px;
+    background-color: #e3f6fc;
+    border-radius: 12px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.dronepage__underline-not-found {
+    width: 240px;
+    height: 6px;
+    background-color: #df8b67;
+    margin: 10px auto;
+    margin-top: -30px;
+}
+
+.dronepage-image-container {
     position: relative;
     display: inline-block;
-    margin-top: 40px;
+    margin-top: 64px;
 }
 
-.speech-bubble {
+.dronepage-image-bottom-not-found {
+    width: 100%;
+    height: auto;
+}
+
+.dronepage-speech-bubble {
     position: absolute;
-    top: -20px;
+    top: -64px;
     left: 50%;
     transform: translateX(-50%);
     background-color: #e3f6fc;
     border-radius: 10px;
     padding: 10px;
     text-align: center;
+    width: 356px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
 }
 
-    .speech-bubble::after {
+    .dronepage-speech-bubble::after {
         content: "";
         position: absolute;
         top: 100%;
@@ -294,42 +126,8 @@
         border-left: 10px solid transparent;
     }
 
-    .speech-bubble p {
-        margin: 0;
-        color: black;
-        font-size: 18px;
-    }
-
-.dashboard-image-bottom {
-    margin-top: 40px;
-}
-
-.dashboard-image-bottom-drone {
-    margin-top: 20px;
-}
-
-.map-section {
-    margin: 0 auto;
-    text-align: center;
-    margin-top: 30px;
-    padding: 20px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-}
-
-.map-section__underline {
-    width: 256px;
-    height: 5px;
-    background-color: #df8b67;
-    margin: 10px auto;
-    margin-top: -10px;
-}
-
-.map-section h2 {
-    font-size: 32px;
-    margin-top: -2px;
-    margin-bottom: 20px;
-    color: white;
+.dronepage-speech-bubble-paragraph {
+    margin: 0;
+    color: black;
+    font-size: 18px;
 }
