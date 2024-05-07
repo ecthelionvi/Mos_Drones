@@ -42,7 +42,7 @@ namespace Engines.BizLogic
             string status = "";
             OrderDataModel dm = OrderAccessor.GetOrderWithOrderId(orderId);
 
-            if (dm.DeliveryDate.CompareTo(DateTime.Now) < 0)
+            if (dm.DeliveryDate.CompareTo(DateTime.Now) <= 0)
             {
                 status = "Delivered";
             }
@@ -83,7 +83,7 @@ namespace Engines.BizLogic
                     if (time.CompareTo(DateTime.Now) > 0)
                     {
                         int position = routeTimes.IndexOf(time);
-                        if (position < 2)
+                        if (position < 1)
                         {
                             status = "Drone-in-Route to Pickup";
                         }
@@ -93,10 +93,10 @@ namespace Engines.BizLogic
                         }
                         else if (position % 2 == 0)
                         {
-                            string depotName = depotList[pickupIdx + position / 2].DepotId.ToString();
+                            string depotName = depotList[pickupIdx + 1 + position / 2 ].DepotId.ToString();
                             status = "Package-in-Route to Depot " + depotName;
                         }
-                        else if (position % 2 == 1)
+                        else
                         {
                             position++;
                             string depotName = depotList[pickupIdx + (position / 2)].DepotId.ToString();

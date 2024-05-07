@@ -21,3 +21,6 @@ Content-Type: application/json
 ###
 GET {{drones_HostAddress}}/api/Drone/GetDrones
 Accept: application/json
+###
+GET {{drones_HostAddress}}/api/Drone/GetOrders
+Accept: application/json

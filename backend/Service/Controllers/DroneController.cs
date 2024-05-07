@@ -24,7 +24,7 @@ public class DroneController : Controller
         // updates drone depotId in the drone object
     }
 
-    [HttpPost("GetOrders")]
+    [HttpGet("GetOrders")]
     public JsonResult GetOrders()
     {
         List<Order> orders = OrderManager.GetOrders();
