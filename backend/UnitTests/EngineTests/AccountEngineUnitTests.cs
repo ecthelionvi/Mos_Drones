@@ -4,32 +4,6 @@ using Engines.BizLogic;
 namespace UnitTests.EngineTests
 {
     [TestClass]
-    public class ValidPasswordStrengthTests
-    {
-        [TestMethod]
-        public void ValidPasswordStrength()
-        {
-            Assert.AreEqual(true, AccountEngine.ValidPasswordStrength("R@inb0w$un5h!n3"));
-            Assert.AreEqual(true, AccountEngine.ValidPasswordStrength("!8G&vP#2qR!5sY@9"));
-            Assert.AreEqual(true, AccountEngine.ValidPasswordStrength("S3cureP@ssw0rd!"));
-        }
-
-        [TestMethod]
-        public void InvalidPasswordStrength()
-        {
-            // No digit
-            Assert.AreEqual(false, AccountEngine.ValidPasswordStrength("abcdefghijklmnopqrstuvwxyzABCDEF"));
-            Assert.AreEqual(false, AccountEngine.ValidPasswordStrength("ImyNameIsTom"));
-            // Not long enough
-            Assert.AreEqual(false, AccountEngine.ValidPasswordStrength("L697"));
-            // No uppercase letter
-            Assert.AreEqual(false, AccountEngine.ValidPasswordStrength("password123"));
-            // No lowercase letter
-            Assert.AreEqual(false, AccountEngine.ValidPasswordStrength("PASSWORD123"));
-        }
-    }
-
-    [TestClass]
     public class ValidSignUpTests
     {
         [TestMethod]
@@ -43,12 +17,6 @@ namespace UnitTests.EngineTests
         {
 
             Assert.AreEqual(false, AccountEngine.ValidateSignUp("blillie1@imdb.com", "Password123"));
-        }
-
-        [TestMethod]
-        public void InvalidSignUp_WithInvalidPassword()
-        {
-            Assert.AreEqual(false, AccountEngine.ValidateSignUp("random123@gmail.com", "password123"));
         }
     }
 

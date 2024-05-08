@@ -1,6 +1,3 @@
-C:\Users\angiz\Source\Repos\ecthelionvi\Mos_Drones\backend\Service\bin\Debug\net8.0\Accessors.deps.json
-C:\Users\angiz\Source\Repos\ecthelionvi\Mos_Drones\backend\Service\bin\Debug\net8.0\Accessors.runtimeconfig.json
-C:\Users\angiz\Source\Repos\ecthelionvi\Mos_Drones\backend\Service\bin\Debug\net8.0\Accessors.exe
 C:\Users\angiz\Source\Repos\ecthelionvi\Mos_Drones\backend\Service\bin\Debug\net8.0\appsettings.Development.json
 C:\Users\angiz\Source\Repos\ecthelionvi\Mos_Drones\backend\Service\bin\Debug\net8.0\Service.exe
 C:\Users\angiz\Source\Repos\ecthelionvi\Mos_Drones\backend\Service\bin\Debug\net8.0\Service.deps.json

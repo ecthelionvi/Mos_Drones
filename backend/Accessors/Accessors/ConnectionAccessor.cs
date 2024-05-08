@@ -14,7 +14,7 @@ namespace Accessors.ConnectionAccessor
             return connection;
         }
 
-        static void Main(string[] args)
+        static async void Main(string[] args)
         {
             // Testing AddressAccessor methods
             List<AddressDataModel> addressList = AddressAccessor.GetAddressList();
@@ -74,21 +74,24 @@ namespace Accessors.ConnectionAccessor
             }
 
             // Inserting into the database
+            AddressAccessor addressAccessor = new AddressAccessor();
             Coordinate c = new Coordinate(40.828410, -96.929760);
             AddressDataModel address = new AddressDataModel(null, "Pleasant Dale", "Nebraska", "68423", "2468 North 10th Road", c);
-            int addressId = AddressAccessor.InsertAddress(address);
+            int addressId = await addressAccessor.InsertAddress(address);
             Console.WriteLine("The addressId of the selected/inserted address is " + addressId + "\n");
 
+            AccountAccessor accountAccessor = new AccountAccessor();
             Coordinate coord = new Coordinate(40.817638, -96.699997);
             AddressDataModel address2 = new AddressDataModel(null, "Lincoln", "Nebraska", "68588", "1400 R St", coord);
             AccountDataModel acc = new AccountDataModel(null, "Angie", "Zheng", "azheng2@huskers.unl.edu", "password123", address2, false);
-            int accountId = AccountAccessor.InsertAccount(acc);
+            int accountId = await accountAccessor.InsertAccount(acc);
             Console.WriteLine("The accountId of the selected/inserted account is " + accountId + "\n");
-
+            
             AccountDataModel acc2 = new AccountDataModel(null, "Angie", "Zheng", "angizheng4201@gmail.com", "password123", address2, false);
-            int accountId2 = AccountAccessor.InsertAccount(acc2);
+            int accountId2 = await accountAccessor.InsertAccount(acc2);
             Console.WriteLine("The accountId of the selected/inserted account is " + accountId2 + "\n");
 
+            OrderAccessor orderAccessor = new OrderAccessor();
             DateTime deliveryDate = new DateTime(2024, 4, 23, 17, 02, 00);
             DateTime shipDate = DateTime.Now;
             Coordinate c1 = new Coordinate(40.817638, -96.699997);
@@ -96,7 +99,7 @@ namespace Accessors.ConnectionAccessor
             Coordinate c2 = new Coordinate(40.828410, -96.929760);
             AddressDataModel shippedTo = new AddressDataModel(null, "Pleasant Dale", "Nebraska", "68423", "2468 North 10th Road", c2);
             OrderDataModel order2 = new OrderDataModel(null, null, shipDate, deliveryDate, 1, shippedFrom, shippedTo, "");
-            int orderId = OrderAccessor.InsertOrder(order2);
+            int orderId = await orderAccessor.InsertOrder(order2);
             Console.WriteLine("The orderId of the inserted Order is " + orderId);
 
             Console.ReadLine();
