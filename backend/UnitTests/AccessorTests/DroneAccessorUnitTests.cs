@@ -9,7 +9,10 @@ namespace UnitTests.AccessorTests
         [TestMethod]
         public void ValidGetDrone()
         {
-            DroneDataModel expectedDrone = new DroneDataModel(1, "Free", null, null);
+            Coordinate coord = new Coordinate(40.911152, -97.101418);
+            AddressDataModel address = new AddressDataModel(6, "Seward", "Nebraska", "68434", "434 North 8th Street", coord);
+            DepotDataModel depot = new DepotDataModel(1, address);
+            DroneDataModel expectedDrone = new DroneDataModel(1, "Free", null, depot);
             DroneDataModel actualDrone = DroneAccessor.GetDrone(1);
             Assert.AreEqual(expectedDrone, actualDrone);
         }
