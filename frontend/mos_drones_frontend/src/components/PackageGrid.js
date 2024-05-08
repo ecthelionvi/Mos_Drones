@@ -2,13 +2,13 @@ import "../styles/PackageGrid.css";
 import { Link } from "react-router-dom";
 import { AgGridReact } from "ag-grid-react";
 import "ag-grid-community/styles/ag-grid.css";
-import React, { useState, useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import "ag-grid-community/styles/ag-theme-alpine.css";
-import axios from "axios";
 
-const PackageGrid = () => {
+const PackageGrid = ({ packageData, fetchPackages }) => {
   const [rowData, setRowData] = useState([]);
   const [useMockData, setUseMockData] = useState(false);
+
   useEffect(() => {
     const mockData = [
       {
@@ -25,27 +25,10 @@ const PackageGrid = () => {
 
     if (useMockData) {
       setRowData(mockData);
-      return;
+    } else {
+      setRowData(packageData);
     }
-
-    const fetchPackages = async () => {
-      try {
-        const accountId = localStorage.getItem("accountId");
-        const response = await axios.post(
-          `http://localhost:3001/api/Home/GetUserOrders?id=${accountId}`,
-          {
-            accountId: parseInt(accountId),
-          },
-        );
-        const packages = response.data;
-        setRowData(packages);
-      } catch (error) {
-        console.error("Error fetching packages:", error);
-      }
-    };
-
-    fetchPackages();
-  }, []);
+  }, [packageData, useMockData]);
 
   const columnDefs = [
     {
@@ -99,4 +82,4 @@ const PackageGrid = () => {
   );
 };
 
-export { PackageGrid, fetchPackages };
+export default PackageGrid;
