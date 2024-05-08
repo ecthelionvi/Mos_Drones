@@ -3,7 +3,6 @@ import mo from "../images/mo.png";
 import logo from "../images/logo.png";
 import drone from "../images/drone.png";
 import pkg from "../images/package.png";
-import PackageGrid from "./PackageGrid";
 import drone_pkg from "../images/drone-pkg.png";
 import DroneGrid from "../components/DroneGrid";
 import ServiceArea from "../components/SerivceArea";
@@ -11,6 +10,7 @@ import { NavLink, useNavigate } from "react-router-dom";
 import React, { useState, useRef, useEffect } from "react";
 import Modal from "react-modal";
 import "../styles/Modal.css";
+import { PackageGrid, fetchPackages } from "../components/PackageGrid";
 import { useJsApiLoader, Autocomplete } from "@react-google-maps/api";
 
 const HomePage = ({ loggedIn, onLogout, setLoggedIn, role }) => {
@@ -67,7 +67,7 @@ const HomePage = ({ loggedIn, onLogout, setLoggedIn, role }) => {
         .then((data) => {
           console.log("New order response:", data);
           alert("Delivery requested successfully!");
-          // Handle the response data as needed
+fetchPackages();
         })
         .catch((error) => {
           console.error("Error creating new order:", error);

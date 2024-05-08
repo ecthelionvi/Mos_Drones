@@ -31,9 +31,12 @@ const PackageGrid = () => {
     const fetchPackages = async () => {
       try {
         const accountId = localStorage.getItem("accountId");
-        const response = await axios.post(`http://localhost:3001/api/Home/GetUserOrders?id=${accountId}`, {
-        accountId: parseInt(accountId),
-      });
+        const response = await axios.post(
+          `http://localhost:3001/api/Home/GetUserOrders?id=${accountId}`,
+          {
+            accountId: parseInt(accountId),
+          },
+        );
         const packages = response.data;
         setRowData(packages);
       } catch (error) {
@@ -96,4 +99,4 @@ const PackageGrid = () => {
   );
 };
 
-export default PackageGrid;
+export { PackageGrid, fetchPackages };
