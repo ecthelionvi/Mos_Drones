@@ -210,18 +210,6 @@ const HomePage = ({ loggedIn, onLogout, setLoggedIn, role }) => {
                       <>
                         <Autocomplete
                           onLoad={(autocomplete) => {
-                            fromAutocompleteRef.current = autocomplete;
-                          }}
-                          onPlaceChanged={() => onPlaceChanged(fromAutocompleteRef)}
-                        >
-                          <input
-                            type="text"
-                            className="tracking-section__delivery-from"
-                            placeholder="From"
-                          />
-                        </Autocomplete>
-                        <Autocomplete
-                          onLoad={(autocomplete) => {
                             toAutocompleteRef.current = autocomplete;
                           }}
                           onPlaceChanged={() => onPlaceChanged(toAutocompleteRef)}
