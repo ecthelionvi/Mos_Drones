@@ -7,38 +7,50 @@ import "ag-grid-community/styles/ag-theme-alpine.css";
 
 const DroneGrid = () => {
   const [rowData, setRowData] = useState([]);
-  const [useMockData, setMockData] = useState(false);
+  const [useMockData, setMockData] = useState(true);
 
   useEffect(() => {
-    setMockData(true);
     const mockData = {
       drones: [
         {
           droneId: 1,
-          transit_status: "In Transit",
-          orderId: 101,
-          depotId: 201,
+          transitStatus: "In Transit",
+          order: {
+            orderId: 101,
+          },
+          currentDepot: {
+            depotId: 201,
+          },
         },
         {
           droneId: 2,
-          transit_status: "Delivered",
-          orderId: 102,
-          depotId: 202,
+          transitStatus: "Delivered",
+          order: {
+            orderId: 102,
+          },
+          currentDepot: {
+            depotId: 202,
+          },
         },
         {
           droneId: 3,
-          transit_status: "Awaiting Dispatch",
-          orderId: null,
-          depotId: 201,
+          transitStatus: "Awaiting Dispatch",
+          order: null,
+          currentDepot: {
+            depotId: 201,
+          },
         },
         {
           droneId: 4,
-          transit_status: "In Maintenance",
-          orderId: null,
-          depotId: 203,
+          transitStatus: "In Maintenance",
+          order: null,
+          currentDepot: {
+            depotId: 203,
+          },
         },
       ],
     };
+
     const fetchDroneData = async () => {
       if (useMockData) {
         setRowData(mockData.drones);
@@ -78,21 +90,25 @@ const DroneGrid = () => {
     },
     {
       headerName: "Transit Status",
-      field: "transit_status",
+      field: "transitStatus",
       suppressMovable: true,
       suppressSizeToFit: true,
       cellStyle: { textAlign: "left" },
     },
     {
       headerName: "Order ID",
-      field: "orderId",
+      valueGetter: (params) => {
+        return params.data.order ? params.data.order.orderId : null;
+      },
       suppressMovable: true,
       suppressSizeToFit: true,
       cellStyle: { textAlign: "left" },
     },
     {
       headerName: "Depot ID",
-      field: "depotId",
+      valueGetter: (params) => {
+        return params.data.currentDepot ? params.data.currentDepot.depotId : null;
+      },
       suppressMovable: true,
       suppressSizeToFit: true,
       cellStyle: { textAlign: "left" },
