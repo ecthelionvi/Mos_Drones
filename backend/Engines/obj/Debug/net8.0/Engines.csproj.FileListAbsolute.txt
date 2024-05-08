@@ -1,6 +1,3 @@
-C:/Users/angiz/Source/Repos/ecthelionvi/Mos_Drones/backend/Engines/bin/Debug/net8.0/Accessors.deps.json
-C:/Users/angiz/Source/Repos/ecthelionvi/Mos_Drones/backend/Engines/bin/Debug/net8.0/Accessors.runtimeconfig.json
-C:/Users/angiz/Source/Repos/ecthelionvi/Mos_Drones/backend/Engines/bin/Debug/net8.0/Accessors.exe
 C:/Users/angiz/Source/Repos/ecthelionvi/Mos_Drones/backend/Engines/bin/Debug/net8.0/Engines.deps.json
 C:/Users/angiz/Source/Repos/ecthelionvi/Mos_Drones/backend/Engines/bin/Debug/net8.0/Engines.runtimeconfig.json
 C:/Users/angiz/Source/Repos/ecthelionvi/Mos_Drones/backend/Engines/bin/Debug/net8.0/Engines.dll
@@ -28,9 +25,6 @@ C:/Users/angiz/Source/Repos/ecthelionvi/Mos_Drones/backend/Engines/obj/Debug/net
 /Users/jonnyskelton/Projects/Mos_Drones/backend/Engines/obj/Debug/net8.0/Engines.dll
 /Users/jonnyskelton/Projects/Mos_Drones/backend/Engines/obj/Debug/net8.0/refint/Engines.dll
 /Users/jonnyskelton/Projects/Mos_Drones/backend/Engines/obj/Debug/net8.0/Engines.pdb
-C:\Users\angiz\Source\Repos\ecthelionvi\Mos_Drones\backend\Engines\bin\Debug\net8.0\Accessors.deps.json
-C:\Users\angiz\Source\Repos\ecthelionvi\Mos_Drones\backend\Engines\bin\Debug\net8.0\Accessors.runtimeconfig.json
-C:\Users\angiz\Source\Repos\ecthelionvi\Mos_Drones\backend\Engines\bin\Debug\net8.0\Accessors.exe
 C:\Users\angiz\source\repos\ecthelionvi\Mos_Drones\backend\Engines\bin\Debug\net8.0\Engines.deps.json
 C:\Users\angiz\source\repos\ecthelionvi\Mos_Drones\backend\Engines\bin\Debug\net8.0\Engines.runtimeconfig.json
 C:\Users\angiz\Source\Repos\ecthelionvi\Mos_Drones\backend\Engines\bin\Debug\net8.0\Engines.dll

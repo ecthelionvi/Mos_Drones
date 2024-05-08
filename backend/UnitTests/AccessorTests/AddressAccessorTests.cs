@@ -31,7 +31,8 @@ namespace UnitTests.AccessorTests
 
             Coordinate coord = new Coordinate(40.828411, -96.929764);
             AddressDataModel address = new AddressDataModel(null, "Pleasant Dale", "Nebraska", "68423", "2468 North 10th Road", coord);
-            int actualAddressId = AddressAccessor.InsertAddress(address);
+            AddressAccessor addressAccessor = new AddressAccessor();
+            int actualAddressId = addressAccessor.InsertAddress(address).Result;
 
             Assert.AreEqual(expectedAddressId, actualAddressId);
         }
