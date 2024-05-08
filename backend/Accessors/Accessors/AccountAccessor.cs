@@ -110,7 +110,7 @@ namespace Accessors.Accessors
         /// </summary>
         /// <param name="acc"></param>
         /// <returns></returns>
-        public static int InsertAccount(AccountDataModel acc)
+        public async Task<int> InsertAccount(AccountDataModel acc)
         {
             string selectQuery = @"SELECT accountId FROM Account WHERE email = @Email";
 
@@ -136,7 +136,8 @@ namespace Accessors.Accessors
                 }
                 else
                 {
-                    int addressId = AddressAccessor.InsertAddress(acc.AccountAddress);
+                    AddressAccessor addressAccessor = new AddressAccessor();
+                    int addressId = await addressAccessor.InsertAddress(acc.AccountAddress);
 
                     SqlCommand insertCommand = new SqlCommand(insertQuery, connection);
                     insertCommand.Parameters.AddWithValue("@FirstName", acc.FirstName);

@@ -24,3 +24,5 @@ Accept: application/json
 ###
 GET {{drones_HostAddress}}/api/Drone/GetOrders
 Accept: application/json
+###
+POST {{drones_HostAddress}}/api/Login/Logout

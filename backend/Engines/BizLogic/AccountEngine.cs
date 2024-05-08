@@ -8,32 +8,13 @@ namespace Engines.BizLogic
     public class AccountEngine
     {
         /// <summary>
-        /// Performs password input validation using regular expressions.
-        /// Returns true if the given password matches the expected pattern and false otherwise.
-        /// </summary>
-        /// <param name="password"></param>
-        /// <returns></returns>
-        public static bool ValidPasswordStrength(string password)
-        {
-            // password must contain at least 1 lowercase letter, 1 uppercase letter, 
-            // 1 number, and be between 8-20 characters long
-            return Regex.IsMatch(password, @"^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,20}$");
-        }
-
-        /// <summary>
-        /// This method returns true if the email and password given are valid to create
-        /// a new account with. Otherwise, it returns false.
+        /// This method returns true if the email doesn't already exist, else returns false.
         /// </summary>
         /// <param name="email"></param>
         /// <param name="password"></param>
         /// <returns></returns>
         public static bool ValidateSignUp(string email, string password)
         {
-            if (!ValidPasswordStrength(password))
-            {
-                return false;
-            }
-            // check if account with the entered email already exists
             AccountDataModel account = AccountAccessor.GetAccountWithEmail(email);
             if (account != null)
             {

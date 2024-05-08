@@ -21,7 +21,8 @@ public class HomeController : Controller
         var response = "Please Login";
         if (LoginController.AccountId != null)
         {
-            response = OrderManager.NewOrder(LoginController.AccountId ?? 0, deliverTo);
+            OrderManager orderManager = new OrderManager();
+            response = orderManager.NewOrder(LoginController.AccountId ?? 0, deliverTo).Result;
         }
         return Ok(response);
     }

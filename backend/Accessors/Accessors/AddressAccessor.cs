@@ -107,8 +107,14 @@ namespace Accessors.Accessors
         /// </summary>
         /// <param name="a"></param>
         /// <returns></returns>
-        public static int InsertAddress(AddressDataModel a)
+        public async Task<int> InsertAddress(AddressDataModel a)
         {
+            if(a.Coordinates == null)
+            {
+                OpenRouteAccessor openRouteAccessor = new OpenRouteAccessor();
+                a.Coordinates = await openRouteAccessor.GetCoordinatesAsync(a);
+            }
+            
             string selectQuery = @"SELECT addressId FROM Address WHERE city = @City 
                            AND state = @State AND zip = @Zip AND address_line = @AddressLine
                            AND latitude = @Latitude AND longitude = @Longitude";

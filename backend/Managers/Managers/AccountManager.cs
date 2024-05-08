@@ -8,9 +8,15 @@ namespace Managers;
 
 public class AccountManager
 {
-    public static void AddAccount(Account account)
+    public static int AddAccount(Account account)
     {
-        //AccountAccessor.InsertAccount(account.FirstName, account.LastName, account.Email, account.Password, account.AccountAddress.City, account.AccountAddress.State, account.AccountAddress.ZipCode, account.AccountAddress.AddressLine, false);
+        int accountId = -1;
+        if (AccountEngine.ValidateSignUp(account.Email, account.Password))
+        {
+            AccountAccessor accountAccessor = new AccountAccessor(); 
+            accountId = accountAccessor.InsertAccount(AccountHelper.AccountToAccountDataModel(account)).Result;
+        };
+        return accountId;
     }
     public static Account? ValidateLogin(string email, string password)
     {
