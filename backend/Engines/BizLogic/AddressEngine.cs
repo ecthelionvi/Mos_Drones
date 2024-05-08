@@ -13,7 +13,6 @@ namespace Engines.BizLogic
         //returns the depot closest
         public static Boolean IsDeliveryRequestInRange(AddressDataModel address)
         {
-            float range = float.MaxValue;
             List<DepotDataModel> depots = DepotAccessor.GetDepotList();
             DepotDataModel? closest = null;
             double leastDistance = 5;

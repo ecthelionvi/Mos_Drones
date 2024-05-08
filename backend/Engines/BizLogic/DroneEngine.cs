@@ -2,48 +2,61 @@ using System;
 using Accessors.Accessors;
 using Accessors.DBModels;
 
-namespace Engines.BizLogic 
+namespace Engines.BizLogic
 {
     public class DroneEngine
     {
         public static void UpdateDroneStatus()
         {
             List<OrderDataModel> activeOrders = OrderAccessor.GetActiveOrders();
-            List<DroneDataModel> drones = DroneAccessor.GetDroneList();
-            
+            List<DroneDataModel> nonUpdatedDrones = DroneAccessor.GetDroneList();
+            List<DroneDataModel> updatedDrones = new List<DroneDataModel>();
+
             foreach (OrderDataModel order in activeOrders)
             {
+                order.Status = OrderEngine.GetOrderStatus(order.OrderId ?? 0);
                 if (!order.Status.Contains("Package-at-Depot"))
                 {
-                    foreach (DroneDataModel drone in drones)
+                    DroneDataModel drone;
+                    if (order.Status == "Drone-in-Route to Dropoff")
                     {
-                        if (order.Status == "Drone-in-Route to Dropoff")
-                        {
-                            DepotDataModel closest = AddressEngine.GetClosestDepot(order.ShippedFrom);
-                            if (drone.CurrentDepot.Equals(closest))
-                            {
-                                drone.TransitStatus = "Drone-in-Route to " + order.ShippedTo.AddressLine;
-                            }
-                        } else if (order.Status == "Drone-in-Route to Pickup")
-                        {
-                            DepotDataModel closest = AddressEngine.GetClosestDepot(order.ShippedTo);
-                            if (drone.CurrentDepot.Equals(closest))
-                            {
-                                drone.TransitStatus = "Drone-in-Route to " + order.ShippedFrom.AddressLine;
-                            }
-                        }
-                        else
-                        {
-                            string inxFromStatus = order.Status.Replace("Package-in-Route to Depot ", "");
-                            int depotIdx = int.Parse(inxFromStatus) - 1;
-                            if (drone.CurrentDepot.DepotId == depotIdx)
-                            {
-                                drone.TransitStatus = order.Status.Replace("Package", "Drone");
-                            }
-                        }
-                        DroneAccessor.UpdateDroneStatus(drone.DroneId, drone.TransitStatus);
+                        DepotDataModel closest = AddressEngine.GetClosestDepot(order.ShippedTo);
+                        drone = nonUpdatedDrones.Find(d => d.CurrentDepot.Equals(closest));
+                        drone.TransitStatus = "Drone-in-Route to " + order.ShippedTo.AddressLine;
                     }
+                    else if (order.Status == "Drone-in-Route to Pickup")
+                    {
+                        DepotDataModel closest = AddressEngine.GetClosestDepot(order.ShippedFrom);
+                        drone = nonUpdatedDrones.Find(d => d.CurrentDepot.Equals(closest));
+                        drone.TransitStatus = "Drone-in-Route to " + order.ShippedFrom.AddressLine;
+                    }
+                    else
+                    {
+                        DepotDataModel pickup = AddressEngine.GetClosestDepot(order.ShippedFrom);
+                        DepotDataModel delivery = AddressEngine.GetClosestDepot(order.ShippedTo);
+
+                        string inxFromStatus = order.Status.Replace("Package-in-Route to Depot ", "");
+                        int depotIdx = pickup.DepotId < delivery.DepotId
+                            ? Int32.Parse(inxFromStatus) - 1
+                            : Int32.Parse(inxFromStatus) + 1;
+                        drone = nonUpdatedDrones.Find(d => d.CurrentDepot.DepotId.Equals(depotIdx));
+                        drone.TransitStatus = order.Status.Replace("Package", "Drone");
+                    }
+
+                    updatedDrones.Add(drone);
+                    nonUpdatedDrones.RemoveAll(d => d.DroneId == drone.DroneId);
                 }
+            }
+
+            foreach (DroneDataModel drone in nonUpdatedDrones)
+            {
+                drone.TransitStatus = "Free";
+                DroneAccessor.UpdateDroneStatus(drone.DroneId, drone.TransitStatus);
+            }
+
+            foreach (DroneDataModel drone in updatedDrones)
+            {
+                DroneAccessor.UpdateDroneStatus(drone.DroneId, drone.TransitStatus);
             }
         }
     }

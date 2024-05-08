@@ -112,16 +112,16 @@ insert into Depot (addressId) values (14);
 insert into Depot (addressId) values (15);
 insert into Depot (addressId) values (16);
 
-insert into Drone (transit_status, orderId, depotId) values ('Free', null, null);
-insert into Drone (transit_status, orderId, depotId) values ('Free', null, null);
-insert into Drone (transit_status, orderId, depotId) values ('Free', null, null);
-insert into Drone (transit_status, orderId, depotId) values ('Free', null, null);
-insert into Drone (transit_status, orderId, depotId) values ('Free', null, null);
-insert into Drone (transit_status, orderId, depotId) values ('Free', null, null);
-insert into Drone (transit_status, orderId, depotId) values ('Free', null, null);
-insert into Drone (transit_status, orderId, depotId) values ('Free', null, null);
-insert into Drone (transit_status, orderId, depotId) values ('Free', null, null);
-insert into Drone (transit_status, orderId, depotId) values ('Free', null, null);
+insert into Drone (transit_status, orderId, depotId) values ('Free', null, 1);
+insert into Drone (transit_status, orderId, depotId) values ('Free', null, 2);
+insert into Drone (transit_status, orderId, depotId) values ('Free', null, 3);
+insert into Drone (transit_status, orderId, depotId) values ('Free', null, 4);
+insert into Drone (transit_status, orderId, depotId) values ('Free', null, 5);
+insert into Drone (transit_status, orderId, depotId) values ('Free', null, 6);
+insert into Drone (transit_status, orderId, depotId) values ('Free', null, 7);
+insert into Drone (transit_status, orderId, depotId) values ('Free', null, 8);
+insert into Drone (transit_status, orderId, depotId) values ('Free', null, 9);
+insert into Drone (transit_status, orderId, depotId) values ('Free', null, 10);
 
 select * from Account;
 SELECT * FROM Account WHERE email = null;

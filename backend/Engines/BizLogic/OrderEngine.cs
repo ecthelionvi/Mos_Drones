@@ -6,7 +6,7 @@ namespace Engines.BizLogic
 {
     public class OrderEngine
     {
-        public static DateTime getDeliveryDate(DateTime shippedDate, AddressDataModel origin, AddressDataModel destination)
+        public static DateTime GetDeliveryDate(DateTime shippedDate, AddressDataModel origin, AddressDataModel destination)
         {
             DepotDataModel pickup = AddressEngine.GetClosestDepot(origin);
             DepotDataModel deliveryDepot = AddressEngine.GetClosestDepot(destination);
@@ -42,7 +42,7 @@ namespace Engines.BizLogic
             string status = "";
             OrderDataModel dm = OrderAccessor.GetOrderWithOrderId(orderId);
 
-            if (dm.DeliveryDate.CompareTo(DateTime.Now) < 0)
+            if (dm.DeliveryDate.CompareTo(DateTime.Now) <= 0)
             {
                 status = "Delivered";
             }
@@ -54,8 +54,7 @@ namespace Engines.BizLogic
                 DepotDataModel deliveryDepot = AddressEngine.GetClosestDepot(dm.ShippedTo);
                 
                 List<DepotDataModel> depotList = DepotAccessor.GetDepotList();
-                depotList.Sort((depot1, depot2) => depot2.DepotAddress.Coordinates.Latitude.CompareTo(depot1.DepotAddress.Coordinates.Latitude));
-
+                
                 int pickupIdx = depotList.IndexOf(pickup);
                 int deliveryIdx = depotList.IndexOf(deliveryDepot);
                 
@@ -69,21 +68,24 @@ namespace Engines.BizLogic
                 int numRouteDepots = Math.Abs(deliveryIdx - pickupIdx);
 
                 List<DateTime> routeTimes = new List<DateTime>();
-                routeTimes.Add(dm.ShipDate);
-                routeTimes.Add(dm.ShipDate.AddMinutes( pickupDistance * 2));
-                foreach(DepotDataModel depot in depotList.GetRange(Math.Min(pickupIdx, deliveryIdx), numRouteDepots))
+                routeTimes.Add(dm.ShipDate.AddMinutes(pickupDistance));
+                routeTimes.Add(routeTimes[routeTimes.Count - 1].AddMinutes(pickupDistance));
+                
+                foreach (DepotDataModel depot in depotList.GetRange(Math.Min(pickupIdx, deliveryIdx), numRouteDepots + 1))
                 {
-                    routeTimes.Add(routeTimes[routeTimes.Count - 1].AddMinutes(20));
                     routeTimes.Add(routeTimes[routeTimes.Count - 1].AddMinutes(10));
+                    if (depot.DepotId != deliveryDepot.DepotId){
+                        routeTimes.Add(routeTimes[routeTimes.Count - 1].AddMinutes(20));
+                    }
                 }
-                routeTimes.Add(routeTimes[routeTimes.Count - 1].AddMinutes(dropoffDistance * 2));
+                routeTimes.Add(routeTimes[routeTimes.Count - 1].AddMinutes(dropoffDistance));
 
                 foreach (DateTime time in routeTimes)
                 {
                     if (time.CompareTo(DateTime.Now) > 0)
                     {
                         int position = routeTimes.IndexOf(time);
-                        if (position < 2)
+                        if (position < 1)
                         {
                             status = "Drone-in-Route to Pickup";
                         }
@@ -93,14 +95,14 @@ namespace Engines.BizLogic
                         }
                         else if (position % 2 == 0)
                         {
-                            string depotName = depotList[pickupIdx + position / 2].DepotId.ToString();
-                            status = "Package-in-Route to Depot " + depotName;
-                        }
-                        else if (position % 2 == 1)
-                        {
                             position++;
-                            string depotName = depotList[pickupIdx + (position / 2)].DepotId.ToString();
+                            string depotName = pickupIdx < deliveryIdx ? depotList[pickupIdx + (position / 2)].DepotId.ToString() : depotList[pickupIdx - (position / 2)].DepotId.ToString();
                             status = "Package-at-Depot " + depotName;
+                        }
+                        else
+                        {
+                            string depotName = pickupIdx < deliveryIdx ? depotList[pickupIdx + ((1 + position) / 2)].DepotId.ToString() : depotList[pickupIdx - ((1 + position) / 2)].DepotId.ToString();
+                            status = "Package-in-Route to Depot " + depotName;
                         }
 
                         break;
@@ -111,7 +113,7 @@ namespace Engines.BizLogic
             return status;
         }
 
-        public async Task<Boolean> validateOrderRequest(AddressDataModel destination)
+        public async Task<Boolean> ValidateOrderRequest(AddressDataModel destination)
         {
             var openRouteAccessor = new OpenRouteAccessor();
             Coordinate coordinate = await openRouteAccessor.GetCoordinatesAsync(destination);

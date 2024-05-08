@@ -177,7 +177,7 @@ namespace Accessors.Accessors
         /// </summary>
         /// <param name="order"></param>
         /// <returns></returns>
-        public static int InsertOrder(OrderDataModel order)
+        public async Task<int> InsertOrder(OrderDataModel order)
         {
             string packageId = Guid.NewGuid().ToString("N").Substring(0, 16);
             DateTime shipDate = DateTime.Now;
@@ -203,8 +203,10 @@ namespace Accessors.Accessors
                 object account = selectCommand.ExecuteScalar();
                 int accountId = Convert.ToInt32(account);
 
-                int originId = AddressAccessor.InsertAddress(order.ShippedFrom);
-                int destinationId = AddressAccessor.InsertAddress(order.ShippedTo);
+                AddressAccessor addressAccessor = new AddressAccessor();
+                
+                int originId = await addressAccessor.InsertAddress(order.ShippedFrom);
+                int destinationId = await addressAccessor.InsertAddress(order.ShippedTo);
 
                 SqlCommand insertCommand = new SqlCommand(insertQuery, connection);
                 insertCommand.Parameters.AddWithValue("@PackageId", packageId);
@@ -230,10 +232,10 @@ namespace Accessors.Accessors
 
             return orderId;
         }
-
+        
         public static List<OrderDataModel> GetActiveOrders()
         {
-            string query = "SELECT * FROM [Order] WHERE deliveryDate < @CurrentDateTime";
+            string query = "SELECT * FROM [Order] WHERE status != @Status";
             List<OrderDataModel> orderList = new List<OrderDataModel>();
             SqlConnection connection = ConnectionAccessor.ConnectionAccessor.GetConnection();
 
@@ -241,7 +243,9 @@ namespace Accessors.Accessors
             {
                 connection.Open();
                 SqlCommand command = new SqlCommand(query, connection);
-                command.Parameters.AddWithValue("@CurrentDateTime", DateTime.Now);
+                
+                
+                command.Parameters.AddWithValue("@Status", "Delivered");
                 SqlDataReader reader = command.ExecuteReader();
                 if (reader.HasRows)
                 {
@@ -277,6 +281,29 @@ namespace Accessors.Accessors
             }
 
             return orderList;
+        }
+        
+        public void UpdateOrderStatus(int orderId, string status)
+        {
+            string query = "UPDATE [Order] SET status = @Status WHERE orderId = @OrderId";
+            SqlConnection connection = ConnectionAccessor.ConnectionAccessor.GetConnection();
+
+            try
+            {
+                connection.Open();
+                SqlCommand command = new SqlCommand(query, connection);
+                command.Parameters.AddWithValue("@Status", status);
+                command.Parameters.AddWithValue("@OrderId", orderId);
+                command.ExecuteNonQuery();
+            }
+            catch (SqlException ex)
+            {
+                Console.WriteLine($"SQL Exception: {ex.Message}");
+            }
+            finally
+            {
+                connection.Close();
+            }
         }
     }
 }

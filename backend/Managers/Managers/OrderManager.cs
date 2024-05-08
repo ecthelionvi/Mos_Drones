@@ -16,7 +16,7 @@ public class OrderManager
         return order;
     }
 
-    public static string NewOrder(int accountId, Address deliverTo)
+    public async Task<String> NewOrder(int accountId, Address deliverTo)
     {
         string response = "Invalid Order Request: Out of Range";
         AccountDataModel accountData = AccountAccessor.GetAccountWithAccountId(accountId);
@@ -24,15 +24,15 @@ public class OrderManager
 
         OrderEngine oEngine = new OrderEngine();
         
-        if (oEngine.validateOrderRequest(destination).Result)
+        if (oEngine.ValidateOrderRequest(destination).Result)
         {
             DateTime shippedDate = DateTime.Now;
-            DateTime deliveryDate = OrderEngine.getDeliveryDate(shippedDate, accountData.AccountAddress, destination);
+            DateTime deliveryDate = OrderEngine.GetDeliveryDate(shippedDate, accountData.AccountAddress, destination);
 
             OrderDataModel oDM = new OrderDataModel(null, null, shippedDate, deliveryDate, accountId,
                 accountData.AccountAddress, destination, "");
-        
-            OrderAccessor.InsertOrder(oDM);
+            OrderAccessor orderAccessor = new OrderAccessor();
+            orderAccessor.InsertOrder(oDM);
             response = "Order Successfully Added";
         }
         return response;
@@ -40,6 +40,7 @@ public class OrderManager
     
     public static List<Order> GetUserOrders(int accountId)
     {
+        OrderAccessor orderAccessor = new OrderAccessor();
         List<OrderDataModel> orderDataModels = OrderAccessor.GetOrderListWithAccountId(accountId);
     
         List<Order> userOrders = new List<Order>();
@@ -47,6 +48,8 @@ public class OrderManager
         foreach(OrderDataModel orderDataModel in orderDataModels)
         {
             orderDataModel.Status = OrderEngine.GetOrderStatus(orderDataModel.OrderId ?? 0);
+            orderAccessor.UpdateOrderStatus(orderDataModel.OrderId ?? 0, orderDataModel.Status);
+            
             Order o = OrderHelper.OrderDataModelToOrderModel(orderDataModel);
             userOrders.Add(o);
         }

@@ -21,6 +21,6 @@ public class DroneManager
             drones.Add(DroneHelper.ConvertDroneDataModelToDroneModel(droneDataModel));
         }
         
-        return new List<Drone>();
+        return drones;
     }
 }
