@@ -6,6 +6,7 @@ import HomePage from "./components/HomePage";
 import SignupPage from "./components/SignupPage";
 import PackageGrid from "./components/PackageGrid";
 import DronePage from "./components/DronePage";
+import axios from 'axios';
 
 const App = () => {
   const [user, setUser] = useState(null);
@@ -40,7 +41,6 @@ const App = () => {
     try{
       const response = await axios.post("http://localhost:3001/api/Login/Logout");
       if (response.status === 200) {
-        navigate("/login");
         localStorage.removeItem("accountId");
         localStorage.removeItem("firstName");
         localStorage.removeItem("lastName");
