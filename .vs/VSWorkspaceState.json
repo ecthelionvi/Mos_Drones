@@ -1,13 +1,6 @@
 {
   "ExpandedNodes": [
-    "",
-    "\\backend",
-    "\\backend\\Accessors",
-    "\\backend\\Engines",
-    "\\backend\\Managers",
-    "\\backend\\Service",
-    "\\backend\\UnitTests"
+    ""
   ],
-  "SelectedNode": "\\backend\\mos_drones.sln",
   "PreviewInSolutionExplorer": false
 }

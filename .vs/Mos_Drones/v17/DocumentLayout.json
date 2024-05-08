@@ -38,7 +38,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 475,
-          "SelectedChildIndex": 12,
+          "SelectedChildIndex": 9,
           "Children": [
             {
               "$type": "Bookmark",
@@ -62,23 +62,11 @@
             },
             {
               "$type": "Bookmark",
-              "Name": "ST:130:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
-            },
-            {
-              "$type": "Bookmark",
               "Name": "ST:131:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
             },
             {
               "$type": "Bookmark",
               "Name": "ST:132:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
-            },
-            {
-              "$type": "Bookmark",
-              "Name": "ST:128:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
-            },
-            {
-              "$type": "Bookmark",
-              "Name": "ST:129:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
             },
             {
               "$type": "Document",
@@ -114,8 +102,7 @@
               "RelativeToolTip": "backend\\Accessors\\Accessors\\ConnectionAccessor.cs",
               "ViewState": "AQIAAFoAAAAAAAAAAAAAAGQAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-03T16:55:43.861Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-05-03T16:55:43.861Z"
             },
             {
               "$type": "Document",
@@ -127,8 +114,7 @@
               "RelativeToolTip": "backend\\Accessors\\Accessors\\AddressAccessor.cs",
               "ViewState": "AQIAAK8AAAAAAAAAAAAAALMAAAAJAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-03T16:53:46.971Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-05-03T16:53:46.971Z"
             },
             {
               "$type": "Document",
@@ -140,8 +126,7 @@
               "RelativeToolTip": "backend\\Accessors\\Accessors\\AccountAccessor.cs",
               "ViewState": "AQIAAHIAAAAAAAAAAAAAAAAAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-03T16:55:00.896Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-05-03T16:55:00.896Z"
             },
             {
               "$type": "Document",
