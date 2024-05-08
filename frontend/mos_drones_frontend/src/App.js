@@ -36,14 +36,24 @@ const App = () => {
     setUser(loggedInUser);
   };
 
-  const handleLogout = () => {
-    localStorage.removeItem("accountId");
-    localStorage.removeItem("firstName");
-    localStorage.removeItem("lastName");
-    localStorage.removeItem("email");
-    localStorage.removeItem("isAdmin");
-    setUser(null);
-  };
+  const handleLogout = async () => {
+    try{
+      const response = await axios.post("http://localhost:3001/api/Login/Logout");
+      if (response.status === 200) {
+        navigate("/login");
+        localStorage.removeItem("accountId");
+        localStorage.removeItem("firstName");
+        localStorage.removeItem("lastName");
+        localStorage.removeItem("email");
+        localStorage.removeItem("isAdmin");
+        setUser(null);
+      } else {
+        console.error("Error logging out");
+      }
+    }catch (error) {  
+      console.error("Error logging out:", error);
+    }
+};
 
   /* 
   Original code
