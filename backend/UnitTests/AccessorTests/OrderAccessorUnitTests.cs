@@ -70,7 +70,8 @@ namespace UnitTests.AccessorTests
             AddressDataModel shippedTo = new AddressDataModel(3, "Lincoln", "Nebraska", "68516", "9876 Pine Lake Road", coord2);
             OrderDataModel order = new OrderDataModel(null, null, DateTime.Now, deliveryDate, 2, shippedFrom, shippedTo, "");
 
-            int actualOrderId = OrderAccessor.InsertOrder(order);
+            OrderAccessor orderAccessor = new OrderAccessor();
+            int actualOrderId = orderAccessor.InsertOrder(order).Result;
 
             Assert.AreEqual(expectedOrderId, actualOrderId);
         }

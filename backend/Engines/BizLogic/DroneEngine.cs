@@ -23,12 +23,14 @@ namespace Engines.BizLogic
                         DepotDataModel closest = AddressEngine.GetClosestDepot(order.ShippedTo);
                         drone = nonUpdatedDrones.Find(d => d.CurrentDepot.Equals(closest));
                         drone.TransitStatus = "Drone-in-Route to " + order.ShippedTo.AddressLine;
+                        drone.Order = order;
                     }
                     else if (order.Status == "Drone-in-Route to Pickup")
                     {
                         DepotDataModel closest = AddressEngine.GetClosestDepot(order.ShippedFrom);
                         drone = nonUpdatedDrones.Find(d => d.CurrentDepot.Equals(closest));
                         drone.TransitStatus = "Drone-in-Route to " + order.ShippedFrom.AddressLine;
+                        drone.Order = order;
                     }
                     else
                     {
@@ -41,6 +43,7 @@ namespace Engines.BizLogic
                             : Int32.Parse(inxFromStatus) + 1;
                         drone = nonUpdatedDrones.Find(d => d.CurrentDepot.DepotId.Equals(depotIdx));
                         drone.TransitStatus = order.Status.Replace("Package", "Drone");
+                        drone.Order = order;
                     }
 
                     updatedDrones.Add(drone);
@@ -51,6 +54,7 @@ namespace Engines.BizLogic
             foreach (DroneDataModel drone in nonUpdatedDrones)
             {
                 drone.TransitStatus = "Free";
+                drone.Order = null;
                 DroneAccessor.UpdateDroneStatus(drone.DroneId, drone.TransitStatus);
             }
 

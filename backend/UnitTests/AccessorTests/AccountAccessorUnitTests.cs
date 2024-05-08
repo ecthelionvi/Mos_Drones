@@ -65,8 +65,9 @@ namespace UnitTests.AccessorTests
             Coordinate coord = new Coordinate(40.817638, -96.699997);
             AddressDataModel address = new AddressDataModel(null, "Lincoln", "Nebraska", "68588", "1400 R St", coord);
             AccountDataModel account = new AccountDataModel(null, "Angie", "Zheng", "azheng2@huskers.unl.edu", "password123", address, false);
-            
-            int actualAccountId = AccountAccessor.InsertAccount(account);
+
+            AccountAccessor accountAccessor = new AccountAccessor();
+            int actualAccountId = accountAccessor.InsertAccount(account).Result;
             Assert.AreEqual(expectedAccountId, actualAccountId);
         }
     }
