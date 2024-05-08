@@ -104,7 +104,7 @@
               "RelativeDocumentMoniker": "UnitTests\\ManagerTests\\OrderManagerUnitTests.cs",
               "ToolTip": "C:\\Users\\angiz\\source\\repos\\ecthelionvi\\Mos_Drones\\backend\\UnitTests\\ManagerTests\\OrderManagerUnitTests.cs",
               "RelativeToolTip": "UnitTests\\ManagerTests\\OrderManagerUnitTests.cs",
-              "ViewState": "AQIAABoAAAAAAAAAAAAQwCgAAAADAAAA",
+              "ViewState": "AQIAABoAAAAAAAAAAAAQwCgAAAABAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-05-08T06:05:10.11Z",
               "EditorCaption": ""
@@ -119,8 +119,7 @@
               "RelativeToolTip": "UnitTests\\ManagerTests\\OrderHelperUnitTests.cs",
               "ViewState": "AQIAADcAAAAAAAAAAAAQwEUAAAADAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-08T06:05:04.615Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-05-08T06:05:04.615Z"
             },
             {
               "$type": "Document",
@@ -132,8 +131,7 @@
               "RelativeToolTip": "UnitTests\\ManagerTests\\DroneManagerUnitTests.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAUAAAADAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-08T06:05:00.274Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-05-08T06:05:00.274Z"
             },
             {
               "$type": "Document",
@@ -145,8 +143,7 @@
               "RelativeToolTip": "UnitTests\\ManagerTests\\DroneHelperUnitTests.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAYAAAARAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-08T06:04:54.971Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-05-08T06:04:54.971Z"
             },
             {
               "$type": "Document",
@@ -158,8 +155,7 @@
               "RelativeToolTip": "UnitTests\\ManagerTests\\AddressHelperManagerUnitTests.cs",
               "ViewState": "AQIAADcAAAAAAAAAAAAQwEUAAAADAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-08T06:04:48.937Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-05-08T06:04:48.937Z"
             },
             {
               "$type": "Document",
@@ -171,8 +167,7 @@
               "RelativeToolTip": "UnitTests\\EngineTests\\OrderEngineUnitTests.cs",
               "ViewState": "AQIAABAAAAAAAAAAAAAAwBwAAAADAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-08T06:04:37.767Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-05-08T06:04:37.767Z"
             },
             {
               "$type": "Document",
@@ -184,8 +179,7 @@
               "RelativeToolTip": "UnitTests\\EngineTests\\DroneEngineUnitTests.cs",
               "ViewState": "AQIAABAAAAAAAAAAAAAAwBwAAAADAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-08T06:04:33.364Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-05-08T06:04:33.364Z"
             },
             {
               "$type": "Document",
@@ -197,8 +191,7 @@
               "RelativeToolTip": "UnitTests\\EngineTests\\DepotEngineUnitTests.cs",
               "ViewState": "AQIAABAAAAAAAAAAAAAAwBwAAAADAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-08T06:04:28.903Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-05-08T06:04:28.903Z"
             },
             {
               "$type": "Document",
@@ -210,8 +203,7 @@
               "RelativeToolTip": "UnitTests\\EngineTests\\AddressEngineUnitTests.cs",
               "ViewState": "AQIAABAAAAAAAAAAAAAAwBwAAAADAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-08T06:04:21.291Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-05-08T06:04:21.291Z"
             },
             {
               "$type": "Document",
@@ -223,8 +215,7 @@
               "RelativeToolTip": "UnitTests\\EngineTests\\AccountEngineUnitTests.cs",
               "ViewState": "AQIAABYAAAAAAAAAAAAYwBcAAAAcAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-08T05:53:28.584Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-05-08T05:53:28.584Z"
             },
             {
               "$type": "Document",
@@ -236,8 +227,7 @@
               "RelativeToolTip": "UnitTests\\AccessorTests\\OrderAccessorUnitTests.cs",
               "ViewState": "AQIAAEAAAAAAAAAAAAAnwEkAAABHAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-08T05:49:29.451Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-05-08T05:49:29.451Z"
             },
             {
               "$type": "Document",
@@ -249,8 +239,7 @@
               "RelativeToolTip": "UnitTests\\AccessorTests\\AddressAccessorTests.cs",
               "ViewState": "AQIAABsAAAAAAAAAAIA8wCIAAABPAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-08T05:48:44.917Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-05-08T05:48:44.917Z"
             },
             {
               "$type": "Document",
@@ -262,8 +251,7 @@
               "RelativeToolTip": "UnitTests\\AccessorTests\\AccountAccessorUnitTests.cs",
               "ViewState": "AQIAADoAAAAAAAAAAAAwwEUAAABPAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-08T05:42:07.591Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-05-08T05:42:07.591Z"
             },
             {
               "$type": "Document",
@@ -275,8 +263,7 @@
               "RelativeToolTip": "Accessors\\Accessors\\ConnectionAccessor.cs",
               "ViewState": "AQIAAEgAAAAAAAAAAAAYwAAAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-08T05:43:17.921Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-05-08T05:43:17.921Z"
             }
           ]
         },
