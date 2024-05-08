@@ -8,10 +8,10 @@ namespace Managers;
 
 public class OrderManager
 {
-    public static Order FindOrder(int orderId)
+    public static Order FindOrder(string packageId)
     {
-        OrderDataModel orderDataModel = OrderAccessor.GetOrderWithOrderId(orderId);
-        orderDataModel.Status = OrderEngine.GetOrderStatus(orderId);
+        OrderDataModel orderDataModel = OrderAccessor.GetOrderWithPackageId(packageId);
+        orderDataModel.Status = OrderEngine.GetOrderStatus(orderDataModel.OrderId ?? 0);
         Order order = OrderHelper.OrderDataModelToOrderModel(orderDataModel);
         return order;
     }

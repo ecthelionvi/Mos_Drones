@@ -4,7 +4,7 @@ GET {{drones_HostAddress}}/api/Drone
 Accept: application/json
 
 ###
-POST{{drones_HostAddress}}/api/Home/FindOrder/
+GET {{drones_HostAddress}}/api/Home/FindOrder/{PackageId}
 Content-Type: application/json
 ###
 POST {{drones_HostAddress}}/api/Home/GetUserOrders

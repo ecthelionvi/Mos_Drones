@@ -8,7 +8,7 @@ import axios from "axios";
 const PackageDetails = () => {
   const { packageId } = useParams();
   const [packageDetails, setPackageDetails] = useState(null);
-  const [useMockData, setUseMockData] = useState(true);
+  const [useMockData, setUseMockData] = useState(false);
 
   useEffect(() => {
     const mockData = [
@@ -30,9 +30,7 @@ const PackageDetails = () => {
         return;
       } else {
         try {
-          const response = await axios.post("http://localhost:3000/api/Home/FindOrder", {
-            orderId: parseInt(packageId),
-          });
+          const response = await axios.get(`http://localhost:3001/api/Home/FindOrder/${packageId}`);
           setPackageDetails(response.data);
         } catch (error) {
           console.error("Error fetching package details:", error);

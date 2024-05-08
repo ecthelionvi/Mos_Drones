@@ -8,11 +8,11 @@ namespace Service.Controllers;
 [ApiController]
 public class HomeController : Controller
 {
-    [HttpPost("FindOrder")]
-    public IActionResult FindOrder([FromBody]int orderId)
+    [HttpGet("FindOrder/{packageId}")]
+    public JsonResult FindOrder(string packageId)
     {
-        Order order = OrderManager.FindOrder(orderId);
-        return Ok(order);
+        Order order = OrderManager.FindOrder(packageId);
+        return Json(order);
     }
 
     [HttpPost("NewOrder")]
