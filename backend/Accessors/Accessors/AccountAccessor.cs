@@ -1,5 +1,4 @@
 using System.Data.SqlClient;
-using System.Net;
 using Accessors.DBModels;
 
 namespace Accessors.Accessors
@@ -19,39 +18,37 @@ namespace Accessors.Accessors
 
             string query = "SELECT * FROM Account WHERE accountId = @AccountId";
 
-            SqlConnection connection = ConnectionAccessor.ConnectionAccessor.GetConnection();
-
-            try
+            using (SqlConnection connection = ConnectionAccessor.ConnectionAccessor.GetConnection())
             {
-                connection.Open();
-                SqlCommand command = new SqlCommand(query, connection);
-                command.Parameters.AddWithValue("@AccountId", accountId);
-                SqlDataReader reader = command.ExecuteReader();
-                if (reader.HasRows && reader.Read())
+                try
                 {
-                    string firstName = reader.GetString(reader.GetOrdinal("first_name"));
-                    string lastName = reader.GetString(reader.GetOrdinal("last_name"));
-                    string email = reader.GetString(reader.GetOrdinal("email"));
-                    string password = reader.GetString(reader.GetOrdinal("password"));
-                    int addressId = reader.GetInt32(reader.GetOrdinal("addressId"));
-                    bool isAdmin = reader.GetBoolean(reader.GetOrdinal("isAdmin"));
+                    connection.Open();
+                    using (SqlCommand command = new SqlCommand(query, connection))
+                    {
+                        command.Parameters.AddWithValue("@AccountId", accountId);
+                        SqlDataReader reader = command.ExecuteReader();
+                        if (reader.HasRows && reader.Read())
+                        {
+                            string firstName = reader.GetString(reader.GetOrdinal("first_name"));
+                            string lastName = reader.GetString(reader.GetOrdinal("last_name"));
+                            string email = reader.GetString(reader.GetOrdinal("email"));
+                            string password = reader.GetString(reader.GetOrdinal("password"));
+                            int addressId = reader.GetInt32(reader.GetOrdinal("addressId"));
+                            bool isAdmin = reader.GetBoolean(reader.GetOrdinal("isAdmin"));
 
-                    accountAddress = AddressAccessor.GetAddress(addressId);
+                            accountAddress = AddressAccessor.GetAddress(addressId);
 
-                    account = new AccountDataModel(accountId, firstName, lastName, email, password, accountAddress, isAdmin);
+                            account = new AccountDataModel(accountId, firstName, lastName, email, password, accountAddress, isAdmin);
+                        }
+
+                        reader.Close();
+                    }
                 }
-
-                reader.Close();
+                catch (SqlException ex)
+                {
+                    Console.WriteLine($"SQL Exception: {ex.Message}");
+                }
             }
-            catch (SqlException ex)
-            {
-                Console.WriteLine($"SQL Exception: {ex.Message}");
-            }
-            finally
-            {
-                connection.Close();
-            }
-
             return account;
         }
 
@@ -68,39 +65,37 @@ namespace Accessors.Accessors
 
             string query = "SELECT * FROM Account WHERE email = @Email";
 
-            SqlConnection connection = ConnectionAccessor.ConnectionAccessor.GetConnection();
-
-            try
+            using (SqlConnection connection = ConnectionAccessor.ConnectionAccessor.GetConnection())
             {
-                connection.Open();
-                SqlCommand command = new SqlCommand(query, connection);
-                command.Parameters.AddWithValue("@Email", email);
-                SqlDataReader reader = command.ExecuteReader();
-                if (reader.HasRows && reader.Read())
+                try
                 {
-                    int accountId = reader.GetInt32(reader.GetOrdinal("accountId"));
-                    string firstName = reader.GetString(reader.GetOrdinal("first_name"));
-                    string lastName = reader.GetString(reader.GetOrdinal("last_name"));
-                    string password = reader.GetString(reader.GetOrdinal("password"));
-                    int addressId = reader.GetInt32(reader.GetOrdinal("addressId"));
-                    bool isAdmin = reader.GetBoolean(reader.GetOrdinal("isAdmin"));
+                    connection.Open();
+                    using (SqlCommand command = new SqlCommand(query, connection))
+                    {
+                        command.Parameters.AddWithValue("@Email", email);
+                        SqlDataReader reader = command.ExecuteReader();
+                        if (reader.HasRows && reader.Read())
+                        {
+                            int accountId = reader.GetInt32(reader.GetOrdinal("accountId"));
+                            string firstName = reader.GetString(reader.GetOrdinal("first_name"));
+                            string lastName = reader.GetString(reader.GetOrdinal("last_name"));
+                            string password = reader.GetString(reader.GetOrdinal("password"));
+                            int addressId = reader.GetInt32(reader.GetOrdinal("addressId"));
+                            bool isAdmin = reader.GetBoolean(reader.GetOrdinal("isAdmin"));
 
-                    accountAddress = AddressAccessor.GetAddress(addressId);
+                            accountAddress = AddressAccessor.GetAddress(addressId);
 
-                    account = new AccountDataModel(accountId, firstName, lastName, email, password, accountAddress, isAdmin);
+                            account = new AccountDataModel(accountId, firstName, lastName, email, password, accountAddress, isAdmin);
+                        }
+
+                        reader.Close();
+                    }
                 }
-
-                reader.Close();
+                catch (SqlException ex)
+                {
+                    Console.WriteLine($"SQL Exception: {ex.Message}");
+                }
             }
-            catch (SqlException ex)
-            {
-                Console.WriteLine($"SQL Exception: {ex.Message}");
-            }
-            finally
-            {
-                connection.Close();
-            }
-
             return account;
         }
 
@@ -119,50 +114,47 @@ namespace Accessors.Accessors
 
             int accountId = -1;
 
-            SqlConnection connection = ConnectionAccessor.ConnectionAccessor.GetConnection();
-
-            try
+            using (SqlConnection connection = ConnectionAccessor.ConnectionAccessor.GetConnection())
             {
-                connection.Open();
-                SqlCommand selectCommand = new SqlCommand(selectQuery, connection);
-                selectCommand.Parameters.AddWithValue("@Email", acc.Email);
-
-                object account = selectCommand.ExecuteScalar();
-
-                if (account != null && account != DBNull.Value) // Address already exists in database
+                try
                 {
-                    accountId = Convert.ToInt32(account);
-                    //Console.WriteLine("Account already exists in the database.");
+                    connection.Open();
+                    using (SqlCommand selectCommand = new SqlCommand(selectQuery, connection))
+                    {
+                        selectCommand.Parameters.AddWithValue("@Email", acc.Email);
+
+                        object account = selectCommand.ExecuteScalar();
+
+                        if (account != null && account != DBNull.Value) // Address already exists in database
+                        {
+                            accountId = Convert.ToInt32(account);
+                        }
+                        else
+                        {
+                            AddressAccessor addressAccessor = new AddressAccessor();
+                            int addressId = await addressAccessor.InsertAddress(acc.AccountAddress);
+
+                            using (SqlCommand insertCommand = new SqlCommand(insertQuery, connection))
+                            {
+                                insertCommand.Parameters.AddWithValue("@FirstName", acc.FirstName);
+                                insertCommand.Parameters.AddWithValue("@LastName", acc.LastName);
+                                insertCommand.Parameters.AddWithValue("@Email", acc.Email);
+                                insertCommand.Parameters.AddWithValue("@Password", acc.Password);
+                                insertCommand.Parameters.AddWithValue("@AddressId", addressId);
+                                insertCommand.Parameters.AddWithValue("@IsAdmin", acc.IsAdmin);
+
+                                // Insert the record and get its id
+                                account = insertCommand.ExecuteScalar();
+                                accountId = Convert.ToInt32(account);
+                            }
+                        }
+                    }
                 }
-                else
+                catch (SqlException ex)
                 {
-                    AddressAccessor addressAccessor = new AddressAccessor();
-                    int addressId = await addressAccessor.InsertAddress(acc.AccountAddress);
-
-                    SqlCommand insertCommand = new SqlCommand(insertQuery, connection);
-                    insertCommand.Parameters.AddWithValue("@FirstName", acc.FirstName);
-                    insertCommand.Parameters.AddWithValue("@LastName", acc.LastName);
-                    insertCommand.Parameters.AddWithValue("@Email", acc.Email);
-                    insertCommand.Parameters.AddWithValue("@Password", acc.Password);
-                    insertCommand.Parameters.AddWithValue("@AddressId", addressId);
-                    insertCommand.Parameters.AddWithValue("@IsAdmin", acc.IsAdmin);
-
-                    // Insert the record and get its id
-                    account = insertCommand.ExecuteScalar();
-                    accountId = Convert.ToInt32(account);
-                    //Console.WriteLine("Account inserted successfully.");
-                    //Console.WriteLine("The addressId for the inserted account is " + addressId);
+                    Console.WriteLine($"SQL Exception: {ex.Message}");
                 }
             }
-            catch (SqlException ex)
-            {
-                Console.WriteLine($"SQL Exception: {ex.Message}");
-            }
-            finally
-            {
-                connection.Close();
-            }
-
             return accountId;
         }
     }

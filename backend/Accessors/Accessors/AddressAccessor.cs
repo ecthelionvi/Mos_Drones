@@ -1,6 +1,4 @@
 using System.Data.SqlClient;
-using System.Collections.Generic;
-using Accessors.ConnectionAccessor;
 using Accessors.DBModels;
 
 namespace Accessors.Accessors
@@ -16,42 +14,41 @@ namespace Accessors.Accessors
             List<AddressDataModel> addressList = new List<AddressDataModel>();
             string query = "SELECT * FROM Address";
 
-            SqlConnection connection = ConnectionAccessor.ConnectionAccessor.GetConnection();
-
-            try
+            using (SqlConnection connection = ConnectionAccessor.ConnectionAccessor.GetConnection())
             {
-                connection.Open();
-                SqlCommand command = new SqlCommand(query, connection);
-                SqlDataReader reader = command.ExecuteReader();
-                if (reader.HasRows)
+                try
                 {
-
-                    while (reader.Read())
+                    connection.Open();
+                    using (SqlCommand command = new SqlCommand(query, connection))
                     {
-                        int addressId = reader.GetInt32(reader.GetOrdinal("addressId"));
-                        string city = reader.GetString(reader.GetOrdinal("city"));
-                        string state = reader.GetString(reader.GetOrdinal("state"));
-                        string zip = reader.GetString(reader.GetOrdinal("zip"));
-                        string addressLine = reader.GetString(reader.GetOrdinal("address_line"));
-                        double latitude = reader.GetDouble(reader.GetOrdinal("latitude"));
-                        double longitude = reader.GetDouble(reader.GetOrdinal("longitude"));
+                        SqlDataReader reader = command.ExecuteReader();
+                        if (reader.HasRows)
+                        {
 
-                        Coordinate coordinate = new Coordinate(latitude, longitude);
-                        AddressDataModel a = new AddressDataModel(addressId, city, state, zip, addressLine, coordinate);
-                        addressList.Add(a);
+                            while (reader.Read())
+                            {
+                                int addressId = reader.GetInt32(reader.GetOrdinal("addressId"));
+                                string city = reader.GetString(reader.GetOrdinal("city"));
+                                string state = reader.GetString(reader.GetOrdinal("state"));
+                                string zip = reader.GetString(reader.GetOrdinal("zip"));
+                                string addressLine = reader.GetString(reader.GetOrdinal("address_line"));
+                                double latitude = reader.GetDouble(reader.GetOrdinal("latitude"));
+                                double longitude = reader.GetDouble(reader.GetOrdinal("longitude"));
 
+                                Coordinate coordinate = new Coordinate(latitude, longitude);
+                                AddressDataModel a = new AddressDataModel(addressId, city, state, zip, addressLine, coordinate);
+                                addressList.Add(a);
+
+                            }
+                        }
+
+                        reader.Close();
                     }
                 }
-
-                reader.Close();
-            }
-            catch (SqlException ex)
-            {
-                Console.WriteLine($"SQL Exception: {ex.Message}");
-            }
-            finally
-            {
-                connection.Close();
+                catch (SqlException ex)
+                {
+                    Console.WriteLine($"SQL Exception: {ex.Message}");
+                }
             }
             return addressList;
         }
@@ -67,36 +64,35 @@ namespace Accessors.Accessors
             AddressDataModel address = null;
             string query = "SELECT * FROM Address WHERE addressId = @AddressId";
 
-            SqlConnection connection = ConnectionAccessor.ConnectionAccessor.GetConnection();
-
-            try
+            using (SqlConnection connection = ConnectionAccessor.ConnectionAccessor.GetConnection())
             {
-                connection.Open();
-                SqlCommand command = new SqlCommand(query, connection);
-                command.Parameters.AddWithValue("@AddressId", addressId);
-                SqlDataReader reader = command.ExecuteReader();
-                if (reader.HasRows && reader.Read())
+                try
                 {
-                    string city = reader.GetString(reader.GetOrdinal("city"));
-                    string state = reader.GetString(reader.GetOrdinal("state"));
-                    string zip = reader.GetString(reader.GetOrdinal("zip"));
-                    string addressLine = reader.GetString(reader.GetOrdinal("address_line"));
-                    double latitude = reader.GetDouble(reader.GetOrdinal("latitude"));
-                    double longitude = reader.GetDouble(reader.GetOrdinal("longitude"));
+                    connection.Open();
+                    using (SqlCommand command = new SqlCommand(query, connection))
+                    {
+                        command.Parameters.AddWithValue("@AddressId", addressId);
+                        SqlDataReader reader = command.ExecuteReader();
+                        if (reader.HasRows && reader.Read())
+                        {
+                            string city = reader.GetString(reader.GetOrdinal("city"));
+                            string state = reader.GetString(reader.GetOrdinal("state"));
+                            string zip = reader.GetString(reader.GetOrdinal("zip"));
+                            string addressLine = reader.GetString(reader.GetOrdinal("address_line"));
+                            double latitude = reader.GetDouble(reader.GetOrdinal("latitude"));
+                            double longitude = reader.GetDouble(reader.GetOrdinal("longitude"));
 
-                    Coordinate coordinate = new Coordinate(latitude, longitude);
-                    address = new AddressDataModel(addressId, city, state, zip, addressLine, coordinate);
+                            Coordinate coordinate = new Coordinate(latitude, longitude);
+                            address = new AddressDataModel(addressId, city, state, zip, addressLine, coordinate);
+                        }
+
+                        reader.Close();
+                    }
                 }
-
-                reader.Close();
-            }
-            catch (SqlException ex)
-            {
-                Console.WriteLine($"SQL Exception: {ex.Message}");
-            }
-            finally
-            {
-                connection.Close();
+                catch (SqlException ex)
+                {
+                    Console.WriteLine($"SQL Exception: {ex.Message}");
+                }
             }
             return address;
         }
@@ -131,51 +127,49 @@ namespace Accessors.Accessors
             
             int addressId = -1;
 
-            SqlConnection connection = ConnectionAccessor.ConnectionAccessor.GetConnection();
-
-            try
+            using (SqlConnection connection = ConnectionAccessor.ConnectionAccessor.GetConnection())
             {
-                connection.Open();
-                SqlCommand selectCommand = new SqlCommand(selectQuery, connection);
-                selectCommand.Parameters.AddWithValue("@City", city);
-                selectCommand.Parameters.AddWithValue("@State", state);
-                selectCommand.Parameters.AddWithValue("@Zip", zip);
-                selectCommand.Parameters.AddWithValue("@AddressLine", addressLine);
-                selectCommand.Parameters.AddWithValue("@Latitude", latitude);
-                selectCommand.Parameters.AddWithValue("@Longitude", longitude);
-
-                object address = selectCommand.ExecuteScalar();
-
-                if (address != null && address != DBNull.Value) // Address already exists in database
+                try
                 {
-                    addressId = Convert.ToInt32(address);
-                    //Console.WriteLine("Address already exists in the database.");
+                    connection.Open();
+                    using (SqlCommand selectCommand = new SqlCommand(selectQuery, connection))
+                    {
+                        selectCommand.Parameters.AddWithValue("@City", city);
+                        selectCommand.Parameters.AddWithValue("@State", state);
+                        selectCommand.Parameters.AddWithValue("@Zip", zip);
+                        selectCommand.Parameters.AddWithValue("@AddressLine", addressLine);
+                        selectCommand.Parameters.AddWithValue("@Latitude", latitude);
+                        selectCommand.Parameters.AddWithValue("@Longitude", longitude);
+
+                        object address = selectCommand.ExecuteScalar();
+
+                        if (address != null && address != DBNull.Value) // Address already exists in database
+                        {
+                            addressId = Convert.ToInt32(address);
+                        }
+                        else
+                        {
+                            using (SqlCommand insertCommand = new SqlCommand(insertQuery, connection))
+                            {
+                                insertCommand.Parameters.AddWithValue("@City", city);
+                                insertCommand.Parameters.AddWithValue("@State", state);
+                                insertCommand.Parameters.AddWithValue("@Zip", zip);
+                                insertCommand.Parameters.AddWithValue("@AddressLine", addressLine);
+                                insertCommand.Parameters.AddWithValue("@Latitude", latitude);
+                                insertCommand.Parameters.AddWithValue("@Longitude", longitude);
+
+                                // Insert the record and get its id
+                                address = insertCommand.ExecuteScalar();
+                                addressId = Convert.ToInt32(address);
+                            }
+                        }
+                    }
                 }
-                else
+                catch (SqlException ex)
                 {
-                    SqlCommand insertCommand = new SqlCommand(insertQuery, connection);
-                    insertCommand.Parameters.AddWithValue("@City", city);
-                    insertCommand.Parameters.AddWithValue("@State", state);
-                    insertCommand.Parameters.AddWithValue("@Zip", zip);
-                    insertCommand.Parameters.AddWithValue("@AddressLine", addressLine);
-                    insertCommand.Parameters.AddWithValue("@Latitude", latitude);
-                    insertCommand.Parameters.AddWithValue("@Longitude", longitude);
-
-                    // Insert the record and get its id
-                    address = insertCommand.ExecuteScalar();
-                    addressId = Convert.ToInt32(address);
-                    //Console.WriteLine("Address inserted successfully.");
+                    Console.WriteLine($"SQL Exception: {ex.Message}");
                 }
             }
-            catch (SqlException ex)
-            {
-                Console.WriteLine($"SQL Exception: {ex.Message}");
-            }
-            finally
-            {
-                connection.Close();
-            }
-
             return addressId;
         }
     }

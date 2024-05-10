@@ -1,5 +1,4 @@
 using System.Data.SqlClient;
-using System.Security.Principal;
 using Accessors.DBModels;
 
 namespace Accessors.Accessors
@@ -21,43 +20,41 @@ namespace Accessors.Accessors
 
             string query = "SELECT * FROM [Order] WHERE orderId = @OrderId";
 
-            SqlConnection connection = ConnectionAccessor.ConnectionAccessor.GetConnection();
-
-            try
+            using (SqlConnection connection = ConnectionAccessor.ConnectionAccessor.GetConnection())
             {
-                connection.Open();
-                SqlCommand command = new SqlCommand(query, connection);
-                command.Parameters.AddWithValue("@OrderId", orderId);
-                SqlDataReader reader = command.ExecuteReader();
-                if (reader.HasRows && reader.Read())
+                try
                 {
-                    string packageId = reader.GetString(reader.GetOrdinal("packageId"));
-                    DateTime shipDate = reader.GetDateTime(reader.GetOrdinal("ship_date"));
-                    DateTime deliveryDate = reader.GetDateTime(reader.GetOrdinal("deliveryDate"));
-                    int accountId = reader.GetInt32(reader.GetOrdinal("accountId"));
-                    int shippedFrom = reader.GetInt32(reader.GetOrdinal("shipped_from"));
-                    int shippedTo = reader.GetInt32(reader.GetOrdinal("shipped_to"));
-                    string status = reader.GetString(reader.GetOrdinal("status"));
+                    connection.Open();
+                    using (SqlCommand command = new SqlCommand(query, connection))
+                    {
+                        command.Parameters.AddWithValue("@OrderId", orderId);
+                        SqlDataReader reader = command.ExecuteReader();
+                        if (reader.HasRows && reader.Read())
+                        {
+                            string packageId = reader.GetString(reader.GetOrdinal("packageId"));
+                            DateTime shipDate = reader.GetDateTime(reader.GetOrdinal("ship_date"));
+                            DateTime deliveryDate = reader.GetDateTime(reader.GetOrdinal("deliveryDate"));
+                            int accountId = reader.GetInt32(reader.GetOrdinal("accountId"));
+                            int shippedFrom = reader.GetInt32(reader.GetOrdinal("shipped_from"));
+                            int shippedTo = reader.GetInt32(reader.GetOrdinal("shipped_to"));
+                            string status = reader.GetString(reader.GetOrdinal("status"));
 
-                    account = AccountAccessor.GetAccountWithAccountId(accountId);
-                    origin = AddressAccessor.GetAddress(shippedFrom);
-                    destination = AddressAccessor.GetAddress(shippedTo);
+                            account = AccountAccessor.GetAccountWithAccountId(accountId);
+                            origin = AddressAccessor.GetAddress(shippedFrom);
+                            destination = AddressAccessor.GetAddress(shippedTo);
 
-                    order = new OrderDataModel(orderId, packageId, shipDate, deliveryDate, accountId, origin,
-                        destination, status);
+                            order = new OrderDataModel(orderId, packageId, shipDate, deliveryDate, accountId, origin,
+                                destination, status);
+                        }
+
+                        reader.Close();
+                    }
                 }
-
-                reader.Close();
+                catch (SqlException ex)
+                {
+                    Console.WriteLine($"SQL Exception: {ex.Message}");
+                }
             }
-            catch (SqlException ex)
-            {
-                Console.WriteLine($"SQL Exception: {ex.Message}");
-            }
-            finally
-            {
-                connection.Close();
-            }
-
             return order;
         }
 
@@ -76,42 +73,40 @@ namespace Accessors.Accessors
 
             string query = "SELECT * FROM [Order] WHERE packageId = @PackageId";
 
-            SqlConnection connection = ConnectionAccessor.ConnectionAccessor.GetConnection();
-
-            try
+            using (SqlConnection connection = ConnectionAccessor.ConnectionAccessor.GetConnection())
             {
-                connection.Open();
-                SqlCommand command = new SqlCommand(query, connection);
-                command.Parameters.AddWithValue("@PackageId", packageId);
-                SqlDataReader reader = command.ExecuteReader();
-                if (reader.HasRows && reader.Read())
+                try
                 {
-                    int orderId = reader.GetInt32(reader.GetOrdinal("orderId"));
-                    DateTime shipDate = reader.GetDateTime(reader.GetOrdinal("ship_date"));
-                    DateTime deliveryDate = reader.GetDateTime(reader.GetOrdinal("deliveryDate"));
-                    int accountId = reader.GetInt32(reader.GetOrdinal("accountId"));
-                    int shippedFrom = reader.GetInt32(reader.GetOrdinal("shipped_from"));
-                    int shippedTo = reader.GetInt32(reader.GetOrdinal("shipped_to"));
-                    string status = reader.GetString(reader.GetOrdinal("status"));
+                    connection.Open();
+                    using (SqlCommand command = new SqlCommand(query, connection))
+                    {
+                        command.Parameters.AddWithValue("@PackageId", packageId);
+                        SqlDataReader reader = command.ExecuteReader();
+                        if (reader.HasRows && reader.Read())
+                        {
+                            int orderId = reader.GetInt32(reader.GetOrdinal("orderId"));
+                            DateTime shipDate = reader.GetDateTime(reader.GetOrdinal("ship_date"));
+                            DateTime deliveryDate = reader.GetDateTime(reader.GetOrdinal("deliveryDate"));
+                            int accountId = reader.GetInt32(reader.GetOrdinal("accountId"));
+                            int shippedFrom = reader.GetInt32(reader.GetOrdinal("shipped_from"));
+                            int shippedTo = reader.GetInt32(reader.GetOrdinal("shipped_to"));
+                            string status = reader.GetString(reader.GetOrdinal("status"));
 
-                    origin = AddressAccessor.GetAddress(shippedFrom);
-                    destination = AddressAccessor.GetAddress(shippedTo);
+                            origin = AddressAccessor.GetAddress(shippedFrom);
+                            destination = AddressAccessor.GetAddress(shippedTo);
 
-                    order = new OrderDataModel(orderId, packageId, shipDate, deliveryDate, accountId, origin,
-                        destination, status);
+                            order = new OrderDataModel(orderId, packageId, shipDate, deliveryDate, accountId, origin,
+                                destination, status);
+                        }
+
+                        reader.Close();
+                    }
                 }
-
-                reader.Close();
+                catch (SqlException ex)
+                {
+                    Console.WriteLine($"SQL Exception: {ex.Message}");
+                }
             }
-            catch (SqlException ex)
-            {
-                Console.WriteLine($"SQL Exception: {ex.Message}");
-            }
-            finally
-            {
-                connection.Close();
-            }
-
             return order;
         }
 
@@ -127,46 +122,44 @@ namespace Accessors.Accessors
             string query =
                 "SELECT o.* FROM [Order] o JOIN [Account] a ON o.accountId = a.accountId WHERE o.accountId = @AccountId";
 
-            SqlConnection connection = ConnectionAccessor.ConnectionAccessor.GetConnection();
-
-            try
+            using (SqlConnection connection = ConnectionAccessor.ConnectionAccessor.GetConnection())
             {
-                connection.Open();
-                SqlCommand command = new SqlCommand(query, connection);
-                command.Parameters.AddWithValue("@AccountId", accountId);
-                SqlDataReader reader = command.ExecuteReader();
-                if (reader.HasRows)
+                try
                 {
-                    while (reader.Read())
+                    connection.Open();
+                    using (SqlCommand command = new SqlCommand(query, connection))
                     {
-                        int orderId = reader.GetInt32(reader.GetOrdinal("orderId"));
-                        string packageId = reader.GetString(reader.GetOrdinal("packageId"));
-                        DateTime shipDate = reader.GetDateTime(reader.GetOrdinal("ship_date"));
-                        DateTime deliveryDate = reader.GetDateTime(reader.GetOrdinal("deliveryDate"));
-                        int shippedFrom = reader.GetInt32(reader.GetOrdinal("shipped_from"));
-                        int shippedTo = reader.GetInt32(reader.GetOrdinal("shipped_to"));
-                        string status = reader.GetString(reader.GetOrdinal("status"));
-                        
-                        AddressDataModel origin = AddressAccessor.GetAddress(shippedFrom);
-                        AddressDataModel destination = AddressAccessor.GetAddress(shippedTo);
+                        command.Parameters.AddWithValue("@AccountId", accountId);
+                        SqlDataReader reader = command.ExecuteReader();
+                        if (reader.HasRows)
+                        {
+                            while (reader.Read())
+                            {
+                                int orderId = reader.GetInt32(reader.GetOrdinal("orderId"));
+                                string packageId = reader.GetString(reader.GetOrdinal("packageId"));
+                                DateTime shipDate = reader.GetDateTime(reader.GetOrdinal("ship_date"));
+                                DateTime deliveryDate = reader.GetDateTime(reader.GetOrdinal("deliveryDate"));
+                                int shippedFrom = reader.GetInt32(reader.GetOrdinal("shipped_from"));
+                                int shippedTo = reader.GetInt32(reader.GetOrdinal("shipped_to"));
+                                string status = reader.GetString(reader.GetOrdinal("status"));
 
-                        OrderDataModel o = new OrderDataModel(orderId, packageId, shipDate, deliveryDate, accountId,
-                            origin, destination, status);
-                        orderList.Add(o);
+                                AddressDataModel origin = AddressAccessor.GetAddress(shippedFrom);
+                                AddressDataModel destination = AddressAccessor.GetAddress(shippedTo);
+
+                                OrderDataModel o = new OrderDataModel(orderId, packageId, shipDate, deliveryDate, accountId,
+                                    origin, destination, status);
+                                orderList.Add(o);
+                            }
+                        }
+
+                        reader.Close();
                     }
                 }
-
-                reader.Close();
+                catch (SqlException ex)
+                {
+                    Console.WriteLine($"SQL Exception: {ex.Message}");
+                }
             }
-            catch (SqlException ex)
-            {
-                Console.WriteLine($"SQL Exception: {ex.Message}");
-            }
-            finally
-            {
-                connection.Close();
-            }
-
             return orderList;
         }
 
@@ -191,45 +184,46 @@ namespace Accessors.Accessors
 
             int orderId = -1;
 
-            SqlConnection connection = ConnectionAccessor.ConnectionAccessor.GetConnection();
-
-            try
+            using (SqlConnection connection = ConnectionAccessor.ConnectionAccessor.GetConnection())
             {
-                connection.Open();
+                try
+                {
+                    connection.Open();
 
-                SqlCommand selectCommand = new SqlCommand(selectQuery, connection);
-                selectCommand.Parameters.AddWithValue("@Email", orderAccount.Email);
+                    using (SqlCommand selectCommand = new SqlCommand(selectQuery, connection))
+                    {
+                        selectCommand.Parameters.AddWithValue("@Email", orderAccount.Email);
 
-                object account = selectCommand.ExecuteScalar();
-                int accountId = Convert.ToInt32(account);
+                        object account = selectCommand.ExecuteScalar();
+                        int accountId = Convert.ToInt32(account);
 
-                AddressAccessor addressAccessor = new AddressAccessor();
-                
-                int originId = await addressAccessor.InsertAddress(order.ShippedFrom);
-                int destinationId = await addressAccessor.InsertAddress(order.ShippedTo);
+                        AddressAccessor addressAccessor = new AddressAccessor();
 
-                SqlCommand insertCommand = new SqlCommand(insertQuery, connection);
-                insertCommand.Parameters.AddWithValue("@PackageId", packageId);
-                insertCommand.Parameters.AddWithValue("@ShipDate", shipDate);
-                insertCommand.Parameters.AddWithValue("@DeliveryDate", order.DeliveryDate);
-                insertCommand.Parameters.AddWithValue("@AccountId", accountId);
-                insertCommand.Parameters.AddWithValue("@ShippedFrom", originId);
-                insertCommand.Parameters.AddWithValue("@ShippedTo", destinationId);
-                insertCommand.Parameters.AddWithValue("@Status", order.Status);
+                        int originId = await addressAccessor.InsertAddress(order.ShippedFrom);
+                        int destinationId = await addressAccessor.InsertAddress(order.ShippedTo);
 
-                // Insert the record and get its id
-                object orderResult = insertCommand.ExecuteScalar();
-                orderId = Convert.ToInt32(orderResult);
+
+                        using (SqlCommand insertCommand = new SqlCommand(insertQuery, connection))
+                        {
+                            insertCommand.Parameters.AddWithValue("@PackageId", packageId);
+                            insertCommand.Parameters.AddWithValue("@ShipDate", shipDate);
+                            insertCommand.Parameters.AddWithValue("@DeliveryDate", order.DeliveryDate);
+                            insertCommand.Parameters.AddWithValue("@AccountId", accountId);
+                            insertCommand.Parameters.AddWithValue("@ShippedFrom", originId);
+                            insertCommand.Parameters.AddWithValue("@ShippedTo", destinationId);
+                            insertCommand.Parameters.AddWithValue("@Status", order.Status);
+
+                            // Insert the record and get its id
+                            object orderResult = insertCommand.ExecuteScalar();
+                            orderId = Convert.ToInt32(orderResult);
+                        }
+                    }
+                }
+                catch (SqlException ex)
+                {
+                    Console.WriteLine($"SQL Exception: {ex.Message}");
+                }
             }
-            catch (SqlException ex)
-            {
-                Console.WriteLine($"SQL Exception: {ex.Message}");
-            }
-            finally
-            {
-                connection.Close();
-            }
-
             return orderId;
         }
         
@@ -237,72 +231,67 @@ namespace Accessors.Accessors
         {
             string query = "SELECT * FROM [Order] WHERE status != @Status";
             List<OrderDataModel> orderList = new List<OrderDataModel>();
-            SqlConnection connection = ConnectionAccessor.ConnectionAccessor.GetConnection();
-
-            try
+            using (SqlConnection connection = ConnectionAccessor.ConnectionAccessor.GetConnection())
             {
-                connection.Open();
-                SqlCommand command = new SqlCommand(query, connection);
-                
-                
-                command.Parameters.AddWithValue("@Status", "Delivered");
-                SqlDataReader reader = command.ExecuteReader();
-                if (reader.HasRows)
+                try
                 {
-                    while (reader.Read())
+                    connection.Open();
+                    using (SqlCommand command = new SqlCommand(query, connection))
                     {
-                        int orderId = reader.GetInt32(reader.GetOrdinal("orderId"));
-                        string packageId = reader.GetString(reader.GetOrdinal("packageId"));
-                        int accountId = reader.GetInt32(reader.GetOrdinal("accountId"));
-                        DateTime shipDate = reader.GetDateTime(reader.GetOrdinal("ship_date"));
-                        DateTime deliveryDate = reader.GetDateTime(reader.GetOrdinal("deliveryDate"));
-                        int shippedFrom = reader.GetInt32(reader.GetOrdinal("shipped_from"));
-                        int shippedTo = reader.GetInt32(reader.GetOrdinal("shipped_to"));
-                        string status = reader.GetString(reader.GetOrdinal("status"));
-                        
-                        AddressDataModel origin = AddressAccessor.GetAddress(shippedFrom);
-                        AddressDataModel destination = AddressAccessor.GetAddress(shippedTo);
+                        command.Parameters.AddWithValue("@Status", "Delivered");
+                        SqlDataReader reader = command.ExecuteReader();
+                        if (reader.HasRows)
+                        {
+                            while (reader.Read())
+                            {
+                                int orderId = reader.GetInt32(reader.GetOrdinal("orderId"));
+                                string packageId = reader.GetString(reader.GetOrdinal("packageId"));
+                                int accountId = reader.GetInt32(reader.GetOrdinal("accountId"));
+                                DateTime shipDate = reader.GetDateTime(reader.GetOrdinal("ship_date"));
+                                DateTime deliveryDate = reader.GetDateTime(reader.GetOrdinal("deliveryDate"));
+                                int shippedFrom = reader.GetInt32(reader.GetOrdinal("shipped_from"));
+                                int shippedTo = reader.GetInt32(reader.GetOrdinal("shipped_to"));
+                                string status = reader.GetString(reader.GetOrdinal("status"));
 
-                        OrderDataModel o = new OrderDataModel(orderId, packageId, shipDate, deliveryDate, accountId,
-                            origin, destination, status);
-                        orderList.Add(o);
+                                AddressDataModel origin = AddressAccessor.GetAddress(shippedFrom);
+                                AddressDataModel destination = AddressAccessor.GetAddress(shippedTo);
+
+                                OrderDataModel o = new OrderDataModel(orderId, packageId, shipDate, deliveryDate, accountId,
+                                    origin, destination, status);
+                                orderList.Add(o);
+                            }
+                        }
+
+                        reader.Close();
                     }
                 }
-
-                reader.Close();
+                catch (SqlException ex)
+                {
+                    Console.WriteLine($"SQL Exception: {ex.Message}");
+                }
             }
-            catch (SqlException ex)
-            {
-                Console.WriteLine($"SQL Exception: {ex.Message}");
-            }
-            finally
-            {
-                connection.Close();
-            }
-
             return orderList;
         }
         
         public void UpdateOrderStatus(int orderId, string status)
         {
             string query = "UPDATE [Order] SET status = @Status WHERE orderId = @OrderId";
-            SqlConnection connection = ConnectionAccessor.ConnectionAccessor.GetConnection();
-
-            try
+            using (SqlConnection connection = ConnectionAccessor.ConnectionAccessor.GetConnection())
             {
-                connection.Open();
-                SqlCommand command = new SqlCommand(query, connection);
-                command.Parameters.AddWithValue("@Status", status);
-                command.Parameters.AddWithValue("@OrderId", orderId);
-                command.ExecuteNonQuery();
-            }
-            catch (SqlException ex)
-            {
-                Console.WriteLine($"SQL Exception: {ex.Message}");
-            }
-            finally
-            {
-                connection.Close();
+                try
+                {
+                    connection.Open();
+                    using (SqlCommand command = new SqlCommand(query, connection))
+                    {
+                        command.Parameters.AddWithValue("@Status", status);
+                        command.Parameters.AddWithValue("@OrderId", orderId);
+                        command.ExecuteNonQuery();
+                    }
+                }
+                catch (SqlException ex)
+                {
+                    Console.WriteLine($"SQL Exception: {ex.Message}");
+                }
             }
         }
     }
