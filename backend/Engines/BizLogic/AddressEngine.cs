@@ -44,7 +44,6 @@ namespace Engines.BizLogic
         
         public static DepotDataModel GetClosestDepot(AddressDataModel address)
         {
-            float range = float.MaxValue;
             List<DepotDataModel> depots = DepotAccessor.GetDepotList();
             DepotDataModel closest = null;
             double leastDistance = 5;

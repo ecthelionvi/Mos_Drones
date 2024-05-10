@@ -12,7 +12,7 @@ namespace Engines.BizLogic
             DepotDataModel deliveryDepot = AddressEngine.GetClosestDepot(destination);
 
             List<DepotDataModel> depotList = DepotAccessor.GetDepotList();
-            depotList.Sort((depot1, depot2) => depot2.DepotAddress.Coordinates.Latitude.CompareTo(depot1.DepotAddress.Coordinates.Latitude));
+            //depotList.Sort((depot1, depot2) => depot2.DepotAddress.Coordinates.Latitude.CompareTo(depot1.DepotAddress.Coordinates.Latitude));
 
             int pickupIdx = depotList.IndexOf(pickup);
             int deliveryIdx = depotList.IndexOf(deliveryDepot);

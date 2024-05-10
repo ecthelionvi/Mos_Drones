@@ -8,6 +8,13 @@ namespace Service.Controllers;
 [ApiController]
 public class HomeController : Controller
 {
+    [HttpPost("GetUserOrders")]
+    public JsonResult GetAllOrders(int id)
+    {
+        List<Order> userOrders = OrderManager.GetUserOrders(id);
+        return Json(userOrders);
+    }
+
     [HttpGet("FindOrder/{packageId}")]
     public JsonResult FindOrder(string packageId)
     {
@@ -16,7 +23,7 @@ public class HomeController : Controller
     }
 
     [HttpPost("NewOrder")]
-    public IActionResult NewOrder([FromBody]Address deliverTo)
+    public IActionResult NewOrder([FromBody] Address deliverTo)
     {
         var response = "Please Login";
         if (LoginController.AccountId != null)
@@ -24,13 +31,7 @@ public class HomeController : Controller
             OrderManager orderManager = new OrderManager();
             response = orderManager.NewOrder(LoginController.AccountId ?? 0, deliverTo).Result;
         }
+
         return Ok(response);
-    }
-    
-    [HttpPost("GetUserOrders")]
-    public JsonResult GetAllOrders(int id)
-    {
-        List<Order> userOrders = OrderManager.GetUserOrders(id);
-        return Json(userOrders);
     }
 }

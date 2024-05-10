@@ -5,6 +5,7 @@ import "ag-grid-community/styles/ag-grid.css";
 import React, { useState, useEffect } from "react";
 import "ag-grid-community/styles/ag-theme-alpine.css";
 import axios from "axios";
+export { PackageGrid, fetchPackages };
 
 const PackageGrid = () => {
   const [rowData, setRowData] = useState([]);
@@ -43,9 +44,9 @@ const PackageGrid = () => {
         console.error("Error fetching packages:", error);
       }
     };
-
-    fetchPackages();
   }, []);
+
+  fetchPackages();
 
   const columnDefs = [
     {
@@ -98,5 +99,3 @@ const PackageGrid = () => {
     </div>
   );
 };
-
-export { PackageGrid, fetchPackages };

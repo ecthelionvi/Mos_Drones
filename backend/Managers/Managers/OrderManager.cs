@@ -8,6 +8,23 @@ namespace Managers;
 
 public class OrderManager
 {
+    public static List<Order> GetUserOrders(int accountId)
+    {
+        OrderAccessor orderAccessor = new OrderAccessor();
+        List<OrderDataModel> orderDataModels = OrderAccessor.GetOrderListWithAccountId(accountId);
+    
+        List<Order> userOrders = new List<Order>();
+    
+        foreach(OrderDataModel orderDataModel in orderDataModels)
+        {
+            orderDataModel.Status = OrderEngine.GetOrderStatus(orderDataModel.OrderId ?? 0);
+            orderAccessor.UpdateOrderStatus(orderDataModel.OrderId ?? 0, orderDataModel.Status);
+            
+            Order o = OrderHelper.OrderDataModelToOrderModel(orderDataModel);
+            userOrders.Add(o);
+        }
+        return userOrders;
+    }
     public static Order FindOrder(string packageId)
     {
         OrderDataModel orderDataModel = OrderAccessor.GetOrderWithPackageId(packageId);
@@ -36,24 +53,6 @@ public class OrderManager
             response = "Order Successfully Added";
         }
         return response;
-    }
-    
-    public static List<Order> GetUserOrders(int accountId)
-    {
-        OrderAccessor orderAccessor = new OrderAccessor();
-        List<OrderDataModel> orderDataModels = OrderAccessor.GetOrderListWithAccountId(accountId);
-    
-        List<Order> userOrders = new List<Order>();
-    
-        foreach(OrderDataModel orderDataModel in orderDataModels)
-        {
-            orderDataModel.Status = OrderEngine.GetOrderStatus(orderDataModel.OrderId ?? 0);
-            orderAccessor.UpdateOrderStatus(orderDataModel.OrderId ?? 0, orderDataModel.Status);
-            
-            Order o = OrderHelper.OrderDataModelToOrderModel(orderDataModel);
-            userOrders.Add(o);
-        }
-        return userOrders;
     }
 
     public static List<Order> GetOrders()

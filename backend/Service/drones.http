@@ -2,7 +2,6 @@
 
 GET {{drones_HostAddress}}/api/Drone
 Accept: application/json
-
 ###
 GET {{drones_HostAddress}}/api/Home/FindOrder/{PackageId}
 Content-Type: application/json

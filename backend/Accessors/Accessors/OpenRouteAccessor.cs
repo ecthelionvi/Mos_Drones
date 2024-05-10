@@ -11,7 +11,6 @@ namespace Accessors.Accessors;
 public class OpenRouteAccessor
 {
     static HttpClient client = new HttpClient();
-
     public async Task<Coordinate> GetCoordinatesAsync(AddressDataModel address)
     {
         try
