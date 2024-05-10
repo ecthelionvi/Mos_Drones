@@ -10,17 +10,6 @@
     font-family: "JetBrainsMonoNerdFont", sans-serif;
 }
 
-.dronepage-header {
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-    align-items: center;
-    font-size: 32px;
-    margin-top: -2px;
-    margin-bottom: 20px;
-    color: white;
-}
-
 .dronepage__underline {
     width: 460px;
     height: 6px;
@@ -100,34 +89,4 @@
 .dronepage-image-bottom-not-found {
     width: 100%;
     height: auto;
-}
-
-.dronepage-speech-bubble {
-    position: absolute;
-    top: -64px;
-    left: 50%;
-    transform: translateX(-50%);
-    background-color: #e3f6fc;
-    border-radius: 10px;
-    padding: 10px;
-    text-align: center;
-    width: 356px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-}
-
-    .dronepage-speech-bubble::after {
-        content: "";
-        position: absolute;
-        top: 100%;
-        left: 50%;
-        transform: translateX(-50%);
-        border-top: 10px solid #e3f6fc;
-        border-right: 10px solid transparent;
-        border-left: 10px solid transparent;
-    }
-
-.dronepage-speech-bubble-paragraph {
-    margin: 0;
-    color: black;
-    font-size: 18px;
 }

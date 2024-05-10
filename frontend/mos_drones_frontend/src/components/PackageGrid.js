@@ -2,14 +2,15 @@ import "../styles/PackageGrid.css";
 import { Link } from "react-router-dom";
 import { AgGridReact } from "ag-grid-react";
 import "ag-grid-community/styles/ag-grid.css";
-import React, { useState, useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import "ag-grid-community/styles/ag-theme-alpine.css";
 import axios from "axios";
 export { PackageGrid, fetchPackages };
 
-const PackageGrid = () => {
+const PackageGrid = ({ packageData, fetchPackages }) => {
   const [rowData, setRowData] = useState([]);
   const [useMockData, setUseMockData] = useState(false);
+
   useEffect(() => {
     const mockData = [
       {
@@ -26,6 +27,10 @@ const PackageGrid = () => {
 
     if (useMockData) {
       setRowData(mockData);
+    } else {
+      setRowData(packageData);
+    }
+  }, [packageData, useMockData]);
       return;
     }
 
@@ -44,7 +49,6 @@ const PackageGrid = () => {
         console.error("Error fetching packages:", error);
       }
     };
-  }, []);
 
   fetchPackages();
 
@@ -98,4 +102,5 @@ const PackageGrid = () => {
       </div>
     </div>
   );
-};
+
+export default PackageGrid;

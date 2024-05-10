@@ -10,7 +10,8 @@ import { NavLink, useNavigate } from "react-router-dom";
 import React, { useState, useRef, useEffect } from "react";
 import Modal from "react-modal";
 import "../styles/Modal.css";
-import { PackageGrid, fetchPackages } from "../components/PackageGrid";
+import axios from "axios";
+import PackageGrid from "../components/PackageGrid";
 import { useJsApiLoader, Autocomplete } from "@react-google-maps/api";
 
 const HomePage = ({ loggedIn, onLogout, setLoggedIn, role }) => {
@@ -25,6 +26,23 @@ const HomePage = ({ loggedIn, onLogout, setLoggedIn, role }) => {
   const [state, setState] = useState("");
   const [zipCode, setZipCode] = useState("");
   const [addressLine, setAddressLine] = useState("");
+  const [packageData, setPackageData] = useState([]);
+
+  const fetchPackages = async () => {
+    try {
+      const accountId = localStorage.getItem("accountId");
+      const response = await axios.post(
+        `http://localhost:3001/api/Home/GetUserOrders?id=${accountId}`,
+        {
+          accountId: parseInt(accountId),
+        },
+      );
+      const packages = response.data;
+      setPackageData(packages);
+    } catch (error) {
+      console.error("Error fetching packages:", error);
+    }
+  };
 
   const { isLoaded } = useJsApiLoader({
     id: "google-map-script",
@@ -67,7 +85,7 @@ const HomePage = ({ loggedIn, onLogout, setLoggedIn, role }) => {
         .then((data) => {
           console.log("New order response:", data);
           alert("Delivery requested successfully!");
-fetchPackages();
+          fetchPackages();
         })
         .catch((error) => {
           console.error("Error creating new order:", error);
@@ -272,7 +290,7 @@ fetchPackages();
                 <>
                   <h2>Packages</h2>
                   <div className="dashboard-section__underline"></div>
-                  <PackageGrid />
+                  <PackageGrid packageData={packageData} fetchPackages={fetchPackages} />
                   <img className="dashboard-image-bottom" src={pkg} alt="Package" />
                 </>
               )}

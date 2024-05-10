@@ -113,15 +113,125 @@ insert into Depot (addressId) values (15);
 insert into Depot (addressId) values (16);
 
 insert into Drone (transit_status, orderId, depotId) values ('Free', null, 1);
+insert into Drone (transit_status, orderId, depotId) values ('Free', null, 1);
+insert into Drone (transit_status, orderId, depotId) values ('Free', null, 1);
+insert into Drone (transit_status, orderId, depotId) values ('Free', null, 1);
+insert into Drone (transit_status, orderId, depotId) values ('Free', null, 1);
+insert into Drone (transit_status, orderId, depotId) values ('Free', null, 1);
+insert into Drone (transit_status, orderId, depotId) values ('Free', null, 1);
+insert into Drone (transit_status, orderId, depotId) values ('Free', null, 1);
+insert into Drone (transit_status, orderId, depotId) values ('Free', null, 1);
+insert into Drone (transit_status, orderId, depotId) values ('Free', null, 1);
+
 insert into Drone (transit_status, orderId, depotId) values ('Free', null, 2);
+insert into Drone (transit_status, orderId, depotId) values ('Free', null, 2);
+insert into Drone (transit_status, orderId, depotId) values ('Free', null, 2);
+insert into Drone (transit_status, orderId, depotId) values ('Free', null, 2);
+insert into Drone (transit_status, orderId, depotId) values ('Free', null, 2);
+insert into Drone (transit_status, orderId, depotId) values ('Free', null, 2);
+insert into Drone (transit_status, orderId, depotId) values ('Free', null, 2);
+insert into Drone (transit_status, orderId, depotId) values ('Free', null, 2);
+insert into Drone (transit_status, orderId, depotId) values ('Free', null, 2);
+insert into Drone (transit_status, orderId, depotId) values ('Free', null, 2);
+
 insert into Drone (transit_status, orderId, depotId) values ('Free', null, 3);
+insert into Drone (transit_status, orderId, depotId) values ('Free', null, 3);
+insert into Drone (transit_status, orderId, depotId) values ('Free', null, 3);
+insert into Drone (transit_status, orderId, depotId) values ('Free', null, 3);
+insert into Drone (transit_status, orderId, depotId) values ('Free', null, 3);
+insert into Drone (transit_status, orderId, depotId) values ('Free', null, 3);
+insert into Drone (transit_status, orderId, depotId) values ('Free', null, 3);
+insert into Drone (transit_status, orderId, depotId) values ('Free', null, 3);
+insert into Drone (transit_status, orderId, depotId) values ('Free', null, 3);
+insert into Drone (transit_status, orderId, depotId) values ('Free', null, 3);
+
 insert into Drone (transit_status, orderId, depotId) values ('Free', null, 4);
+insert into Drone (transit_status, orderId, depotId) values ('Free', null, 4);
+insert into Drone (transit_status, orderId, depotId) values ('Free', null, 4);
+insert into Drone (transit_status, orderId, depotId) values ('Free', null, 4);
+insert into Drone (transit_status, orderId, depotId) values ('Free', null, 4);
+insert into Drone (transit_status, orderId, depotId) values ('Free', null, 4);
+insert into Drone (transit_status, orderId, depotId) values ('Free', null, 4);
+insert into Drone (transit_status, orderId, depotId) values ('Free', null, 4);
+insert into Drone (transit_status, orderId, depotId) values ('Free', null, 4);
+insert into Drone (transit_status, orderId, depotId) values ('Free', null, 4);
+
 insert into Drone (transit_status, orderId, depotId) values ('Free', null, 5);
+insert into Drone (transit_status, orderId, depotId) values ('Free', null, 5);
+insert into Drone (transit_status, orderId, depotId) values ('Free', null, 5);
+insert into Drone (transit_status, orderId, depotId) values ('Free', null, 5);
+insert into Drone (transit_status, orderId, depotId) values ('Free', null, 5);
+insert into Drone (transit_status, orderId, depotId) values ('Free', null, 5);
+insert into Drone (transit_status, orderId, depotId) values ('Free', null, 5);
+insert into Drone (transit_status, orderId, depotId) values ('Free', null, 5);
+insert into Drone (transit_status, orderId, depotId) values ('Free', null, 5);
+insert into Drone (transit_status, orderId, depotId) values ('Free', null, 5);
+
 insert into Drone (transit_status, orderId, depotId) values ('Free', null, 6);
+insert into Drone (transit_status, orderId, depotId) values ('Free', null, 6);
+insert into Drone (transit_status, orderId, depotId) values ('Free', null, 6);
+insert into Drone (transit_status, orderId, depotId) values ('Free', null, 6);
+insert into Drone (transit_status, orderId, depotId) values ('Free', null, 6);
+insert into Drone (transit_status, orderId, depotId) values ('Free', null, 6);
+insert into Drone (transit_status, orderId, depotId) values ('Free', null, 6);
+insert into Drone (transit_status, orderId, depotId) values ('Free', null, 6);
+insert into Drone (transit_status, orderId, depotId) values ('Free', null, 6);
+insert into Drone (transit_status, orderId, depotId) values ('Free', null, 6);
+
 insert into Drone (transit_status, orderId, depotId) values ('Free', null, 7);
+insert into Drone (transit_status, orderId, depotId) values ('Free', null, 7);
+insert into Drone (transit_status, orderId, depotId) values ('Free', null, 7);
+insert into Drone (transit_status, orderId, depotId) values ('Free', null, 7);
+insert into Drone (transit_status, orderId, depotId) values ('Free', null, 7);
+insert into Drone (transit_status, orderId, depotId) values ('Free', null, 7);
+insert into Drone (transit_status, orderId, depotId) values ('Free', null, 7);
+insert into Drone (transit_status, orderId, depotId) values ('Free', null, 7);
+insert into Drone (transit_status, orderId, depotId) values ('Free', null, 7);
+insert into Drone (transit_status, orderId, depotId) values ('Free', null, 7);
+
 insert into Drone (transit_status, orderId, depotId) values ('Free', null, 8);
+insert into Drone (transit_status, orderId, depotId) values ('Free', null, 8);
+insert into Drone (transit_status, orderId, depotId) values ('Free', null, 8);
+insert into Drone (transit_status, orderId, depotId) values ('Free', null, 8);
+insert into Drone (transit_status, orderId, depotId) values ('Free', null, 8);
+insert into Drone (transit_status, orderId, depotId) values ('Free', null, 8);
+insert into Drone (transit_status, orderId, depotId) values ('Free', null, 8);
+insert into Drone (transit_status, orderId, depotId) values ('Free', null, 8);
+insert into Drone (transit_status, orderId, depotId) values ('Free', null, 8);
+insert into Drone (transit_status, orderId, depotId) values ('Free', null, 8);
+
 insert into Drone (transit_status, orderId, depotId) values ('Free', null, 9);
+insert into Drone (transit_status, orderId, depotId) values ('Free', null, 9);
+insert into Drone (transit_status, orderId, depotId) values ('Free', null, 9);
+insert into Drone (transit_status, orderId, depotId) values ('Free', null, 9);
+insert into Drone (transit_status, orderId, depotId) values ('Free', null, 9);
+insert into Drone (transit_status, orderId, depotId) values ('Free', null, 9);
+insert into Drone (transit_status, orderId, depotId) values ('Free', null, 9);
+insert into Drone (transit_status, orderId, depotId) values ('Free', null, 9);
+insert into Drone (transit_status, orderId, depotId) values ('Free', null, 9);
+insert into Drone (transit_status, orderId, depotId) values ('Free', null, 9);
+
 insert into Drone (transit_status, orderId, depotId) values ('Free', null, 10);
+insert into Drone (transit_status, orderId, depotId) values ('Free', null, 10);
+insert into Drone (transit_status, orderId, depotId) values ('Free', null, 10);
+insert into Drone (transit_status, orderId, depotId) values ('Free', null, 10);
+insert into Drone (transit_status, orderId, depotId) values ('Free', null, 10);
+insert into Drone (transit_status, orderId, depotId) values ('Free', null, 10);
+insert into Drone (transit_status, orderId, depotId) values ('Free', null, 10);
+insert into Drone (transit_status, orderId, depotId) values ('Free', null, 10);
+insert into Drone (transit_status, orderId, depotId) values ('Free', null, 10);
+insert into Drone (transit_status, orderId, depotId) values ('Free', null, 10);
+
+insert into Drone (transit_status, orderId, depotId) values ('Free', null, 11);
+insert into Drone (transit_status, orderId, depotId) values ('Free', null, 11);
+insert into Drone (transit_status, orderId, depotId) values ('Free', null, 11);
+insert into Drone (transit_status, orderId, depotId) values ('Free', null, 11);
+insert into Drone (transit_status, orderId, depotId) values ('Free', null, 11);
+insert into Drone (transit_status, orderId, depotId) values ('Free', null, 11);
+insert into Drone (transit_status, orderId, depotId) values ('Free', null, 11);
+insert into Drone (transit_status, orderId, depotId) values ('Free', null, 11);
+insert into Drone (transit_status, orderId, depotId) values ('Free', null, 11);
+insert into Drone (transit_status, orderId, depotId) values ('Free', null, 11);
 
 select * from Account;
 SELECT * FROM Account WHERE email = null;
@@ -133,6 +243,7 @@ select * from Address where Address.addressId = 1;
 SELECT * FROM Account WHERE email = 'avanarsdall0@cocolog-nifty.com';
 
 select * from [Order];
+select * from [Order] o JOIN [Address] a ON o.shipped_from = a.addressId JOIN [Address] b ON o.shipped_to = b.addressId;
 SELECT * FROM [Order] WHERE orderId = 3;
 SELECT * FROM [Order] WHERE packageId = '4829170638572946';
 SELECT o.* FROM [Order] o JOIN [Account] a ON o.accountId = a.accountId WHERE o.accountId = 2;
