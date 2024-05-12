@@ -7,7 +7,7 @@ import "ag-grid-community/styles/ag-theme-alpine.css";
 
 const DroneGrid = () => {
   const [rowData, setRowData] = useState([]);
-  const [useMockData, setMockData] = useState(true);
+  const [useMockData, setMockData] = useState(false);
 
   useEffect(() => {
     const mockData = {
@@ -58,7 +58,7 @@ const DroneGrid = () => {
       }
 
       try {
-        const response = await fetch("http://localhost:3000/api/Drone/GetDrones");
+        const response = await fetch("http://localhost:3001/api/Drone/GetDrones");
         if (response.ok) {
           const data = await response.json();
           setRowData(data);

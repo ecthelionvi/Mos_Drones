@@ -1,5 +1,8 @@
 using Managers;
-using Managers.Models;
+using Managers.Address;
+using Managers.Drone.Models;
+using Managers.Order;
+using Managers.Order.Models;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Service.Controllers;
@@ -8,29 +11,43 @@ namespace Service.Controllers;
 [ApiController]
 public class HomeController : Controller
 {
-    [HttpPost("FindOrder")]
-    public IActionResult FindOrder([FromBody]int orderId)
-    {
-        Order order = OrderManager.FindOrder(orderId);
-        return Ok(order);
-    }
+    private readonly IOrderManager _orderManager;
 
-    [HttpPost("NewOrder")]
-    public IActionResult NewOrder([FromBody]Address deliverTo)
+    public HomeController(IOrderManager orderManager)
     {
-        var response = "Please Login";
-        if (LoginController.AccountId != null)
-        {
-            OrderManager orderManager = new OrderManager();
-            response = orderManager.NewOrder(LoginController.AccountId ?? 0, deliverTo).Result;
-        }
-        return Ok(response);
+        _orderManager = orderManager;
     }
     
     [HttpPost("GetUserOrders")]
     public JsonResult GetAllOrders(int id)
     {
-        List<Order> userOrders = OrderManager.GetUserOrders(id);
+        List<Order> userOrders = _orderManager.GetUserOrders(id);
         return Json(userOrders);
+    }
+
+    [HttpGet("FindOrder/{packageId}")]
+    public JsonResult FindOrder(string packageId)
+    {
+        Order order = _orderManager.FindOrder(packageId);
+        return Json(order);
+    }
+
+    [HttpPost("NewOrder")]
+    public IActionResult NewOrder([FromBody] Address deliverTo)
+    {
+        var response = "Please Login";
+        if (LoginController.AccountId != null)
+        {
+            response = _orderManager.NewOrder(LoginController.AccountId ?? 0, deliverTo).Result;
+        }
+
+        return Ok(response);
+    }
+
+    [HttpGet("GetOrders")]
+    public JsonResult GetOrders()
+    {
+        List<Order> orders = _orderManager.GetAllOrders();
+        return new JsonResult(orders);
     }
 }
