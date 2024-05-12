@@ -1,5 +1,4 @@
 using System.Data.SqlClient;
-using System.Security.Principal;
 using Accessors.DBModels;
 
 namespace Accessors.Accessors
@@ -19,34 +18,32 @@ namespace Accessors.Accessors
 
             string query = "SELECT * FROM Depot WHERE depotId = @DepotId";
 
-            SqlConnection connection = ConnectionAccessor.ConnectionAccessor.GetConnection();
-
-            try
+            using (SqlConnection connection = ConnectionAccessor.ConnectionAccessor.GetConnection())
             {
-                connection.Open();
-                SqlCommand command = new SqlCommand(query, connection);
-                command.Parameters.AddWithValue("@DepotId", depotId);
-                SqlDataReader reader = command.ExecuteReader();
-                if (reader.HasRows && reader.Read())
+                try
                 {
-                    int addressId = reader.GetInt32(reader.GetOrdinal("addressId"));
+                    connection.Open();
+                    using (SqlCommand command = new SqlCommand(query, connection))
+                    {
+                        command.Parameters.AddWithValue("@DepotId", depotId);
+                        SqlDataReader reader = command.ExecuteReader();
+                        if (reader.HasRows && reader.Read())
+                        {
+                            int addressId = reader.GetInt32(reader.GetOrdinal("addressId"));
 
-                    depotAddress = AddressAccessor.GetAddress(addressId);
+                            depotAddress = AddressAccessor.GetAddress(addressId);
 
-                    depot = new DepotDataModel(depotId, depotAddress);
+                            depot = new DepotDataModel(depotId, depotAddress);
+                        }
+
+                        reader.Close();
+                    }
                 }
-
-                reader.Close();
+                catch (SqlException ex)
+                {
+                    Console.WriteLine($"SQL Exception: {ex.Message}");
+                }
             }
-            catch (SqlException ex)
-            {
-                Console.WriteLine($"SQL Exception: {ex.Message}");
-            }
-            finally
-            {
-                connection.Close();
-            }
-
             return depot;
         }
 
@@ -60,38 +57,36 @@ namespace Accessors.Accessors
 
             string query = "SELECT * FROM Depot";
 
-            SqlConnection connection = ConnectionAccessor.ConnectionAccessor.GetConnection();
-
-            try
+            using (SqlConnection connection = ConnectionAccessor.ConnectionAccessor.GetConnection())
             {
-                connection.Open();
-                SqlCommand command = new SqlCommand(query, connection);
-                SqlDataReader reader = command.ExecuteReader();
-                if (reader.HasRows)
+                try
                 {
-                    while (reader.Read())
+                    connection.Open();
+                    using (SqlCommand command = new SqlCommand(query, connection))
                     {
-                        int depotId = reader.GetInt32(reader.GetOrdinal("depotId"));
-                        int addressId = reader.GetInt32(reader.GetOrdinal("addressId"));
+                        SqlDataReader reader = command.ExecuteReader();
+                        if (reader.HasRows)
+                        {
+                            while (reader.Read())
+                            {
+                                int depotId = reader.GetInt32(reader.GetOrdinal("depotId"));
+                                int addressId = reader.GetInt32(reader.GetOrdinal("addressId"));
 
-                        AddressDataModel depotAddress = AddressAccessor.GetAddress(addressId);
+                                AddressDataModel depotAddress = AddressAccessor.GetAddress(addressId);
 
-                        DepotDataModel depot = new DepotDataModel(depotId, depotAddress);
-                        depotList.Add(depot);
+                                DepotDataModel depot = new DepotDataModel(depotId, depotAddress);
+                                depotList.Add(depot);
+                            }
+                        }
+
+                        reader.Close();
                     }
                 }
-
-                reader.Close();
+                catch (SqlException ex)
+                {
+                    Console.WriteLine($"SQL Exception: {ex.Message}");
+                }
             }
-            catch (SqlException ex)
-            {
-                Console.WriteLine($"SQL Exception: {ex.Message}");
-            }
-            finally
-            {
-                connection.Close();
-            }
-
             return depotList;
         }
     }

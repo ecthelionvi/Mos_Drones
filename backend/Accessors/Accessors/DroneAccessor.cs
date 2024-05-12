@@ -1,7 +1,5 @@
 using System.Data.SqlClient;
-using System.Data.SqlTypes;
 using Accessors.DBModels;
-using Microsoft.AspNetCore.Components.Web;
 
 namespace Accessors.Accessors
 {
@@ -21,52 +19,50 @@ namespace Accessors.Accessors
 
             string query = "Select * from [Drone] where droneId = @DroneId";
 
-            SqlConnection connection = ConnectionAccessor.ConnectionAccessor.GetConnection();
-
-            try
+            using (SqlConnection connection = ConnectionAccessor.ConnectionAccessor.GetConnection())
             {
-                connection.Open();
-                SqlCommand command = new SqlCommand(query, connection);
-                command.Parameters.AddWithValue("@DroneId", droneId);
-                SqlDataReader reader = command.ExecuteReader();
-                if (reader.HasRows && reader.Read())
+                try
                 {
-                    string status = reader.GetString(reader.GetOrdinal("transit_status"));
-                    int? orderId = null;
-                    if (!reader.IsDBNull(reader.GetOrdinal("orderId")))
+                    connection.Open();
+                    using (SqlCommand command = new SqlCommand(query, connection))
                     {
-                        orderId = reader.GetInt32(reader.GetOrdinal("orderId"));
-                    }
-                    if (orderId.HasValue)
-                    {
-                        droneOrder = OrderAccessor.GetOrderWithOrderId(orderId.Value);
-                    }
+                        command.Parameters.AddWithValue("@DroneId", droneId);
+                        SqlDataReader reader = command.ExecuteReader();
+                        if (reader.HasRows && reader.Read())
+                        {
+                            string status = reader.GetString(reader.GetOrdinal("transit_status"));
+                            int? orderId = null;
+                            if (!reader.IsDBNull(reader.GetOrdinal("orderId")))
+                            {
+                                orderId = reader.GetInt32(reader.GetOrdinal("orderId"));
+                            }
+                            if (orderId.HasValue)
+                            {
+                                droneOrder = OrderAccessor.GetOrderWithOrderId(orderId.Value);
+                            }
 
-                    int? depotId = null; // Nullable depotId
-                    if (!reader.IsDBNull(reader.GetOrdinal("depotId")))
-                    {
-                        depotId = reader.GetInt32(reader.GetOrdinal("depotId"));
-                    }
+                            int? depotId = null; // Nullable depotId
+                            if (!reader.IsDBNull(reader.GetOrdinal("depotId")))
+                            {
+                                depotId = reader.GetInt32(reader.GetOrdinal("depotId"));
+                            }
 
-                    if (depotId.HasValue)
-                    {
-                        currDepot = DepotAccessor.GetDepotWithDepotId(depotId.Value);
-                    }
+                            if (depotId.HasValue)
+                            {
+                                currDepot = DepotAccessor.GetDepotWithDepotId(depotId.Value);
+                            }
 
-                    drone = new DroneDataModel(droneId, status, droneOrder, currDepot);
+                            drone = new DroneDataModel(droneId, status, droneOrder, currDepot);
+                        }
+
+                        reader.Close();
+                    }
                 }
-
-                reader.Close();
+                catch (SqlException ex)
+                {
+                    Console.WriteLine($"SQL Exception: {ex.Message}");
+                }
             }
-            catch (SqlException ex)
-            {
-                Console.WriteLine($"SQL Exception: {ex.Message}");
-            }
-            finally
-            {
-                connection.Close();
-            }
-
             return drone;
         }
 
@@ -79,57 +75,56 @@ namespace Accessors.Accessors
             List<DroneDataModel> droneList = new List<DroneDataModel>();
             string query = "SELECT * FROM Drone";
 
-            SqlConnection connection = ConnectionAccessor.ConnectionAccessor.GetConnection();
-
-            try
+            using (SqlConnection connection = ConnectionAccessor.ConnectionAccessor.GetConnection())
             {
-                connection.Open();
-                SqlCommand command = new SqlCommand(query, connection);
-                SqlDataReader reader = command.ExecuteReader();
-                if (reader.HasRows)
+                try
                 {
-                    while (reader.Read())
+                    connection.Open();
+                    using (SqlCommand command = new SqlCommand(query, connection))
                     {
-                        DepotDataModel currDepot = null;
-                        OrderDataModel droneOrder = null;
-
-                        int droneId = reader.GetInt32(reader.GetOrdinal("droneId"));
-                        string transitStatus = reader.GetString(reader.GetOrdinal("transit_status"));
-                        int? orderId = null;
-                        if (!reader.IsDBNull(reader.GetOrdinal("orderId")))
+                        SqlDataReader reader = command.ExecuteReader();
+                        if (reader.HasRows)
                         {
-                            orderId = reader.GetInt32(reader.GetOrdinal("orderId"));
-                        }
-                        if (orderId.HasValue)
-                        {
-                            droneOrder = OrderAccessor.GetOrderWithOrderId(orderId.Value);
+                            while (reader.Read())
+                            {
+                                DepotDataModel currDepot = null;
+                                OrderDataModel droneOrder = null;
+
+                                int droneId = reader.GetInt32(reader.GetOrdinal("droneId"));
+                                string transitStatus = reader.GetString(reader.GetOrdinal("transit_status"));
+                                int? orderId = null;
+                                if (!reader.IsDBNull(reader.GetOrdinal("orderId")))
+                                {
+                                    orderId = reader.GetInt32(reader.GetOrdinal("orderId"));
+                                }
+                                if (orderId.HasValue)
+                                {
+                                    droneOrder = OrderAccessor.GetOrderWithOrderId(orderId.Value);
+                                }
+
+                                int? depotId = null; // Nullable depotId
+                                if (!reader.IsDBNull(reader.GetOrdinal("depotId")))
+                                {
+                                    depotId = reader.GetInt32(reader.GetOrdinal("depotId"));
+                                }
+
+                                if (depotId.HasValue)
+                                {
+                                    currDepot = DepotAccessor.GetDepotWithDepotId(depotId.Value);
+                                }
+
+                                DroneDataModel d = new DroneDataModel(droneId, transitStatus, droneOrder, currDepot);
+                                droneList.Add(d);
+                            }
                         }
 
-                        int? depotId = null; // Nullable depotId
-                        if (!reader.IsDBNull(reader.GetOrdinal("depotId")))
-                        {
-                            depotId = reader.GetInt32(reader.GetOrdinal("depotId"));
-                        }
-
-                        if (depotId.HasValue)
-                        {
-                            currDepot = DepotAccessor.GetDepotWithDepotId(depotId.Value);
-                        }
-
-                        DroneDataModel d = new DroneDataModel(droneId, transitStatus, droneOrder, currDepot);
-                        droneList.Add(d);
+                        reader.Close();
                     }
                 }
-
-                reader.Close();
-            }
-            catch (SqlException ex)
-            {
-                Console.WriteLine($"SQL Exception: {ex.Message}");
-            }
-            finally
-            {
-                connection.Close();
+                catch (SqlException ex)
+                {
+                    Console.WriteLine($"SQL Exception: {ex.Message}");
+                }
             }
             return droneList;
         }
@@ -138,23 +133,22 @@ namespace Accessors.Accessors
         {
             string query = "UPDATE Drone SET transit_status = @NewStatus WHERE droneId = @DroneId";
 
-            SqlConnection connection = ConnectionAccessor.ConnectionAccessor.GetConnection();
-
-            try
+            using (SqlConnection connection = ConnectionAccessor.ConnectionAccessor.GetConnection())
             {
-                connection.Open();
-                SqlCommand command = new SqlCommand(query, connection);
-                command.Parameters.AddWithValue("@NewStatus", newStatus);
-                command.Parameters.AddWithValue("@DroneId", droneId);
-                command.ExecuteNonQuery();
-            }
-            catch (SqlException ex)
-            {
-                Console.WriteLine($"SQL Exception: {ex.Message}");
-            }
-            finally
-            {
-                connection.Close();
+                try
+                {
+                    connection.Open();
+                    using (SqlCommand command = new SqlCommand(query, connection))
+                    {
+                        command.Parameters.AddWithValue("@NewStatus", newStatus);
+                        command.Parameters.AddWithValue("@DroneId", droneId);
+                        command.ExecuteNonQuery();
+                    }
+                }
+                catch (SqlException ex)
+                {
+                    Console.WriteLine($"SQL Exception: {ex.Message}");
+                }
             }
         }
     }
