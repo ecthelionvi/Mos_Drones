@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import { BrowserRouter as Router, Route, Routes, Navigate } from "react-router-dom";
 import LoginPage from "./components/LoginPage";
 import PackageDetails from "./components/PackageDetails";
 import HomePage from "./components/HomePage";
@@ -47,6 +47,7 @@ const App = () => {
         localStorage.removeItem("email");
         localStorage.removeItem("isAdmin");
         setUser(null);
+        Navigate("/login");
       } else {
         console.error("Error logging out");
       }

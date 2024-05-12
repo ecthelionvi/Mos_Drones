@@ -4,8 +4,6 @@ import { AgGridReact } from "ag-grid-react";
 import "ag-grid-community/styles/ag-grid.css";
 import React, { useEffect, useState } from "react";
 import "ag-grid-community/styles/ag-theme-alpine.css";
-import axios from "axios";
-export { PackageGrid, fetchPackages };
 
 const PackageGrid = ({ packageData, fetchPackages }) => {
   const [rowData, setRowData] = useState([]);
@@ -31,26 +29,6 @@ const PackageGrid = ({ packageData, fetchPackages }) => {
       setRowData(packageData);
     }
   }, [packageData, useMockData]);
-      return;
-    }
-
-    const fetchPackages = async () => {
-      try {
-        const accountId = localStorage.getItem("accountId");
-        const response = await axios.post(
-          `http://localhost:3001/api/Home/GetUserOrders?id=${accountId}`,
-          {
-            accountId: parseInt(accountId),
-          },
-        );
-        const packages = response.data;
-        setRowData(packages);
-      } catch (error) {
-        console.error("Error fetching packages:", error);
-      }
-    };
-
-  fetchPackages();
 
   const columnDefs = [
     {
@@ -102,5 +80,6 @@ const PackageGrid = ({ packageData, fetchPackages }) => {
       </div>
     </div>
   );
+};
 
 export default PackageGrid;

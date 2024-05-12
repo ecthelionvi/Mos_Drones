@@ -1,6 +1,7 @@
 using Managers;
+using Managers.Account;
+using Managers.Account.Models;
 using Microsoft.AspNetCore.Mvc;
-using Managers.Models;
 
 namespace Service.Controllers;
 
@@ -8,31 +9,32 @@ namespace Service.Controllers;
 [ApiController]
 public class LoginController : Controller
 {
-    private static int? _AccountId = 3;
-    
-    public static int? AccountId
+    public static int? AccountId = null;
+    private readonly IAccountManager _accountManager;
+
+    public LoginController(IAccountManager accountManager)
     {
-        get { return _AccountId; }
+        _accountManager = accountManager;
     }
 
     [HttpPost("auth")]
     public JsonResult ValidateLogin([FromBody]LoginRequest loginRequest)
     {
-        Account? account = AccountManager.ValidateLogin(loginRequest.Email, loginRequest.Password);
-        _AccountId = account?.AccountId;
+        Account? account = _accountManager.ValidateLogin(loginRequest.Email, loginRequest.Password);
+        AccountId = account?.AccountId;
         return AccountId is null ? Json("Incorrect Email and Password") : Json(account);
     }
     
     [HttpPost("Logout")]
     public void Logout()
     {
-        _AccountId = null;
+        AccountId = null;
     }
     
     [HttpPost("CreateAccount")]
     public void CreateAccount([FromBody] Account account)
     {
-        AccountManager.AddAccount(account);
+        _accountManager.AddAccount(account);
     }
 }
 public class LoginRequest

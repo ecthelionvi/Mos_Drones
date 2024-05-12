@@ -18,10 +18,10 @@ Content-Type: application/json
 POST {{drones_HostAddress}}/api/Login/auth
 Content-Type: application/json
 ###
-GET {{drones_HostAddress}}/api/Drone/GetDrones
+GET {{drones_HostAddress}}/api/Admin/GetDrones
 Accept: application/json
 ###
-GET {{drones_HostAddress}}/api/Drone/GetOrders
+GET {{drones_HostAddress}}/api/Home/GetOrders
 Accept: application/json
 ###
 POST {{drones_HostAddress}}/api/Login/Logout
