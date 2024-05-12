@@ -25,7 +25,7 @@ public class Program
                 name: "_MyAllowSubdomainPolicy",
                 policy =>
                 {
-                    policy.WithOrigins("http://localhost:3001")
+                    policy.WithOrigins("http://localhost:3000")
                         .AllowAnyHeader()
                         .AllowAnyMethod();
                 }
