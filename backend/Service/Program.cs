@@ -35,31 +35,27 @@ public class Program
         builder.Services.AddControllers();
         builder.Services.AddEndpointsApiExplorer();
         
-        var connectionString = builder.Configuration.GetConnectionString("DroneDatabase");
+        var connection = builder.Configuration.GetConnectionString("DroneDatabase");
         
-        builder.Services.AddScoped<IAddressAccessor, AddressAccessor>(serviceProvider => new AddressAccessor(new SqlConnection(connectionString)));
+        builder.Services.AddScoped<IAddressAccessor, AddressAccessor>(serviceProvider => new AddressAccessor(connection));
         builder.Services.AddScoped<IAccountAccessor, AccountAccessor>((serviceProvider) => 
         {
-            var connection = new SqlConnection(connectionString);
             var addressAccessor = serviceProvider.GetRequiredService<IAddressAccessor>();
             return new AccountAccessor(connection, addressAccessor);
         });
         builder.Services.AddScoped<IDepotAccessor, DepotAccessor>((serviceProvider) => 
         {
-            var connection = new SqlConnection(connectionString);
             var addressAccessor = serviceProvider.GetRequiredService<IAddressAccessor>();
             return new DepotAccessor(connection, addressAccessor);
         });
         builder.Services.AddScoped<IDroneAccessor, DroneAccessor>((serviceProvider) => 
         {
-            var connection = new SqlConnection(connectionString);
             var orderAccessor = serviceProvider.GetRequiredService<IOrderAccessor>();
             var depotAccessor = serviceProvider.GetRequiredService<IDepotAccessor>();
             return new DroneAccessor(connection, orderAccessor, depotAccessor);
         });
         builder.Services.AddScoped<IOrderAccessor, OrderAccessor>((serviceProvider) => 
         {
-            var connection = new SqlConnection(connectionString);
             var accountAccessor = serviceProvider.GetRequiredService<IAccountAccessor>();
             var addressAccessor = serviceProvider.GetRequiredService<IAddressAccessor>();
             return new OrderAccessor(connection, accountAccessor, addressAccessor);

@@ -10,9 +10,9 @@ namespace Accessors.Depot
         private readonly SqlConnection _connection;
         private readonly IAddressAccessor _addressAccessor;
 
-        public DepotAccessor(SqlConnection connection, IAddressAccessor addressAccessor)
+        public DepotAccessor(string connection, IAddressAccessor addressAccessor)
         {
-            _connection = connection;
+            _connection = new SqlConnection(connection);
             _addressAccessor = addressAccessor;
         }
         public DepotDataModel GetDepotWithDepotId(int depotId)

@@ -13,9 +13,9 @@ namespace Accessors.Order
         private readonly IAccountAccessor _accountAccessor;
         private readonly IAddressAccessor _addressAccessor;
 
-        public OrderAccessor(SqlConnection connection, IAccountAccessor accountAccessor, IAddressAccessor addressAccessor)
+        public OrderAccessor(string connection, IAccountAccessor accountAccessor, IAddressAccessor addressAccessor)
         {
-            _connection = connection;
+            _connection = new SqlConnection(connection);
             _accountAccessor = accountAccessor;
             _addressAccessor = addressAccessor;
         }

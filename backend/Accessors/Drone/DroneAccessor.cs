@@ -14,9 +14,9 @@ namespace Accessors.Drone
         private readonly IOrderAccessor _orderAccessor;
         private readonly IDepotAccessor _depotAccessor;
 
-        public DroneAccessor(SqlConnection connection, IOrderAccessor orderAccessor, IDepotAccessor depotAccessor)
+        public DroneAccessor(string connection, IOrderAccessor orderAccessor, IDepotAccessor depotAccessor)
         {
-            _connection = connection;
+            _connection = new SqlConnection(connection);
             _orderAccessor = orderAccessor;
             _depotAccessor = depotAccessor;
         }

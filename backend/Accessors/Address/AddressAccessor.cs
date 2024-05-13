@@ -8,9 +8,9 @@ namespace Accessors.Address
     {
         private readonly SqlConnection _connection;
 
-        public AddressAccessor(SqlConnection connection)
+        public AddressAccessor(string connection)
         {
-            _connection = connection;
+            _connection = new SqlConnection(connection);
         }
         public List<AddressDataModel> GetAddressList()
         {

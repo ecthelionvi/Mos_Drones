@@ -10,9 +10,9 @@ namespace Accessors.Account
         private readonly SqlConnection _connection;
         private readonly IAddressAccessor _addressAccessor;
 
-        public AccountAccessor(SqlConnection connection, IAddressAccessor addressAccessor)
+        public AccountAccessor(string connection, IAddressAccessor addressAccessor)
         {
-            _connection = connection;
+            _connection = new SqlConnection(connection);
             _addressAccessor = addressAccessor;
         }
 
