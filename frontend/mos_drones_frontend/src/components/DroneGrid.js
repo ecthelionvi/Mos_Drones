@@ -58,7 +58,7 @@ const DroneGrid = () => {
       }
 
       try {
-        const response = await fetch("http://localhost:3001/api/Drone/GetDrones");
+        const response = await fetch("http://localhost:3001/api/Admin/GetDrones");
         if (response.ok) {
           const data = await response.json();
           setRowData(data);
@@ -92,8 +92,7 @@ const DroneGrid = () => {
       headerName: "Transit Status",
       field: "transitStatus",
       suppressMovable: true,
-      suppressSizeToFit: true,
-      cellStyle: { textAlign: "left" },
+      cellStyle: { textAlign: "left", flex: 1 },
     },
     {
       headerName: "Order ID",
@@ -117,7 +116,7 @@ const DroneGrid = () => {
 
   return (
     <div className="drone-grid-container">
-      <div className="ag-theme-alpine" style={{ height: 400, width: 800 }}>
+      <div className="ag-theme-alpine" style={{ height: 400, width: 1200}}>
         <AgGridReact
           rowData={rowData}
           columnDefs={columnDefs}

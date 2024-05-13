@@ -207,7 +207,7 @@ namespace Engines.BizLogic.Order
             foreach (OrderDataModel order in activeOrders)
             {
                 order.Status = GetOrderStatus(order.OrderId ?? 0);
-                if (!order.Status.Contains("Package-at-Depot"))
+                if (!order.Status.Contains("Package-at-Depot") && !order.Status.Contains("Delivered"))
                 {
                     DroneDataModel drone;
                     if (order.Status == "Drone-in-Route to Dropoff")
@@ -247,12 +247,12 @@ namespace Engines.BizLogic.Order
             {
                 drone.TransitStatus = "Free";
                 drone.Order = null;
-                _droneAccessor.UpdateDroneStatus(drone.DroneId, drone.TransitStatus);
+                _droneAccessor.UpdateDroneStatus(drone.DroneId, drone.TransitStatus, null);
             }
 
             foreach (DroneDataModel drone in updatedDrones)
             {
-                _droneAccessor.UpdateDroneStatus(drone.DroneId, drone.TransitStatus);
+                _droneAccessor.UpdateDroneStatus(drone.DroneId, drone.TransitStatus, drone.Order.OrderId ?? 0);
             }
         }
     }

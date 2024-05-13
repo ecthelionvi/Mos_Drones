@@ -9,13 +9,13 @@ namespace Accessors.Order
 {
     public class OrderAccessor : IOrderAccessor
     {
-        private readonly SqlConnection _connection;
+        private readonly string _connection;
         private readonly IAccountAccessor _accountAccessor;
         private readonly IAddressAccessor _addressAccessor;
 
         public OrderAccessor(string connection, IAccountAccessor accountAccessor, IAddressAccessor addressAccessor)
         {
-            _connection = new SqlConnection(connection);
+            _connection = connection;
             _accountAccessor = accountAccessor;
             _addressAccessor = addressAccessor;
         }
@@ -25,12 +25,12 @@ namespace Accessors.Order
 
             string query = "SELECT * FROM [Order] WHERE orderId = @OrderId";
 
-            using (_connection)
+            using (SqlConnection connection = new SqlConnection(_connection))
             {
                 try
                 {
-                    _connection.Open();
-                    using (SqlCommand command = new SqlCommand(query,_connection))
+                    connection.Open();
+                    using (SqlCommand command = new SqlCommand(query,connection))
                     {
                         command.Parameters.AddWithValue("@OrderId", orderId);
                         SqlDataReader reader = command.ExecuteReader();
@@ -69,12 +69,12 @@ namespace Accessors.Order
 
             string query = "SELECT * FROM [Order] WHERE packageId = @PackageId";
 
-            using (_connection)
+            using (SqlConnection connection = new SqlConnection(_connection))
             {
                 try
                 {
-                    _connection.Open();
-                    using (SqlCommand command = new SqlCommand(query,_connection))
+                    connection.Open();
+                    using (SqlCommand command = new SqlCommand(query,connection))
                     {
                         command.Parameters.AddWithValue("@PackageId", packageId);
                         SqlDataReader reader = command.ExecuteReader();
@@ -112,12 +112,12 @@ namespace Accessors.Order
             string query =
                 "SELECT o.* FROM [Order] o JOIN [Account] a ON o.accountId = a.accountId WHERE o.accountId = @AccountId";
 
-            using (_connection)
+            using (SqlConnection connection = new SqlConnection(_connection))
             {
                 try
                 {
-                    _connection.Open();
-                    using (SqlCommand command = new SqlCommand(query,_connection))
+                    connection.Open();
+                    using (SqlCommand command = new SqlCommand(query,connection))
                     {
                         command.Parameters.AddWithValue("@AccountId", accountId);
                         SqlDataReader reader = command.ExecuteReader();
@@ -166,13 +166,13 @@ namespace Accessors.Order
 
             int orderId = -1;
 
-            using (_connection)
+            using (SqlConnection connection = new SqlConnection(_connection))
             {
                 try
                 {
-                    _connection.Open();
+                    connection.Open();
 
-                    using (SqlCommand selectCommand = new SqlCommand(selectQuery,_connection))
+                    using (SqlCommand selectCommand = new SqlCommand(selectQuery,connection))
                     {
                         selectCommand.Parameters.AddWithValue("@Email", orderAccount.Email);
 
@@ -182,7 +182,7 @@ namespace Accessors.Order
                         int originId = await _addressAccessor.InsertAddress(order.ShippedFrom);
                         int destinationId = await _addressAccessor.InsertAddress(order.ShippedTo);
                         
-                        using (SqlCommand insertCommand = new SqlCommand(insertQuery,_connection))
+                        using (SqlCommand insertCommand = new SqlCommand(insertQuery,connection))
                         {
                             insertCommand.Parameters.AddWithValue("@PackageId", packageId);
                             insertCommand.Parameters.AddWithValue("@ShipDate", shipDate);
@@ -210,12 +210,12 @@ namespace Accessors.Order
         {
             string query = "SELECT * FROM [Order] WHERE status != @Status";
             List<OrderDataModel> orderList = new List<OrderDataModel>();
-            using (_connection)
+            using (SqlConnection connection = new SqlConnection(_connection))
             {
                 try
                 {
-                    _connection.Open();
-                    using (SqlCommand command = new SqlCommand(query,_connection))
+                    connection.Open();
+                    using (SqlCommand command = new SqlCommand(query,connection))
                     {
                         command.Parameters.AddWithValue("@Status", "Delivered");
                         SqlDataReader reader = command.ExecuteReader();
@@ -255,12 +255,12 @@ namespace Accessors.Order
         public void UpdateOrderStatus(int orderId, string status)
         {
             string query = "UPDATE [Order] SET status = @Status WHERE orderId = @OrderId";
-            using (_connection)
+            using (SqlConnection connection = new SqlConnection(_connection))
             {
                 try
                 {
-                    _connection.Open();
-                    using (SqlCommand command = new SqlCommand(query,_connection))
+                    connection.Open();
+                    using (SqlCommand command = new SqlCommand(query,connection))
                     {
                         command.Parameters.AddWithValue("@Status", status);
                         command.Parameters.AddWithValue("@OrderId", orderId);

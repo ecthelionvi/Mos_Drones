@@ -24,14 +24,14 @@ public class OrderManager : IOrderManager
     private readonly IDroneAccessor _droneAccessor;
     private readonly IOrderEngine _orderEngine;
 
-    public OrderManager(IOrderAccessor orderAccessor, IAccountAccessor accountAccessor, IAddressAccessor addressAccessor, IDroneAccessor droneAccessor, IDepotAccessor depotAccessor)
+    public OrderManager(IOrderAccessor orderAccessor, IAccountAccessor accountAccessor, IAddressAccessor addressAccessor, IDroneAccessor droneAccessor, IDepotAccessor depotAccessor, IOrderEngine orderEngine)
     {
         _orderAccessor = orderAccessor;
         _accountAccessor = accountAccessor;
         _addressAccessor = addressAccessor;
         _droneAccessor = droneAccessor;
         
-        _orderEngine = new OrderEngine(_orderAccessor, depotAccessor, _droneAccessor);
+        _orderEngine = orderEngine;
     }
     public List<Models.Order> GetUserOrders(int accountId)
     {
@@ -99,7 +99,11 @@ public class OrderManager : IOrderManager
         
         foreach (DroneDataModel droneDataModel in droneList)
         {
-            drones.Add(DroneHelper.ConvertDroneDataModelToDroneModel(droneDataModel));
+            if (droneDataModel.TransitStatus != "Free")
+            {
+                drones.Add(DroneHelper.ConvertDroneDataModelToDroneModel(droneDataModel));
+            }
+            
         }
         
         return drones;

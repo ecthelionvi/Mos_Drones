@@ -59,14 +59,13 @@ const PackageGrid = ({ packageData, fetchPackages }) => {
       headerName: "Status",
       field: "status",
       suppressMovable: true,
-      suppressSizeToFit: true,
       cellStyle: { textAlign: "left" },
     },
   ];
 
   return (
     <div className="package-grid-container">
-      <div className="ag-theme-alpine" style={{ height: 400, width: 600 }}>
+      <div className="ag-theme-alpine" style={{ height: 400, width: 900 }}>
         <AgGridReact
           rowData={rowData}
           columnDefs={columnDefs}

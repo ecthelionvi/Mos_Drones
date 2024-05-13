@@ -31,9 +31,7 @@ public class Program
                 }
             );
         });
-
-        builder.Services.AddControllers();
-        builder.Services.AddEndpointsApiExplorer();
+        
         
         var connection = builder.Configuration.GetConnectionString("DroneDatabase");
         
@@ -48,23 +46,47 @@ public class Program
             var addressAccessor = serviceProvider.GetRequiredService<IAddressAccessor>();
             return new DepotAccessor(connection, addressAccessor);
         });
-        builder.Services.AddScoped<IDroneAccessor, DroneAccessor>((serviceProvider) => 
-        {
-            var orderAccessor = serviceProvider.GetRequiredService<IOrderAccessor>();
-            var depotAccessor = serviceProvider.GetRequiredService<IDepotAccessor>();
-            return new DroneAccessor(connection, orderAccessor, depotAccessor);
-        });
         builder.Services.AddScoped<IOrderAccessor, OrderAccessor>((serviceProvider) => 
         {
             var accountAccessor = serviceProvider.GetRequiredService<IAccountAccessor>();
             var addressAccessor = serviceProvider.GetRequiredService<IAddressAccessor>();
             return new OrderAccessor(connection, accountAccessor, addressAccessor);
         });
-        builder.Services.AddScoped<IOpenRouteAccessor, OpenRouteAccessor>();
-        builder.Services.AddScoped<IAccountManager, AccountManager>();
-        builder.Services.AddScoped<IOrderManager, OrderManager>();
-        builder.Services.AddScoped<IOrderEngine, OrderEngine>();
 
+        builder.Services.AddScoped<IDroneAccessor, DroneAccessor>((serviceProvider) => 
+        {
+            var orderAccessor = serviceProvider.GetRequiredService<IOrderAccessor>();
+            var depotAccessor = serviceProvider.GetRequiredService<IDepotAccessor>();
+            return new DroneAccessor(connection, orderAccessor, depotAccessor);
+        });
+        builder.Services.AddScoped<IOpenRouteAccessor, OpenRouteAccessor>();
+        builder.Services.AddScoped<IAccountManager, AccountManager>(serviceProvider =>
+        {
+            var accountAccessor = serviceProvider.GetRequiredService<IAccountAccessor>();
+            return new AccountManager(accountAccessor);
+        });
+        builder.Services.AddScoped<IOrderEngine, OrderEngine>(serviceProvider =>
+        {
+            var orderAccessor = serviceProvider.GetRequiredService<IOrderAccessor>();
+            var depotAccessor = serviceProvider.GetRequiredService<IDepotAccessor>();
+            var droneAccessor = serviceProvider.GetRequiredService<IDroneAccessor>();
+            return new OrderEngine(orderAccessor, depotAccessor, droneAccessor);
+        });
+        builder.Services.AddScoped<IOrderManager, OrderManager>(serviceProvider =>
+        {
+            var orderAccessor = serviceProvider.GetRequiredService<IOrderAccessor>();
+            var accountAccessor = serviceProvider.GetRequiredService<IAccountAccessor>();
+            var addressAccessor = serviceProvider.GetRequiredService<IAddressAccessor>();
+            var droneAccessor = serviceProvider.GetRequiredService<IDroneAccessor>();
+            var depotAccessor = serviceProvider.GetRequiredService<IDepotAccessor>();
+            var orderEngine = serviceProvider.GetRequiredService<IOrderEngine>();
+
+            return new OrderManager(orderAccessor, accountAccessor, addressAccessor, droneAccessor, depotAccessor, orderEngine);
+        });
+
+        builder.Services.AddControllers();
+        builder.Services.AddEndpointsApiExplorer();
+        
         var app = builder.Build();
 
         app.UseHttpsRedirection();

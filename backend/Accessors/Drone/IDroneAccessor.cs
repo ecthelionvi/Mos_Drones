@@ -9,6 +9,6 @@ namespace Accessors.Drone
     {
         DroneDataModel GetDrone(int droneId);
         List<DroneDataModel> GetDroneList();
-        void UpdateDroneStatus(int droneId, string newStatus);
+        void UpdateDroneStatus(int droneId, string newStatus, int? orderId);
     }
 }

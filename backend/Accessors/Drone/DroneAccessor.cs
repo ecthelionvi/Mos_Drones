@@ -10,13 +10,13 @@ namespace Accessors.Drone
 {
     public class DroneAccessor : IDroneAccessor
     {
-        private readonly SqlConnection _connection;
+        private readonly string _connection;
         private readonly IOrderAccessor _orderAccessor;
         private readonly IDepotAccessor _depotAccessor;
 
         public DroneAccessor(string connection, IOrderAccessor orderAccessor, IDepotAccessor depotAccessor)
         {
-            _connection = new SqlConnection(connection);
+            _connection = connection;
             _orderAccessor = orderAccessor;
             _depotAccessor = depotAccessor;
         }
@@ -26,12 +26,12 @@ namespace Accessors.Drone
 
             string query = "Select * from [Drone] where droneId = @DroneId";
 
-            using (_connection)
+            using (SqlConnection connection = new SqlConnection(_connection))
             {
                 try
                 {
-                    _connection.Open();
-                    using (SqlCommand command = new SqlCommand(query, _connection))
+                    connection.Open();
+                    using (SqlCommand command = new SqlCommand(query, connection))
                     {
                         command.Parameters.AddWithValue("@DroneId", droneId);
                         SqlDataReader reader = command.ExecuteReader();
@@ -83,12 +83,12 @@ namespace Accessors.Drone
             List<DroneDataModel> droneList = new List<DroneDataModel>();
             string query = "SELECT * FROM Drone";
 
-            using (_connection)
+            using (SqlConnection connection = new SqlConnection(_connection))
             {
                 try
                 {
-                    _connection.Open();
-                    using (SqlCommand command = new SqlCommand(query, _connection))
+                    connection.Open();
+                    using (SqlCommand command = new SqlCommand(query, connection))
                     {
                         SqlDataReader reader = command.ExecuteReader();
                         if (reader.HasRows)
@@ -137,19 +137,20 @@ namespace Accessors.Drone
             return droneList;
         }
         
-        public void UpdateDroneStatus(int droneId, string newStatus)
+        public void UpdateDroneStatus(int droneId, string newStatus, int? orderId)
         {
-            string query = "UPDATE Drone SET transit_status = @NewStatus WHERE droneId = @DroneId";
+            string query = "UPDATE Drone SET transit_status = @NewStatus, orderId = @OrderId WHERE droneId = @DroneId";;
 
-            using (_connection)
+            using (SqlConnection connection = new SqlConnection(_connection))
             {
                 try
                 {
-                    _connection.Open();
-                    using (SqlCommand command = new SqlCommand(query, _connection))
+                    connection.Open();
+                    using (SqlCommand command = new SqlCommand(query, connection))
                     {
                         command.Parameters.AddWithValue("@NewStatus", newStatus);
                         command.Parameters.AddWithValue("@DroneId", droneId);
+                        command.Parameters.AddWithValue("@OrderId", orderId);
                         command.ExecuteNonQuery();
                     }
                 }

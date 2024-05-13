@@ -7,12 +7,12 @@ namespace Accessors.Depot
 {
     public class DepotAccessor : IDepotAccessor
     {
-        private readonly SqlConnection _connection;
+        private readonly string _connection;
         private readonly IAddressAccessor _addressAccessor;
 
         public DepotAccessor(string connection, IAddressAccessor addressAccessor)
         {
-            _connection = new SqlConnection(connection);
+            _connection = connection;
             _addressAccessor = addressAccessor;
         }
         public DepotDataModel GetDepotWithDepotId(int depotId)
@@ -21,12 +21,12 @@ namespace Accessors.Depot
 
             string query = "SELECT * FROM Depot WHERE depotId = @DepotId";
 
-            using (_connection)
+            using (SqlConnection connection = new SqlConnection(_connection))
             {
                 try
                 {
-                    _connection.Open();
-                    using (SqlCommand command = new SqlCommand(query, _connection))
+                    connection.Open();
+                    using (SqlCommand command = new SqlCommand(query, connection))
                     {
                         command.Parameters.AddWithValue("@DepotId", depotId);
                         SqlDataReader reader = command.ExecuteReader();
@@ -56,12 +56,12 @@ namespace Accessors.Depot
 
             string query = "SELECT * FROM Depot";
 
-            using (_connection)
+            using (SqlConnection connection = new SqlConnection(_connection))
             {
                 try
                 {
-                    _connection.Open();
-                    using (SqlCommand command = new SqlCommand(query, _connection))
+                    connection.Open();
+                    using (SqlCommand command = new SqlCommand(query, connection))
                     {
                         SqlDataReader reader = command.ExecuteReader();
                         if (reader.HasRows)

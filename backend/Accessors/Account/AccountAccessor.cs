@@ -7,12 +7,12 @@ namespace Accessors.Account
 {
     public class AccountAccessor : IAccountAccessor
     {
-        private readonly SqlConnection _connection;
+        private readonly string _connection;
         private readonly IAddressAccessor _addressAccessor;
 
         public AccountAccessor(string connection, IAddressAccessor addressAccessor)
         {
-            _connection = new SqlConnection(connection);
+            _connection = connection;
             _addressAccessor = addressAccessor;
         }
 
@@ -22,12 +22,12 @@ namespace Accessors.Account
             
             string query = "SELECT * FROM Account WHERE accountId = @AccountId";
 
-            using (_connection)
+            using (SqlConnection connection = new SqlConnection(_connection))
             {
                 try
                 {
-                    _connection.Open();
-                    using (SqlCommand command = new SqlCommand(query, _connection))
+                    connection.Open();
+                    using (SqlCommand command = new SqlCommand(query, connection))
                     {
                         command.Parameters.AddWithValue("@AccountId", accountId);
                         SqlDataReader reader = command.ExecuteReader();
@@ -62,12 +62,12 @@ namespace Accessors.Account
 
             string query = "SELECT * FROM Account WHERE email = @Email";
 
-            using (_connection)
+            using (SqlConnection connection = new SqlConnection(_connection))
             {
                 try
                 {
-                    _connection.Open();
-                    using (SqlCommand command = new SqlCommand(query, _connection))
+                    connection.Open();
+                    using (SqlCommand command = new SqlCommand(query, connection))
                     {
                         command.Parameters.AddWithValue("@Email", email);
                         SqlDataReader reader = command.ExecuteReader();
@@ -105,12 +105,12 @@ namespace Accessors.Account
 
             int accountId = -1;
 
-            using (_connection)
+            using (SqlConnection connection = new SqlConnection(_connection))
             {
                 try
                 {
-                    _connection.Open();
-                    using (SqlCommand selectCommand = new SqlCommand(selectQuery, _connection))
+                    connection.Open();
+                    using (SqlCommand selectCommand = new SqlCommand(selectQuery, connection))
                     {
                         selectCommand.Parameters.AddWithValue("@Email", acc.Email);
 
@@ -124,7 +124,7 @@ namespace Accessors.Account
                         {
                             int addressId = await _addressAccessor.InsertAddress(acc.AccountAddress);
 
-                            using (SqlCommand insertCommand = new SqlCommand(insertQuery, _connection))
+                            using (SqlCommand insertCommand = new SqlCommand(insertQuery, connection))
                             {
                                 insertCommand.Parameters.AddWithValue("@FirstName", acc.FirstName);
                                 insertCommand.Parameters.AddWithValue("@LastName", acc.LastName);

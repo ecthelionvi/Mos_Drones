@@ -1,3 +1,4 @@
+using System.Data;
 using System.Data.SqlClient;
 using Accessors.Address.Models;
 using Accessors.API.OpenRoute;
@@ -6,23 +7,23 @@ namespace Accessors.Address
 {
     public class AddressAccessor : IAddressAccessor
     {
-        private readonly SqlConnection _connection;
+        private readonly string _connection;
 
         public AddressAccessor(string connection)
         {
-            _connection = new SqlConnection(connection);
+            _connection = connection;
         }
         public List<AddressDataModel> GetAddressList()
         {
             List<AddressDataModel> addressList = new List<AddressDataModel>();
             string query = "SELECT * FROM Address";
 
-            using (_connection)
+            using (SqlConnection connection = new SqlConnection(_connection))
             {
                 try
                 {
-                    _connection.Open();
-                    using (SqlCommand command = new SqlCommand(query, _connection))
+                    connection.Open();
+                    using (SqlCommand command = new SqlCommand(query, connection))
                     {
                         SqlDataReader reader = command.ExecuteReader();
                         if (reader.HasRows)
@@ -60,12 +61,12 @@ namespace Accessors.Address
             AddressDataModel address = new AddressDataModel();
             string query = "SELECT * FROM Address WHERE addressId = @AddressId";
 
-            using (_connection)
+            using (SqlConnection connection = new SqlConnection(_connection))
             {
                 try
                 {
-                    _connection.Open();
-                    using (SqlCommand command = new SqlCommand(query, _connection))
+                    connection.Open();
+                    using (SqlCommand command = new SqlCommand(query, connection))
                     {
                         command.Parameters.AddWithValue("@AddressId", addressId);
                         SqlDataReader reader = command.ExecuteReader();
@@ -117,12 +118,12 @@ namespace Accessors.Address
             
             int addressId = -1;
 
-            using (_connection)
+            using (SqlConnection connection = new SqlConnection(_connection))
             {
                 try
                 {
-                    _connection.Open();
-                    using (SqlCommand selectCommand = new SqlCommand(selectQuery, _connection))
+                    connection.Open();
+                    using (SqlCommand selectCommand = new SqlCommand(selectQuery, connection))
                     {
                         selectCommand.Parameters.AddWithValue("@City", city);
                         selectCommand.Parameters.AddWithValue("@State", state);
@@ -139,7 +140,7 @@ namespace Accessors.Address
                         }
                         else
                         {
-                            using (SqlCommand insertCommand = new SqlCommand(insertQuery, _connection))
+                            using (SqlCommand insertCommand = new SqlCommand(insertQuery, connection))
                             {
                                 insertCommand.Parameters.AddWithValue("@City", city);
                                 insertCommand.Parameters.AddWithValue("@State", state);
