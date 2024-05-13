@@ -1,5 +1,7 @@
-using Accessors.DBModels;
-using Accessors.Accessors;
+using Accessors.Address.Models;
+using Accessors.Depot.Models;
+using Accessors.Drone;
+using Accessors.Drone.Models;
 
 namespace UnitTests.AccessorTests
 {

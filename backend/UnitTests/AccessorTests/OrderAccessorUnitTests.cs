@@ -1,5 +1,6 @@
-using Accessors.Accessors;
-using Accessors.DBModels;
+using Accessors.Address.Models;
+using Accessors.Order;
+using Accessors.Order.Models;
 
 namespace UnitTests.AccessorTests
 {
@@ -17,7 +18,8 @@ namespace UnitTests.AccessorTests
             AddressDataModel shippedTo = new AddressDataModel(2, "Lincoln", "Nebraska", "68521", "2468 North 27th Street", coord2);
             OrderDataModel expectedOrder = new OrderDataModel(1, "4829170638572946", shipDate, deliveryDate, 1, shippedFrom, shippedTo, "Delivered");
 
-            OrderDataModel actualOrder = OrderAccessor.GetOrderWithOrderId(1);
+            OrderAccessor orderAccessor = new OrderAccessor();
+            OrderDataModel actualOrder = orderAccessor.GetOrderWithOrderId(1);
             Assert.AreEqual(expectedOrder, actualOrder);
         }
 

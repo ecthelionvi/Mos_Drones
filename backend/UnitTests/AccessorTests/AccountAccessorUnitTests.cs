@@ -1,5 +1,6 @@
-using Accessors.Accessors;
-using Accessors.DBModels;
+using Accessors.Account;
+using Accessors.Account.Models;
+using Accessors.Address.Models;
 
 namespace UnitTests.AccessorTests
 {
