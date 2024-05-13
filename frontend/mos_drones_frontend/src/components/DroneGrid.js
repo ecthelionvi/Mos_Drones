@@ -4,10 +4,12 @@ import { AgGridReact } from "ag-grid-react";
 import "ag-grid-community/styles/ag-grid.css";
 import React, { useState, useEffect } from "react";
 import "ag-grid-community/styles/ag-theme-alpine.css";
+import { BeatLoader } from "react-spinners";
 
 const DroneGrid = () => {
   const [rowData, setRowData] = useState([]);
   const [useMockData, setMockData] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     const mockData = {
@@ -58,6 +60,7 @@ const DroneGrid = () => {
       }
 
       try {
+        setLoading(true);
         const response = await fetch("http://localhost:3001/api/Admin/GetDrones");
         if (response.ok) {
           const data = await response.json();
@@ -68,6 +71,7 @@ const DroneGrid = () => {
       } catch (error) {
         console.error("Error fetching drone data:", error);
       }
+      setLoading(false);
     };
 
     fetchDroneData();
@@ -117,16 +121,20 @@ const DroneGrid = () => {
   return (
     <div className="drone-grid-container">
       <div className="ag-theme-alpine" style={{ height: 400, width: 1200}}>
-        <AgGridReact
-          rowData={rowData}
-          columnDefs={columnDefs}
-          pagination={true}
-          paginationPageSize={10}
-          suppressHorizontalScroll={true}
-          onGridReady={(params) => {
-            params.api.sizeColumnsToFit();
-          }}
-        />
+        {loading ? (
+          <BeatLoader color={"#123abc"} loading={loading} size={15} />
+        ) : (
+          <AgGridReact
+            rowData={rowData}
+            columnDefs={columnDefs}
+            pagination={true}
+            paginationPageSize={10}
+            suppressHorizontalScroll={true}
+            onGridReady={(params) => {
+              params.api.sizeColumnsToFit();
+            }}
+          />
+        )}
       </div>
     </div>
   );

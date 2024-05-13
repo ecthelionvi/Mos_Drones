@@ -10,10 +10,9 @@ const DronePage = ({ droneId, onRelocate }) => {
     useEffect(() => {
         const fetchDroneData = async () => {
             try {
-                const response = await axios.post("http://localhost:3001/api/Admin/GetDrones");
-                if (response.ok) {
-                    const data = await response.json();
-                    setDroneData(data);
+                const response = await axios.get("http://localhost:3001/api/Admin/GetDrones");
+                if (response.status === 200) {
+                    setDroneData(response.data);
                 } else {
                     console.error("Error fetching drone data:", response.status);
                 }
@@ -34,14 +33,14 @@ const DronePage = ({ droneId, onRelocate }) => {
     const DroneStatus = () => {
         const hasOrder = (drone.orderId != null);
 
-        let statusMessage = drone.transit_status;
-        // if ((drone.transit_status === 'In Transit') && (hasOrder === true)) {
-        //     statusMessage = "Drone is in transit with Order";
-        // } else if ((drone.transit_status === 'At Depot') && (hasOrder === true)) {
-        //     statusMessage = `Drone is at Depot number ${drone.depotId} with Order`;
-        // } else {
-        //     statusMessage = `Drone is ready to be deployed from Depot ${drone.depotId}`;
-        // }
+        let statusMessage = '';
+        if ((drone.transit_status === 'In Transit') && (hasOrder === true)) {
+            statusMessage = "Drone is in transit with Order";
+        } else if ((drone.transit_status === 'At Depot') && (hasOrder === true)) {
+            statusMessage = `Drone is at Depot number ${drone.depotId} with Order`;
+        } else {
+            statusMessage = `Drone is ready to be deployed from Depot ${drone.depotId}`;
+        }
 
         return (
             <p>{statusMessage}</p>
