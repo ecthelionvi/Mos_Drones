@@ -46,7 +46,7 @@ const HomePage = ({ loggedIn, onLogout, setLoggedIn, role }) => {
 
   const { isLoaded } = useJsApiLoader({
     id: "google-map-script",
-    googleMapsApiKey: "AIzaSyD9EOVlGpDT2Tj7c6b2xDU8CzYEto-ofN8",
+    googleMapsApiKey: "####",
     libraries: ["places"],
   });
 
